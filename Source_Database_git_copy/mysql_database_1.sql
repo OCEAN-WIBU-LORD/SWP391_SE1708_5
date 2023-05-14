@@ -119,10 +119,8 @@ REFERENCES user (user_id)
 );
 
 create table role (
-role_id nvarchar(50) ,
-role_name nvarchar(50),
-FOREIGN KEY (role_id)
-REFERENCES user_role (role_id)
+role_id nvarchar(50) primary key not null ,
+role_name nvarchar(50)
 );
 
 
@@ -131,4 +129,34 @@ insert into user(user_id,full_name) values
 ('hieudt123','Nguyen Trung Hieu'),
 ('phuongdd96','Dinh Minh Phuong');
 
+alter table user_details modify column phone_number nvarchar(50);
 
+insert into user_details(user_id,gender,phone_number,gmail,address, password,link_image) values
+('duongdd123','male','098123456','duongddhe176496@fpt.edu.vn','DH-FPT','123456789','https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/343340985_609038264590654_7861074615788473177_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=YPtOs0D07uwAX-L02Yn&_nc_ht=scontent.fhan2-4.fna&oh=00_AfBfxehr-INF2uaC__ccibN5JvvyFrvxIwFBFW5MwvK9Xw&oe=6462E51A'),
+('hieudt123','male','036999998','nguyentrunghieu@gmail.com','12,Ba Trieu, HaNoi', '123456789', 'https://scontent.fhan2-3.fna.fbcdn.net/v/t39.30808-6/332489386_3401774396729930_6971685825265049192_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=6NI-G2fpAWIAX-TDhGC&_nc_ht=scontent.fhan2-3.fna&oh=00_AfCWx0AQD7YnpnKjs6FQyJlGMFuGuHmLiY__HFJwpu835Q&oe=6461B5F2'),
+('phuongdd96','female','099867513', 'phuongdoanhdoanh@gmail.com','34, Toronto, Canada','123455678','https://scontent.fhan2-3.fna.fbcdn.net/v/t39.30808-6/332489386_3401774396729930_6971685825265049192_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=6NI-G2fpAWIAX-TDhGC&_nc_ht=scontent.fhan2-3.fna&oh=00_AfCWx0AQD7YnpnKjs6FQyJlGMFuGuHmLiY__HFJwpu835Q&oe=6461B5F2');
+
+insert into user_role (role_id,user_id) values
+('0','duongdd123'),
+('1','hieudt123'),
+('1','phuongdd96');
+
+insert into role (role_id,role_name) values
+('0','admin'),
+('1','user');
+
+drop table role;
+alter table user_role drop primary key;
+alter table user_role add primary key (user_id);
+
+ALTER TABLE user_role
+ADD CONSTRAINT fk_user_role_role_id
+FOREIGN KEY (role_id)
+REFERENCES role (role_id);
+
+select * from  user_role;
+
+create table comment (
+
+
+)
