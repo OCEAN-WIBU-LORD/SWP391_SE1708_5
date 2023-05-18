@@ -25,9 +25,9 @@ public class BaseDAO {
             Connection connection = DriverManager.getConnection(url,username,password);
             Statement statement = connection.createStatement();
             
-            ResultSet resultSet= statement.executeQuery("select * from user");
+            ResultSet resultSet= statement.executeQuery("select r.role_name from(select ar.role_id from user a inner join user_role ar on a.user_id = ar.user_id where a.user_id = 'duongdd123') as tb1 inner join role r on r.role_id = tb1.role_id");
             while(resultSet.next()){
-                System.out.println(resultSet.getString(1)+" "+resultSet.getString(2)); 
+                System.out.println(resultSet.getString(1)); 
             }
             connection.close();
         }catch(Exception e){

@@ -35,7 +35,7 @@ public class User_DetailsDAO {
             // connnect to database 'testdb'
             conn = db.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("select r.role_name from(select ar.role_id from Accounts a inner join Account_role ar on a.acc_id = ar.acc_id where a.acc_id =?) as tb1 inner join Roles r on r.role_id = tb1.role_id ");
+            PreparedStatement stmt = conn.prepareStatement("select r.role_name from(select ar.role_id from user a inner join user_role ar on a.user_id = ar.user_id where a.user_id = ?) as tb1 inner join role r on r.role_id = tb1.role_id");
             stmt.setString(1, acc_id);
 
             // get data from table
@@ -43,7 +43,7 @@ public class User_DetailsDAO {
             // show data
 
             while (rs.next()) {
-                role = rs.getString("role_name");
+                role = rs.getString(1);
 
             }
             // close connection
@@ -90,7 +90,7 @@ public class User_DetailsDAO {
             // connnect to database 'testdb'
             conn = db.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User_Details where username = ? and password = ?");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User_Details where user_id = ? and password = ?");
             stmt.setString(1, username);
             stmt.setString(2, password);
 

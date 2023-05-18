@@ -11,6 +11,7 @@ import java.sql.Statement;
 import java.sql.Driver;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import model.User;
 /**
  *
  * @author Acer
@@ -31,7 +32,7 @@ public class UserDAO {
             // connnect to database 'testdb'
             conn = db.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("select r.role_name from(select ar.role_id from Accounts a inner join Account_role ar on a.acc_id = ar.acc_id where a.acc_id =?) as tb1 inner join Roles r on r.role_id = tb1.role_id ");
+            PreparedStatement stmt = conn.prepareStatement("select r.role_name from(select ar.role_id from user a inner join user_role ar on a.user_id = ar.user_id where a.user_id = ?) as tb1 inner join role r on r.role_id = tb1.role_id");
             stmt.setString(1, acc_id);
 
             // get data from table
@@ -39,7 +40,7 @@ public class UserDAO {
             // show data
 
             while (rs.next()) {
-                role = rs.getString("role_name");
+                System.out.println(rs.getString(1)); 
 
             }
             // close connection
@@ -79,6 +80,7 @@ public class UserDAO {
         }
         return false;
     }
+     
      
      
     
