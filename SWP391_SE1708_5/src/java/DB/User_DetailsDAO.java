@@ -63,7 +63,7 @@ public class User_DetailsDAO {
             // connnect to database 'testdb'
             conn = db.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User where username = ?");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User_Details where user_id = ?");
             stmt.setString(1, username);
 
             // get data from table
@@ -83,7 +83,7 @@ public class User_DetailsDAO {
         return false;
     }
      
-      public User_Details getUser_Details(String username, String password) throws SQLException {
+      public User_Details getUser_Details(String user_id, String password) throws SQLException {
         User_Details u = null;
         try {
             BaseDAO db = new BaseDAO();
@@ -91,7 +91,7 @@ public class User_DetailsDAO {
             conn = db.getConnection();
             // crate statement
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User_Details where user_id = ? and password = ?");
-            stmt.setString(1, username);
+            stmt.setString(1, user_id);
             stmt.setString(2, password);
 
             // get data from table
@@ -110,6 +110,67 @@ public class User_DetailsDAO {
             conn.close();
         }
         return u;
+    }
+      
+      public void insertUserDetails(String user_id, String gender, String phone_number, String gmail, String address, String password, String link_image) {
+        try {
+
+            conn = BaseDAO.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO [dbo].[User_details]\n"
+                    + "           ([user_id]\n"
+                    + "           ,[gender]\n"
+                    + "           ,[phone_number]\n"
+                    + "           ,[gmail]\n"
+                    + "           ,[address]\n"
+                    + "           ,[password]\n"
+                    + "           ,[link_image]\n"
+                    + "     VALUES\n"
+                    + "           (?,?,?,?,?,?,?)");
+            stmt.setString(1, user_id);
+            stmt.setString(3, gender);
+            stmt.setString(4, phone_number);
+            stmt.setString(2, gmail);
+            stmt.setString(6, address);
+            stmt.setString(7, password);
+            stmt.setString(5, link_image);
+            stmt.executeQuery();
+        } catch (Exception e) {
+            System.out.println("insertAccount" + e.getMessage());
+        }
+    }
+      
+      public void insertRole(String acc_id) {
+        try {
+
+            conn = BaseDAO.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO [dbo].[Account_role]\n"
+                    + "           ([acc_id]\n"
+                    + "           ,[role_id])\n"
+                    + "     VALUES\n"
+                    + "           (?,?)");
+            stmt.setString(1, acc_id);
+            stmt.setString(2, "1");
+            stmt.executeQuery();
+        } catch (Exception e) {
+            System.out.println("insertRole" + e.getMessage());
+        }
+    }
+      
+      public void insertUser(String user_id, String full_name) {
+        try {
+
+            conn = BaseDAO.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO [dbo].[User]\n"
+                    + "           ([user_id]\n"
+                    + "           ,[full_name])\n"
+                    + "     VALUES\n"
+                    + "           (?,?)");
+            stmt.setString(1, user_id);
+            stmt.setString(2, full_name);
+            stmt.executeQuery();
+        } catch (Exception e) {
+            System.out.println("insertUser" + e.getMessage());
+        }
     }
     
 }
