@@ -116,26 +116,17 @@ public class User_DetailsDAO {
         try {
 
             conn = BaseDAO.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO [dbo].[User_details]\n"
-                    + "           ([user_id]\n"
-                    + "           ,[gender]\n"
-                    + "           ,[phone_number]\n"
-                    + "           ,[gmail]\n"
-                    + "           ,[address]\n"
-                    + "           ,[password]\n"
-                    + "           ,[link_image]\n"
-                    + "     VALUES\n"
-                    + "           (?,?,?,?,?,?,?)");
+            PreparedStatement stmt = conn.prepareStatement("insert into user_details (user_id,gender,phone_number,gmail,address,password,link_image) values (?,?,?,?,?,?,?)");
             stmt.setString(1, user_id);
-            stmt.setString(3, gender);
-            stmt.setString(4, phone_number);
-            stmt.setString(2, gmail);
-            stmt.setString(6, address);
-            stmt.setString(7, password);
-            stmt.setString(5, link_image);
+            stmt.setString(2, gender);
+            stmt.setString(3, phone_number);
+            stmt.setString(4, gmail);
+            stmt.setString(5, address);
+            stmt.setString(6, password);
+            stmt.setString(7, link_image);
             stmt.executeUpdate();
         } catch (Exception e) {
-            System.out.println("insertAccount" + e.getMessage());
+            System.out.println("insertUserDetails" + e.getMessage());
         }
     }
       
