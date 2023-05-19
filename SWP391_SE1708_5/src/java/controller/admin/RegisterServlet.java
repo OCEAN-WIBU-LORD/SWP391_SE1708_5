@@ -7,6 +7,7 @@ package controller.admin;
 
 import DB.UserDAO;
 import DB.User_DetailsDAO;
+import DB.User_RoleDAO;
 import controller.Logout;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,6 +19,7 @@ import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Role;
 import model.User_Details;
 
 /**
@@ -59,8 +61,10 @@ public class RegisterServlet extends HttpServlet {
             String link_image = request.getParameter("link_image");
             
             
+            UserDAO userDAO = new UserDAO();
             User_DetailsDAO adao = new User_DetailsDAO();
-            String mess = "";
+            User_RoleDAO udao = new User_RoleDAO();
+             String mess = "";
            
             
             if (!password.equals(repassword) ) {
@@ -74,13 +78,15 @@ public class RegisterServlet extends HttpServlet {
                 
             }else{
                 HttpSession session = request.getSession(); 
+                
+                 userDAO.insertUser(user_id, full_name);
                  adao.insertUserDetails(user_id,gender,phone_number,gmail,address,password,link_image);
 
-                 adao.insertRole(user_id);
-                 adao.insertUser(user_id, full_name);
+                 udao.insertRole(user_id);
                  
                  User_Details User_Details = adao.getUser_Details(user_id, password);
                 
+                 
                 String role = adao.checkAdmin(String.valueOf(User_Details.getUser_id()));
                  session.setAttribute("usercurrent", User_Details);
                  

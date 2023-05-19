@@ -24,7 +24,7 @@ public class User_DetailsDAO {
     Connection conn = null;
     
     public static void main(String[] args) throws SQLException {
-        UserDAO a = new UserDAO();
+        User_DetailsDAO a = new User_DetailsDAO();
         System.out.println(a.checkUser("duongdd123"));
     }
     
@@ -133,44 +133,14 @@ public class User_DetailsDAO {
             stmt.setString(6, address);
             stmt.setString(7, password);
             stmt.setString(5, link_image);
-            stmt.executeQuery();
+            stmt.executeUpdate();
         } catch (Exception e) {
             System.out.println("insertAccount" + e.getMessage());
         }
     }
       
-      public void insertRole(String acc_id) {
-        try {
-
-            conn = BaseDAO.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO [dbo].[Account_role]\n"
-                    + "           ([acc_id]\n"
-                    + "           ,[role_id])\n"
-                    + "     VALUES\n"
-                    + "           (?,?)");
-            stmt.setString(1, acc_id);
-            stmt.setString(2, "1");
-            stmt.executeQuery();
-        } catch (Exception e) {
-            System.out.println("insertRole" + e.getMessage());
-        }
-    }
       
-      public void insertUser(String user_id, String full_name) {
-        try {
-
-            conn = BaseDAO.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO [dbo].[User]\n"
-                    + "           ([user_id]\n"
-                    + "           ,[full_name])\n"
-                    + "     VALUES\n"
-                    + "           (?,?)");
-            stmt.setString(1, user_id);
-            stmt.setString(2, full_name);
-            stmt.executeQuery();
-        } catch (Exception e) {
-            System.out.println("insertUser" + e.getMessage());
-        }
-    }
+      
+      
     
 }
