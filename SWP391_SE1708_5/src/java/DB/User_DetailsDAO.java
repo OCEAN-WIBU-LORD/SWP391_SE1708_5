@@ -129,6 +129,46 @@ public class User_DetailsDAO {
             System.out.println("insertUserDetails" + e.getMessage());
         }
     }
+
+    public boolean checkUserPhoneNumber(String user_id, String phone_number) throws SQLException {
+        UserDAO a = null;
+        try {
+            BaseDAO db = new BaseDAO();
+            // connnect to database 'testdb'
+            conn = db.getConnection();
+            // crate statement
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User_Details where user_id = ? and phone_number = ?");
+            stmt.setString(1, user_id);
+            stmt.setString(2, phone_number);
+
+            // get data from table
+            ResultSet rs = stmt.executeQuery();
+            // show data
+            while (rs.next()) {
+                return true;
+            }
+            // close connection
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            conn.close();
+        }
+        return false;
+    }
+
+    public void changePassword(String user_id, String password) {
+        try {
+
+            conn = BaseDAO.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("update table User_Details set password = ? where user_id = ?");
+            stmt.setString(1, password);
+            stmt.setString(2, user_id);
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("changePassword" + e.getMessage());
+        }
+    }
       
       
       

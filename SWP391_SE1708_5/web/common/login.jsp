@@ -40,7 +40,7 @@
 		<div class="container-login100" style="background-image: url('login_atr/images/bg-01.jpg');">
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
-					Login to Play2Together`
+					Login to Play2Together
 				</span>
                             <form action="login" method="post" class="login100-form validate-form p-b-33 p-t-5">
                                         <p style="text-align: center;color: red" >${mess}</p>

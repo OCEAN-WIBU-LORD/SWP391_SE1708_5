@@ -33,6 +33,10 @@
         <servlet-class>controller.admin.RegisterServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>RepassServlet</servlet-name>
+        <servlet-class>controller.admin.RepassServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ProfileServlet</servlet-name>
         <servlet-class>controller.ProfileServlet</servlet-class>
     </servlet>
@@ -83,6 +87,10 @@
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RepassServlet</servlet-name>
+        <url-pattern>/repass</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProfileServlet</servlet-name>

@@ -67,55 +67,33 @@
             <div class="container-login100" style="background-image: url('login_atr/images/bg-01.jpg');">
                 <div class="wrap-login100 p-t-30 p-b-50">
                     <span class="login100-form-title p-b-41">
-                        Register to Play2ToGether
+                        Repass Play2ToGether Account
                     </span>
-                    <form action="register" method="post" class="login100-form validate-form p-b-33 p-t-5">
+                    <form action="repass" method="post" class="login100-form validate-form p-b-33 p-t-5">
                         <p style="text-align: center;color: red" >${mess}</p>
                         <div class="wrap-input100 validate-input " data-validate = "Enter user id">
                             <input  id="username" class="input100" type="text" name="user_id" value="${username eq null ? "" : username}" placeholder="User ID">
                             <span class="focus-input100" data-placeholder="&#xe82a;"></span>
                         </div>
 
-                        <div class="wrap-input100 validate-input" data-validate="Enter password">
-                            <input id="password" class="input100" type="password" name="pass" value="${password eq null ? "" : password}" placeholder="Password">
+                        <div class="wrap-input100 validate-input" data-validate="Enter phone number">
+                            <input id="password" class="input100" type="text" name="pass" value="${password eq null ? "" : password}" placeholder="Phone Number">
                             <span class="focus-input100" data-placeholder="&#xe80f;"></span>
                         </div>
 
-                        <div class="wrap-input100 validate-input" data-validate="Enter re-password">
-                            <input id="repassword" class="input100" type="password" name="repass" value="${password eq null ? "" : password}" placeholder="Re-Password">
+                        <div class="wrap-input100 validate-input" data-validate="Enter password">
+                            <input id="repassword" class="input100" type="password" name="pass" value="${password eq null ? "" : password}" placeholder="Password">
                             <span class="focus-input100" data-placeholder="&#xe80f;"></span>
                         </div>
-                       <div class="wrap-input100 validate-input " data-validate = "Enter User Name">
-                            <input  id="username" class="input100" type="text" name="full_name" value="${username eq null ? "" : username}" placeholder="Full Name">
+                       <div class="wrap-input100 validate-input " data-validate = "Enter Re-Password">
+                            <input  id="username" class="input100" type="text" name="repass" value="${username eq null ? "" : username}" placeholder="Re-Password">
                             <span class="focus-input100" data-placeholder="&#xe82a;"></span>
                         </div>    
                         
-                        <div class="wrap-input100 validate-input" data-validate="Enter re-password">
-                            <input id="repassword" class="input100" type="text" name="phonenumber" value="${firstname eq null ? "" : firstname}" placeholder="Phone_Number">
-                            <span class="focus-input100" data-placeholder="&#xe80f;"></span>
-                        </div>
-                        <div class="wrap-input100 validate-input" data-validate="Enter re-password">
-                            <input id="repassword" class="input100" type="text" name="gmail" value="${lastname eq null ? "" : lastname}" placeholder="Gmail">
-                            <span class="focus-input100" data-placeholder="&#xe80f;"></span>
-                        </div>
-                        <div class="wrap-input100 validate-input" data-validate="Enter re-password">
-                            <input id="repassword" class="input100" type="text" name="address" value="${age eq null ? "" : age}" placeholder="Address">
-                            <span class="focus-input100" data-placeholder="&#xe80f;"></span>
-                        </div>
-                        <div class="wrap-input100 validate-input" data-validate="Enter re-password">
-                            <input id="repassword" style="margin-left: 70px" class="input50" type="radio" name="gender" value="Male" placeholder="Gender">Male
-                            <i style="font-size:24px" class="fa">&#xf222;</i>
-                            <input id="repassword" style="margin-left: 50px" class="input50" type="radio" name="gender" value="Female" placeholder="Gender">Female
-                            <i style="font-size:24px" class="fa">&#xf221;</i>
-
-                        </div>
-                        <div class="wrap-input100 validate-input" data-validate="Enter re-password">
-                            <input id="repassword" class="input100" type="text" name="link_image" value="${email eq null ? "" : email}" placeholder="link_image">
-                            <span class="focus-input100" data-placeholder="&#xe80f;"></span>
-                        </div>
+                       
                         <div class="container-login100-form-btn m-t-32">
                             <button class="login100-form-btn" onclick="checkValid()">
-                                Register
+                                Repass
                             </button>
                         </div>
 
