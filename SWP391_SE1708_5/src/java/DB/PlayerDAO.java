@@ -42,7 +42,10 @@ public class PlayerDAO {
             list = new ArrayList<>();
             while (rs.next()) {
                 Movie a = null;
-                a = new Movie(
+ 
+                +
+                        -
+                        a = new Movie(
                         rs.getInt("movie_id"),
                         rs.getNString("title"),
                         rs.getString("description"),
