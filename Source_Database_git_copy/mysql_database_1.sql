@@ -154,9 +154,33 @@ ADD CONSTRAINT fk_user_role_role_id
 FOREIGN KEY (role_id)
 REFERENCES role (role_id);
 
-select * from  user_role;
+select * from  player;
 
-create table comment (
+create table comment;
+select r.role_name from(select ar.role_id from user a inner join user_role ar on a.user_id = ar.user_id where a.user_id = 'duongdd123') as tb1 inner join role r on r.role_id = tb1.role_id;
 
+insert into user_role (role_id,user_id) values ('1','dungnt123');
 
-)
+update User_Details set password = 123456789 where user_id = 'duongdd123';
+
+insert into player (player_id, player_name, gender, phone_number, num_of_star, password, game_played, link_image) values ('nhungpd123', 'Pham Dang Nhung', 'female', '0966566712', '5','123456789','1','https://playerduo.net/api/upload-service/images/8a647942-cdbf-4d92-bae5-2cfa341b1256__ff8bade0-f664-11ed-a657-a54d6be1d46a__player_avatar.jpg');
+
+drop table game_played;
+alter table game_played drop primary key ;
+alter table game_played drop primary key;
+
+alter table Game_Played change column game_played player_id  nvarchar(250);
+
+alter table player DROP foreign key fk_player_game_played;
+
+select * from game_played;
+
+alter table player add primary key (game_id);
+alter table game_played add column player_id nvarchar(250);
+alter table game_played add primary key (player_id);
+alter table game_played drop column game_played;
+
+ALTER TABLE game_played
+ADD CONSTRAINT fk_game_played_player_id
+FOREIGN KEY (player_id)
+REFERENCES player (player_id);

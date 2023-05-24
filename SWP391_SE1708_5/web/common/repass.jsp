@@ -77,7 +77,7 @@
                         </div>
 
                         <div class="wrap-input100 validate-input" data-validate="Enter phone number">
-                            <input id="password" class="input100" type="text" name="pass" value="${password eq null ? "" : password}" placeholder="Phone Number">
+                            <input id="password" class="input100" type="text" name="phonenumber" value="${password eq null ? "" : password}" placeholder="Phone Number">
                             <span class="focus-input100" data-placeholder="&#xe80f;"></span>
                         </div>
 

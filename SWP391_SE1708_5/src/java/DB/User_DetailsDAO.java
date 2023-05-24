@@ -161,7 +161,7 @@ public class User_DetailsDAO {
         try {
 
             conn = BaseDAO.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("update table User_Details set password = ? where user_id = ?");
+                PreparedStatement stmt = conn.prepareStatement("update User_Details set password = ? where user_id = ?");
             stmt.setString(1, password);
             stmt.setString(2, user_id);
             stmt.executeUpdate();

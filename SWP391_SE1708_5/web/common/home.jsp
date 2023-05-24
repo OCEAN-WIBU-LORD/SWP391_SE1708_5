@@ -29,7 +29,7 @@
         <link rel="stylesheet" href="css/style.css" />
 
         <title>
-            CGV &mdash; Cinemas
+            Play2Together &mdash; Cinemas
         </title>
     </head>
     <body>
