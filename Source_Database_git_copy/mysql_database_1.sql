@@ -173,7 +173,7 @@ alter table Game_Played change column game_played player_id  nvarchar(250);
 
 alter table player DROP foreign key fk_player_game_played;
 
-select * from game_played;
+select * from player;
 
 alter table player add primary key (game_id);
 alter table game_played add column player_id nvarchar(250);
@@ -184,3 +184,10 @@ ALTER TABLE game_played
 ADD CONSTRAINT fk_game_played_player_id
 FOREIGN KEY (player_id)
 REFERENCES player (player_id);
+
+insert into Player values();
+
+insert into player (player_id, player_name, gender, phone_number, num_of_star, password, link_image) values ('hala', 'Em bé Chan ☁️❤️', 'female', '0967778899', '5','123456789','https://playerduo.net/api/upload-service/images/75c40a5c-dbda-4ac3-9106-55d6d7ca9b0f__a3c3aef0-cb0c-11ed-a19f-23a3b10d190e__player_album.jpg
+
+
+alter table player drop column game_played;

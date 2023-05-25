@@ -34,31 +34,23 @@ public class PlayerDAO {
             // connnect to database 'testdb'
             conn = db.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("select top(5) * from Movies m order by m.viewers desc");
+            PreparedStatement stmt = conn.prepareStatement("select top(5) * from Player m order by m.num_of_star desc");
 
             // get data from table
             ResultSet rs = stmt.executeQuery();
             // show data
             list = new ArrayList<>();
             while (rs.next()) {
-                Movie a = null;
- 
-                +
-                        -
-                        a = new Movie(
-                        rs.getInt("movie_id"),
-                        rs.getNString("title"),
-                        rs.getString("description"),
-                        rs.getString("time_show"),
-                        rs.getNString("subtitle"),
-                        rs.getString("poster"),
-                        rs.getString("request"),
-                        rs.getInt("rated"),
-                        rs.getInt("viewers"),
-                        rs.getString("premiere"),
-                        rs.getString("country"),
-                        rs.getString("directed_by"),
-                        rs.getString("status_movie"));
+                Player a = null;
+                        a = new Player(
+                        rs.getString("player_id"),
+                        rs.getNString("player_name"),
+                        rs.getString("gender"),
+                        rs.getString("phone_number"),
+                        rs.getInt("number_of_star"),
+                        rs.getString("password"),
+                        rs.getString("game_played"),
+                        rs.getString("link_image"));
                 list.add(a);
             }
             // close connection
