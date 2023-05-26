@@ -59,5 +59,41 @@ public class PlayerDAO {
         }
         return list;
     }
+
+    public ArrayList<Player> searchPlayer(String search) {
+       ArrayList<Player> movie = new ArrayList<Player>();
+       Connection conn = null;
+        try {
+            String search1 = "%" + search + "%";
+            BaseDAO db = new BaseDAO();
+            conn = db.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("select * from Movies where title like ?");
+            stmt.setString(1, String.valueOf(search1));
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Player a = null;
+                a = new Player(
+                        rs.getInt("movie_id"),
+                        rs.getNString("title"),
+                        rs.getString("description"),
+                        String.valueOf(rs.getInt("time_show")),
+                        rs.getNString("subtitle"),
+                        rs.getString("poster"),
+                        rs.getString("request"),
+                        rs.getFloat("rated"),
+                        rs.getInt("viewers"),
+                        String.valueOf(rs.getDate("premiere")),
+                        rs.getString("country"),
+                        rs.getString("directed_by"),
+                        String.valueOf(rs.getBoolean("status_movie")));
+                movie.add(a);
+            }
+                return movie;
+        } catch (Exception e) {
+            System.out.println("searchMovie" + e.getMessage());
+        }
+        return null;
+
+    }
     
 }

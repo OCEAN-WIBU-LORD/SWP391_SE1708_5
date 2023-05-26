@@ -189,7 +189,7 @@ insert into Player values();
 
 insert into player (player_id, player_name, gender, phone_number, num_of_star, password, link_image) values ('windyiu', 'Windy', 'female', '096724421', '5','123456789','https://playerduo.net/api/upload-service/images/0daea254-1a71-44ce-903d-88a781d83124__d733b5f0-90c9-11ed-a19f-23a3b10d190e__player_album.jpg');
 
-alter table player drop column game_played;
+alter table game_type drop column game_played;
 select * from player;
 
 select * from user_details;
@@ -197,5 +197,22 @@ select * from user_details;
 select * from Player m order by m.num_of_star desc limit 3;
 
 alter table user_details ;
+
+ALTER TABLE game
+MODIFY COLUMN game_discription text;
+
+select * from game_type;
+insert into game_type (game_id,game_type) values ('1','creative');
+insert into game (game_id, game_name,game_discription, game_type) values ('4','Fornite','GTA stands for Grand Theft Auto, which is a popular video game series created by David Jones and Mike Dailly. The franchise is developed by Rockstar Games, a subsidiary of Take-Two Interactive. GTA is known for its open-world gameplay, action-adventure elements, and immersive storytelling.
+
+The Grand Theft Auto series is set in fictional cities that resemble real-life locations, providing players with a vast and interactive environment to explore. The games typically feature a mix of missions, activities, and open-ended gameplay that allows players to freely roam and engage in various criminal activities.
+
+In GTA games, players assume the role of a protagonist who is often involved in criminal activities such as theft, smuggling, and organized crime. The gameplay involves completing missions and tasks, which can include driving vehicles, combat, shooting, and interacting with non-player characters (NPCs) in the game world.
+
+The series has gained recognition for its engaging narratives, satirical social commentary, and attention to detail in recreating expansive cityscapes. Each installment of GTA introduces new characters, stories, and gameplay mechanics, offering a fresh experience with every release.
+
+While the core gameplay of GTA revolves around the single-player campaign, several games in the series also feature multiplayer modes. GTA Online, for example, provides an online multiplayer experience where players can interact, participate in missions, and engage in various activities with other players in the game world.
+
+The Grand Theft Auto series has become one of the most successful and influential video game franchises of all time, with each new release eagerly anticipated by fans. It has received critical acclaim for its immersive gameplay, open-world exploration, and cinematic storytelling, as well as its ability to push the boundaries of interactive entertainment.','Action');
 
 update player set link_image = 'https://playerduo.net/api/upload-service/images/66f8b716-ee52-4590-aa0a-73bd28590f5f__5fbf8da0-e02e-11ed-a19f-23a3b10d190e__player_avatar.jpg' where player_id = 'chanbaby95';

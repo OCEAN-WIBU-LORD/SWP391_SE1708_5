@@ -29,7 +29,7 @@
         <link rel="stylesheet" href="css/style.css" />
 
         <title>
-            Play2Together &mdash; Cinemas
+            Play2Together &mdash; Player_Hiring
         </title>
     </head>
     <body>
@@ -57,15 +57,16 @@
                     ></div>
                 <div
                     class="img overlay"
-                    style="background-image: url('')"
+                    style="background-image: url('https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/230694423_303144164926239_7325756802978514934_n.png?_nc_cat=100&ccb=1-7&_nc_sid=730e14&_nc_ohc=FFkDG2YlH0QAX-5FQb3&_nc_ht=scontent.fhan2-4.fna&oh=00_AfBHQJK97ZIuOzGsBGpcyhOYR6cdn-q3k4xUg84k08Gfbg&oe=6474EC4F')"
                     ></div>
             </div>
+
 
             <div class="container">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-9 text-center">
                         <h1 class="heading" data-aos="fade-up">
-                            Easiest way to find your FAVORITE MOVIE
+                            Easiest way to find your Gaming Co-Players
                         </h1>
                         <form
                             action="SearchServlet"
@@ -76,7 +77,7 @@
                             <input
                                 type="text"
                                 class="form-control px-4"
-                                placeholder="thể loại, tên phim, diễn viên, ..."
+                                placeholder="Input Player ID, Player Name or Game Name"
                                 name="searchInput"/>
                             <button type="submit" class="btn btn-primary">Search</button>
                         </form>
