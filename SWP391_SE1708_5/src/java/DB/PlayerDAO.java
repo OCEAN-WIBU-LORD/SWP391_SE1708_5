@@ -34,7 +34,7 @@ public class PlayerDAO {
             // connnect to database 'testdb'
             conn = db.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("select top(5) * from Player m order by m.num_of_star desc");
+            PreparedStatement stmt = conn.prepareStatement("select * from Player m order by m.num_of_star desc limit 5");
 
             // get data from table
             ResultSet rs = stmt.executeQuery();
@@ -47,9 +47,8 @@ public class PlayerDAO {
                         rs.getNString("player_name"),
                         rs.getString("gender"),
                         rs.getString("phone_number"),
-                        rs.getInt("number_of_star"),
+                        rs.getInt("num_of_star"),
                         rs.getString("password"),
-                        rs.getString("game_played"),
                         rs.getString("link_image"));
                 list.add(a);
             }

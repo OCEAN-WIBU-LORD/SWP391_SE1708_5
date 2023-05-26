@@ -17,11 +17,11 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Actor;
-import model.Category;
-import model.Movie;
-import model.MovieActor;
-import model.Movie_category;
+//import model.Actor;
+//import model.Category;
+//import model.Movie;
+//import model.MovieActor;
+//import model.Movie_category;
 import model.Player;
 
 /**
@@ -31,30 +31,23 @@ import model.Player;
 public class HomeServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            request.setCharacterEncoding("UTF-8");
-            PlayerDAO mdao = new PlayerDAO();
-            Game_TypeDAO adao = new Game_TypeDAO();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-            List<Player> playerList = mdao.getTop5GoodPlayer();
-            List<Actor> actorList = adao.getAllActor();
-            List<Category> cateList = cdao.getAllCategory();
-            List<MovieActor> movieActorList = mdao.getMovieActor();
-            List<Movie_category> mcList = cdao.getMovieCategory();
-            
-            request.setAttribute("mcList", mcList);
-            request.setAttribute("movieList", movieList);
-            request.setAttribute("actorList", actorList);
-            request.setAttribute("cateList", cateList);
-            request.setAttribute("movieActorList", movieActorList);
-
-            response.getWriter().print(movieList.get(0).getDirected_by());
-            request.getRequestDispatcher("common/home.jsp").forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        request.setCharacterEncoding("UTF-8");
+        PlayerDAO mdao = new PlayerDAO();
+        //     Game_TypeDAO adao = new Game_TypeDAO();
+        List<Player> playerList = mdao.getTop5GoodPlayer();
+        //            List<Actor> actorList = adao.getAllActor();
+//            List<Category> cateList = cdao.getAllCategory();
+//            List<MovieActor> movieActorList = mdao.getMovieActor();
+//            List<Movie_category> mcList = cdao.getMovieCategory();
+//            request.setAttribute("mcList", mcList);
+        request.setAttribute("playerList", playerList);
+//            request.setAttribute("actorList", actorList);
+//            request.setAttribute("cateList", cateList);
+//            request.setAttribute("movieActorList", movieActorList);
+//            response.getWriter().print(playerList.get(0).getDirected_by());
+        request.getRequestDispatcher("common/home.jsp").forward(request, response);
     }
 
     @Override

@@ -3,25 +3,30 @@
             <div class="container">
                 <div class="menu-bg-wrap">
                     <div class="site-navigation">
-                        <a href="home" class="logo m-0 float-start"><img src="images/logo.png" width="50px" alt="alt" /><span style="font-family: fantasy">CGV</span></a>
+                        <a href="home" class="logo m-0 float-start"><img src="images/image-removebg-preview1.png" width="60px" alt="alt" />    <span style="font-family: fantasy">Play2Together</span></a>
 
                         <ul
                             class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
                             >
                             <li class="has-children">
-                                <a href="#">Movie</a>
+                                <a href="#">Game List</a>
                                 <ul class="dropdown">
-                                    <li><a href="#">ON THE GO FILMS</a></li>
-                                    <li><a href="#">FILM COMING SOON</a></li>
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Creative</a></li>
+                                    <li><a href="#">Adventure</a></li>
+                                    <li><a href="#">Sport</a></li>
+                                    <li><a href="#">Puzzle</a></li>
+                                    <li><a href="#">Moba 5v5</a></li>
+                                    <li><a href="#">Real-time</a></li>
 
                                 </ul>
                             </li>
                             <li class="has-children">
-                                <a href="properties.html">CGV THREATRE</a>
+                                <a href="properties.html">Leader Board</a>
                                 <ul class="dropdown">
-                                    <li><a href="#">ALL KINDS OF CINEMA</a></li>
-                                    <li><a href="#">SPECIAL CINEMA</a></li>
-                                    <li><a href="#">3D CINEMA</a></li>
+                                    <li><a href="#">Donate Leader Board</a></li>
+                                    <li><a href="#">Top Star Players</a></li>
+                                    <li><a href="#">Top Users</a></li>
                                     <li class="has-children">
                                         <a href="#">MORE</a>
                                         <ul class="dropdown">

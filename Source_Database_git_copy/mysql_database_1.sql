@@ -187,7 +187,15 @@ REFERENCES player (player_id);
 
 insert into Player values();
 
-insert into player (player_id, player_name, gender, phone_number, num_of_star, password, link_image) values ('hala', 'Em bé Chan ☁️❤️', 'female', '0967778899', '5','123456789','https://playerduo.net/api/upload-service/images/75c40a5c-dbda-4ac3-9106-55d6d7ca9b0f__a3c3aef0-cb0c-11ed-a19f-23a3b10d190e__player_album.jpg
-
+insert into player (player_id, player_name, gender, phone_number, num_of_star, password, link_image) values ('windyiu', 'Windy', 'female', '096724421', '5','123456789','https://playerduo.net/api/upload-service/images/0daea254-1a71-44ce-903d-88a781d83124__d733b5f0-90c9-11ed-a19f-23a3b10d190e__player_album.jpg');
 
 alter table player drop column game_played;
+select * from player;
+
+select * from user_details;
+
+select * from Player m order by m.num_of_star desc limit 3;
+
+alter table user_details ;
+
+update player set link_image = 'https://playerduo.net/api/upload-service/images/66f8b716-ee52-4590-aa0a-73bd28590f5f__5fbf8da0-e02e-11ed-a19f-23a3b10d190e__player_avatar.jpg' where player_id = 'chanbaby95';

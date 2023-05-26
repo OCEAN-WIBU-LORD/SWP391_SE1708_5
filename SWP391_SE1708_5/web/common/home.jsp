@@ -49,15 +49,15 @@
             <div class="hero-slide">
                 <div
                     class="img overlay"
-                    style="background-image: url('https://www.cgv.vn/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/s/u/suzume_980wx448h.jpg')"
+                    style="background-image: url('https://encdn.ldmnq.com/ldstore/en/SwfDs8-1628579160714.webp')"
                     ></div>
                 <div
                     class="img overlay"
-                    style="background-image: url('https://www.cgv.vn/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/t/o/tom_jerry_980wx448h.jpg')"
+                    style="background-image: url('https://img.zing.vn/products/playtogether/skin-2022/mainsite/assets/images/bg/bg-1.jpg')"
                     ></div>
                 <div
                     class="img overlay"
-                    style="background-image: url('https://www.cgv.vn/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/9/8/980x448_78.png')"
+                    style="background-image: url('')"
                     ></div>
             </div>
 
@@ -90,7 +90,7 @@
                 <div class="row mb-5 align-items-center">
                     <div class="col-lg-6">
                         <h2 class="font-weight-bold text-primary heading">
-                            Popular Movie
+                            Popular Player
                         </h2>
                     </div>
                     <div class="col-lg-6 text-lg-end">
@@ -109,21 +109,18 @@
                         <div class="property-slider-wrap">
                             <div class="property-slider">
 
-                                <c:forEach items="${movieList}" var = "o">
+                                <c:forEach items="${playerList}" var = "o">
                                     <!--//-->
                                     <div class="property-item">
-                                        <a href="moviedetail?movie_id=${o.movie_id}" class="img">
-                                            <img src="${o.poster}" alt="Image" class="img-fluid" />
+                                        <a href="moviedetail?movie_id=${o.player_id}" class="img">
+                                            <img src="${o.link_image}" alt="Image" class="img-fluid" />
                                         </a>
 
                                         <div class="property-content" style="height: 300px">
-                                            <div class="price mb-2"><span>${o.title}</span></div>
+                                            <div class="price mb-2"><span>${o.player_name}</span></div>
                                             <div style="height:90%">
-                                                <span class="d-block mb-2 text-black-50"
-                                                      >
-
-
-
+                                                <span class="d-block mb-2 text-black-50">
+                                                    
                                                     <c:forEach items="${mcList}" var="p" >
 
                                                         <c:if test="${p.movie_id eq o.movie_id}">
@@ -133,7 +130,7 @@
                                                                 </c:if>
                                                             </c:forEach>
                                                         </c:if>
-                                                    </c:forEach>
+                                                    </c:forEach> 
 
                                                 </span>
 

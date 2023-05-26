@@ -16,22 +16,20 @@ public class Player {
     private String player_name;
     private String gender;
     private String phone_number;
-    private int number_of_star;
+    private int num_of_star;
     private String password;
-    private String game_played;
     private String link_image;
 
     public Player() {
     }
 
-    public Player(String player_id, String player_name, String gender, String phone_number, int number_of_star, String password, String game_played, String link_image) {
+    public Player(String player_id, String player_name, String gender, String phone_number, int num_of_star, String password, String link_image) {
         this.player_id = player_id;
         this.player_name = player_name;
         this.gender = gender;
         this.phone_number = phone_number;
-        this.number_of_star = number_of_star;
+        this.num_of_star = num_of_star;
         this.password = password;
-        this.game_played = game_played;
         this.link_image = link_image;
     }
 
@@ -67,12 +65,12 @@ public class Player {
         this.phone_number = phone_number;
     }
 
-    public int getNumber_of_star() {
-        return number_of_star;
+    public int getNum_of_star() {
+        return num_of_star;
     }
 
-    public void setNumber_of_star(int number_of_star) {
-        this.number_of_star = number_of_star;
+    public void setNum_of_star(int num_of_star) {
+        this.num_of_star = num_of_star;
     }
 
     public String getPassword() {
@@ -83,14 +81,6 @@ public class Player {
         this.password = password;
     }
 
-    public String getGame_played() {
-        return game_played;
-    }
-
-    public void setGame_played(String game_played) {
-        this.game_played = game_played;
-    }
-
     public String getLink_image() {
         return link_image;
     }
@@ -99,8 +89,10 @@ public class Player {
         this.link_image = link_image;
     }
 
+   
+
     @Override
     public String toString() {
-          return "Player{" + "player_id=" + player_id + ", player_name=" + player_name + ", gender=" + gender + ", phone_number=" + phone_number + ", number_of_star=" + number_of_star + ", password=" + password + ", game_played=" + game_played + ", link_image=" + link_image + '}';
+          return "Player{" + "player_id=" + player_id + ", player_name=" + player_name + ", gender=" + gender + ", phone_number=" + phone_number + ", num_of_star=" + num_of_star + ", password=" + password +  ", link_image=" + link_image + '}';
     }
 }
