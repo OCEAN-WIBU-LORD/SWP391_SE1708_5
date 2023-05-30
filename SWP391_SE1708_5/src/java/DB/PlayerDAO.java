@@ -61,7 +61,7 @@ public class PlayerDAO {
     }
 
     public ArrayList<Player> searchPlayer(String search) {
-       ArrayList<Player> movie = new ArrayList<Player>();
+       ArrayList<Player> player = new ArrayList<Player>();
        Connection conn = null;
         try {
             String search1 = "%" + search + "%";
@@ -72,25 +72,19 @@ public class PlayerDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Player a = null;
-                a = new Player(
-                        rs.getInt("movie_id"),
-                        rs.getNString("title"),
-                        rs.getString("description"),
-                        String.valueOf(rs.getInt("time_show")),
-                        rs.getNString("subtitle"),
-                        rs.getString("poster"),
-                        rs.getString("request"),
-                        rs.getFloat("rated"),
-                        rs.getInt("viewers"),
-                        String.valueOf(rs.getDate("premiere")),
-                        rs.getString("country"),
-                        rs.getString("directed_by"),
-                        String.valueOf(rs.getBoolean("status_movie")));
-                movie.add(a);
+                 a = new Player(
+                        rs.getString("player_id"),
+                        rs.getNString("player_name"),
+                        rs.getString("gender"),
+                        rs.getString("phone_number"),
+                        rs.getInt("num_of_star"),
+                        rs.getString("password"),
+                        rs.getString("link_image"));
+                player.add(a);
             }
-                return movie;
+                return player;
         } catch (Exception e) {
-            System.out.println("searchMovie" + e.getMessage());
+            System.out.println("searchPlayer" + e.getMessage());
         }
         return null;
 

@@ -51,14 +51,8 @@
                     class="img overlay"
                     style="background-image: url('https://encdn.ldmnq.com/ldstore/en/SwfDs8-1628579160714.webp')"
                     ></div>
-                <div
-                    class="img overlay"
-                    style="background-image: url('https://img.zing.vn/products/playtogether/skin-2022/mainsite/assets/images/bg/bg-1.jpg')"
-                    ></div>
-                <div
-                    class="img overlay"
-                    style="background-image: url('https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/230694423_303144164926239_7325756802978514934_n.png?_nc_cat=100&ccb=1-7&_nc_sid=730e14&_nc_ohc=FFkDG2YlH0QAX-5FQb3&_nc_ht=scontent.fhan2-4.fna&oh=00_AfBHQJK97ZIuOzGsBGpcyhOYR6cdn-q3k4xUg84k08Gfbg&oe=6474EC4F')"
-                    ></div>
+                
+                
             </div>
 
 
@@ -112,40 +106,17 @@
 
                                 <c:forEach items="${playerList}" var = "o">
                                     <!--//-->
-                                    <div class="property-item">
-                                        <a href="moviedetail?movie_id=${o.player_id}" class="img">
-                                            <img src="${o.link_image}" alt="Image" class="img-fluid" />
+                                    <div class="property-item" >
+                                        <a href="moviedetail?movie_id=${o.player_id}" class="img" >
+                                            <img src="${o.link_image}" alt="Image" class="img-fluid" style="height: 500px; weight: 500px; object-fit: scale-down; object-position: 100%;"/>
                                         </a>
-
+                                        
                                         <div class="property-content" style="height: 300px">
                                             <div class="price mb-2"><span>${o.player_name}</span></div>
                                             <div style="height:90%">
-                                                <span class="d-block mb-2 text-black-50">
-                                                    
-                                                    <c:forEach items="${mcList}" var="p" >
-
-                                                        <c:if test="${p.movie_id eq o.movie_id}">
-                                                            <c:forEach items="${cateList}" var="v" >
-                                                                <c:if test="${v.cate_id eq p.cate_id}">
-                                                                    ${v.cate_name}, 
-                                                                </c:if>
-                                                            </c:forEach>
-                                                        </c:if>
-                                                    </c:forEach> 
-
-                                                </span>
-
-
-                                                <div class="specs d-flex mb-4">
-                                                    <span class="d-block d-flex align-items-center me-3">
-
-                                                        <span class="caption">${o.request}</span>
-                                                    </span>
-
-                                                </div>
-
+                                                
                                                 <a
-                                                    href="moviedetail?movie_id=${o.movie_id}"
+                                                    href="playerdetail?player_id=${o.player_id}"
                                                     class="btn btn-primary py-2 px-3"
                                                     >See details</a
                                                 >
