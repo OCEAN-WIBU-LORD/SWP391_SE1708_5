@@ -1,0 +1,90 @@
+CREATE DATABASE SWP391_SE1708_5;
+
+CREATE TABLE `game` (
+  `game_id` VARCHAR(50) NOT NULL PRIMARY KEY,
+  `game_name` VARCHAR(50),
+  `game_discription` TEXT
+);
+
+CREATE TABLE `player` (
+  `player_id` VARCHAR(50) NOT NULL PRIMARY KEY,
+  `player_name` VARCHAR(50),
+  `gender` VARCHAR(50),
+  `phone_number` VARCHAR(50),
+  `num_of_star` INT,
+  `password` VARCHAR(50),
+  `link_image` VARCHAR(500)
+);
+
+CREATE TABLE `user` (
+  `user_id` VARCHAR(50) NOT NULL PRIMARY KEY,
+  `full_name` VARCHAR(50)
+);
+
+CREATE TABLE `role` (
+  `role_id` VARCHAR(50) NOT NULL PRIMARY KEY,
+  `role_name` VARCHAR(50)
+);
+
+CREATE TABLE `user_role` (
+  `role_id` VARCHAR(50) NOT NULL PRIMARY KEY,
+  `user_id` VARCHAR(50) NOT NULL,
+FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`),
+FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+);
+
+CREATE TABLE `booking` (
+  `booking_id` VARCHAR(50)  NOT NULL PRIMARY KEY,
+  `user_id` VARCHAR(50) NOT NULL,
+  `player_id` VARCHAR(50) NOT NULL,
+  `total_hour` VARCHAR(50),
+  `game_id` VARCHAR(50) NOT NULL,
+  FOREIGN KEY (`game_id`) REFERENCES `game` (`game_id`),
+  FOREIGN KEY (`player_id`) REFERENCES `player` (`player_id`),
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+  );
+
+CREATE TABLE `booking_details` (
+  `price` VARCHAR(50),
+  `total_price` VARCHAR(50),
+  `hour` VARCHAR(50),
+  `total_hour` VARCHAR(50),
+  `date_booking` DATETIME,
+  `game_id` VARCHAR(50) NOT NULL,
+  `booking_id` VARCHAR(50) NOT NULL,
+  FOREIGN KEY (`booking_id`) REFERENCES `booking` (`booking_id`)
+  );
+
+CREATE TABLE `user_details` (
+  `user_id` VARCHAR(50) NOT NULL,
+  `gender` VARCHAR(50),
+  `phone_number` VARCHAR(50),
+  `gmail` VARCHAR(50),
+  `address` VARCHAR(50),
+  `password` VARCHAR(50),
+  `link_image` VARCHAR(500),
+FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+);
+
+CREATE TABLE `comment` (
+  `player_id` VARCHAR(50) NOT NULL,
+  `user_id` VARCHAR(50) NOT NULL,
+  `comment` TEXT,
+  `num_of_star` INT,
+  `comment_id` VARCHAR(50) NOT NULL,
+FOREIGN KEY (`user_id`) REFERENCES `user_details` (`user_id`),
+FOREIGN KEY (`player_id`) REFERENCES `player` (`player_id`)
+);
+
+CREATE TABLE `game_played` (
+  `game_id` VARCHAR(50) NOT NULL,
+  `player_id` VARCHAR(250) NOT NULL,
+FOREIGN KEY (`game_id`) REFERENCES `game` (`game_id`),
+FOREIGN KEY (`player_id`) REFERENCES `player` (`player_id`)
+);
+
+CREATE TABLE `game_type` (
+  `game_type` VARCHAR(50) NOT NULL PRIMARY KEY,
+  `game_id` VARCHAR(50) NOT NULL,
+FOREIGN KEY (`game_id`) REFERENCES `game` (`game_id`)
+);
