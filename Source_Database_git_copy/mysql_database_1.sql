@@ -215,4 +215,9 @@ While the core gameplay of GTA revolves around the single-player campaign, sever
 
 The Grand Theft Auto series has become one of the most successful and influential video game franchises of all time, with each new release eagerly anticipated by fans. It has received critical acclaim for its immersive gameplay, open-world exploration, and cinematic storytelling, as well as its ability to push the boundaries of interactive entertainment.','Action');
 
-update player set link_image = 'https://playerduo.net/api/upload-service/images/66f8b716-ee52-4590-aa0a-73bd28590f5f__5fbf8da0-e02e-11ed-a19f-23a3b10d190e__player_avatar.jpg' where player_id = 'chanbaby95';
+update player set link_image = 'https://playerduo.net/api/upload-service/images/6885cb0a-74b9-4c50-a614-5f8e513a1225__cfaa3500-ce74-11ed-a19f-23a3b10d190e__player_album.jpg' where player_id = 'chanbaby95';
+
+
+
+
+
