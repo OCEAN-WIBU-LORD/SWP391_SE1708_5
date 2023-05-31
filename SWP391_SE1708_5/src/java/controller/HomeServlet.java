@@ -37,6 +37,7 @@ public class HomeServlet extends HttpServlet {
         PlayerDAO mdao = new PlayerDAO();
         //     Game_TypeDAO adao = new Game_TypeDAO();
         List<Player> playerList = mdao.getTop5GoodPlayer();
+        List<Player> playerList2 = mdao.getTop5BestBookingPlayer();
         int a = playerList.size();
         //            List<Actor> actorList = adao.getAllActor();
 //            List<Category> cateList = cdao.getAllCategory();
@@ -44,6 +45,7 @@ public class HomeServlet extends HttpServlet {
 //            List<Movie_category> mcList = cdao.getMovieCategory();
 //            request.setAttribute("mcList", mcList);
         request.setAttribute("playerList", playerList);
+        request.setAttribute("playerList2", playerList2);
         request.setAttribute("a", a);
 //            request.setAttribute("actorList", actorList);
 //            request.setAttribute("cateList", cateList);
