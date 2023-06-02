@@ -59,6 +59,15 @@
 							Login
 						</button>
 					</div>
+					<div class="container-login100-form-btn m-t-32">
+						
+                                            <a
+                                                    href="repass?player_id=${username}"
+                                                    class="login100-form-btn"
+                                                    >Forgot Password</a
+                                                >
+					</div>
+                                                
 
 				</form>
 			</div>

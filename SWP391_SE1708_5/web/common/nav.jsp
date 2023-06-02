@@ -48,9 +48,9 @@
 
                             <c:if test="${usercurrent ne null}">
                                 <li class="has-children">
-                                <a href="#">${usercurrent.firstname} ${usercurrent.lastname}</a>
+                                <a href="#">${full_name} </a>
                                 <ul class="dropdown">
-                                    <li><a href="profile?acc_id=${usercurrent.acc_id}">PROFILE</a></li>
+                                    <li><a href="profile?acc_id=${full_name}">PROFILE</a></li>
                                     <li><a href="logout">LOGOUT</a></li>
                                 </ul></li>
                             </c:if>

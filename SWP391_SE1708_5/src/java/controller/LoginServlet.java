@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import static java.lang.System.out;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -81,6 +82,8 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("pass");
         User_DetailsDAO adao = new User_DetailsDAO();
+        UserDAO userDAO = new UserDAO();
+        String full_name = "";
 
         User_Details userdetails;
         String mess = "";
@@ -91,7 +94,9 @@ public class LoginServlet extends HttpServlet {
                 
                 HttpSession session = request.getSession();
                 String role = adao.checkAdmin(String.valueOf(userdetails.getUser_id()));
+                full_name = userDAO.getUserName(username);
                  session.setAttribute("role", role);
+                 session.setAttribute("full_name", full_name);
                  session.setAttribute("usercurrent", userdetails);
                  session.setAttribute("username", username);
                 if(role.equals("user")){

@@ -7,12 +7,14 @@ package controller;
 import DB.User_DetailsDAO;
 import DB.Game_TypeDAO;
 import DB.PlayerDAO;
+import DB.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -34,12 +36,15 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession();
         PlayerDAO mdao = new PlayerDAO();
+        UserDAO udao = new UserDAO();
         //     Game_TypeDAO adao = new Game_TypeDAO();
         List<Player> playerList = mdao.getTop5GoodPlayer();
         List<Player> playerList2 = mdao.getTop5BestBookingPlayer();
+        String full_name = String.valueOf(session.getAttribute("full_name"));
         int a = playerList.size();
-        //            List<Actor> actorList = adao.getAllActor();
+//            List<Actor> actorList = adao.getAllActor();
 //            List<Category> cateList = cdao.getAllCategory();
 //            List<MovieActor> movieActorList = mdao.getMovieActor();
 //            List<Movie_category> mcList = cdao.getMovieCategory();
@@ -47,6 +52,7 @@ public class HomeServlet extends HttpServlet {
         request.setAttribute("playerList", playerList);
         request.setAttribute("playerList2", playerList2);
         request.setAttribute("a", a);
+        request.setAttribute("full_name", full_name);
 //            request.setAttribute("actorList", actorList);
 //            request.setAttribute("cateList", cateList);
 //            request.setAttribute("movieActorList", movieActorList);

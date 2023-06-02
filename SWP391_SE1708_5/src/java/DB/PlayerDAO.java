@@ -34,7 +34,7 @@ public class PlayerDAO {
             // connnect to database 'testdb'
             conn = db.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("select * from Player m order by m.num_of_star desc limit 5");
+            PreparedStatement stmt = conn.prepareStatement("select * from Player m order by m.num_of_star desc limit 20");
 
             // get data from table
             ResultSet rs = stmt.executeQuery();
@@ -68,7 +68,7 @@ public class PlayerDAO {
             // connnect to database 'testdb'
             conn = db.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("select * from Player m order by m.income desc limit 5");
+            PreparedStatement stmt = conn.prepareStatement("select * from Player m order by m.income desc limit 20; ");
 
             // get data from table
             ResultSet rs = stmt.executeQuery();

@@ -13,6 +13,7 @@ import java.sql.Driver;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import model.User;
+import model.User_Details;
 
 /**
  *
@@ -96,6 +97,31 @@ public class UserDAO {
         } catch (Exception e) {
             System.out.println("insertUser" + e.getMessage());
         }
+    }
+    public String getUserName (String username) throws SQLException {
+        String u = null;
+        try {
+            BaseDAO db = new BaseDAO();
+            // connnect to database 'testdb'
+            conn = db.getConnection();
+            // create statement
+            PreparedStatement stmt = conn.prepareStatement("SELECT full_name FROM User where user_id like ?");
+            stmt.setString(1, username);
+
+            // get data from table
+            ResultSet rs = stmt.executeQuery();
+            // show data
+            while (rs.next()) {
+                u = String.valueOf(rs.getString("full_name"));
+            }
+            // close connection
+
+        } catch (Exception ex) {
+            System.out.println("getUserName" + ex.getMessage());
+        } finally {
+            conn.close();
+        }
+        return u;
     }
 
 }

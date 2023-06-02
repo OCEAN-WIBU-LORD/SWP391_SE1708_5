@@ -33,6 +33,7 @@ public class RepassServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String user_id = request.getParameter("user_id");
         request.getRequestDispatcher("common/repass.jsp").forward(request, response);
     }
 

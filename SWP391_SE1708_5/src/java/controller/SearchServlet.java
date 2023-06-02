@@ -93,13 +93,12 @@ public class SearchServlet extends HttpServlet {
                     return;
                 }
         }
-        MovieDAO n = new MovieDAO();
+        PlayerDAO n = new PlayerDAO();
         try {
-            List<Movie> movies2 = n.getAllMovieBySearch(search);
+            List<Player> movies2 = n.getAllPlayerBySearch(search);
             String message = "Hello";
             request.setAttribute("message", search);
-            ArrayList<Movie> movie = n.searchMovie(search);
-            request.setAttribute("movies1", movie);
+            ArrayList<Player> player = n.searchMoviePlayer);
             request.setAttribute("movies2", movies2);
             request.getRequestDispatcher("/common/search.jsp").forward(request, response);
         } catch (Exception e) {

@@ -91,7 +91,7 @@
                     <div class="col-lg-6 text-lg-end">
                         <p>
                             <a
-                                href="allmovie"
+                                href="allplayer"
                                 target="_blank"
                                 class="btn btn-primary text-white py-3 px-4"
                                 >View all</a
@@ -125,9 +125,29 @@
                                     </div>
                                     <!-- .item -->
                                 </c:forEach>
-
-
-
+                                    <br>
+                                <c:forEach items="${playerList2}" var = "o">
+                                    <!--//-->
+                                    <div class="property-item" >
+                                        <a href="moviedetail?movie_id=${o.player_id}" class="img" >
+                                            <img src="${o.link_image}" alt="Image" class="img-fluid" style="height: 500px; weight: 500px; object-fit: scale-down; object-position: 100%;"/>
+                                        </a>
+                                        
+                                        <div class="property-content" style="height: 300px">
+                                            <div class="price mb-2"><span>${o.player_name}</span></div>
+                                            <div style="height:90%">
+                                                
+                                                <a
+                                                    href="playerdetail?player_id=${o.player_id}"
+                                                    class="btn btn-primary py-2 px-3"
+                                                    >See details</a
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- .item -->
+                                </c:forEach>
+                                    
                             </div>
 
                             <div
@@ -154,10 +174,14 @@
                         </div>
                     </div>
                 </div>
+                    <a>${a}</a>
+                    <a>${full_name}</a>
                 
             </div>
+                    
             
         </div>
+        
 
 
         <div class="site-footer">
