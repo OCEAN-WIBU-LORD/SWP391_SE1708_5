@@ -3,57 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< Updated upstream
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/model/Game.java</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/model/Game_Type.java</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/DB/BaseDAO.java</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/DB/GameDAO.java</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/DB/Booking_DetailsDAO.java</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/controller/LoginServlet.java</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/DB/RoleDAO.java</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/model/User_Role.java</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/model/Player.java</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/controller/admin/RegisterServlet.java</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/model/User.java</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/model/Role.java</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/controller/admin/RepassServlet.java</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/model/Base.java</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/controller/Logout.java</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/model/Game_Played.java</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/DB/Game_TypeDAO.java</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/web/index.html</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/model/User_Details.java</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/DB/Game_PlayedDAO.java</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/DB/PlayerDAO.java</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/controller/SearchServlet.java</file>
-            <file>file:/D:/LinhTinh/SWP/SWP391_SE1708_5/SWP391_SE1708_5/src/java/DB/UserDAO.java</file>
-=======
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/src/java/DB/UserDAO.java</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/web/common/home.jsp</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/src/java/DB/User_DetailsDAO.java</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/src/java/model/Player.java</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/src/java/DB/BaseDAO.java</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/web/common/repass.jsp</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/src/java/DB/RoleDAO.java</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/web/common/login.jsp</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/src/java/DB/Game_TypeDAO.java</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/src/java/model/User_Role.java</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/src/java/DB/PlayerDAO.java</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/src/java/dao/UserDAO.java</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/src/java/controller/SearchServlet.java</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/src/java/DB/User_RoleDAO.java</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/src/java/controller/LoginServlet.java</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/src/java/controller/HomeServlet.java</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/src/java/controller/admin/RegisterServlet.java</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/src/java/model/User.java</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/src/java/model/Base.java</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/web/common/nav.jsp</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/web/WEB-INF/web.xml</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/src/java/model/User_Details.java</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/web/common/register.jsp</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/src/java/model/Game_Type.java</file>
-            <file>file:/D:/Github/OSG202_SE1708_HE176496/SWP391_SE1708_5/SWP391_SE1708_5/src/java/controller/admin/RepassServlet.java</file>
->>>>>>> Stashed changes
+            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/admin/dashboard.jsp</file>
+            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/PlayerDetailServlet.java</file>
+            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/admin/AdminDashboardServlet.java</file>
+            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/DB/PlayerDAO.java</file>
         </group>
     </open-files>
 </project-private>
