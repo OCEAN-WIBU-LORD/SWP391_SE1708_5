@@ -123,5 +123,9 @@ public class PlayerDAO {
         return null;
 
     }
+
+    public Player getPlayerByID(String player_id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
