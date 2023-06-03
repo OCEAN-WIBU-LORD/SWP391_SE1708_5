@@ -217,11 +217,14 @@ The Grand Theft Auto series has become one of the most successful and influentia
 
 update player set link_image = 'https://playerduo.net/api/upload-service/images/6885cb0a-74b9-4c50-a614-5f8e513a1225__cfaa3500-ce74-11ed-a19f-23a3b10d190e__player_album.jpg' where player_id = 'chanbaby95';
 
-select * from player;
+select * from user;
+
 update player set income = '4000' where player_id = 'windyiu';
-select * from Player m order by m.income desc limit 10;
-
-
+select * from Player m order by m.income desc limit 20;
+select * from Player where link_image = 'https://playerduo.net/api/upload-service/images/0daea254-1a71-44ce-903d-88a781d83124__c016c0d0-73a8-11ed-a19f-23a3b10d190e__player_album.jpg';
 alter table player add income double;
+ALTER TABLE my_table MODIFY COLUMN column_name column_definition AFTER column_to_move_after;
+ALTER TABLE user_details ADD COLUMN new_column INT;
 
 
+SELECT full_name FROM User where user_id = ?
