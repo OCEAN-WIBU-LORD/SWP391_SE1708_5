@@ -1,8 +1,4 @@
-<%-- 
-    Document   : addmovie
-    Created on : Mar 12, 2023, 12:08:06 AM
-    Author     : Nguyen Van Ky
---%>
+
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
