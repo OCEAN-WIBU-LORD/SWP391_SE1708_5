@@ -22,6 +22,9 @@ public class GameDAO {
     ResultSet rs;
     PreparedStatement pstm;
 
+//    public GameDAO(Connection connection) {
+//        this.cnn = connection;
+//    }
     public ArrayList<Game> getListGame() {
         ArrayList<Game> data = new ArrayList<Game>();
         try {
@@ -82,4 +85,44 @@ public class GameDAO {
         }
     }
 
+    public Game getGame(String id) {
+        Game g = new Game();
+        try {
+            String strSelect = "select * from game where game_id=? ";
+            /*
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            rs = stm.executeQuery(strSelect);
+             */
+            pstm = cnn.prepareStatement(strSelect);
+            pstm.setString(1, id);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                g.id = id;
+                g.name = rs.getString(2);
+                g.discription = rs.getString(3);
+            }
+            return g;
+        } catch (Exception e) {
+            System.out.println("GetGame:" + e.getMessage());
+        }
+        return null;
+    }
+
+    public boolean checkGameIDExist(String id) {
+        if (id == null || id.isEmpty()) {
+            return false;
+        }
+        try {
+            String strSelect = "select * from game where game_id=?";
+            pstm = cnn.prepareStatement(strSelect);
+            pstm.setString(1, id);
+            rs = pstm.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("checkExist: " + e.getMessage());
+        }
+        return false;
+    }
 }
