@@ -13,6 +13,14 @@ public class User_Details {
     public User_Details() {
     }
 
+    public User_Details(String gender, String phone_number, String email, String address, String link_image) {
+        this.gender = gender;
+        this.phone_number = phone_number;
+        this.email = email;
+        this.address = address;
+        this.link_image = link_image;
+    }
+ 
     public User_Details(String user_id, String gender, String phone_number, String email, String address, String password, String link_image) {
         this.user_id = user_id;
         this.gender = gender;
