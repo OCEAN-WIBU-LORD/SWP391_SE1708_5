@@ -12,6 +12,8 @@ import java.sql.Statement;
 import java.sql.Driver;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import model.User;
 import model.User_Details;
 
@@ -168,6 +170,32 @@ public class User_DetailsDAO {
         } catch (Exception e) {
             System.out.println("changePassword" + e.getMessage());
         }
+    }
+    
+    public List<User_Details> getAllUserDetails() throws SQLException {
+        List<User_Details> list = null;
+        try {
+            BaseDAO db = new BaseDAO();
+            // connnect to database 'testdb'
+            conn = db.getConnection();
+            // crate statement
+            PreparedStatement stmt = conn.prepareStatement("select * from User_Details");
+
+            // get data from table
+            ResultSet rs = stmt.executeQuery();
+            // show data
+            list = new ArrayList<>();
+            while (rs.next()) {
+                User_Details a = null;
+                a = new User_Details(rs.getString("user_id"), rs.getString("gender"), rs.getString("phone_number"), rs.getNString("gmail"), rs.getNString("address"), rs.getString("password"), rs.getString("link_image"));
+                list.add(a);
+            }
+            // close connection
+
+        } catch (Exception ex) {
+            System.out.println("getAllMovie" + ex.getMessage());
+        }
+        return list;
     }
       
       

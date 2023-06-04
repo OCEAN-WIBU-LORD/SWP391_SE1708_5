@@ -6,6 +6,8 @@ package controller.admin;
 
 import DB.Game_TypeDAO;
 import DB.PlayerDAO;
+import DB.UserDAO;
+import DB.User_DetailsDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -19,6 +21,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Game_Type;
 import model.Game;
+import model.Player;
+import model.User_Details;
 
 /**
  *
@@ -42,12 +46,14 @@ public class AdminDashboardServlet extends HttpServlet {
                
               try {
             PlayerDAO mdao = new PlayerDAO();
+            User_DetailsDAO udao = new User_DetailsDAO();
             Game_TypeDAO cdao = new Game_TypeDAO();
-            List<PlayerDAO> movieList = mdao.getAllMovie();
-            List<Category> categoryList = cdao.getAllCategory();
-            
-            request.setAttribute("movieCount", (movieList.size()));
-            request.setAttribute("categoryCount", (categoryList.size()));
+            List<Player> player_list = mdao.getAllPlayer();
+            List<User_Details> user_list = udao.getAllUserDetails();
+//            List<Game_TypeDAO> game_type_list = cdao.getAllGame_Type();
+//            
+            request.setAttribute("playerCount", (player_list.size()));
+            request.setAttribute("userCount", (user_list.size()));
             
             request.getRequestDispatcher("dashboard.jsp").forward(request, response);
 

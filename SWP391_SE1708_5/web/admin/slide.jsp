@@ -31,14 +31,14 @@
                     <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
                        aria-controls="collapseTwo">
                         <i class="fas fa-fw fa-cog"></i>
-                        <span>movie</span>
+                        <span>Admin Management</span>
                     </a>
                     <div id="collapseTwo" class="collapse ${addmovie2}" aria-labelledby="headingTwo"
                          data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Movie operation</h6>
-                            <a class="collapse-item ${addmovie}" href="addmovie">add movie</a>
-                            <a class="collapse-item ${addmovie2}" href="addcategory.jsp">add category</a>
+                            <h6 class="collapse-header">Operation</h6>
+                            <a class="collapse-item ${addmovie}" href="addmovie">Manage player</a>
+                            <a class="collapse-item ${addmovie2}" href="addcategory.jsp">Manage User</a>
                         </div>
                     </div>
                 </li>

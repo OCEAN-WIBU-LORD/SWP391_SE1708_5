@@ -128,4 +128,38 @@ public class PlayerDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    
+    public List<Player> getAllPlayer() throws SQLException {
+        List<Player> list = null;
+        Connection conn = null;
+        try {
+            BaseDAO db = new BaseDAO();
+            // connnect to database 'testdb'
+            conn = db.getConnection();
+            // crate statement
+            PreparedStatement stmt = conn.prepareStatement("select * from Player limit 100");
+
+            // get data from table
+            ResultSet rs = stmt.executeQuery();
+            // show data
+            list = new ArrayList<>();
+            while (rs.next()) {
+                Player a = null;
+                a = new Player(
+                        rs.getString("player_id"),
+                        rs.getNString("player_name"),
+                        rs.getString("gender"),
+                        rs.getString("phone_number"),
+                        rs.getInt("num_of_star"),
+                        rs.getString("password"),
+                        rs.getString("link_image"));
+                list.add(a);
+            }
+            // close connection
+
+        } catch (Exception ex) {
+           System.out.println("getAllPlayer" + ex.getMessage());
+        }
+        return list;
+    }
 }
