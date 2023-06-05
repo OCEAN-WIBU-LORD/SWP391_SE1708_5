@@ -1,0 +1,76 @@
+INSERT INTO game (game_id, game_name, game_discription) VALUES
+('G001', 'Game 1', 'Description of Game 1'),
+('G002', 'Game 2', 'Description of Game 2'),
+('G003', 'Game 3', 'Description of Game 3'),
+('G004', 'Game 4', 'Description of Game 4'),
+('G005', 'Game 5', 'Description of Game 5');
+
+INSERT INTO player (player_id, player_name, gender, phone_number, num_of_star, password, link_image) VALUES
+('P001', 'Player 1', 'Male', '123456789', 5, 'password1', 'image1.jpg'),
+('P002', 'Player 2', 'Female', '987654321', 4, 'password2', 'image2.jpg'),
+('P003', 'Player 3', 'Male', '456789123', 3, 'password3', 'image3.jpg'),
+('P004', 'Player 4', 'Female', '321654987', 5, 'password4', 'image4.jpg'),
+('P005', 'Player 5', 'Male', '789123456', 2, 'password5', 'image5.jpg');
+
+INSERT INTO user (user_id, full_name) VALUES
+('U001', 'User 1'),
+('U002', 'User 2'),
+('U003', 'User 3'),
+('U004', 'User 4'),
+('U005', 'User 5');
+
+INSERT INTO role (role_id, role_name) VALUES
+('R001', 'Role 1'),
+('R002', 'Role 2'),
+('R003', 'Role 3'),
+('R004', 'Role 4'),
+('R005', 'Role 5');
+
+INSERT INTO user_role (role_id, user_id) VALUES
+('R001', 'U001'),
+('R002', 'U002'),
+('R003', 'U003'),
+('R004', 'U004'),
+('R005', 'U005');
+
+INSERT INTO booking (booking_id, user_id, player_id, total_hour, game_id) VALUES
+('B001', 'U001', 'P001', '2', 'G001'),
+('B002', 'U002', 'P002', '3', 'G002'),
+('B003', 'U003', 'P003', '1', 'G003'),
+('B004', 'U004', 'P004', '4', 'G004'),
+('B005', 'U005', 'P005', '2', 'G005');
+
+INSERT INTO booking_details (price, total_price, hour, total_hour, date_booking, game_id, booking_id) VALUES
+('10000', '20', '2', '2', '2023-06-01 10:00:00', 'G001', 'B001'),
+('15000', '45', '3', '3', '2023-06-02 15:30:00', 'G002', 'B002'),
+('50000', '5', '1', '1', '2023-06-03 09:00:00', 'G003', 'B003'),
+('20000', '80', '4', '4', '2023-06-04 14:00:00', 'G004', 'B004'),
+('10000, '20', '2', '2', '2023-06-05 11:30:00', 'G005', 'B005');
+
+INSERT INTO user_details (user_id, gender, phone_number, gmail, address, password, link_image) VALUES
+('U001', 'Male', '123456789', 'user1@gmail.com', 'Address 1', 'password1', 'image1.jpg'),
+('U002', 'Female', '987654321', 'user2@gmail.com', 'Address 2', 'password2', 'image2.jpg'),
+('U003', 'Male', '456789123', 'user3@gmail.com', 'Address 3', 'password3', 'image3.jpg'),
+('U004', 'Female', '321654987', 'user4@gmail.com', 'Address 4', 'password4', 'image4.jpg'),
+('U005', 'Male', '789123456', 'user5@gmail.com', 'Address 5', 'password5', 'image5.jpg');
+
+INSERT INTO comment (player_id, user_id, comment, num_of_star, comment_id) VALUES
+('P001', 'U001', 'Comment 1', 4, 'C001'),
+('P002', 'U002', 'Comment 2', 3, 'C002'),
+('P003', 'U003', 'Comment 3', 1, 'C003'),
+('P004', 'U004', 'Comment 4', 2, 'C004'),
+('P005', 'U005', 'Comment 5', 5, 'C005');
+
+INSERT INTO game_played (game_id, player_id) VALUES
+('G001', 'P001'),
+('G002', 'P002'),
+('G003', 'P003'),
+('G004', 'P004'),
+('G005', 'P005');
+
+INSERT INTO game_type (game_type, game_id) VALUES
+('Type 1', 'G001'),
+('Type 2', 'G002'),
+('Type 3', 'G003'),
+('Type 4', 'G004'),
+('Type 5', 'G005');
