@@ -6,11 +6,11 @@ INSERT INTO game (game_id, game_name, game_discription) VALUES
 ('G005', 'Game 5', 'Description of Game 5');
 
 INSERT INTO player (player_id, player_name, gender, phone_number, num_of_star, password, link_image) VALUES
-('P001', 'Player 1', 'Male', '123456789', 5, 'password1', 'image1.jpg'),
-('P002', 'Player 2', 'Female', '987654321', 4, 'password2', 'image2.jpg'),
-('P003', 'Player 3', 'Male', '456789123', 3, 'password3', 'image3.jpg'),
-('P004', 'Player 4', 'Female', '321654987', 5, 'password4', 'image4.jpg'),
-('P005', 'Player 5', 'Male', '789123456', 2, 'password5', 'image5.jpg');
+('P001', 'Player 1', 'Male', '123456789', 5, 'password1', 'https://ouch-cdn2.icons8.com/sxBl0zgly99oaUdEdrinVJDMKHX1bvBOpMhfvtwoNdM/rs:fit:256:256/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvMzcz/L2E2YjU1YTE0LTZh/MmMtNDM5Yy1iYzJj/LWNhNWQzZjU1ZTc0/ZS5zdmc.png'),
+('P002', 'Player 2', 'Female', '987654321', 4, 'password2', 'https://ouch-cdn2.icons8.com/86DgQpMNqLjiw8-DYVa8ZUTC3iZVSH_yG_nuJlyvInU/rs:fit:256:256/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvODQx/L2QwM2NkMzEzLWEy/MTQtNDAwMC1iMTZj/LWM1MWQ3YWFjZjdh/Mi5zdmc.png'),
+('P003', 'Player 3', 'Male', '456789123', 3, 'password3', 'https://cdn.pixabay.com/photo/2021/02/12/07/03/icon-6007530_960_720.png'),
+('P004', 'Player 4', 'Female', '321654987', 5, 'password4', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI3PzkiOPTyD3PkkZCyXDu1DgmTk50rQMVpPsJPI8rF4WDqyDqqwmrcC0TEWkAXJA1XJY&usqp=CAU'),
+('P005', 'Player 5', 'Male', '789123456', 2, 'password5', 'https://img.freepik.com/free-icon/avatar_318-177915.jpg');
 
 INSERT INTO user (user_id, full_name) VALUES
 ('U001', 'User 1'),
@@ -45,7 +45,7 @@ INSERT INTO booking_details (price, total_price, hour, total_hour, date_booking,
 ('15000', '45', '3', '3', '2023-06-02 15:30:00', 'G002', 'B002'),
 ('50000', '5', '1', '1', '2023-06-03 09:00:00', 'G003', 'B003'),
 ('20000', '80', '4', '4', '2023-06-04 14:00:00', 'G004', 'B004'),
-('10000, '20', '2', '2', '2023-06-05 11:30:00', 'G005', 'B005');
+('10000', '20', '2', '2', '2023-06-05 11:30:00', 'G005', 'B005');
 
 INSERT INTO user_details (user_id, gender, phone_number, gmail, address, password, link_image) VALUES
 ('U001', 'Male', '123456789', 'user1@gmail.com', 'Address 1', 'password1', 'image1.jpg'),
