@@ -1,9 +1,9 @@
 CREATE DATABASE SWP391_SE1708_5;
 
 CREATE TABLE `game` (
-  `game_id` VARCHAR(50) NOT NULL PRIMARY KEY,
+  `game_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `game_name` VARCHAR(50),
-  `game_discription` TEXT
+  `game_description` TEXT
 );
 
 CREATE TABLE `player` (
