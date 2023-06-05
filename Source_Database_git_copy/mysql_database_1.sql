@@ -217,7 +217,7 @@ The Grand Theft Auto series has become one of the most successful and influentia
 
 update player set link_image = 'https://playerduo.net/api/upload-service/images/6885cb0a-74b9-4c50-a614-5f8e513a1225__cfaa3500-ce74-11ed-a19f-23a3b10d190e__player_album.jpg' where player_id = 'chanbaby95';
 
-select * from user;
+select * from player;
 
 update player set income = '4000' where player_id = 'windyiu';
 select * from Player m order by m.income desc limit 20;
