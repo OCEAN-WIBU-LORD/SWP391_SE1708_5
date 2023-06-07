@@ -198,7 +198,33 @@ public class User_DetailsDAO {
         return list;
     }
       
-      
+        public ArrayList<User_Details> getAllUser() throws SQLException{
+        ArrayList<User_Details> listUser = new ArrayList<>();
+        try{
+            BaseDAO db = new BaseDAO();
+            conn = db.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(""
+                    + "SELECT u.full_name, ud.gender, ud.phone_number, ud.gmail, ud.address, ud.link_image "
+                    + "FROM User u inner join User_details ud "
+                    + "on u.user_id = ud.user_id");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                User_Details ud = new User_Details(
+                        rs.getString("full_name"), 
+                        rs.getString("gender"), 
+                        rs.getString("phone_number"), 
+                        rs.getString("gmail"), 
+                        rs.getString("address"), 
+                        rs.getString("link_image"));
+                listUser.add(ud);
+            }
+        }catch(Exception e){
+            System.out.println("Can't get list user now because "+ e.getMessage());
+        }finally{
+            conn.close();
+        }
+        return listUser;
+    }
       
       
     

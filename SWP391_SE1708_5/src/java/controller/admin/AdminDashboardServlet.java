@@ -45,15 +45,21 @@ public class AdminDashboardServlet extends HttpServlet {
               }
                
               try {
+//            PlayerDAO mdao = new PlayerDAO();
+//            User_DetailsDAO udao = new User_DetailsDAO();
+//            Game_TypeDAO cdao = new Game_TypeDAO();
+//            List<Player> player_list = mdao.getAllPlayer();
+//            List<User_Details> user_list = udao.getAllUserDetails();
+////            List<Game_TypeDAO> game_type_list = cdao.getAllGame_Type();
+////            
+//            request.setAttribute("playerCount", (player_list.size()));
+//            request.setAttribute("userCount", (user_list.size()));
             PlayerDAO mdao = new PlayerDAO();
-            User_DetailsDAO udao = new User_DetailsDAO();
-            Game_TypeDAO cdao = new Game_TypeDAO();
-            List<Player> player_list = mdao.getAllPlayer();
-            List<User_Details> user_list = udao.getAllUserDetails();
-//            List<Game_TypeDAO> game_type_list = cdao.getAllGame_Type();
-//            
-            request.setAttribute("playerCount", (player_list.size()));
-            request.setAttribute("userCount", (user_list.size()));
+            UserDAO udao = new UserDAO();
+            Booking_DetailsDAO bd = new Booking_DetailsDAO();
+            request.setAttribute("userCount", (udao.getTotalUser("user")));
+            request.setAttribute("playerCount", (udao.getTotalUser("player")));
+            request.setAttribute("totalPrice", bd.totalPrice());
             
             request.getRequestDispatcher("dashboard.jsp").forward(request, response);
 
