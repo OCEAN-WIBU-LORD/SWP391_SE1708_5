@@ -52,13 +52,18 @@ public class AddPlayerServlet extends HttpServlet {
             List<Player> playerList = mdao.getAllPlayer();
 //            List<Game_Type> gametypeList = cdao.getAllGame_Type();
 //            List<Game_TypeDAO> mcList = cdao.getGameType();
+            String m = "oke";
+            String n = String.valueOf(playerList.size());
+            
 
+            request.setAttribute("m", m);
+            request.setAttribute("n", n);
             request.setAttribute("playerList", playerList);
-//            request.setAttribute("movieList", movieList);
+//            request.setAttribute("gameList", gameList);
 //            request.setAttribute("mcList", mcList);
             response.getWriter().print("ddddsss");
 
-            request.getRequestDispatcher("addgame.jsp").forward(request, response);
+            request.getRequestDispatcher("addplayer.jsp").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(AddPlayerServlet.class.getName()).log(Level.SEVERE, null, ex);
              response.getWriter().print("something wrong");
@@ -89,22 +94,22 @@ public class AddPlayerServlet extends HttpServlet {
             String link_image = request.getParameter("link_image");
             String imcome = request.getParameter("imcome");
 
-            CategoryDAO cdao = new CategoryDAO();
-            MovieDAO mdao = new MovieDAO();
-            List<Category> categoryList = cdao.getAllCategory();
-            List<Movie> movieList = mdao.getAllMovie();
-            response.getWriter().print(new Movie(0, title, description, timeshow, subtitle, linkposter, requestS, 0, 0, premiere, country, directedby, "1").toString());
-            mdao.addMovie(new Movie(0, title, description, timeshow, subtitle, linkposter, requestS, 0, 0, premiere, country, directedby, "1"));
-            int lastMovieID = movieList.get(movieList.size()-1).getMovie_id();
-            for (Category category : categoryList) {
-                String cate = request.getParameter(category.getCate_name());
+            Game_TypeDAO cdao = new Game_TypeDAO();
+            PlayerDAO mdao = new PlayerDAO();
+            List<Game_Type> game_typeList = cdao.getAllGameType();
+            List<Player> playerList = mdao.getAllPlayer();
+            response.getWriter().print(new Player(player_id, player_name, gender, phone_number, 0, player_id, link_image, Double.NaN));
+            mdao.addPlayer(new Player(player_id, player_name, gender, phone_number, 0, player_id, link_image, Double.NaN));
+            int lastPlayerID = Integer.parseInt(playerList.get(playerList.size()-1).getPlayer_id());
+            for (Game_Type game_type : game_typeList) {
+                String cate = request.getParameter(game_type.getGameType_name());
                 if(cate != null){
-                    mdao.addMovieCategory(new Movie_category(lastMovieID+1, category.getCate_id()));
+//                    mdao.addMovieCategory(new Game_Type(lastPlayerID+1, category.getCate_id()));
                 }
                 
 //response.getWriter().println(cate);
             }
-            response.sendRedirect("addmovie?updaters=true");
+            response.sendRedirect("addplayer?updaters=true");
         } catch (SQLException ex) {
             Logger.getLogger(AddPlayerServlet.class.getName()).log(Level.SEVERE, null, ex);
             response.getWriter().print("something wrong");

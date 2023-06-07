@@ -75,7 +75,7 @@ public class PlayerDetailServlet extends HttpServlet {
             
             request.setAttribute("player",player);
 //            request.setAttribute("lpList",lpList);
-            request.getRequestDispatcher("common/moviedetail.jsp").forward(request, response);
+            request.getRequestDispatcher("common/playerdetail.jsp").forward(request, response);
 //        } catch (SQLException ex) {
 //            Logger.getLogger(PlayerDetailServlet.class.getName()).log(Level.SEVERE, null, ex);
 //        }

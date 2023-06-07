@@ -1,5 +1,9 @@
 package dbconnect;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import javax.swing.JOptionPane;
+
 import java.sql.DriverManager;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
@@ -10,7 +14,7 @@ public class DBContext {
         try {
             String username = "root";
             String password = "123456";
-            String mysqlconn = "jdbc:mysql://localhost:3306/swp391_se1708_5";
+            String mysqlconn = "jdbc:mysql://localhost:3306/mydb";
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(mysqlconn, username, password);
             return conn;

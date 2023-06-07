@@ -43,4 +43,8 @@ public class Game_Type {
     public String toString() {
         return "Game_Type{" + "game_id"+ game_id +"game_type" + game_type +"}";
     }
+
+    public String getGameType_name() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -46,6 +46,10 @@ public class Game_TypeDAO {
         } 
         return list;
     }
+
+    public List<Game_Type> getAllGameType() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
      
 }

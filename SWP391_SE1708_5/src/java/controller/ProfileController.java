@@ -20,9 +20,33 @@ public class ProfileController extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
-            dispatcher.forward(request, response);
+            String action = request.getParameter("showUserProfile");
+            userProfileDisplay(request, response);
+            userProfileUpdate(request, response);
         }
+    }
+
+    private void userProfileDisplay(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void userProfileUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        String id = request.getParameter("id");
+        String fullName = request.getParameter("fullName");
+        String gender = request.getParameter("gender");
+        String phoneNumber = request.getParameter("phoneNumber");
+        String email = request.getParameter("email");
+        String address = request.getParameter("address");
+        String password = request.getParameter("password");
+        String linkImage = request.getParameter("linkImage");
+        UserDAO udao = new UserDAO();
+        if (udao.checkUser(id) != false) {
+            User user = new User(id, fullName);
+            User_Details User_Details = new User_Details(id, gender, phoneNumber, email, address, password, linkImage);
+            udao.updateUserprofile(User_Details, user);
+        }
+        response.sendRedirect("home.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -55,34 +79,8 @@ public class ProfileController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String fullName = request.getParameter("fullName");
-        String email = request.getParameter("email");
-        String phoneNumber = request.getParameter("phoneNumber");
-        String gender = request.getParameter("gender");
-        String address = request.getParameter("address");
-        String linkImage = request.getParameter("linkImage");
-        // Retrieve user ID from session
-        String userId = "U001"; // Replace later with actual logic to get user ID
         try {
             processRequest(request, response);
-            UserDAO userDAO = new UserDAO();
-            if (!userDAO.checkUser(userId)) {
-                User user = new User(userId, fullName);
-                User_Details userDetails = userDAO.getUserDetails(userId);
-                if (userDetails == null) {
-                    userDetails = userDAO.createNewUserDetails(userId, email, phoneNumber, gender, address, linkImage);
-                    userDAO.updateUserprofile(userDetails, user);
-                } else {
-                    user.setFull_name(fullName);
-                    userDetails.setEmail(email);
-                    userDetails.setPhone_number(phoneNumber);
-                    userDetails.setGender(gender);
-                    userDetails.setAddress(address);
-                    userDetails.setLink_image(linkImage);
-                    userDAO.updateUserprofile(userDetails, user);
-                }
-            }
-            response.sendRedirect("home.jsp");
         } catch (SQLException ex) {
             Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
         }

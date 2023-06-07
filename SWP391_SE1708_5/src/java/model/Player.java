@@ -19,11 +19,12 @@ public class Player {
     private int num_of_star;
     private String password;
     private String link_image;
-
+    private Double income;
+    
     public Player() {
     }
 
-    public Player(String player_id, String player_name, String gender, String phone_number, int num_of_star, String password, String link_image) {
+    public Player(String player_id, String player_name, String gender, String phone_number, int num_of_star, String password, String link_image, Double income) {
         this.player_id = player_id;
         this.player_name = player_name;
         this.gender = gender;
@@ -31,6 +32,7 @@ public class Player {
         this.num_of_star = num_of_star;
         this.password = password;
         this.link_image = link_image;
+        this.income = income;
     }
 
     public String getPlayer_id() {
@@ -89,10 +91,19 @@ public class Player {
         this.link_image = link_image;
     }
 
+    public Double getIncome() {
+        return income;
+    }
+
+    public void setIncome(Double income) {
+        this.income = income;
+    }
+
+    
    
 
     @Override
     public String toString() {
-          return "Player{" + "player_id=" + player_id + ", player_name=" + player_name + ", gender=" + gender + ", phone_number=" + phone_number + ", num_of_star=" + num_of_star + ", password=" + password +  ", link_image=" + link_image + '}';
+          return "Player{" + "player_id=" + player_id + ", player_name=" + player_name + ", gender=" + gender + ", phone_number=" + phone_number + ", num_of_star=" + num_of_star + ", password=" + password +  ", link_image=" + link_image +  ", income =" + income + '}';
     }
 }

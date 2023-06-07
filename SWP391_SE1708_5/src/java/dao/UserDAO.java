@@ -15,7 +15,7 @@ public class UserDAO {
     public boolean checkUser(String userID) throws SQLException {
         try {
             conn = DBContext.connectMySQLDatabase();
-            String query = "select * from User where user_id = '?'";
+            String query = "select * from User where user_id = ?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, userID);
             ResultSet rs = st.executeQuery();
@@ -31,7 +31,7 @@ public class UserDAO {
     public User checkUserExist(String userID) throws SQLException {
         try {
             conn = DBContext.connectMySQLDatabase();
-            String query = "select * from User where user_id = '?'";
+            String query = "select * from User where user_id = ?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, userID);
             ResultSet rs = st.executeQuery();
@@ -46,10 +46,10 @@ public class UserDAO {
         return null;
     }
 
-    public User_Details getUserDetails(String userID) throws SQLException {
+    public User_Details checkUserDetailExist(String userID) throws SQLException {
         try {
             conn = DBContext.connectMySQLDatabase();
-            String query = "select * from User_Details where user_id = '?'";
+            String query = "select * from User_Details where user_id = ?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, userID);
             ResultSet rs = st.executeQuery();
@@ -72,63 +72,30 @@ public class UserDAO {
     public void updateUserprofile(User_Details userDetails, User userFullName) throws SQLException {
         try {
             conn = DBContext.connectMySQLDatabase();
-            String query = "UPDATE User_Details "
-                    + "JOIN User ON User_Details.user_id = User.user_id "
-                    + "SET User_Details.gender = '?', "
-                    + "User_Details.phone_number = '?', "
-                    + "User_Details.gmail = '?', "
-                    + "User_Details.address = '?', "
-                    + "User_Details.link_image = '?', "
-                    + "User.full_name = '?' "
-                    + "WHERE User_Details.user_id = '?'";
+            String query = "update User_Details set"
+                    + "gender = ?, "
+                    + "phone_number = ?, "
+                    + "email = ?, "
+                    + "address = ?, "
+                    + "password = ?, "
+                    + "link_image) = ?"
+                    + "where user_id = ?"
+                    + "union "
+                    + "update User set full_name = ?"
+                    + "where user_id = ?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, userDetails.getGender());
             st.setString(2, userDetails.getPhone_number());
             st.setString(3, userDetails.getEmail());
             st.setString(4, userDetails.getAddress());
-            st.setString(5, userDetails.getLink_image());
-            st.setString(6, userDetails.getUser_id());
-            st.setString(7, userFullName.getFull_name());
-            st.setString(8, userFullName.getUser_id());
+            st.setString(5, userDetails.getPassword());
+            st.setString(6, userDetails.getLink_image());
+            st.setString(7, userDetails.getUser_id());
+            st.setString(8, userFullName.getFull_name());
+            st.setString(9, userFullName.getUser_id());
             st.executeUpdate();
         } catch (SQLException e) {
         }
         conn.close();
-    }
-
-    public User_Details createNewUserDetails(String userId, String email, String phoneNumber, String gender, String address, String linkImage) throws SQLException {
-        try {
-            conn = DBContext.connectMySQLDatabase();
-            String query = "INSERT INTO User_Details ("
-                    + "gender,"
-                    + "phone_number,"
-                    + "email,"
-                    + "address,"
-                    + "link_image)"
-                    + "VALUES ('?', '?', '?', '?', '?')";
-            PreparedStatement st = conn.prepareStatement(query);
-            st.setString(1, gender);
-            st.setString(2, phoneNumber);
-            st.setString(3, email);
-            st.setString(4, address);
-            st.setString(5, linkImage);
-            st.executeUpdate();
-
-            query = "SELECT * FROM User_Details WHERE user_id = '?'";
-            st = conn.prepareStatement(query);
-            st.setString(1, userId);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                String newGender = rs.getString("gender");
-                String newPhoneNumber = rs.getString("phone_number");
-                String newEmail = rs.getString("email");
-                String newAddress = rs.getString("address");
-                String newLinkImage = rs.getString("link_image");
-                return new User_Details(newGender, newPhoneNumber, newEmail, newAddress, newLinkImage);
-            }
-        } catch (SQLException e) {
-        }
-        conn.close();
-        return null;
     }
 }

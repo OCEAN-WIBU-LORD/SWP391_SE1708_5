@@ -253,7 +253,7 @@
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <h1 class="h3 mb-4 text-gray-800">Movies</h1>
+                        <h1 class="h3 mb-4 text-gray-800">Game</h1>
 
                         <div class="row">
 
@@ -271,8 +271,10 @@
                                                 <tr>
                                                     <th>ID</th>
                    
+                                                    <th>Game Name</th>
                                                     <th>Category Name</th>
-                                                    <
+                                                    <th>Game Description</th>
+                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -299,7 +301,7 @@
 
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">add location</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">add category</h6>
                                     </div>
                                     <div class="card-body">
                                         <form action="addmovie" method="post">

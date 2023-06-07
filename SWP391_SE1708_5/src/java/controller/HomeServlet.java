@@ -45,9 +45,9 @@ public class HomeServlet extends HttpServlet {
         String full_name = String.valueOf(session.getAttribute("full_name"));
         int a = playerList.size();
 //            List<Actor> actorList = adao.getAllActor();
-//            List<Category> cateList = cdao.getAllCategory();
-//            List<MovieActor> movieActorList = mdao.getMovieActor();
-//            List<Movie_category> mcList = cdao.getMovieCategory();
+//            List<GameType> cateList = cdao.getGameType();
+//            List<PlayerGame> movieActorList = mdao.getPlayerGame();
+//            List<Player_category> mcList = cdao.getPlayerCategory();
 //            request.setAttribute("mcList", mcList);
         request.setAttribute("playerList", playerList);
         request.setAttribute("playerList2", playerList2);

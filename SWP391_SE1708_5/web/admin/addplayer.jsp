@@ -251,7 +251,7 @@
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <h1 class="h3 mb-4 text-gray-800">Movies</h1>
+                        <h1 class="h3 mb-4 text-gray-800">Player</h1>
 
                         <div class="row">
 
@@ -262,42 +262,46 @@
                                 <!-- Circle Buttons -->
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Movie List</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Player List</h6>
                                     </div>
                                     <div class="card-body"> 
 
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
-                                                    <th>Title</th>
-                                                    <th>Category</th>
-                                                    <th>Rated</th>
-                                                    <th>Viewers</th>
-                                                    <th>Status</th>
-                                                    <th></th>
+                                                    <th>PlayerID</th>
+                                                    <th>PlayerName</th>
+                                                    <th>Phone Number</th>
+                                                    <th>Num of Star</th>
+                                                    <th>Income</th>
+                                                    <th>Link Image</th>
+                                                    <th>Income</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                            <a>${m}</a>
+                                            <a>${n}</a>
 
-                                                <c:forEach items="${movieList}" var="o">
+                                                <c:forEach items="${playerList}" var="o">
                                                     <tr>
-                                                        <td>${o.movie_id}</td>
-                                                        <td>${o.title}</td>
-                                                        <td><c:forEach items="${mcList}" var="p" >
+                                                        <td>${o.player_id}</td>
+                                                        <td>${o.player_name}</td>
+                                                        <td>${o.phone_number}</td>
+                                                        <%--                   <td><c:forEach items="${gameList}" var="p" >
 
-                                                                <c:if test="${p.movie_id eq o.movie_id}">
-                                                                    <c:forEach items="${categoryList}" var="v" >
-                                                                        <c:if test="${v.cate_id eq p.cate_id}">
-                                                                            <p>${v.cate_name} </p>
+                                                                <c:if test="${p.player_id eq o.player_id}">
+                                                                    <c:forEach items="${gameList}" var="v" >
+                                                                        <c:if test="${v.game_id eq p.game_id}">
+                                                                            <p>${v.game_name} </p>
                                                                         </c:if>
                                                                     </c:forEach>
                                                                 </c:if>
-                                                            </c:forEach></td>
-                                                        <td>${o.rated }</td>
-                                                        <td>${o.viewer}</td>
-                                                        <td>${o.status_movie eq "1" ? "Enable" : "Disable"}</td>
-                                                        <td><a href="editmovie?movie_id=${o.movie_id}">edit</a>|<a href="#" onclick="deleteMovie(${o.movie_id})">delete</a></td>
+                                                            </c:forEach></td>   --%>
+                                                        <td>${o.num_of_star}</td>
+                                                        <td>${o.income}</td>
+                                                        <td>${o.link_image}</td>
+>
+                                                        <td><a href="editplayer?player_id=${o.player_id}">edit</a>|<a href="#" onclick="deletePlayer(${o.player_id})">delete</a></td>
                                                     </tr>
                                                 </c:forEach>
 
@@ -316,23 +320,23 @@
 
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">add movie</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">add player</h6>
                                     </div>
                                     <div class="card-body">
-                                        <form action="addmovie" method="post">
+                                        <form action="addplayer" method="post">
                                             <table class="table table-hover">
 
                                                 <tbody>
                                                     <tr>
-                                                        <td><b>Title</b></td>
+                                                        <td><b>Player_id</b></td>
                                                         <td><input name="title" type="text" placeholder="" style="width: 90%"/></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Category</b></td>
+                                                        <td><b>GamePlayed</b></td>
                                                         <td><div style="width: 90%">
 
 
-                                                                <c:forEach items="${categoryList}" var="s">
+                                                                <c:forEach items="${gameList}" var="s">
                                                                     <input name="${s.cate_name}" type="checkbox"  placeholder="" /> ${s.cate_name}<br>
                                                                 </c:forEach>
 
@@ -342,36 +346,24 @@
                                                             </div></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Description</b></td>
+                                                        <td><b>Player Name</b></td>
                                                         <td><textarea name="description" cols="60" rows="3"></textarea></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Time show</b></td>
+                                                        <td><b>Gender</b></td>
                                                         <td><input name="timeshow" type="number" /></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Subtitle</b></td>
+                                                        <td><b>Phone Number</b></td>
                                                         <td><input name="subtitle" type="text" style="width: 90%"/></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Link Poster</b></td>
+                                                        <td><b>Password</b></td>
                                                         <td><input name="linkposter" type="text" style="width: 90%"/></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Request</b></td>
+                                                        <td><b>Link Image</b></td>
                                                         <td><input name="request" type="text" style="width: 90%"/></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Premiere</b></td>
-                                                        <td><input name="premiere" type="date" style="width: 90%"/></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Country</b></td>
-                                                        <td><input name="country" type="text" style="width: 90%"/></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Directed by</b></td>
-                                                        <td><input name="directedby" type="text" style="width: 90%"/></td>
                                                     </tr>
                                                     <tr>
                                                         <td></td>

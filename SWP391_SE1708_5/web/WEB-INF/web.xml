@@ -17,8 +17,8 @@
         <servlet-class>controller.admin.AdminDashboardServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AddMovieServlet</servlet-name>
-        <servlet-class>controller.admin.AddMovieServlet</servlet-class>
+        <servlet-name>AddPlayerServlet</servlet-name>
+        <servlet-class>controller.admin.AddPlayerServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>/EditMovieServlet</servlet-name>
@@ -97,8 +97,8 @@
         <url-pattern>/admin/home</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AddMovieServlet</servlet-name>
-        <url-pattern>/admin/addmovie</url-pattern>
+        <servlet-name>AddPlayerServlet</servlet-name>
+        <url-pattern>/admin/addplayer</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>/EditMovieServlet</servlet-name>

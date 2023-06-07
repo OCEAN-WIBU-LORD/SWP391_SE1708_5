@@ -37,8 +37,8 @@
                          data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Operation</h6>
-                            <a class="collapse-item ${addmovie}" href="addmovie">Manage player</a>
-                            <a class="collapse-item ${addmovie2}" href="addcategory.jsp">Manage User</a>
+                            <a class="collapse-item ${addplayer}" href="addplayer">Manage player</a>
+                            <a class="collapse-item ${addgame}" href="addgametype">Manage User</a>
                         </div>
                     </div>
                 </li>

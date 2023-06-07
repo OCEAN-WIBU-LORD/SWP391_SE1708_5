@@ -28,7 +28,7 @@ public class GameDAO {
     public ArrayList<Game> getListGame() {
         ArrayList<Game> data = new ArrayList<Game>();
         try {
-            String strSelect = "select * from game ";
+            String strSelect = "select * from game";
             pstm = cnn.prepareStatement(strSelect);
             rs = pstm.executeQuery();
             while (rs.next()) {

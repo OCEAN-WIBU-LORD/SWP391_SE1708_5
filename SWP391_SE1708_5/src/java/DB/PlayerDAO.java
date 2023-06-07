@@ -152,7 +152,8 @@ public class PlayerDAO {
                         rs.getString("phone_number"),
                         rs.getInt("num_of_star"),
                         rs.getString("password"),
-                        rs.getString("link_image"));
+                        rs.getString("link_image"),
+                        rs.getDouble("income"));
                 list.add(a);
             }
             // close connection
@@ -161,5 +162,9 @@ public class PlayerDAO {
            System.out.println("getAllPlayer" + ex.getMessage());
         }
         return list;
+    }
+
+    public void addPlayer(Player player) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
