@@ -8,22 +8,20 @@ package model;
  *
  * @author Cuthi
  */
-public class Game {
+public class GameType {
     private int id;
     private String code;
     private String name;
     private String description;
-    private boolean status;
 
-    public Game() {
+    public GameType() {
     }
 
-    public Game(int id, String code, String name, String description, boolean status) {
+    public GameType(int id, String code, String name, String description) {
         this.id = id;
         this.code = code;
         this.name = name;
         this.description = description;
-        this.status = status;
     }
 
     public int getId() {
@@ -42,10 +40,6 @@ public class Game {
         return description;
     }
 
-    public boolean isStatus() {
-        return status;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -60,10 +54,6 @@ public class Game {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
     }
     
     
