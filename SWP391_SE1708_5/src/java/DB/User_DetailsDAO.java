@@ -24,12 +24,12 @@ import model.User_Details;
 public class User_DetailsDAO {
     BaseDAO BaseDao = new BaseDAO();
     Connection conn = null;
-    
+
     public static void main(String[] args) throws SQLException {
         User_DetailsDAO a = new User_DetailsDAO();
         System.out.println(a.checkUser("duongdd123"));
     }
-    
+
     public String checkAdmin(String acc_id) throws SQLException {
         String role = "";
         try {
@@ -37,7 +37,8 @@ public class User_DetailsDAO {
             // connnect to database 'testdb'
             conn = db.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("select r.role_name from(select ar.role_id from user a inner join user_role ar on a.user_id = ar.user_id where a.user_id = ?) as tb1 inner join role r on r.role_id = tb1.role_id");
+            PreparedStatement stmt = conn.prepareStatement(
+                    "select r.role_name from(select ar.role_id from user a inner join user_role ar on a.user_id = ar.user_id where a.user_id = ?) as tb1 inner join role r on r.role_id = tb1.role_id");
             stmt.setString(1, acc_id);
 
             // get data from table
@@ -57,8 +58,8 @@ public class User_DetailsDAO {
         }
         return role;
     }
-    
-     public boolean checkUser(String username) throws SQLException {
+
+    public boolean checkUser(String username) throws SQLException {
         UserDAO a = null;
         try {
             BaseDAO db = new BaseDAO();
@@ -84,15 +85,16 @@ public class User_DetailsDAO {
         }
         return false;
     }
-     
-      public User_Details getUser_Details(String user_id, String password) throws SQLException {
+
+    public User_Details getUser_Details(String user_id, String password) throws SQLException {
         User_Details u = null;
         try {
             BaseDAO db = new BaseDAO();
             // connnect to database 'testdb'
             conn = db.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User_Details where user_id = ? and password = ?");
+            PreparedStatement stmt = conn
+                    .prepareStatement("SELECT * FROM User_Details where user_id = ? and password = ?");
             stmt.setString(1, user_id);
             stmt.setString(2, password);
 
@@ -101,7 +103,9 @@ public class User_DetailsDAO {
             // show data
 
             while (rs.next()) {
-                u = new User_Details(rs.getString("user_id"), rs.getString("gender"), rs.getString("phone_number"), rs.getNString("gmail"), rs.getNString("address"), rs.getString("password"), rs.getString("link_image"));
+                u = new User_Details(rs.getString("user_id"), rs.getString("gender"), rs.getString("phone_number"),
+                        rs.getNString("gmail"), rs.getNString("address"), rs.getString("password"),
+                        rs.getString("link_image"));
 
             }
             // close connection
@@ -113,12 +117,14 @@ public class User_DetailsDAO {
         }
         return u;
     }
-      
-      public void insertUserDetails(String user_id, String gender, String phone_number, String gmail, String address, String password, String link_image) {
+
+    public void insertUserDetails(String user_id, String gender, String phone_number, String gmail, String address,
+            String password, String link_image) {
         try {
 
             conn = BaseDAO.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("insert into user_details (user_id,gender,phone_number,gmail,address,password,link_image) values (?,?,?,?,?,?,?)");
+            PreparedStatement stmt = conn.prepareStatement(
+                    "insert into user_details (user_id,gender,phone_number,gmail,address,password,link_image) values (?,?,?,?,?,?,?)");
             stmt.setString(1, user_id);
             stmt.setString(2, gender);
             stmt.setString(3, phone_number);
@@ -139,7 +145,8 @@ public class User_DetailsDAO {
             // connnect to database 'testdb'
             conn = db.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User_Details where user_id = ? and phone_number = ?");
+            PreparedStatement stmt = conn
+                    .prepareStatement("SELECT * FROM User_Details where user_id = ? and phone_number = ?");
             stmt.setString(1, user_id);
             stmt.setString(2, phone_number);
 
@@ -163,7 +170,7 @@ public class User_DetailsDAO {
         try {
 
             conn = BaseDAO.getConnection();
-                PreparedStatement stmt = conn.prepareStatement("update User_Details set password = ? where user_id = ?");
+            PreparedStatement stmt = conn.prepareStatement("update User_Details set password = ? where user_id = ?");
             stmt.setString(1, password);
             stmt.setString(2, user_id);
             stmt.executeUpdate();
@@ -171,7 +178,7 @@ public class User_DetailsDAO {
             System.out.println("changePassword" + e.getMessage());
         }
     }
-    
+
     public List<User_Details> getAllUserDetails() throws SQLException {
         List<User_Details> list = null;
         try {
@@ -187,7 +194,9 @@ public class User_DetailsDAO {
             list = new ArrayList<>();
             while (rs.next()) {
                 User_Details a = null;
-                a = new User_Details(rs.getString("user_id"), rs.getString("gender"), rs.getString("phone_number"), rs.getNString("gmail"), rs.getNString("address"), rs.getString("password"), rs.getString("link_image"));
+                a = new User_Details(rs.getString("user_id"), rs.getString("gender"), rs.getString("phone_number"),
+                        rs.getNString("gmail"), rs.getNString("address"), rs.getString("password"),
+                        rs.getString("link_image"));
                 list.add(a);
             }
             // close connection
@@ -198,14 +207,14 @@ public class User_DetailsDAO {
         return list;
     }
 
-
     public void updateAccount(User_Details a) {
         try {
 
             BaseDAO db = new BaseDAO();
             // connnect to database 'testdb'
             conn = db.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("Update User_Details set gender =?,phone_number=?,gmail=?,address=?,password=?,link_image=? WHERE user_id= ?");
+            PreparedStatement stmt = conn.prepareStatement(
+                    "Update User_Details set gender =?,phone_number=?,gmail=?,address=?,password=?,link_image=? WHERE user_id= ?");
             stmt.setString(1, a.getGender());
             stmt.setString(2, a.getPhone_number());
             stmt.setString(3, a.getEmail());
@@ -215,11 +224,36 @@ public class User_DetailsDAO {
             stmt.setString(7, a.getUser_id());
             stmt.executeUpdate();
         } catch (Exception ex) {
-             System.out.println("updateAccount" + ex.getMessage());
+            System.out.println("updateAccount" + ex.getMessage());
         }
-    }  
-      
-      
-      
-    
+    }
+
+    public ArrayList<User_Details> getAllUser() throws SQLException{
+        ArrayList<User_Details> listUser = new ArrayList<>();
+        try{
+            BaseDAO db = new BaseDAO();
+            conn = db.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(""
+                    + "SELECT u.full_name, ud.gender, ud.phone_number, ud.gmail, ud.address, ud.link_image "
+                    + "FROM User u inner join User_details ud "
+                    + "on u.user_id = ud.user_id");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                User_Details ud = new User_Details(
+                        rs.getString("full_name"), 
+                        rs.getString("gender"), 
+                        rs.getString("phone_number"), 
+                        rs.getString("gmail"), 
+                        rs.getString("address"), 
+                        rs.getString("link_image"));
+                listUser.add(ud);
+            }
+        }catch(Exception e){
+            System.out.println("Can't get list user now because "+ e.getMessage());
+        }finally{
+            conn.close();
+        }
+        return listUser;
+    }>>>>>>>9f e9bd998265a496a46dd476d792abfdb25d4228
+
 }

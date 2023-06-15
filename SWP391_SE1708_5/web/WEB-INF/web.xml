@@ -17,6 +17,10 @@
         <servlet-class>controller.admin.AdminDashboardServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ManageUserServlet</servlet-name>
+        <servlet-class>controller.admin.ManageUserServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AddPlayerServlet</servlet-name>
         <servlet-class>controller.admin.AddPlayerServlet</servlet-class>
     </servlet>
@@ -159,6 +163,10 @@
     <servlet-mapping>
         <servlet-name>deleteGame</servlet-name>
         <url-pattern>/deleteGame</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageUserServlet</servlet-name>
+        <url-pattern>/admin/manageUser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
