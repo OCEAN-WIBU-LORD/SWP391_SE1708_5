@@ -71,7 +71,7 @@
                     <div class="col-lg-7">
                         <div class="img-property-slide-wrap">
                             <div class="img-property-slide">
-                                <img src="${movie.poster}" alt="Image" class="img-fluid" />
+                                <img src="${player.link_image}" alt="Image" class="img-fluid" />
 
                             </div>
                         </div>
@@ -85,31 +85,29 @@
                                 </div>
                     </div>
                     <div class="col-lg-4">
-                        <h2 class="heading text-primary">${movie.title}</h2>
-                        <p class="meta"><b>Directed by:</b> ${movie.directed_by}</p>
+                        <h2 class="heading text-primary">${player.player_name}</h2>
+                        <!--<p class="meta"><b>Description:</b> ${player.description}</p>-->
                         <p class="text-black-50">
-                            <b>Category: </b>${category.cate_name}
+                            <b>Phone Number: </b>${player.phone_number}
                         </p>
                         <p class="text-black-50">
-                            <b>Time show: </b>${movie.time_show}
+                            <b>Number of Stars: </b>${player.num_of_star}
                         </p>
-                        <p class="text-black-50">
-                            <b>Request: </b>${movie.request}
-                        </p>
+                        
                         <p class="text-black-50">
                             <b>Status: </b>
-                            <c:if test="${movie.status_movie eq '1'}">
+                            <c:if test="${player.status_player eq '1'}">
                                 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="color: white">Can booking</button>
                             </c:if>
-                            <c:if test="${movie.status_movie ne '1'} ">
-                                <button class="btn btn-warning" ><a href="bookingmovie" style="color: white">Can't booking</a></button>
+                            <c:if test="${player.status_player ne '1'} ">
+                                <button class="btn btn-warning" ><a href="bookingplayer" style="color: white">Can't booking</a></button>
                             </c:if>
                         </p><c:if test="${bookingrs ne null}"><p style="color: greenyellow; font-size: 25px">booking successfull</p>                                  
                             <img style="width: 300px; width: 300px" src="images/sampleQR2.png">
                         </c:if>
 
                         <div class="d-block agent-box p-5">
-                            <p>${movie.description}</p>
+                            <p>${player.description}</p>
                         </div>
                     </div>
                 </div>
@@ -122,7 +120,7 @@
         <div class="modal fade" id="myModal" role="dialog" >
             <div class="modal-dialog modal-lg" >
                 <div class="modal-content"  >
-                    <form action="bookingmovie" method="post">
+                    <form action="bookingplayer" method="post">
                         <label for="sel1" class="form-label">Select list (select one):</label>
 
                         <br>

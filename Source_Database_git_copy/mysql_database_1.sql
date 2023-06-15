@@ -227,4 +227,45 @@ ALTER TABLE my_table MODIFY COLUMN column_name column_definition AFTER column_to
 ALTER TABLE user_details ADD COLUMN new_column INT;
 
 
-SELECT full_name FROM User where user_id = ?
+SELECT full_name FROM User where user_id = ?;
+alter table player add status_player nvarchar(50);
+ALTER TABLE player
+MODIFY COLUMN status_player int;
+
+update player set status_player = 1 where player_id = 'windyiu';
+select * from player ;
+INSERT INTO player (status_player)
+SELECT 1
+FROM another_table
+WHERE another_table_column = 'desired_value';
+
+alter table player add description text;
+
+
+update player set description = '🍀Nhận Pubgm , Liên quân , Tốc Chiến , Mobile legends , Cờ tỷ phú ,….vv📲
+
+🍀Mở nhạc , Call , Stream film🖥
+
+🍀 On cam : 300k/h
+
+🍀Game Pc :
+
++ Valorant
+
++ Lol sv SE , NA , EU , OCE , Pbe
+
++ Pubg
+
++ Scribble It
+
++ Pummel Party
+
++ Overcooked 2
+
+🔊 Giọng Bắc!!
+
+‼️ Nhắn trước khi bấm thuê' where player_id = 'windyiu';
+select * from user_details;
+
+insert into player (player_id,player_name,gender,phone_number,num_of_star,password,link_image,income,status_player, description) values ('a','a','a');
+

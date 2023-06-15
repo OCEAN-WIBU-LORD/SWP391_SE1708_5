@@ -50,6 +50,10 @@ public class Game_TypeDAO {
     public List<Game_Type> getAllGameType() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public List<Game_Type> getAllGame_Type() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
      
 }

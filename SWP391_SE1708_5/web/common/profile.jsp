@@ -1,178 +1,268 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%-- 
+    Document   : profile
+    Created on : Mar 12, 2023, 1:41:16 PM
+    Author     : Nguyen Van Ky
+--%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <title>account setting or edit profile</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <style type="text/css">
-            body {
-                margin: 0;
-                padding-top: 40px;
-                color: #2e323c;
-                background: #f5f6fa;
-                position: relative;
-                height: 100%;
-            }
-            .account-settings .user-profile {
-                margin: 0 0 1rem 0;
-                padding-bottom: 1rem;
-                text-align: center;
-            }
-            .account-settings .user-profile .user-avatar {
-                margin: 0 0 1rem 0;
-            }
-            .account-settings .user-profile .user-avatar img {
-                width: 90px;
-                height: 90px;
-                -webkit-border-radius: 100px;
-                -moz-border-radius: 100px;
-                border-radius: 100px;
-            }
-            .account-settings .user-profile h5.user-name {
-                margin: 0 0 0.5rem 0;
-            }
-            .account-settings .user-profile h6.user-email {
-                margin: 0;
-                font-size: 0.8rem;
-                font-weight: 400;
-                color: #9fa8b9;
-            }
-            .account-settings .about {
-                margin: 2rem 0 0 0;
-                text-align: center;
-            }
-            .account-settings .about h5 {
-                margin: 0 0 15px 0;
-                color: #007ae1;
-            }
-            .account-settings .about p {
-                font-size: 0.825rem;
-            }
-            .form-control {
-                border: 1px solid #cfd1d8;
-                -webkit-border-radius: 2px;
-                -moz-border-radius: 2px;
-                border-radius: 2px;
-                font-size: .825rem;
-                background: #ffffff;
-                color: #2e323c;
-            }
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
 
-            .card {
-                background: #ffffff;
-                -webkit-border-radius: 5px;
-                -moz-border-radius: 5px;
-                border-radius: 5px;
-                border: 0;
-                margin-bottom: 1rem;
-            }
-
-
-        </style>
     </head>
+    <style>
+        body{
+            background-color: #8899a6;
+        }
+        .container{
+            background-image: url("../login_atr/images/bg-01.jpg");
+
+            height: content-box;
+        }
+        .twPc-div {
+            background: #fff none repeat scroll 0 0;
+            border: 1px solid #e1e8ed;
+            border-radius: 6px;
+            height: 200px;
+            max-width: 340px;
+            margin-left: 10px
+        }
+        .twPc-bg {
+            background-image: url("https://pbs.twimg.com/profile_banners/50988711/1384539792/600x200");
+            background-position: 0 50%;
+            background-size: 100% auto;
+            border-bottom: 1px solid #e1e8ed;
+            border-radius: 4px 4px 0 0;
+            height: 95px;
+            width: 100%;
+        }
+        .twPc-block {
+            display: block !important;
+        }
+        .twPc-button {
+            margin: -35px -10px 0;
+            text-align: right;
+            width: 100%;
+        }
+        .twPc-avatarLink {
+            background-color: #fff;
+            border-radius: 6px;
+            display: inline-block !important;
+            float: left;
+            margin: -30px 5px 0 8px;
+            max-width: 100%;
+            padding: 1px;
+            vertical-align: bottom;
+        }
+        .twPc-avatarImg {
+            border: 2px solid #fff;
+            border-radius: 7px;
+            box-sizing: border-box;
+            color: #fff;
+            height: 72px;
+            width: 72px;
+        }
+        .twPc-divUser {
+            margin: 5px 0 0;
+        }
+        .twPc-divName {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 21px;
+        }
+        .twPc-divName a {
+            color: inherit !important;
+        }
+        .twPc-divStats {
+            margin-left: 11px;
+            padding: 10px 0;
+        }
+        .twPc-Arrange {
+            box-sizing: border-box;
+            display: table;
+            margin: 0;
+            min-width: 100%;
+            padding: 0;
+            table-layout: auto;
+        }
+        ul.twPc-Arrange {
+            list-style: outside none none;
+            margin: 0;
+            padding: 0;
+        }
+        .twPc-ArrangeSizeFit {
+            display: table-cell;
+            padding: 0;
+            vertical-align: top;
+        }
+        .twPc-ArrangeSizeFit a:hover {
+            text-decoration: none;
+        }
+        .twPc-StatValue {
+            display: block;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.15s ease-in-out 0s;
+        }
+        .twPc-StatLabel {
+            color: #8899a6;
+            font-size: 10px;
+            letter-spacing: 0.02em;
+            overflow: hidden;
+            text-transform: uppercase;
+            transition: color 0.15s ease-in-out 0s;
+        }
+        table tr td,.header{
+            font-weight: bold;
+            color: white
+        }
+        table tr td input{
+            background-color: black;
+            height: 50px;
+            width: 90%;
+            padding: 0 10px;
+        }
+    </style>
+
     <body>
-        <div class="container">
-            <div class="row gutters">
-                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <div class="account-settings">
-                                <div class="user-profile">
-                                    <div class="user-avatar">
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
-                                    </div>
-                                    <h5 class="user-name">Yuki Hayashi</h5>
-                                    <h6 class="user-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="29505c4240696448515e4c4545074a4644">[email&#160;protected]</a></h6>
-                                </div>
-                                <div class="about">
-                                    <h5>About</h5>
-                                    <p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p>
-                                </div>
+
+
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <!------ Include the above in your HEAD tag ---------->
+
+        <div class="container" style="background-image: url('https://cdn.pixabay.com/photo/2016/03/15/02/42/floor-1256804__340.jpg');">
+            <div class="row" style="margin-left: 10px">
+                <a href="home"><img src="images/logo.png" width="100px" alt="alt"/><h1 class="header">CVG Profile Card</h1></a>
+                <p class="header">You can update to refresh your PROFILE</p>
+                <!-- code start -->
+                <div class="twPc-div col-md"> 
+                    <a class="twPc-bg twPc-block"></a>
+
+                    <div>
+                        <div class="twPc-button">
+                            <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
+                            <a href="https://twitter.com/mertskaplan" class="twitter-follow-button" data-show-count="false" data-size="large" data-show-screen-name="false" data-dnt="true">Follow @mertskaplan</a>
+                            <script>!function (d, s, id) {
+                                    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                                    if (!d.getElementById(id)) {
+                                        js = d.createElement(s);
+                                        js.id = id;
+                                        js.src = p + '://platform.twitter.com/widgets.js';
+                                        fjs.parentNode.insertBefore(js, fjs);
+                                    }
+                                }(document, 'script', 'twitter-wjs');</script>
+                            <!-- Twitter Button -->   
+                        </div>
+
+                        <a title="Mert S. Kaplan" href="#" class="twPc-avatarLink">
+                            <c:if test="${sessionScope.usercurrent.gender eq 1}">
+                                <img alt="Mert S. Kaplan" src="https://c8.alamy.com/comp/TC2FPE/young-man-avatar-cartoon-character-profile-picture-TC2FPE.jpg" class="twPc-avatarImg">
+                            </c:if>
+                            <c:if test="${sessionScope.usercurrent.gender ne 1}">
+                                <img alt="Mert S. Kaplan" src="https://c8.alamy.com/comp/TC2GE7/young-woman-avatar-cartoon-character-profile-picture-TC2GE7.jpg" class="twPc-avatarImg">
+                            </c:if>
+                        </a>
+
+                        <div class="twPc-divUser">
+                            <div class="twPc-divName">
+                                <a href="https://twitter.com/mertskaplan">${sessionScope.usercurrent.firstname} ${sessionScope.usercurrent.lastname}</a>
+                            </div>
+                            <span>
+                                <a href="https://twitter.com/mertskaplan">@<span>${sessionScope.usercurrent.username} </span></a>
+                            </span>
+                        </div>
+
+                        <div class="twPc-divStats">
+                            <ul class="twPc-Arrange">
+                                <li class="twPc-ArrangeSizeFit">
+                                    <a href="https://twitter.com/mertskaplan" title="9.840 Tweet">
+                                        <span class="twPc-StatLabel twPc-block">Type card</span>
+                                        <c:if test="${sessionScope.usercurrent.account_type_id eq 1}"> COPPER</c:if>
+                                        <c:if test="${sessionScope.usercurrent.account_type_id eq 2}"> <span class="twPc-StatValue"><i>SILVER</i></span></c:if>
+                                        <c:if test="${sessionScope.usercurrent.account_type_id eq 3}"> <span class="twPc-StatValue"><i>GOLD</i></span></c:if>
+                                        <c:if test="${sessionScope.usercurrent.account_type_id eq 4}"> <span class="twPc-StatValue"><i>DIAMOND</i></span></c:if>
+                                        </a>
+                                    </li>
+
+
+                                    <script type="text/javascript">
+                                        function showEditProfile() {
+
+                                        }
+                                    </script>
+                                    <li class="twPc-ArrangeSizeFit">
+                                        <a href="#" title="" onclick="showEditProfile()">
+                                            <span class="twPc-StatLabel twPc-block">Update profile</span>
+                                            <span class="twPc-StatValue"></span>
+                                        </a>
+                                    </li>
+
+                                </ul>
                             </div>
                         </div>
                     </div>
+                
+
+                <div style="float: right;width: 60%">
+                    <c:if test="${messenger ne null}">
+                    <i style="color: greenyellow">Update successfully</i>
+                </c:if>
+                
+                    <form action="profile" method="POST" class="login100-form validate-form p-b-33 p-t-5">
+                        <i style="color: red;text-align: center;font-size: 30px">${mess}</i>
+                        <table class="table table-hover">
+
+                            <tbody>
+                                <tr>
+                            <input name="acc_id" type="text" value="${sessionScope.usercurrent.user_id}" hidden="true"/>
+                            <td>username</td>
+                            <td><input name="username" type="text" value="${sessionScope.usercurrent.full_name}"/>
+                            </td>
+                            </tr>
+                            <tr>
+                                <td>password</td>
+                                <td><input name="password" type="password" value="${sessionScope.usercurrent.password}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>first name</td>
+                                <td><input name="firstname" type="text" value="${sessionScope.usercurrent.firstname}"/></td>
+                            </tr><tr>
+                                <td>last name</td>
+                                <td><input name="lastname" type="text" value="${sessionScope.usercurrent.lastname}"/></td>
+                            </tr>
+
+                            <tr>
+                                <td>age</td>
+                                <td><input name="age" type="number" value="${sessionScope.usercurrent.age}"/></td>
+                            </tr>
+                            <tr>
+                                <td>email</td>
+                                <td><input name="email" type="email" value="${sessionScope.usercurrent.email}"/></td>
+                            </tr>
+                            <tr>
+                                <td>gender</td>
+                                <td><input style="width: 5% ;height: max-content" name="gender" ${sessionScope.usercurrent.gender eq 1 ? 'checked="true"': ''}  type="checkbox"/></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input class="btn btn-info" type="submit" value="submit" />
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </form>
                 </div>
-                <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <div class="row gutters">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <h6 class="mb-2 text-primary">Personal Details</h6>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label for="fullName">Full Name</label>
-                                        <input type="text" class="form-control" id="fullName" placeholder="Enter full name">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label for="eMail">Email</label>
-                                        <input type="email" class="form-control" id="eMail" placeholder="Enter email ID">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label for="phone">Phone</label>
-                                        <input type="text" class="form-control" id="phone" placeholder="Enter phone number">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label for="website">Website URL</label>
-                                        <input type="url" class="form-control" id="website" placeholder="Website url">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row gutters">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <h6 class="mt-3 mb-2 text-primary">Address</h6>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label for="Street">Street</label>
-                                        <input type="name" class="form-control" id="Street" placeholder="Enter Street">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label for="ciTy">City</label>
-                                        <input type="name" class="form-control" id="ciTy" placeholder="Enter City">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label for="sTate">State</label>
-                                        <input type="text" class="form-control" id="sTate" placeholder="Enter State">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label for="zIp">Zip Code</label>
-                                        <input type="text" class="form-control" id="zIp" placeholder="Zip Code">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row gutters">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="text-right">
-                                        <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
-                                        <button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- code end -->
             </div>
         </div>
-        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script type="text/javascript">
-
-        </script>
     </body>
 </html>

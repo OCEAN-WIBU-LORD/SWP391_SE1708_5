@@ -255,7 +255,7 @@
 
                         <div class="row">
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-8">
                                 <c:if test="${updaters ne null}">
                                     <p style="color: greenyellow">update successfull</p>
                                 </c:if>
@@ -275,12 +275,12 @@
                                                     <th>Num of Star</th>
                                                     <th>Income</th>
                                                     <th>Link Image</th>
-                                                    <th>Income</th>
+                                                    <th>Change Profile</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <a>${m}</a>
-                                            <a>${n}</a>
+                                            <!--<a>${m}</a>-->
+                                            Total Player: <a>${n}</a>
 
                                                 <c:forEach items="${playerList}" var="o">
                                                     <tr>
@@ -300,7 +300,8 @@
                                                         <td>${o.num_of_star}</td>
                                                         <td>${o.income}</td>
                                                         <td>${o.link_image}</td>
->
+                                                        <td>${o.link_image}</td>
+                                                        <td>${o.status_player eq "1" ? "Enable" : "Disable"}</td>
                                                         <td><a href="editplayer?player_id=${o.player_id}">edit</a>|<a href="#" onclick="deletePlayer(${o.player_id})">delete</a></td>
                                                     </tr>
                                                 </c:forEach>
@@ -316,7 +317,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
 
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">

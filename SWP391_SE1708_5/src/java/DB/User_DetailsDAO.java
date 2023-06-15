@@ -197,7 +197,27 @@ public class User_DetailsDAO {
         }
         return list;
     }
-      
+
+
+    public void updateAccount(User_Details a) {
+        try {
+
+            BaseDAO db = new BaseDAO();
+            // connnect to database 'testdb'
+            conn = db.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("Update User_Details set gender =?,phone_number=?,gmail=?,address=?,password=?,link_image=? WHERE user_id= ?");
+            stmt.setString(1, a.getGender());
+            stmt.setString(2, a.getPhone_number());
+            stmt.setString(3, a.getEmail());
+            stmt.setString(4, a.getAddress());
+            stmt.setString(5, a.getPassword());
+            stmt.setString(6, a.getLink_image());
+            stmt.setString(7, a.getUser_id());
+            stmt.executeUpdate();
+        } catch (Exception ex) {
+             System.out.println("updateAccount" + ex.getMessage());
+        }
+    }  
       
       
       

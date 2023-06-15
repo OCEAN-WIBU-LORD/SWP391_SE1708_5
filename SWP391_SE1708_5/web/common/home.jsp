@@ -107,7 +107,7 @@
                                 <c:forEach items="${playerList}" var = "o">
                                     <!--//-->
                                     <div class="property-item" >
-                                        <a href="moviedetail?movie_id=${o.player_id}" class="img" >
+                                        <a href="playerdetail?player_id=${o.player_id}" class="img" >
                                             <img src="${o.link_image}" alt="Image" class="img-fluid" style="height: 500px; weight: 500px; object-fit: scale-down; object-position: 100%;"/>
                                         </a>
                                         
@@ -129,7 +129,7 @@
                                 <c:forEach items="${playerList2}" var = "o">
                                     <!--//-->
                                     <div class="property-item" >
-                                        <a href="moviedetail?movie_id=${o.player_id}" class="img" >
+                                        <a href="playerdetail?player_id=${o.player_id}" class="img" >
                                             <img src="${o.link_image}" alt="Image" class="img-fluid" style="height: 500px; weight: 500px; object-fit: scale-down; object-position: 100%;"/>
                                         </a>
                                         

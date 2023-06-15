@@ -21,8 +21,8 @@
         <servlet-class>controller.admin.AddPlayerServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>/EditMovieServlet</servlet-name>
-        <servlet-class>controller.admin.EditMovieServlet</servlet-class>
+        <servlet-name>/EditPlayerServlet</servlet-name>
+        <servlet-class>controller.admin.EditPlayerServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Logout</servlet-name>
@@ -41,8 +41,8 @@
         <servlet-class>controller.ProfileServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>MovieDetailServlet</servlet-name>
-        <servlet-class>controller.MovieDetailServlet</servlet-class>
+        <servlet-name>PlayerDetailServlet</servlet-name>
+        <servlet-class>controller.PlayerDetailServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>BookingMovieServlet</servlet-name>
@@ -53,8 +53,8 @@
         <servlet-class>controller.AlMovieServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>DeleteMovieServlet</servlet-name>
-        <servlet-class>controller.admin.DeleteMovieServlet</servlet-class>
+        <servlet-name>DeletePlayerServlet</servlet-name>
+        <servlet-class>controller.admin.DeletePlayerServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>GameList</servlet-name>
@@ -101,8 +101,8 @@
         <url-pattern>/admin/addplayer</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>/EditMovieServlet</servlet-name>
-        <url-pattern>/admin/editmovie</url-pattern>
+        <servlet-name>/EditPlayerServlet</servlet-name>
+        <url-pattern>/admin/editplayer</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
@@ -121,8 +121,8 @@
         <url-pattern>/profile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>MovieDetailServlet</servlet-name>
-        <url-pattern>/moviedetail</url-pattern>
+        <servlet-name>PlayerDetailServlet</servlet-name>
+        <url-pattern>/playerdetail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>BookingMovieServlet</servlet-name>
@@ -133,8 +133,8 @@
         <url-pattern>/allmovie</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DeleteMovieServlet</servlet-name>
-        <url-pattern>/deletemovie</url-pattern>
+        <servlet-name>DeletePlayerServlet</servlet-name>
+        <url-pattern>/deleteplayer</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GameList</servlet-name>

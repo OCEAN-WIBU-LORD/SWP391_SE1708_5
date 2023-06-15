@@ -4,8 +4,6 @@
  */
 package controller.admin;
 
-import DB.GameDAO;
-import DB.Game_PlayedDAO;
 import DB.Game_TypeDAO;
 import DB.PlayerDAO;
 import java.io.IOException;
@@ -14,63 +12,48 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Player;
 import model.Game;
+import model.Player;
 import model.Game_Type;
 
 /**
  *
  * @author Nguyen Van Ky
  */
-public class AddPlayerServlet extends HttpServlet {
+public class EditPlayerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-          Object obj = session.getAttribute("role");
-          if(obj == null){
-              response.sendRedirect("./home");
-             
-          }else{
-              if(!obj.equals("admin")){
-                  response.sendRedirect("./home");
-              }
-              String updaters = request.getParameter("updaters");
-        if(updaters != null){
-            request.setAttribute("updaters", "true");
-        }
         try {
-            Game_TypeDAO cdao = new Game_TypeDAO();
             PlayerDAO mdao = new PlayerDAO();
+            String player_id = request.getParameter("player_id");
+            Player player = mdao.getPlayerByID(player_id);
+//            Game_TypeDAO cdao = new Game_TypeDAO();
             List<Player> playerList = mdao.getAllPlayer();
-//            List<Game_Type> gametypeList = cdao.getAllGame_Type();
-//            List<Game_TypeDAO> mcList = cdao.getGameType();
-            String m = "oke";
-            String n = String.valueOf(playerList.size());
-            
+//            List<Game_Type> categoryList = cdao.getAllGame_Type();
+//            List<Movie_category> mcList = cdao.getMovieCategory();
 
-            request.setAttribute("m", m);
-            request.setAttribute("n", n);
+//            request.setAttribute("categoryList", categoryList);
             request.setAttribute("playerList", playerList);
-//            request.setAttribute("gameList", gameList);
 //            request.setAttribute("mcList", mcList);
             response.getWriter().print("ddddsss");
 
-            request.getRequestDispatcher("addplayer.jsp").forward(request, response);
+            if (player != null) {
+                request.setAttribute("player", player);
+                request.getRequestDispatcher("editplayer.jsp").forward(request, response);
+            } else {
+                response.getWriter().print("player with id: " + player_id + "not exist");
+            }
         } catch (SQLException ex) {
-            Logger.getLogger(AddPlayerServlet.class.getName()).log(Level.SEVERE, null, ex);
-             response.getWriter().print("something wrong");
+            Logger.getLogger(EditPlayerServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        response.getWriter().print("ddd");
-          }
-        
+
     }
 
     /**
@@ -88,30 +71,42 @@ public class AddPlayerServlet extends HttpServlet {
         try {
             String player_id = request.getParameter("player_id");
             String player_name = request.getParameter("player_name");
+            String description = request.getParameter("description");
             String gender = request.getParameter("gender");
             String phone_number = request.getParameter("phone_number");
-            String num_of_star = request.getParameter("num_of_star");
+            int num_of_star = Integer.parseInt(request.getParameter("num_of_star"));
+            String password = request.getParameter("password");
             String link_image = request.getParameter("link_image");
-            String imcome = request.getParameter("imcome");
+            String income = request.getParameter("income");
             String status_player = request.getParameter("status_player");
-            String description = request.getParameter("description");
 
             Game_TypeDAO cdao = new Game_TypeDAO();
             PlayerDAO mdao = new PlayerDAO();
-            List<Game_Type> game_typeList = cdao.getAllGameType();
+//            List<Movie_category> mcList = cdao.getMovieCategory();
+//            List<Category> categoryList = cdao.getAllCategory();
             List<Player> playerList = mdao.getAllPlayer();
-            response.getWriter().print(new Player(player_id, player_name, gender, phone_number, 0, player_id, link_image, Double.NaN, status_player,description));
-            mdao.addPlayer(new Player(player_id, player_name, gender, phone_number, 0, player_id, link_image, Double.NaN, status_player,description));
-            int lastPlayerID = Integer.parseInt(playerList.get(playerList.size()-1).getPlayer_id());
-            for (Game_Type game_type : game_typeList) {
-                String cate = request.getParameter(game_type.getGameType_name());
-                if(cate != null){
-//                    mdao.addMovieCategory(new Game_Type(lastPlayerID+1, category.getCate_id()));
-                }
-                
+            
+//            response.getWriter().print(new Player(player_id, player_name, description, gender1, phone_number, num_of_star, password, link_image, Double.valueOf(income), (status_player != null ? "1" : "0").toString());
+            mdao.updatePlayer(new Player(player_id, player_name, gender, phone_number, num_of_star, password, link_image, Double.parseDouble(income), status_player != null ? "1" : "0", description));
+
+            
+//             for (Game_Type category : Game_Type) {
+//                String cate = request.getParameter(category.getCate_name());
+//                int cateid = category.getCate_id();
+//                if(cate != null && !cdao.getCheckMovieCategory(new Game_Type(movie_id2, cateid))){
+//                    mdao.addMovieCategory(new Game_Type(movie_id2, cateid));
+//                }
+//                if(cate == null && cdao.getCheckGame_Type(new Game_Type(movie_id2, cateid))){
+//                  
+//            
+//                    mdao.deleteGame_Type(movie_id, String.valueOf(category.getCate_id()));
+//                }
+//            }
+            
+          
 //response.getWriter().println(cate);
-            }
-            response.sendRedirect("addplayer?updaters=true");
+
+            response.sendRedirect("addplayer");
         } catch (SQLException ex) {
             Logger.getLogger(AddPlayerServlet.class.getName()).log(Level.SEVERE, null, ex);
             response.getWriter().print("something wrong");

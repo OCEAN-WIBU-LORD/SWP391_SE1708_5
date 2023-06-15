@@ -44,10 +44,10 @@ public class PlayerDetailServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MovieDetailServlet</title>");            
+            out.println("<title>Servlet PlayerDetailServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet MovieDetailServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet PlayerDetailServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -70,7 +70,7 @@ public class PlayerDetailServlet extends HttpServlet {
             String player_id = request.getParameter("player_id");
             PlayerDAO mdao = new PlayerDAO();
             Player player = mdao.getPlayerByID(player_id);
-            Game_TypeDAO game_typeDAO = new Game_TypeDAO();
+//            Game_TypeDAO game_typeDAO = new Game_TypeDAO();
 //           List<Game_Played> lpList  = Game_PlayedDAO.getListLocationPositions(player_id);
             
             request.setAttribute("player",player);

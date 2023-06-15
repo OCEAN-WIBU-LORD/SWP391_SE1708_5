@@ -25,7 +25,6 @@ public class User_RoleDAO {
     
     public void insertRole(String acc_id) {
         try {
-
             conn = BaseDAO.getConnection();
             PreparedStatement stmt = conn.prepareStatement("insert into User_Role(role_id, user_id) values (?,?)");
             stmt.setString(1, "1");
