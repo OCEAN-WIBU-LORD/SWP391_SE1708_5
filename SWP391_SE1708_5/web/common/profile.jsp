@@ -230,25 +230,22 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>first name</td>
-                                <td><input name="firstname" type="text" value="${sessionScope.usercurrent.firstname}"/></td>
-                            </tr><tr>
-                                <td>last name</td>
-                                <td><input name="lastname" type="text" value="${sessionScope.usercurrent.lastname}"/></td>
-                            </tr>
-
-                            <tr>
-                                <td>age</td>
-                                <td><input name="age" type="number" value="${sessionScope.usercurrent.age}"/></td>
-                            </tr>
-                            <tr>
-                                <td>email</td>
-                                <td><input name="email" type="email" value="${sessionScope.usercurrent.email}"/></td>
-                            </tr>
-                            <tr>
                                 <td>gender</td>
                                 <td><input style="width: 5% ;height: max-content" name="gender" ${sessionScope.usercurrent.gender eq 1 ? 'checked="true"': ''}  type="checkbox"/></td>
                             </tr>
+                            <tr>
+                                <td>Phone Number</td>
+                                <td><input name="firstname" type="text" value="${sessionScope.usercurrent.phonenumber}"/></td>
+                            </tr><tr>
+                                <td>Email</td>
+                                <td><input name="lastname" type="text" value="${sessionScope.usercurrent.email}"/></td>
+                            </tr>
+
+                            <tr>
+                                <td>Link Image</td>
+                                <td><input name="age" type="number" value="${sessionScope.usercurrent.link_image}"/></td>
+                            </tr>
+                            
                             <tr>
                                 <td></td>
                                 <td>

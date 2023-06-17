@@ -50,7 +50,7 @@
                                 <li class="has-children">
                                 <a href="#">${full_name} </a>
                                 <ul class="dropdown">
-                                    <li><a href="profile?acc_id=${player_id}">PROFILE</a></li>
+                                    <li><a href="profile?player_id=${player_id}">PROFILE</a></li>
                                     <li><a href="logout">LOGOUT</a></li>
                                 </ul></li>
                             </c:if>

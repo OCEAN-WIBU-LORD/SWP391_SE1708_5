@@ -123,33 +123,5 @@ public class UserDAO {
         }
         return u;
     }
-    
-     public int getTotalUser(String role) throws SQLException{
-        int total = 0;
-        try {
-            BaseDAO db = new BaseDAO();
-            // connnect to database 'testdb'
-            conn = db.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(
-                    "select count(user_id) "
-                            + "from user "
-                            + "inner join user_role ur on user.user_id = ur.user_id "
-                            + "inner join role on ur.role_id = role_id  "
-                            + "where role.role_name = ?"
-            );
-            stmt.setString(1, role);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                total = rs.getInt(1);
-            }
-        } catch (Exception ex) {
-            System.out.println( ex.getMessage());
-        } finally {
-            if (conn != null){
-                conn.close();
-            }
-        }
-        return total;
-    }
 
 }
