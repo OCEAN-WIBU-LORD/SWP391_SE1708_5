@@ -35,9 +35,9 @@ public class BaseDAO {
         }
     }
     public static Connection getConnection() {
-	String url = "jdbc:mysql://localhost:3306/swp391_se1708_5_3";
+	String url = "jdbc:mysql://localhost:3306/swp391_play2gether";
         String username ="root";
-        String password="123456789";
+        String password="1234";
         Connection conn = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

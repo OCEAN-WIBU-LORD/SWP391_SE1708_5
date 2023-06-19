@@ -13,7 +13,7 @@ public class DBContext {
     public static Connection connectMySQLDatabase() {
         try {
             String username = "root";
-            String password = "123456";
+            String password = "1234";
             String mysqlconn = "jdbc:mysql://localhost:3306/mydb";
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(mysqlconn, username, password);
