@@ -269,3 +269,11 @@ select * from user_details;
 
 insert into player (player_id,player_name,gender,phone_number,num_of_star,password,link_image,income,status_player, description) values ('a','a','a');
 
+
+create table message (id int primary key, user_id varchar(50), player_id varchar(50));
+
+
+alter table player add password text;
+select * from Player where player_id like '%%'
+
+

@@ -7,7 +7,6 @@
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/Unauthorized.html</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/DB/UserDAO.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/repass.jsp</file>
-            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/playerdetail.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/login.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/WEB-INF/deleteplayer.xml</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/admin/AddPlayerServlet.java</file>
@@ -18,12 +17,14 @@
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/PlayerDetailServlet.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/DB/CommentDAO.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/admin/addGame.java</file>
+            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/LoginServlet1.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/Logout.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/profile.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/model/Player.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/DB/DBContext.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/admin/GameList.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/DB/User_DetailsDAO.java</file>
+            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/search.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/model/User.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/HomeServlet.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/DB/GameDAO.java</file>
@@ -34,8 +35,10 @@
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/nav.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/ProfileController.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/admin/editplayer.jsp</file>
+            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/PlayermainpageServlet.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/admin/GameListServlet.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/DB/Booking_DetailsDAO.java</file>
+            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/login_1.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/WEB-INF/web.xml</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/DB/BaseDAO.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/admin/RepassServlet.java</file>
@@ -49,6 +52,7 @@
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/register.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/DB/User_RoleDAO.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/DB/Game_TypeDAO.java</file>
+            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/playermainpage.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/admin/addGameForm.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/home.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/SearchServlet.java</file>

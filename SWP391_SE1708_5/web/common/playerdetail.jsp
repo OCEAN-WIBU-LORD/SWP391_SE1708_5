@@ -45,8 +45,24 @@
         <title>
             Property &mdash; Free Bootstrap 5 Website Template by Untree.co
         </title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            .checked {
+                color: orange;
+            }
+        </style>
     </head>
     <body>
+        <%
+            //Nhận thông tin trả về từ server
+            String n ="";
+            
+            if(request.getAttribute("n")!=null){
+                n=(String)request.getAttribute("n");
+            }
+        %>    
+
+
         <div class="site-mobile-menu site-navbar-target">
             <div class="site-mobile-menu-header">
                 <div class="site-mobile-menu-close">
@@ -75,14 +91,14 @@
 
                             </div>
                         </div>
-                                <div style="width: 600px; height: 600px" >
-                                    <!-- <c:if test="${bookingrs ne null}" >
-                                        <%@include file="seat.jsp" %>
-    
-                                    </c:if>
-                                    -->
-                                    
-                                </div>
+                        <div style="width: 600px; height: 600px" >
+                            <!-- <c:if test="${bookingrs ne null}" >
+                                <%@include file="seat.jsp" %>
+
+                            </c:if>
+                            -->
+
+                        </div>
                     </div>
                     <div class="col-lg-4">
                         <h2 class="heading text-primary">${player.player_name}</h2>
@@ -90,10 +106,20 @@
                         <p class="text-black-50">
                             <b>Phone Number: </b>${player.phone_number}
                         </p>
+
                         <p class="text-black-50">
-                            <b>Number of Stars: </b>${player.num_of_star}
-                        </p>
-                        
+                            <b>Number of Stars: 
+                                <c:forEach var="i" begin="0" end="${n-1}">
+                                    <span class="fa fa-star checked"></span>
+                                </c:forEach>
+                        </p> 
+                        <!--
+                        <%=n%>
+                        -->
+
+
+                      
+
                         <p class="text-black-50">
                             <b>Status: </b>
                             <c:if test="${player.status_player eq '1'}">

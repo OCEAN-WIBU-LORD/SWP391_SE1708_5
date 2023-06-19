@@ -18,6 +18,7 @@ import java.sql.Statement;
 import java.sql.Driver;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import model.User_Details;
 
 /**
  *
@@ -101,14 +102,14 @@ public class PlayerDAO {
         return list;
     }
 
-    public ArrayList<Player> searchPlayer(String search) {
-        ArrayList<Player> player = new ArrayList<Player>();
+    public ArrayList<Player> searchPlayer(String search)  {
+        ArrayList<Player> player = null;
         Connection conn = null;
         try {
             String search1 = "%" + search + "%";
             BaseDAO db = new BaseDAO();
             conn = db.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("select * from Movies where title like ?");
+            PreparedStatement stmt = conn.prepareStatement("select * from Player where player_id like ?");
             stmt.setString(1, String.valueOf(search1));
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -129,6 +130,39 @@ public class PlayerDAO {
             return player;
         } catch (Exception e) {
             System.out.println("searchPlayer" + e.getMessage());
+        }
+        return null;
+
+    }
+    
+    public ArrayList<Player> searchPlayer1(String search) throws SQLException {
+        ArrayList<Player> player = new ArrayList<Player>();
+        Connection conn = null;
+        try {
+            String search1 = "%" + search + "%";
+            BaseDAO db = new BaseDAO();
+            conn = db.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("select * from Player where player_name like ?");
+            stmt.setString(1, String.valueOf(search1));
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Player a = null;
+                a = new Player(
+                        rs.getString("player_id"),
+                        rs.getNString("player_name"),
+                        rs.getString("gender"),
+                        rs.getString("phone_number"),
+                        rs.getInt("num_of_star"),
+                        rs.getString("password"),
+                        rs.getString("link_image"),
+                        rs.getDouble("income"),
+                        rs.getString("status_player"),
+                        rs.getString("description"));
+                player.add(a);
+            }
+                return player;
+        } catch (Exception e) {
+            System.out.println("searchMovie" + e.getMessage());
         }
         return null;
 
@@ -260,6 +294,46 @@ public class PlayerDAO {
             System.out.println("deletePlayer" + ex.getMessage());
         }
 
+    }
+
+    public Player getPlayerDetails(String player_id, String password) throws SQLException {
+        Player u = null;
+        Connection conn = null;
+        try {
+            BaseDAO db = new BaseDAO();
+            // connnect to database 'testdb'
+            conn = db.getConnection();
+            // crate statement
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Player where player_id = ? and password = ?");
+            stmt.setString(1, player_id);
+            stmt.setString(2, password);
+
+            // get data from table
+            ResultSet rs = stmt.executeQuery();
+            // show data
+
+            while (rs.next()) {
+                u = new Player(
+                        rs.getString("player_id"),
+                        rs.getNString("player_name"),
+                        rs.getString("gender"),
+                        rs.getString("phone_number"),
+                        rs.getInt("num_of_star"),
+                        rs.getString("password"),
+                        rs.getString("link_image"),
+                        rs.getDouble("income"),
+                        rs.getString("status_player"),
+                        rs.getString("description"));
+
+            }
+            // close connection
+
+        } catch (Exception ex) {
+             System.out.println("getPlayerDetails" + ex.getMessage());
+        } finally {
+            conn.close();
+        }
+        return u;
     }
 
 }

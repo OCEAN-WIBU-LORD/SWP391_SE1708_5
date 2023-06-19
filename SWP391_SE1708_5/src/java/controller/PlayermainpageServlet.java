@@ -5,7 +5,6 @@
  */
 package controller;
 
-import DB.PlayerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,16 +12,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
-import model.Player;
 
 /**
  *
  * @author Acer
  */
-@WebServlet(name = "SearchServlet", urlPatterns = {"/SearchServlet"})
-public class SearchServlet extends HttpServlet {
+@WebServlet(name = "PlayermainpageServlet", urlPatterns = {"/PlayermainpageServlet"})
+public class PlayermainpageServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -40,10 +36,10 @@ public class SearchServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SearchServlet</title>");
+            out.println("<title>Servlet PlayermainpageServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SearchServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet PlayermainpageServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,18 +57,7 @@ public class SearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String search = String.valueOf(request.getParameter("searchInput"));
-        PlayerDAO n = new PlayerDAO();
-        List<Player> player = n.getTop5BestBookingPlayer();
-        try {
-            String message = "Hello";
-            request.setAttribute("message", message);
-            player = n.getTop5BestBookingPlayer();
-            request.setAttribute("player", player);
-            request.getRequestDispatcher("/common/search.jsp").forward(request, response);
-        } catch (Exception e) {
-            System.out.println("doPostSearch " + e.getMessage());
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -86,24 +71,7 @@ public class SearchServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String search = String.valueOf(request.getParameter("searchInput"));
-        if(search==""){
-            try (PrintWriter out = response.getWriter()) {
-                    out.print("Please Enter Search Box");
-                    return;
-                }
-        }
-        PlayerDAO n = new PlayerDAO();
-        try {
-            ArrayList<Player> player = n.searchPlayer1(search);
-            String message = "Hello";
-//            request.setAttribute("message", search);
-//            ArrayList<Player> player = n.searchMoviePlayer);
-            request.setAttribute("player", player);
-            request.getRequestDispatcher("/common/search.jsp").forward(request, response);
-        } catch (Exception e) {
-            System.out.println("doPostSearch " + e.getMessage());
-        }
+        processRequest(request, response);
     }
 
     /**

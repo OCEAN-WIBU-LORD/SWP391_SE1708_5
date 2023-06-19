@@ -4,7 +4,7 @@
  */
 package controller;
 
-import DB.AccountDAO;
+import DB.User_DetailsDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.Account;
+import model.User;
 import model.User_Details;
 
 /**
@@ -143,16 +143,16 @@ public class ProfileServlet extends HttpServlet {
             return;
         }
 
-         adao = new AccountDAO();
-        Account accountUpdate =  new Account(Integer.valueOf(acc_id), username, password, firstname, lastname, Integer.parseInt(age), (gender != null ? 1 : 0), email, 0, 0);
-        adao.updateAccount(accountUpdate);
+//         adao = new AccountDAO();
+//        Account accountUpdate =  new Account(Integer.valueOf(acc_id), username, password, firstname, lastname, Integer.parseInt(age), (gender != null ? 1 : 0), email, 0, 0);
+//        adao.updateAccount(accountUpdate);
         HttpSession session = request.getSession();
         Object obj_acc = session.getAttribute("usercurrent");
         if(obj_acc != null){
-            Account account = (Account) obj_acc;
-            accountUpdate.setPoints(account.getPoints());
-            session.removeAttribute("usercurrent");
-            session.setAttribute("usercurrent",accountUpdate);
+//            Account account = (Account) obj_acc;
+//            accountUpdate.setPoints(account.getPoints());
+//            session.removeAttribute("usercurrent");
+//            session.setAttribute("usercurrent",accountUpdate);
         }
         request.setAttribute("messenger", "upadate sucsessfuly");
         request.getRequestDispatcher("common/profile.jsp").forward(request, response);

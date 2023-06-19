@@ -55,10 +55,16 @@
                                 </ul></li>
                             </c:if>
                             <c:if test="${usercurrent eq null}">
-                                <li class="">
-                                    <a href="login">LOGIN</a></li>
+                                
                                 <li class="">
                                     <a href="register">REGISTER</a></li>
+                                <li class="has-children">
+                                <a href="properties.html">Login</a>
+                                <ul class="dropdown">
+                                    <li><a href="login">As User</a></li>
+                                    <li><a href="login_1">As Player</a></li>
+                                </ul>
+                            </li>
                             </c:if>
                         </ul>
 
