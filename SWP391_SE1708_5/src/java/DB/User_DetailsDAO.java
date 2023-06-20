@@ -101,7 +101,7 @@ public class User_DetailsDAO {
             // show data
 
             while (rs.next()) {
-                u = new User_Details(rs.getString("user_id"), rs.getString("gender"), rs.getString("phone_number"), rs.getNString("gmail"), rs.getNString("address"), rs.getString("password"), rs.getString("link_image"));
+                u = new User_Details(rs.getString("user_id"), rs.getString("gender"), rs.getString("phone_number"), rs.getNString("gmail"), rs.getNString("address"), rs.getString("password"), rs.getString("link_image"),rs.getDouble("balance"));
 
             }
             // close connection
@@ -187,7 +187,7 @@ public class User_DetailsDAO {
             list = new ArrayList<>();
             while (rs.next()) {
                 User_Details a = null;
-                a = new User_Details(rs.getString("user_id"), rs.getString("gender"), rs.getString("phone_number"), rs.getNString("gmail"), rs.getNString("address"), rs.getString("password"), rs.getString("link_image"));
+                a = new User_Details(rs.getString("user_id"), rs.getString("gender"), rs.getString("phone_number"), rs.getNString("gmail"), rs.getNString("address"), rs.getString("password"), rs.getString("link_image"),rs.getDouble("balance"));
                 list.add(a);
             }
             // close connection

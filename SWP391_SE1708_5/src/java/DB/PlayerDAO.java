@@ -336,4 +336,21 @@ public class PlayerDAO {
         return u;
     }
 
+    public String getPlayerNameById(String player_id) {
+        String name;
+        Connection conn = null;
+        try {
+            BaseDAO db = new BaseDAO();
+            conn = db.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("select player_name from Player where player_id = ?");
+            stmt.setString(1, player_id);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                name = String.valueOf(rs.getString("player_name"));
+                return name;
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
 }

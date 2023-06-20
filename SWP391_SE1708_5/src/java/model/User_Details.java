@@ -9,11 +9,12 @@ public class User_Details {
     private String address;
     private String password;
     private String link_image;
+    private Double balance;
 
     public User_Details() {
     }
 
-    public User_Details(String user_id, String gender, String phone_number, String email, String address, String password, String link_image) {
+    public User_Details(String user_id, String gender, String phone_number, String email, String address, String password, String link_image, Double balance) {
         this.user_id = user_id;
         this.gender = gender;
         this.phone_number = phone_number;
@@ -21,6 +22,7 @@ public class User_Details {
         this.address = address;
         this.password = password;
         this.link_image = link_image;
+        this.balance = balance;
     }
 
     public String getUser_id() {
@@ -79,8 +81,18 @@ public class User_Details {
         this.link_image = link_image;
     }
 
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
+
+    
+
     @Override
     public String toString() {
-        return "User_Details{" + "user_id=" + user_id + ", gender=" + gender + ", phone_number=" + phone_number + ", gmail=" + email + ", address=" + address + ", password=" + password + ", link_image=" + link_image + '}';
+        return "User_Details{" + "user_id=" + user_id + ", gender=" + gender + ", phone_number=" + phone_number + ", gmail=" + email + ", address=" + address + ", password=" + password + ", link_image=" + link_image + ", balance=" + balance + '}';
     }
 }

@@ -43,7 +43,7 @@ public class ProfileController extends HttpServlet {
         UserDAO udao = new UserDAO();
         if (udao.checkUser(id) != false) {
             User user = new User(id, fullName);
-            User_Details User_Details = new User_Details(id, gender, phoneNumber, email, address, password, linkImage);
+            User_Details User_Details = new User_Details(id, gender, phoneNumber, email, address, password, linkImage,Double.NaN);
             udao.updateUserprofile(User_Details, user);
         }
         response.sendRedirect("home.jsp");

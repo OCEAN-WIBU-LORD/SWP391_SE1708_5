@@ -45,8 +45,8 @@
         <servlet-class>controller.PlayerDetailServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>BookingMovieServlet</servlet-name>
-        <servlet-class>controller.BookingMovieServlet</servlet-class>
+        <servlet-name>BookingPlayerServlet</servlet-name>
+        <servlet-class>controller.BookingPlayerServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AlMovieServlet</servlet-name>
@@ -79,6 +79,10 @@
     <servlet>
         <servlet-name>deleteGame</servlet-name>
         <servlet-class>controller.admin.deleteGame</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LeaderBoardServlet</servlet-name>
+        <servlet-class>controller.LeaderBoardServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -125,8 +129,8 @@
         <url-pattern>/playerdetail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>BookingMovieServlet</servlet-name>
-        <url-pattern>/bookingmovie</url-pattern>
+        <servlet-name>BookingPlayerServlet</servlet-name>
+        <url-pattern>/bookingplayer</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AlMovieServlet</servlet-name>
@@ -159,6 +163,10 @@
     <servlet-mapping>
         <servlet-name>deleteGame</servlet-name>
         <url-pattern>/deleteGame</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LeaderBoardServlet</servlet-name>
+        <url-pattern>/leaderboard</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
