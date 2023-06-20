@@ -123,7 +123,7 @@
                         <p class="text-black-50">
                             <b>Status: </b>
                             <c:if test="${player.status_player eq '1'}">
-                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="color: white">Can booking</button>
+                                <button class="btn btn-warning" ><a href="bookingplayer?player_id=${player.player_id}" style="color: white">Can booking</a></button>
                             </c:if>
                             <c:if test="${player.status_player ne '1'} ">
                                 <button class="btn btn-warning" ><a href="bookingplayer" style="color: white">Can't booking</a></button>
