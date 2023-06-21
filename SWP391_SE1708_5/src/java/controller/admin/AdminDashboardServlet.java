@@ -37,10 +37,10 @@ public class AdminDashboardServlet extends HttpServlet {
           HttpSession session = request.getSession();
           Object obj = session.getAttribute("role");
           if(obj == null){
-              response.sendRedirect("./home");
+              response.sendRedirect("login");
           }else{
               if(!obj.equals("admin")){
-                  response.sendRedirect("./home");
+                  response.sendRedirect("login");
               }
               try {
             PlayerDAO mdao = new PlayerDAO();

@@ -62,7 +62,7 @@ public class AdminLogin extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        request.getRequestDispatcher("admin/login.jsp").forward(request, response);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     /**
@@ -87,18 +87,18 @@ public class AdminLogin extends HttpServlet {
             if (ud == null){
                 mess = "Information doesn't match any account!";
                 request.setAttribute("mess", mess);
-                request.getRequestDispatcher("admin/login.jsp").forward(request, response);
+                request.getRequestDispatcher("login.jsp").forward(request, response);
             }else{
                 String role = udDAO.getRole(ud.getUser_id());
                 if (role.equals("admin")){
                     HttpSession session = request.getSession();
                     session.setAttribute("role", role);
                     session.setAttribute("acc", ud.getUser_id());
-                    response.sendRedirect("admin/home");
+                    response.sendRedirect("home");
                 }else{
                     mess = "You don't have permission to access this page.";
                     request.setAttribute("mess", mess);
-                    request.getRequestDispatcher("admin/login.jsp").forward(request, response);
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
                 }
             }
         } catch (SQLException ex) {
