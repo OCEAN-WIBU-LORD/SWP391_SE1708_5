@@ -2,9 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package controller.admin;
 
-import DB.UserDAO;
 import DB.User_DetailsDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,7 +12,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import static java.lang.System.out;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,9 +19,9 @@ import model.User_Details;
 
 /**
  *
- * @author Administrator
+ * @author Cuthi
  */
-public class LoginServlet extends HttpServlet {
+public class AdminLogin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +40,10 @@ public class LoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");
+            out.println("<title>Servlet AdminLogin</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AdminLogin at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,10 +61,10 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("common/login.jsp").forward(request, response);
-
+//        processRequest(request, response);
+        request.getRequestDispatcher("admin/login.jsp").forward(request, response);
     }
-  
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -78,46 +76,34 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String username = request.getParameter("username");
-        String password = request.getParameter("pass");
-        User_DetailsDAO adao = new User_DetailsDAO();
-        UserDAO userDAO = new UserDAO();
-        String full_name = "";
-
-        User_Details userdetails;
-        String mess = "";
         try {
-            userdetails = adao.getUser_Details(username, password);
-            if (userdetails != null) {
-                
-                
-                HttpSession session = request.getSession();
-                String role = adao.getRole(String.valueOf(userdetails.getUser_id()));
-                full_name = userDAO.getUserName(username);
-                 session.setAttribute("role", role);
-                 session.setAttribute("full_name", full_name);
-                 session.setAttribute("usercurrent", userdetails);
-                 session.setAttribute("username", username);
-                if(role.equals("user")){
-                    response.sendRedirect("home");
-                }else{
-                    response.sendRedirect("admin/home");
-                }
-               
-                
-            } else {
-                mess = "account information not cerrect";
+            //        processRequest(request, response);
+            String username = request.getParameter("username");
+            String password = request.getParameter("pass");
+            
+            User_DetailsDAO udDAO = new User_DetailsDAO();
+            User_Details ud = udDAO.getUser_Details(username, password);
+            String mess = "";
+            if (ud == null){
+                mess = "Information doesn't match any account!";
                 request.setAttribute("mess", mess);
-                request.setAttribute("username", username);
-                request.setAttribute("password", password);
-                    request.getRequestDispatcher("common/login.jsp").forward(request, response);
-                
+                request.getRequestDispatcher("admin/login.jsp").forward(request, response);
+            }else{
+                String role = udDAO.getRole(ud.getUser_id());
+                if (role.equals("admin")){
+                    HttpSession session = request.getSession();
+                    session.setAttribute("role", role);
+                    session.setAttribute("acc", ud.getUser_id());
+                    response.sendRedirect("admin/home");
+                }else{
+                    mess = "You don't have permission to access this page.";
+                    request.setAttribute("mess", mess);
+                    request.getRequestDispatcher("admin/login.jsp").forward(request, response);
+                }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     /**
