@@ -256,6 +256,9 @@
 
                         <!-- Page Heading -->
                         <h1 class="h3 mb-4 text-gray-800">Player</h1>
+                        <form action="player" method="get" class="h3 mb-4 text-gray-800">
+                            <button type="submit" class="btn btn-success">Add Player</button>
+                        </form>
 
                         <div class="row">
 
@@ -279,7 +282,8 @@
                                                     <th>Num of Star</th>
                                                     <th>Income</th>
                                                     <th>Link Image</th>
-                                                    <th>Change Profile</th>
+                                                    <th>Status</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -303,10 +307,9 @@
                                                             </c:forEach></td>   --%>
                                                         <td>${o.num_of_star}</td>
                                                         <td>${o.income}</td>
-                                                        <td>${o.link_image}</td>
-                                                        <td>${o.link_image}</td>
+                                                        <td><img style="max-width: 10%;" src="${o.link_image}" alt="alt"/></td>
                                                         <td>${o.status_player eq "1" ? "Enable" : "Disable"}</td>
-                                                        <td><a href="editplayer?player_id=${o.player_id}">edit</a>|<a href="#" onclick="deletePlayer(${o.player_id})">delete</a></td>
+                                                        <td><a href="editplayer?player_id=${o.player_id}">Update</a></td>
                                                     </tr>
                                                 </c:forEach>
 
@@ -325,7 +328,7 @@
 
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">add player</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Player</h6>
                                     </div>
                                     <div class="card-body">
                                         <form action="editplayer" method="post">
@@ -334,12 +337,12 @@
                                                 <tbody>
                                                     <tr>
                                                          <td><b>Player ID</b></td>
-                                                        <td><input name="player_id" type="text" value="${player.player_id}" placeholder="" style="width: 90%" readonly=""/></td>
+                                                         <td><input disabled name="player_id" type="text" value="${player.player_id}" placeholder="" style="width: 90%" readonly=""/></td>
 
                                                     </tr>
                                                     <tr>
                                                         <td><b>Player Name</b></td>
-                                                        <td><input name="player_name" type="text" value="${player.player_name}" placeholder="" style="width: 90%"/></td>
+                                                        <td><input disabled name="player_name" type="text" value="${player.player_name}" placeholder="" style="width: 90%"/></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Game Can Play:</b></td>
@@ -372,42 +375,39 @@
                                                     </tr>
                                                     <tr>
                                                         <td><b>Description</b></td>
-                                                        <td><textarea name="description" cols="60" rows="3">${player.description}</textarea></td>
+                                                        <td><textarea disabled name="description" cols="60" rows="3">${player.description}</textarea></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Gender</b></td>
-                                                        <td><textarea name="gender" cols="60" rows="3">${player.gender}</textarea></td>
+                                                        <td><textarea disabled name="gender" cols="60" rows="3">${player.gender}</textarea></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Phone Number</b></td>
-                                                        <td><input name="phone_number" type="number" value="${player.phone_number}"/></td>
+                                                        <td><input disabled name="phone_number" type="number" value="${player.phone_number}"/></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Number of Star</b></td>
-                                                        <td><input name="num_of_star" type="text" style="width: 90%" value="${player.num_of_star}"/></td>
+                                                        <td><input disabled name="num_of_star" type="text" style="width: 90%" value="${player.num_of_star}"/></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Password</b></td>
-                                                        <td><input name="password" type="text" style="width: 90%" value="${player.password}"/></td>
+                                                        <td><input disabled name="password" type="text" style="width: 90%" value="${player.password}"/></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Link Image</b></td>
-                                                        <td><input name="link_image" type="text" style="width: 90%" value="${player.link_image}"/></td>
+                                                        <td><input disabled name="link_image" type="text" style="width: 90%" value="${player.link_image}"/></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Income</b></td>
                                                         <td><input name="income" type="text" style="width: 90%" value="${player.income}"/>$</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Allow Player</b></td>
+                                                        <td><b>Status Player</b></td>
                                                         <td>
-                                                            
-                                                            <c:if test="${player.status_player eq 1}">
-                                                                <input name="status_player" type="checkbox"  checked="true"/>
-                                                            </c:if>
-                                                            <c:if test="${player.status_player ne 1}">
-                                                                <input name="status_player" type="checkbox" />
-                                                            </c:if>
+                                                            <select name="status">
+                                                                <option value="1" <c:if test="${player.status_player eq 1}">selected</c:if>>Enable</option>
+                                                                <option value="0" <c:if test="${player.status_player ne 1}">selected</c:if>>Disable</option>
+                                                            </select>
                                                             </td>
                                                     </tr>
                                                     <tr>
@@ -487,12 +487,12 @@
     </body>
 
     <script type="text/javascript">
-                                                            function deleteMovie(id) {
-                                                                var option = confirm("Do you want to delete this movie ?");
-                                                                if (option === true) {
-                                                                    window.location.href = 'deletemovie?movie_id=' + id;
-                                                                }
-                                                            }
+        function deleteMovie(id) {
+            var option = confirm("Do you want to delete this movie ?");
+            if (option === true) {
+                window.location.href = 'deletemovie?movie_id=' + id;
+            }
+        }
     </script>
 
 </html>
