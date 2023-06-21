@@ -191,7 +191,6 @@
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
-                                        <h1>${gameList}</h1>
                                         <tbody>
                                             <c:forEach items="${gameList}"  var="game">
                                                     <tr>

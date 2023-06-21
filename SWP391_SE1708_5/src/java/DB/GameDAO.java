@@ -19,6 +19,7 @@ import model.Game;
  */
 public class GameDAO {
 
+    BaseDAO db;
     Connection cnn;
     ResultSet rs;
     PreparedStatement pstm;
@@ -29,6 +30,8 @@ public class GameDAO {
     public ArrayList<Game> getListGame() throws SQLException {
         ArrayList<Game> data = new ArrayList<Game>();
         try {
+            db = new BaseDAO();
+            cnn = db.getConnection();
             String strSelect = 
                     "select g.game_id, g.game_name, g.game_discription, gt.game_type "
                     + "from game g left join game_type gt "
