@@ -81,8 +81,8 @@
         <servlet-class>controller.admin.deleteGame</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AdminLogin</servlet-name>
-        <servlet-class>controller.admin.AdminLogin</servlet-class>
+        <servlet-name>LeaderBoardServlet</servlet-name>
+        <servlet-class>controller.LeaderBoardServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -165,8 +165,8 @@
         <url-pattern>/deleteGame</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AdminLogin</servlet-name>
-        <url-pattern>/admin/login</url-pattern>
+        <servlet-name>LeaderBoardServlet</servlet-name>
+        <url-pattern>/leaderboard</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
