@@ -9,77 +9,68 @@ package model;
  * @author Administrator
  */
 public class Bookings {
-    private  int booking_id;
-    private int acc_id,location_id;
-    private String booking_date;
-    private int movie_id;
-    private String title;
-    
+    private String booking_id;
+    private String user_id;
+    private String player_id;
+    private String total_hour;
+    private String game_id;
 
     public Bookings() {
     }
 
-    public Bookings(int booking_id, int acc_id, int location_id, String booking_date, int movie_id, String title) {
+    public Bookings(String booking_id, String user_id, String player_id, String total_hour, String game_id) {
         this.booking_id = booking_id;
-        this.acc_id = acc_id;
-        this.location_id = location_id;
-        this.booking_date = booking_date;
-        this.movie_id = movie_id;
-        this.title = title;
+        this.user_id = user_id;
+        this.player_id = player_id;
+        this.total_hour = total_hour;
+        this.game_id = game_id;
     }
 
-    public int getBooking_id() {
+    public String getBooking_id() {
         return booking_id;
     }
 
-    public void setBooking_id(int booking_id) {
+    public void setBooking_id(String booking_id) {
         this.booking_id = booking_id;
     }
 
-    public int getAcc_id() {
-        return acc_id;
+    public String getUser_id() {
+        return user_id;
     }
 
-    public void setAcc_id(int acc_id) {
-        this.acc_id = acc_id;
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
-    public int getLocation_id() {
-        return location_id;
+    public String getPlayer_id() {
+        return player_id;
     }
 
-    public void setLocation_id(int location_id) {
-        this.location_id = location_id;
+    public void setPlayer_id(String player_id) {
+        this.player_id = player_id;
     }
 
-    public String getBooking_date() {
-        return booking_date;
+    public String getTotal_hour() {
+        return total_hour;
     }
 
-    public void setBooking_date(String booking_date) {
-        this.booking_date = booking_date;
+    public void setTotal_hour(String total_hour) {
+        this.total_hour = total_hour;
     }
 
-    public int getMovie_id() {
-        return movie_id;
+    public String getGame_id() {
+        return game_id;
     }
 
-    public void setMovie_id(int movie_id) {
-        this.movie_id = movie_id;
+    public void setGame_id(String game_id) {
+        this.game_id = game_id;
     }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
+    
+    
 
     @Override
     public String toString() {
-        return "Bookings{" + "booking_id=" + booking_id + ", acc_id=" + acc_id + ", location_id=" + location_id + ", booking_date=" + booking_date + ", movie_id=" + movie_id + ", title=" + title +'}';
+        return "Bookings{" + "booking_id=" + booking_id + ", user_id=" + user_id + ", player_id=" + player_id + ", total_hour=" + total_hour + ", game_id=" + game_id +'}';
     }
 
    

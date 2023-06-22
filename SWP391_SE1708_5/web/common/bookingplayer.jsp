@@ -33,7 +33,7 @@
                   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
                   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
                 <![endif]-->
-        
+
     </head>
 
     <body>
@@ -41,31 +41,34 @@
             <div class="section-center">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-7 col-md-push-5">
+
+                        <div class="col-md-7 col-md-push-6">
+
                             <div class="booking-cta">
-                                <h1>Make your reservation</h1>  
+                                <img src="${player.link_image}" alt="Image" width="250" height="250" style="border-radius: 50%; margin-left: 350px"  />
+                                <!--                                <h1>Make your reservation</h1>  -->
                                 <h1>${player.player_name}</h1>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi facere, soluta magnam consectetur molestias itaque
-                                    ad sint fugit architecto incidunt iste culpa perspiciatis possimus voluptates aliquid consequuntur cumque quasi.
-                                    Perspiciatis.
-                                </p>
-                                 <p>${player.description}
+                                <!--                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi facere, soluta magnam consectetur molestias itaque
+                                                                    ad sint fugit architecto incidunt iste culpa perspiciatis possimus voluptates aliquid consequuntur cumque quasi.
+                                                                    Perspiciatis.
+                                                                </p>-->
+                                <p>${player.description}
                                 </p>
                             </div>
                         </div>
                         <div class="col-md-5 col-md-pull-7">
-                            <div class="booking-form">
+                            <div class="booking-form" style="margin-top: 100px">
                                 <form action="BookingPlayerServlet" method="post">
                                     <div class="form-group">
                                         <span class="form-label">Player Name:</span>
-                                        <input class="form-control" type="text" placeholder="${player_name}" value="${player_name}">
+                                        <input class="form-control" type="text" placeholder="${player.player_name}" value="${player.player_name}" readonly="">
                                     </div>
-                                        
+
                                     <div class="row">
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-6">
                                             <div class="form-group">
                                                 <span class="form-label">Choose number of hire hours</span>
-                                                <select class=""  id ="numberSelect">
+                                                <select class="form-control "  id ="numberSelect" name="totalhours">
                                                     <option value="1">1 hour</option>
                                                     <option value="2">2 hours</option>
                                                     <option value="3">3 hours</option>
@@ -94,23 +97,25 @@
                                                 <span class="select-arrow"></span>
                                             </div>
                                         </div>
+                                        <input value="result" hidden="false">${result}
 
                                         <div class="form-group">
-                                            <span class="form-label">Total Cost</span>
-                                            <div id="result" ></div>
+                                            <span class="form-label">Total Cost:  </span>
+                                            <a id="result" ></a><a>$</a>
                                         </div>
                                         <div class="form-group">
                                             <span class="form-label">Balance:</span>
-                                            <a href="https://twitter.com/mertskaplan">${balance} </span></a>
+                                            <a href="https://twitter.com/mertskaplan">${balance} </span>$</a>
+                                            <a href="payment"> (+) </span></a>
                                         </div>
-                                        <div class="form-group">
-                                            <span class="form-label">Type Message</span>
-                                            <input class="form-control" type="text" placeholder="Enter a destination or hotel name">
+                                        <div class="form-group"><br>
+                                            <label for="textarea">Type Message:</label>
+                                            <textarea placeholder="Type a message ..." name="message" maxlength="255" type="text" class="form-control" style="height: 100px" id="textarea"></textarea>
                                         </div>
-                                       
+
                                     </div>
                                     <div class="form-btn">
-                                        <button class="submit-btn">Check availability</button>
+                                        <button class="submit-btn" onclick="sendNumberToServlet()">Confirm Booking</button>
                                     </div>
                                 </form>
                             </div>
@@ -122,15 +127,24 @@
         <script>
             const numberSelect = document.getElementById('numberSelect');
             const resultElement = document.getElementById('result');
-            resultElement.textContent = "1" * 100;
+            resultElement.textContent = "1" * ${player.income};
 // Add an event listener to the select element
             numberSelect.addEventListener('change', function () {
                 // Get the selected value from the select element
                 const selectedValue = numberSelect.value;
 
                 // Set the corresponding value in the result element
-                resultElement.textContent = selectedValue * 100;
+                resultElement.textContent = selectedValue * ${player.income};
             });
+            function sendNumberToServlet() {
+                var number = document.getElementById("result").textContent;
+
+                // Create an AJAX request
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "BookingPlayerServlet", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.send("number=" + number);
+            }
         </script>
     </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 

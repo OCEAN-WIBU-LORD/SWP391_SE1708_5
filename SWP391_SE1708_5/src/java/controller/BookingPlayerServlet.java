@@ -5,6 +5,7 @@
 package controller;
 
 //import DB.BookingDAO;
+import DB.BookingDAO;
 import DB.Booking_DetailsDAO;
 import DB.GameDAO;
 import DB.PlayerDAO;
@@ -19,6 +20,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Bookings;
 import model.User_Details;
 //import model.Bookings;
 import model.Game;
@@ -70,8 +72,11 @@ public class BookingPlayerServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-//        String bookingrs = request.getParameter("bookingrs");
+
         Object obj_acc = session.getAttribute("usercurrent");
+        String player_id = request.getParameter("player_id");
+            PlayerDAO mdao = new PlayerDAO();
+            Player player = mdao.getPlayerByID(player_id);
 //        if(!bookingrs.equals("")){
 //            request.setAttribute("bookingrs", "true");
 //        }
@@ -82,7 +87,7 @@ public class BookingPlayerServlet extends HttpServlet {
 
         User_Details account = (User_Details) obj_acc;
 //        String player_id = request.getParameter("player_id");
-        PlayerDAO mdao = new PlayerDAO();
+//        PlayerDAO mdao = new PlayerDAO();
         Double balance = account.getBalance();
 //            LocationDAO locationDAO = new LocationDAO();
 //            List<LocationType> ltList = locationDAO.getListLationType();
@@ -91,6 +96,7 @@ public class BookingPlayerServlet extends HttpServlet {
 //            request.setAttribute("ltList", ltList);
 //request.setAttribute("player_id", player_id);
         request.setAttribute("balance", balance);
+        request.setAttribute("player", player);
 //            request.setAttribute("positionList", positionList);
 //            request.setAttribute("locationList", locationList);
         
@@ -114,14 +120,23 @@ public class BookingPlayerServlet extends HttpServlet {
         PlayerDAO m = new PlayerDAO();
         if (obj_acc != null) {
             User_Details account = (User_Details) obj_acc;
-            String game_id = request.getParameter("game_id");
+//            String game_id = request.getParameter("game_id");
             String total_hour = request.getParameter("total_hour");
             String player_id = request.getParameter("player_id");
-            String acc_id = account.getUser_id() + "";
+            String user_id = account.getUser_id() + "";
             String player_name = m.getPlayerNameById(player_id);
+            String total_cost = request.getParameter("result");
+            if(total_cost != ""){
+                request.getRequestDispatcher("common/login.jsp").forward(request, response);
+            }
+            String game_id = "1";
             //                BookingDAO bdao = new BookingDAO();
-//                Booking_DetailsDAO bddao = new Booking_DetailsDAO();
-//                bdao.addBooking(new Bookings(String.valueOf('0'), String.valueOf(acc_id), String.valueOf(player_id), String.valueOf(total_hour), String.valueOf(game_id)));
+                BookingDAO bddao = new BookingDAO();
+            try {
+                bddao.addBooking(new Bookings(String.valueOf('0'), String.valueOf(user_id), String.valueOf(player_id), String.valueOf(total_hour), String.valueOf(game_id)));
+            } catch (SQLException ex) {
+                Logger.getLogger(BookingPlayerServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
 //                bddao.addBookingDetails(new Bookings(String.valueOf('0'), String.valueOf(acc_id), String.valueOf(player_id), String.valueOf(total_hour), String.valueOf(game_id)));
             PlayerDAO player = new PlayerDAO();
 //                movie.reduceTiket(player_id);

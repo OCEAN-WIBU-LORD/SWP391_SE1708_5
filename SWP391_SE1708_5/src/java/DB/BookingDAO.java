@@ -13,8 +13,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import model.Bookings;
-import model.Location;
-import model.LocationType;
+import model.Game;
+import model.Game_Type;
 
 /**
  *
@@ -42,11 +42,11 @@ public class BookingDAO {
             conn = baseDAO.getConnection();
             // crate statement
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Booking VALUES (?,?,?,?,?)");
-            stmt.setInt(1, c.getAcc_id());
-            stmt.setInt(2, c.getLocation_id());
-            stmt.setString(3, getTime);
-            stmt.setInt(4, c.getMovie_id());
-            stmt.setString(5, c.getTitle());
+            stmt.setString(1, c.getBooking_id());
+            stmt.setString(2, c.getUser_id());
+            stmt.setString(3, c.getPlayer_id());
+            stmt.setString(4, c.getTotal_hour());
+            stmt.setString(5, c.getGame_id());
 
             // get data from table
             stmt.executeUpdate();
@@ -66,10 +66,11 @@ public class BookingDAO {
             conn = baseDAO.getConnection();
             // crate statement
             PreparedStatement stmt = conn.prepareStatement("UPDATE Bookings set acc_id = ?,location_id=?,booking_date=? where booking_id=?");
-            stmt.setInt(1, c.getAcc_id());
-            stmt.setInt(2, c.getLocation_id());
-            stmt.setString(3, c.getBooking_date());
-            stmt.setInt(4, c.getBooking_id());
+            stmt.setString(1, c.getUser_id());
+            stmt.setString(2, c.getPlayer_id());
+            stmt.setString(3, c.getTotal_hour());
+            stmt.setString(4, c.getTotal_hour());
+            stmt.setString(5, c.getBooking_id());
 
             // get data from table
             stmt.executeUpdate();
@@ -117,7 +118,7 @@ public class BookingDAO {
             ResultSet rs = stmt.executeQuery();
             // show data
             while (rs.next()) {
-                Bookings bookings = new Bookings(rs.getInt("booking_id"), rs.getInt("acc_id"), rs.getInt("location_id"), rs.getNString("booking_date"), rs.getInt("movie_id"), rs.getString("title"));
+                Bookings bookings = new Bookings(rs.getString("booking_id"), rs.getString("user_id"), rs.getString("player_id"), rs.getNString("total_hour"), rs.getString("game_id"));
                 list.add(bookings);
             }
             // close connection
@@ -141,18 +142,18 @@ public class BookingDAO {
             ResultSet rs = stmt.executeQuery();
             // show data
             while (rs.next()) {
-                Bookings book = new Bookings(rs.getInt("booking_id"), rs.getInt("acc_id"), rs.getInt("location_id"), String.valueOf(rs.getDate("booking_date")), rs.getInt("movie_id"), rs.getString("title"));
+                Bookings book = new Bookings(rs.getString("booking_id"), rs.getString("user_id"), rs.getString("player_id"), String.valueOf(rs.getString("total_hour")), rs.getString("game_id"));
                 bookings1.add(book);
             }
             return bookings1;
             // close connection
         } catch (Exception ex) {
-            System.out.println("Error" + ex.getMessage());;
+            System.out.println("getListBooking" + ex.getMessage());;
         }
         return null;
     }
-    
-    public int getBookingIdByAccId(int acc_Id2){
+
+    public int getBookingIdByAccId(int acc_Id2) {
         int BookingId;
         try {
             // connnect to database 'testdb'
@@ -167,13 +168,13 @@ public class BookingDAO {
                 BookingId = rs.getInt("booking_id");
                 return BookingId;
             }
-            
+
         } catch (Exception e) {
         }
         return 0;
     }
-    
-    public int getLocationIdByBookingId(int booking_id){
+
+    public int getLocationIdByBookingId(int booking_id) {
         int location_Id;
         try {
             conn = baseDAO.getConnection();
@@ -189,8 +190,5 @@ public class BookingDAO {
         }
         return 0;
     }
-    
-    
-    
 
 }
