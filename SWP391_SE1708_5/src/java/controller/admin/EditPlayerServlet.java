@@ -74,13 +74,11 @@ public class EditPlayerServlet extends HttpServlet {
             String description = request.getParameter("description");
             String gender = request.getParameter("gender");
             String phone_number = request.getParameter("phone_number");
-            String numStart = request.getParameter("num_of_star");
-            numStart = numStart==null ? "0" : numStart;
-            int num_of_star = Integer.parseInt(numStart);
+            int num_of_star = Integer.parseInt(request.getParameter("num_of_star"));
             String password = request.getParameter("password");
             String link_image = request.getParameter("link_image");
             String income = request.getParameter("income");
-            String status_player = request.getParameter("status");
+            String status_player = request.getParameter("status_player");
 
             Game_TypeDAO cdao = new Game_TypeDAO();
             PlayerDAO mdao = new PlayerDAO();
@@ -108,7 +106,7 @@ public class EditPlayerServlet extends HttpServlet {
           
 //response.getWriter().println(cate);
 
-            response.sendRedirect("player");
+            response.sendRedirect("addplayer");
         } catch (SQLException ex) {
             Logger.getLogger(AddPlayerServlet.class.getName()).log(Level.SEVERE, null, ex);
             response.getWriter().print("something wrong");

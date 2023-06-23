@@ -271,32 +271,8 @@ public class PlayerDAO {
             // close connection
         } catch (Exception ex) {
             System.out.println("updatePlayer" + ex.getMessage());
-        }finally{
-            conn.close();
         }
-           
-    }
-    
-    public void changeStatusPlayer(String playerId, int status) throws SQLException{
-        Connection conn = null;
-        try{
-            BaseDAO db = new BaseDAO();
-            // connnect to database 'testdb'
-            conn = db.getConnection();
-            // crate statement
-            PreparedStatement stmt = conn.prepareStatement(
-                    "update Player set status_player=?   where player_id =? ");
-            stmt.setInt(1, status);
-            stmt.setString(2, playerId);
-            // get data from table
-            stmt.executeUpdate();
-        }catch(Exception e){
-            System.out.println("change status player "+ e.getMessage());
-        }finally{
-            if (conn != null){
-                conn.close();
-            }
-        }
+
     }
 
     public void deletePlayer(String player_id) throws SQLException {
@@ -306,7 +282,7 @@ public class PlayerDAO {
             // connnect to database 'testdb'
             conn = db.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement(" delete from Player where player_id =? ");
+            PreparedStatement stmt = conn.prepareStatement(" delete * from Player where player_id =? ");
 
             stmt.setString(1, player_id);
             // get data from table
@@ -376,5 +352,24 @@ public class PlayerDAO {
         } catch (Exception e) {
         }
         return null;
+    }
+    
+    public Double getIncomePlayerById(String player_id) {
+        Double money;
+        Connection conn = null;
+        try {
+            BaseDAO db = new BaseDAO();
+            conn = db.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("select income from Player where player_id = ?");
+            stmt.setString(1, player_id);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                money = rs.getDouble("income");
+                return money;
+            }
+        } catch (Exception ex) {
+             System.out.println("getIncomePlayerById" + ex.getMessage());
+        }
+        return 0.0;
     }
 }

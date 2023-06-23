@@ -58,10 +58,11 @@
                         </div>
                         <div class="col-md-5 col-md-pull-7">
                             <div class="booking-form" style="margin-top: 100px">
-                                <form action="BookingPlayerServlet" method="post">
+                                <form action="historybooking" method="post">
                                     <div class="form-group">
                                         <span class="form-label">Player Name:</span>
-                                        <input class="form-control" type="text" placeholder="${player.player_name}" value="${player.player_name}" readonly="">
+                                        <input class="form-control" name="player_name" type="text" placeholder="${player.player_name}" value="${player.player_name}" readonly="">
+                                        <input class="form-control" name="player_id" type="hidden" placeholder="${player.player_id}" value="${player.player_id}" id="">
                                     </div>
 
                                     <div class="row">
@@ -99,9 +100,10 @@
                                         </div>
                                         <input value="result" hidden="false">${result}
 
-                                        <div class="form-group">
-                                            <span class="form-label">Total Cost:  </span>
-                                            <a id="result" ></a><a>$</a>
+                                        <div class="form-group" >
+                                            <span class="form-label">Total Cost:  </span> 
+                                            <a id="result"></a><a>$</a>
+                                            <input type="text" name="result" value="${result}" id="result" placeholder="${result}">
                                         </div>
                                         <div class="form-group">
                                             <span class="form-label">Balance:</span>
@@ -141,9 +143,12 @@
 
                 // Create an AJAX request
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", "BookingPlayerServlet", true);
+                xhr.open("POST", "HistoryBookingServlet", true);
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xhr.send("number=" + number);
+                xhr.send("number" + number);
+                xhr.send("number" + encodeURIComponent(number));
+                xhr.send("result" + encodeURIComponent(result));
+                document.getElementById("result").submit();
             }
         </script>
     </body><!-- This templates was made by Colorlib (https://colorlib.com) -->

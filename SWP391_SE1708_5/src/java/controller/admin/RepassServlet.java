@@ -85,7 +85,7 @@ public class RepassServlet extends HttpServlet {
                  User_Details User_Details = adao.getUser_Details(user_id, password);
                 
                  
-                String role = adao.getRole(String.valueOf(User_Details.getUser_id()));
+                String role = adao.checkAdmin(String.valueOf(User_Details.getUser_id()));
                  session.setAttribute("usercurrent", User_Details);
                  
                  

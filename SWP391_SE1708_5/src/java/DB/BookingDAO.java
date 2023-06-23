@@ -41,12 +41,14 @@ public class BookingDAO {
             // connnect to database 'testdb'
             conn = baseDAO.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Booking VALUES (?,?,?,?,?)");
-            stmt.setString(1, c.getBooking_id());
-            stmt.setString(2, c.getUser_id());
-            stmt.setString(3, c.getPlayer_id());
-            stmt.setString(4, c.getTotal_hour());
-            stmt.setString(5, c.getGame_id());
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Booking VALUES (?,?,?,?,?,?,?)");
+            stmt.setString(1, c.getUser_id());
+            stmt.setString(2, c.getPlayer_id());
+            stmt.setString(3, c.getTotal_hour());
+            stmt.setString(4, c.getGame_id());
+            stmt.setDouble(5, c.getTotal_price());
+            stmt.setString(6, getTime);
+            stmt.setString(7, c.getMessage());
 
             // get data from table
             stmt.executeUpdate();
@@ -54,7 +56,7 @@ public class BookingDAO {
 
             // close connection
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.out.println("addBooking " + ex.getMessage());
         }
 
     }
@@ -65,12 +67,13 @@ public class BookingDAO {
             // connnect to database 'testdb'
             conn = baseDAO.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("UPDATE Bookings set acc_id = ?,location_id=?,booking_date=? where booking_id=?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Bookings set user_id = ?,player_id=?,total_hour=?, total_price=? where date_booking=?");
             stmt.setString(1, c.getUser_id());
             stmt.setString(2, c.getPlayer_id());
             stmt.setString(3, c.getTotal_hour());
-            stmt.setString(4, c.getTotal_hour());
-            stmt.setString(5, c.getBooking_id());
+            stmt.setString(4, c.getGame_id());
+            stmt.setDouble(5, c.getTotal_price());
+            stmt.setString(6, c.getDate_booking());
 
             // get data from table
             stmt.executeUpdate();
@@ -103,27 +106,27 @@ public class BookingDAO {
 
     }
 
-    public List<Bookings> bookingList(String acc_id) throws SQLException {
+    public List<Bookings> bookingList(String user_id) throws SQLException {
         List<Bookings> list = null;
         try {
 
             // connnect to database 'testdb'
             conn = baseDAO.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("Select * from Bookings  where acc_id = ?");
-            stmt.setString(1, acc_id);
+            PreparedStatement stmt = conn.prepareStatement("Select * from Booking  where user_id = ?");
+            stmt.setString(1, user_id);
 
             list = new ArrayList<>();
             // get data from table
             ResultSet rs = stmt.executeQuery();
             // show data
             while (rs.next()) {
-                Bookings bookings = new Bookings(rs.getString("booking_id"), rs.getString("user_id"), rs.getString("player_id"), rs.getNString("total_hour"), rs.getString("game_id"));
+                Bookings bookings = new Bookings(rs.getString("user_id"), rs.getString("player_id"), rs.getNString("total_hour"), rs.getString("game_id"),rs.getDouble("total_price"),rs.getString("date_booking"),rs.getString("message"));
                 list.add(bookings);
             }
             // close connection
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.out.println("bookingList" + ex.getMessage());;
         }
         return list;
     }
@@ -142,7 +145,7 @@ public class BookingDAO {
             ResultSet rs = stmt.executeQuery();
             // show data
             while (rs.next()) {
-                Bookings book = new Bookings(rs.getString("booking_id"), rs.getString("user_id"), rs.getString("player_id"), String.valueOf(rs.getString("total_hour")), rs.getString("game_id"));
+                Bookings book = new Bookings(rs.getString("user_id"), rs.getString("player_id"), rs.getNString("total_hour"), rs.getString("game_id"),rs.getDouble("total_price"),rs.getString("date_booking"),rs.getString("message"));
                 bookings1.add(book);
             }
             return bookings1;

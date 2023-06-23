@@ -36,11 +36,11 @@ public class AddPlayerServlet extends HttpServlet {
         HttpSession session = request.getSession();
           Object obj = session.getAttribute("role");
           if(obj == null){
-              response.sendRedirect("Admin");
+              response.sendRedirect("./home");
              
           }else{
               if(!obj.equals("admin")){
-                  response.sendRedirect("Admin");
+                  response.sendRedirect("./home");
               }
               String updaters = request.getParameter("updaters");
         if(updaters != null){
@@ -50,6 +50,8 @@ public class AddPlayerServlet extends HttpServlet {
             Game_TypeDAO cdao = new Game_TypeDAO();
             PlayerDAO mdao = new PlayerDAO();
             List<Player> playerList = mdao.getAllPlayer();
+//            List<Game_Type> gametypeList = cdao.getAllGame_Type();
+//            List<Game_TypeDAO> mcList = cdao.getGameType();
             String m = "oke";
             String n = String.valueOf(playerList.size());
             
@@ -57,6 +59,8 @@ public class AddPlayerServlet extends HttpServlet {
             request.setAttribute("m", m);
             request.setAttribute("n", n);
             request.setAttribute("playerList", playerList);
+//            request.setAttribute("gameList", gameList);
+//            request.setAttribute("mcList", mcList);
             response.getWriter().print("ddddsss");
 
             request.getRequestDispatcher("addplayer.jsp").forward(request, response);

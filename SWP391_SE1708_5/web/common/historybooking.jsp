@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+
+
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
     <head>
@@ -426,54 +430,79 @@
                             <div class="main-box clearfix">
                                 <div class="table-responsive">
                                     <table class="table user-list" style="width: 2000px">
+                                        <span>Total Booking: ${n}</span></br></br>
                                         <thead>
                                             <tr>
-                                                <th><span>Player</span></th>
-                                                <th><span>Date Booking</span></th>
-                                                <th class="text-center"><span>Total Hour</span></th>
-                                                <th><span>Money</span></th>
+                                                <th style="width: 150px; "><span>Player Image</span></th>
+                                                <th style="width: 350px;"><span>Player Name</span></th>
+                                                <th style="width: 150px;"><span>Date Booking</span></th>
+                                                <th style="width: 150px;" class="text-center"><span>Total Hour</span></th>
+                                                <th style="width: 150px;"><span>Money</span></th>
+                                                <th ><span>Message</span></th>
                                                 <th>&nbsp;</th>
                                             </tr>
                                         </thead>
+
                                         <tbody>
-                                        <c:forEach items="${historyBooking}" var = "o">
-                                            <tr>
-                                                <td>
-                                                    <img src="${player.link_image}" alt="">
-                                                    <a href="#" class="user-link">Mila Kunis</a>
-                                                    <span class="user-subhead">Admin</span>
-                                                </td>
-                                                <td>
-                                                    2013/08/08
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="label label-default">Inactive</span>
-                                                </td>
-                                                <td>
-                                                    <a href="#">mila@kunis.com</a>
-                                                </td>
-                                                <td style="width: 20%;">
-                                                    <a href="#" class="table-link">
-                                                        <span class="fa-stack">
-                                                            <i class="fa fa-square fa-stack-2x"></i>
-                                                            <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                                        </span>
-                                                    </a>
-                                                    <a href="#" class="table-link">
-                                                        <span class="fa-stack">
-                                                            <i class="fa fa-square fa-stack-2x"></i>
-                                                            <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                                        </span>
-                                                    </a>
-                                                    <a href="#" class="table-link danger">
-                                                        <span class="fa-stack">
-                                                            <i class="fa fa-square fa-stack-2x"></i>
-                                                            <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                                        </span>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
+
+                                            <c:forEach items="${historyBooking}" var = "m">
+                                                <tr>
+                                                    <td >
+                                                        <c:forEach var="player" items="${playerlist}">
+                                                            <c:if test="${player.player_id eq m.player_id}">
+                                                                <img src="${player.getLink_image()}"alt="Image" width="70" height="50" style="border-radius: 50%; left: 20%" >
+                                                            </c:if>
+                                                        </c:forEach>
+
+                                                    </td>
+                                                    <td>
+                                                        <c:forEach var="player" items="${playerlist}">
+                                                            <c:if test="${player.player_id eq m.player_id}">
+                                                                <h1 class="">${player.getPlayer_name()}</h1>
+                                                                <!--<span class="user-subhead">${player.getPlayer_name()}</span>-->
+                                                                <!--<img src="${m.getPlayer_id()}" alt="">-->
+                                                                Player Details:<a href="playerdetail?player_id=${m.player_id}" style="font-size: 20px">${m.getPlayer_id()}</a>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                    </td>
+                                                    <td>
+                                                        ${m.getDate_booking()}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="label label-default">${m.getTotal_hour()}</span>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#">${m.getTotal_price()}</a>
+                                                    </td>
+                                                    <td>
+                                                        <c:forEach var="player" items="${playerlist}">
+                                                            <c:if test="${player.player_id eq m.player_id}">
+                                                                <h1 class="user-subhead">${m.getMessage()}</h1>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                    </td>
+                                                    <td style="width: 20%;">
+                                                        <a href="#" class="table-link">
+                                                            <span class="fa-stack">
+                                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                                <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                                                            </span>
+                                                        </a>
+                                                        <a href="#" class="table-link">
+                                                            <span class="fa-stack">
+                                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                                            </span>
+                                                        </a>
+                                                        <a href="#" class="table-link danger">
+                                                            <span class="fa-stack">
+                                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                                            </span>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
 
                                         </tbody>
                                     </table>

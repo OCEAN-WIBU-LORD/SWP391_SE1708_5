@@ -16,7 +16,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -126,14 +128,16 @@ public class BookingPlayerServlet extends HttpServlet {
             String user_id = account.getUser_id() + "";
             String player_name = m.getPlayerNameById(player_id);
             String total_cost = request.getParameter("result");
-            if(total_cost != ""){
+            String message = request.getParameter("message");
+            if(user_id == ""){
                 request.getRequestDispatcher("common/login.jsp").forward(request, response);
             }
             String game_id = "1";
             //                BookingDAO bdao = new BookingDAO();
                 BookingDAO bddao = new BookingDAO();
             try {
-                bddao.addBooking(new Bookings(String.valueOf('0'), String.valueOf(user_id), String.valueOf(player_id), String.valueOf(total_hour), String.valueOf(game_id)));
+                bddao.addBooking(new Bookings(String.valueOf(user_id), String.valueOf(player_id), String.valueOf(total_hour), String.valueOf(game_id),Double.valueOf(total_cost),"", String.valueOf(message)));
+//                bddao.addBooking(new Bookings("duongdd123", "chanbaby95", "3", "1",2000,""));
             } catch (SQLException ex) {
                 Logger.getLogger(BookingPlayerServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

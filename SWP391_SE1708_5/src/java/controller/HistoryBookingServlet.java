@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Bookings;
@@ -78,23 +79,35 @@ public class HistoryBookingServlet extends HttpServlet {
              request.setAttribute("messenger", "Please Login");
             request.getRequestDispatcher("common/login.jsp").forward(request, response);
         }
+        try {
+         User_Details account = (User_Details) obj_acc;
+        String user_id = account.getUser_id() + "";
+        BookingDAO bddao = new BookingDAO();
+            List<Bookings> historyBooking = bddao.bookingList(user_id);
+            List<Player> playerlist = mdao.getAllPlayer();
+            int n = historyBooking.size();
+             request.setAttribute("n", n);
+             request.setAttribute("historyBooking", historyBooking);
+             request.setAttribute("playerlist", playerlist);
+             request.getRequestDispatcher("common/historybooking.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            System.out.println("doGetHistoryBooking" + ex.getMessage());;
+        }
 
-        User_Details account = (User_Details) obj_acc;
 //        String player_id = request.getParameter("player_id");
 //        PlayerDAO mdao = new PlayerDAO();
-        Double balance = account.getBalance();
+//        Double balance = account.getBalance();
 //            LocationDAO locationDAO = new LocationDAO();
 //            List<LocationType> ltList = locationDAO.getListLationType();
 //            List<Positions> positionList = locationDAO.getListPositions();
 //            List<Location> locationList = locationDAO.getListLocation();
 //            request.setAttribute("ltList", ltList);
 //request.setAttribute("player_id", player_id);
-        request.setAttribute("balance", balance);
-        request.setAttribute("player", player);
+//        request.setAttribute("balance", balance);
+//        request.setAttribute("player", player);
 //            request.setAttribute("positionList", positionList);
 //            request.setAttribute("locationList", locationList);
         
-        request.getRequestDispatcher("common/historybooking.jsp").forward(request, response);
     }
 
     /**
@@ -110,31 +123,48 @@ public class HistoryBookingServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
+        
+        
+//        PrintWriter out = response.getWriter();
+//
+//        String n1 = request.getParameter("number");
+//
+//        if (n1.isEmpty()) {
+//            out.print("Please Code Elements");
+//            return;
+//        }
+        
+        
         Object obj_acc = session.getAttribute("usercurrent");
         PlayerDAO m = new PlayerDAO();
         if (obj_acc != null) {
             User_Details account = (User_Details) obj_acc;
 //            String game_id = request.getParameter("game_id");
-            String total_hour = request.getParameter("total_hour");
+            String total_hour = request.getParameter("totalhours");
             String player_id = request.getParameter("player_id");
+            String message = request.getParameter("message");
             String user_id = account.getUser_id() + "";
             String player_name = m.getPlayerNameById(player_id);
-            String total_cost = request.getParameter("result");
-            if(total_cost != ""){
+            Double money = m.getIncomePlayerById(player_id)*Double.valueOf(total_hour);
+            String money2 = String.valueOf(money);
+//            String total_cost = request.getParameter("result");
+//            Double total_cost2 = Double.parseDouble(total_cost);
+            if(user_id == ""){
                 request.getRequestDispatcher("common/login.jsp").forward(request, response);
             }
             String game_id = "1";
             //                BookingDAO bdao = new BookingDAO();
                 BookingDAO bddao = new BookingDAO();
             try {
-                bddao.addBooking(new Bookings(String.valueOf('0'), String.valueOf(user_id), String.valueOf(player_id), String.valueOf(total_hour), String.valueOf(game_id)));
+                bddao.addBooking(new Bookings(String.valueOf(user_id), String.valueOf(player_id), String.valueOf(total_hour), String.valueOf(game_id),money,"",String.valueOf(message)));
+//                bddao.addBooking(new Bookings("duongdd123", "chanbaby95", "5", "1",4000,""));
             } catch (SQLException ex) {
                 Logger.getLogger(BookingPlayerServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
 //                bddao.addBookingDetails(new Bookings(String.valueOf('0'), String.valueOf(acc_id), String.valueOf(player_id), String.valueOf(total_hour), String.valueOf(game_id)));
             PlayerDAO player = new PlayerDAO();
 //                movie.reduceTiket(player_id);
-            response.sendRedirect("bookingplayer?bookingrs=true&&player_id=" + player_id);
+            response.sendRedirect("historybooking?user_id=" + user_id);
         } else {
             response.sendRedirect("login");
         }

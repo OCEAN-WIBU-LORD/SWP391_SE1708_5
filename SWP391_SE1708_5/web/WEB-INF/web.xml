@@ -106,7 +106,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddPlayerServlet</servlet-name>
-        <url-pattern>/admin/player</url-pattern>
+        <url-pattern>/admin/addplayer</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>/EditPlayerServlet</servlet-name>
@@ -146,7 +146,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GameList</servlet-name>
-        <url-pattern>/admin/GameList</url-pattern>
+        <url-pattern>/GameList</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>updateGameForm</servlet-name>
