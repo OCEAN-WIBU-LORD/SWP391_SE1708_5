@@ -80,34 +80,12 @@ public class EditPlayerServlet extends HttpServlet {
             String password = request.getParameter("password");
             String link_image = request.getParameter("link_image");
             String income = request.getParameter("income");
-            String status_player = request.getParameter("status");
+            String status_player = request.getParameter("status_player");
 
             Game_TypeDAO cdao = new Game_TypeDAO();
-            PlayerDAO mdao = new PlayerDAO();
-//            List<Movie_category> mcList = cdao.getMovieCategory();
-//            List<Category> categoryList = cdao.getAllCategory();
-            List<Player> playerList = mdao.getAllPlayer();
+            PlayerDAO playerDao = new PlayerDAO();
             
-//            response.getWriter().print(new Player(player_id, player_name, description, gender1, phone_number, num_of_star, password, link_image, Double.valueOf(income), (status_player != null ? "1" : "0").toString());
-            mdao.updatePlayer(new Player(player_id, player_name, gender, phone_number, num_of_star, password, link_image, Double.parseDouble(income), status_player != null ? "1" : "0", description));
-
-            
-//             for (Game_Type category : Game_Type) {
-//                String cate = request.getParameter(category.getCate_name());
-//                int cateid = category.getCate_id();
-//                if(cate != null && !cdao.getCheckMovieCategory(new Game_Type(movie_id2, cateid))){
-//                    mdao.addMovieCategory(new Game_Type(movie_id2, cateid));
-//                }
-//                if(cate == null && cdao.getCheckGame_Type(new Game_Type(movie_id2, cateid))){
-//                  
-//            
-//                    mdao.deleteGame_Type(movie_id, String.valueOf(category.getCate_id()));
-//                }
-//            }
-            
-          
-//response.getWriter().println(cate);
-
+            playerDao.changeStatusPlayer(player_id, Integer.parseInt(status_player));
             response.sendRedirect("player");
         } catch (SQLException ex) {
             Logger.getLogger(AddPlayerServlet.class.getName()).log(Level.SEVERE, null, ex);

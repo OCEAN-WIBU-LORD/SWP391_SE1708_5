@@ -162,7 +162,7 @@
 
                         <!-- Page Heading -->
                         <h1 class="h3 mb-4 text-gray-800">Manage Game</h1>
-                        <form action="player" method="get" class="h3 mb-4 text-gray-800">
+                        <form action="addGame" method="get" class="h3 mb-4 text-gray-800">
                             <button type="submit" class="btn btn-success">Add Game</button>
                         </form>
                         <form action="player" method="get" class="h3 mb-4 text-gray-800">
@@ -199,16 +199,13 @@
                                                         <td>${game.discription}</td>
                                                         <td>${game.gameType}</td>
                                                         <td>
-                                                            <a href="#" onclick="openUpdateForm(${data.id})">Update</a> |
-                                                            <a href="#" onclick="confirmDelete(${data.id})">Delete</a>
+                                                            <a href="#" onclick="openUpdateForm(${game.id})">Update</a> |
+                                                            <a href="#" onclick="confirmDelete(${game.id})">Delete</a>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
                                         </tbody>
                                     </table>
-
-                                            <h2>Add a new game</h2>
-                                            <button onclick="openAddForm()">Add Game</button>
                                     </div>
                                 </div>
 
@@ -219,7 +216,7 @@
 
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Player</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Game</h6>
                                     </div>
                                     <div class="card-body">
                                         <form action="addplayer" method="post">
@@ -267,9 +264,7 @@
                                                     <tr>
                                                         <td></td>
                                                         <td><button type="submit" class="btn btn-success">ADD</button></td>
-
                                                     </tr>
-
                                                 </tbody>
                                             </table>
                                         </form>

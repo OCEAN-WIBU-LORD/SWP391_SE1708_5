@@ -285,10 +285,9 @@ public class PlayerDAO {
             conn = db.getConnection();
             // crate statement
             PreparedStatement stmt = conn.prepareStatement(
-                    "update Player set status_player=?   where player_id =? ");
+                    "update Player set status_player=? where player_id = ? ");
             stmt.setInt(1, status);
             stmt.setString(2, playerId);
-            // get data from table
             stmt.executeUpdate();
         }catch(Exception e){
             System.out.println("change status player "+ e.getMessage());

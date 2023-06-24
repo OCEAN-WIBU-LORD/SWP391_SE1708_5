@@ -5,12 +5,17 @@
 package controller.admin;
 
 import DB.GameDAO;
+import DB.Game_TypeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Game;
 
 /**
@@ -36,6 +41,23 @@ public class addGame extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
+    }
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            //        processRequest(request, response);
+            GameDAO dao = new GameDAO();
+            ArrayList<Game> data = dao.getListGame();
+            request.setAttribute("gameList", data);
+            Game_TypeDAO gt = new Game_TypeDAO();
+            request.setAttribute("listGameType", gt.getAllGameType());
+            request.getRequestDispatcher("addGameForm.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(addGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @Override

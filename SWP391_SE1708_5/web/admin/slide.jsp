@@ -74,7 +74,7 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Operation</h6>
                             <a class="collapse-item " href="GameList">Manage Game</a>
-                            <a class="collapse-item " href="addgametype">Manage Game Type</a>
+                            <a class="collapse-item " href="addGameType">Manage Game Type</a>
                         </div>
                     </div>
                 </li>

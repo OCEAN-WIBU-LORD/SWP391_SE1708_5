@@ -17,7 +17,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>SB Admin 2 - Buttons</title>
+        <title>SB Admin 2</title>
 
         <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -216,12 +216,10 @@
                                     <div class="card-body">
                                         <form action="editplayer" method="post">
                                             <table class="table table-hover">
-
                                                 <tbody>
                                                     <tr>
                                                          <td><b>Player ID</b></td>
                                                          <td><input disabled name="player_id" type="text" value="${player.player_id}" placeholder="" style="width: 90%" readonly=""/></td>
-
                                                     </tr>
                                                     <tr>
                                                         <td><b>Player Name</b></td>
@@ -287,7 +285,7 @@
                                                     <tr>
                                                         <td><b>Status Player</b></td>
                                                         <td>
-                                                            <select name="status">
+                                                            <select name="status_player">
                                                                 <option value="1" <c:if test="${player.status_player eq 1}">selected</c:if>>Enable</option>
                                                                 <option value="0" <c:if test="${player.status_player ne 1}">selected</c:if>>Disable</option>
                                                             </select>

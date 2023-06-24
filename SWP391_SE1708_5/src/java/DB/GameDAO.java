@@ -19,8 +19,8 @@ import model.Game;
  */
 public class GameDAO {
 
-    BaseDAO db;
-    Connection cnn;
+    BaseDAO db = new BaseDAO();
+    Connection cnn = db.getConnection();
     ResultSet rs;
     PreparedStatement pstm;
 
@@ -73,14 +73,18 @@ public class GameDAO {
         }
     }
 
-    public void DeleteGame(String id) {
+    public void DeleteGame(String id) throws SQLException {
         try {
             String strDelete = "delete from game where game_id=? ";
+            db = new BaseDAO();
+            cnn = db.getConnection();
             pstm = cnn.prepareStatement(strDelete);
             pstm.setString(1, id);
             pstm.executeUpdate();
         } catch (Exception e) {
             System.out.println("DeleteGame:" + e.getMessage());
+        } finally{
+            cnn.close();
         }
     }
 
