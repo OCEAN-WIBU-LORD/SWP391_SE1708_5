@@ -73,6 +73,10 @@
         <servlet-class>controller.admin.addGameForm</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AddGameType</servlet-name>
+        <servlet-class>controller.admin.AddGameType</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>addGame</servlet-name>
         <servlet-class>controller.admin.addGame</servlet-class>
     </servlet>
@@ -81,8 +85,36 @@
         <servlet-class>controller.admin.deleteGame</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LeaderBoardServlet</servlet-name>
-        <servlet-class>controller.LeaderBoardServlet</servlet-class>
+        <servlet-name>AdminLogin</servlet-name>
+        <servlet-class>controller.admin.AdminLogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangeStatusAcc</servlet-name>
+        <servlet-class>controller.admin.ChangeStatusAcc</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageUser</servlet-name>
+        <servlet-class>controller.admin.ManageUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageBooking</servlet-name>
+        <servlet-class>controller.admin.ManageBooking</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteGameType</servlet-name>
+        <servlet-class>controller.admin.DeleteGameType</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddType</servlet-name>
+        <servlet-class>controller.admin.AddType</servlet-class>
+    </servlet>
+     <servlet>
+        <servlet-name>UserMainProfileServlet</servlet-name>
+        <servlet-class>controller.UserMainProfileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChatServlet</servlet-name>
+        <servlet-class>controller.ChatServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -158,15 +190,47 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>addGame</servlet-name>
-        <url-pattern>/addGame</url-pattern>
+        <url-pattern>/admin/addGame</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddGameType</servlet-name>
+        <url-pattern>/admin/addGameType</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>deleteGame</servlet-name>
-        <url-pattern>/deleteGame</url-pattern>
+        <url-pattern>/admin/deleteGame</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LeaderBoardServlet</servlet-name>
-        <url-pattern>/leaderboard</url-pattern>
+        <servlet-name>AdminLogin</servlet-name>
+        <url-pattern>/admin/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeStatusAcc</servlet-name>
+        <url-pattern>/admin/changeStatus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageUser</servlet-name>
+        <url-pattern>/admin/manageUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageBooking</servlet-name>
+        <url-pattern>/admin/manageBooking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteGameType</servlet-name>
+        <url-pattern>/admin/deleteGameType</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddType</servlet-name>
+        <url-pattern>/admin/addType</url-pattern>
+    </servlet-mapping> 
+    <servlet-mapping>
+        <servlet-name>UserMainProfileServlet</servlet-name>
+        <url-pattern>/usermainprofile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChatServlet</servlet-name>
+        <url-pattern>/chat</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
