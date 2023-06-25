@@ -33,15 +33,20 @@ public class AdminDashboardServlet extends HttpServlet {
       @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
           HttpSession session = request.getSession();
+//        String bookingrs = request.getParameter("bookingrs");
+        Object obj_acc = session.getAttribute("usercurrent");
+        User_Details account = (User_Details) obj_acc;
           Object obj = session.getAttribute("role");
           if(obj == null){
-              response.sendRedirect("login");
+              response.sendRedirect("./home");
+             
           }else{
               if(!obj.equals("admin")){
-                  response.sendRedirect("login");
+                  response.sendRedirect("./home");
               }
+               
               try {
             PlayerDAO mdao = new PlayerDAO();
             User_DetailsDAO udao = new User_DetailsDAO();
@@ -52,6 +57,7 @@ public class AdminDashboardServlet extends HttpServlet {
 //            
             request.setAttribute("playerCount", (player_list.size()));
             request.setAttribute("userCount", (user_list.size()));
+            request.setAttribute("accountMoney", (account.getBalance()));
             
             request.getRequestDispatcher("dashboard.jsp").forward(request, response);
 

@@ -96,6 +96,123 @@
                                 </div>
                             </li>
 
+                            <!-- Nav Item - Alerts -->
+                            <li class="nav-item dropdown no-arrow mx-1">
+                                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-bell fa-fw"></i>
+                                    <!-- Counter - Alerts -->
+                                    <span class="badge badge-danger badge-counter">3+</span>
+                                </a>
+                                <!-- Dropdown - Alerts -->
+                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                     aria-labelledby="alertsDropdown">
+                                    <h6 class="dropdown-header">
+                                        Alerts Center
+                                    </h6>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-primary">
+                                                <i class="fas fa-file-alt text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="small text-gray-500">December 12, 2019</div>
+                                            <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-success">
+                                                <i class="fas fa-donate text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="small text-gray-500">December 7, 2019</div>
+                                            $290.29 has been deposited into your account!
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-warning">
+                                                <i class="fas fa-exclamation-triangle text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="small text-gray-500">December 2, 2019</div>
+                                            Spending Alert: We've noticed unusually high spending for your account.
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                </div>
+                            </li>
+
+                            <!-- Nav Item - Messages -->
+                            <li class="nav-item dropdown no-arrow mx-1">
+                                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-envelope fa-fw"></i>
+                                    <!-- Counter - Messages -->
+                                    <span class="badge badge-danger badge-counter">7</span>
+                                </a>
+                                <!-- Dropdown - Messages -->
+                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                     aria-labelledby="messagesDropdown">
+                                    <h6 class="dropdown-header">
+                                        Message Center
+                                    </h6>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="dropdown-list-image mr-3">
+                                            <img class="rounded-circle" src="img/undraw_profile_1.svg"
+                                                 alt="...">
+                                            <div class="status-indicator bg-success"></div>
+                                        </div>
+                                        <div class="font-weight-bold">
+                                            <div class="text-truncate">Hi there! I am wondering if you can help me with a
+                                                problem I've been having.</div>
+                                            <div class="small text-gray-500">Emily Fowler · 58m</div>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="dropdown-list-image mr-3">
+                                            <img class="rounded-circle" src="img/undraw_profile_2.svg"
+                                                 alt="...">
+                                            <div class="status-indicator"></div>
+                                        </div>
+                                        <div>
+                                            <div class="text-truncate">I have the photos that you ordered last month, how
+                                                would you like them sent to you?</div>
+                                            <div class="small text-gray-500">Jae Chun · 1d</div>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="dropdown-list-image mr-3">
+                                            <img class="rounded-circle" src="img/undraw_profile_3.svg"
+                                                 alt="...">
+                                            <div class="status-indicator bg-warning"></div>
+                                        </div>
+                                        <div>
+                                            <div class="text-truncate">Last month's report looks great, I am very happy with
+                                                the progress so far, keep up the good work!</div>
+                                            <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="dropdown-list-image mr-3">
+                                            <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                                 alt="...">
+                                            <div class="status-indicator bg-success"></div>
+                                        </div>
+                                        <div>
+                                            <div class="text-truncate">Am I a good boy? The reason I ask is because someone
+                                                told me that people say this to all dogs, even if they aren't good...</div>
+                                            <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                                </div>
+                            </li>
+
                             <div class="topbar-divider d-none d-sm-block"></div>
 
                             <!-- Nav Item - User Information -->
@@ -139,9 +256,6 @@
 
                         <!-- Page Heading -->
                         <h1 class="h3 mb-4 text-gray-800">Player</h1>
-                        <form action="player" method="get" class="h3 mb-4 text-gray-800">
-                            <button type="submit" class="btn btn-success">Add Player</button>
-                        </form>
 
                         <div class="row">
 
@@ -174,6 +288,7 @@
                                                     <th>Num of Star</th>
                                                     <th>Income</th>
                                                     <th>Link Image</th>
+                                                    <th>Change Profile</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                     <th></th>
@@ -200,7 +315,8 @@
                                                             </c:forEach></td>   --%>
                                                         <td>${o.num_of_star}</td>
                                                         <td>${o.income}</td>
-                                                        <td><img style="max-width: 10%;" src="${o.link_image}" alt="alt"/></td>
+                                                        <td>${o.link_image}</td>
+                                                        <td>${o.link_image}</td>
                                                         <td>${o.status_player eq "1" ? "Enable" : "Disable"}</td>
                                                         <td><a href="editplayer?player_id=${o.player_id}">edit</a>|<a href="#" onclick="deletePlayer(${o.player_id})">delete</a></td>
                                                         <td><a href="changeStatus?id=${o.player_id}">Change status</a></td>
@@ -223,7 +339,7 @@
 
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Player</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">add player</h6>
                                     </div>
                                     <div class="card-body">
                                         <form action="editplayer" method="post">
@@ -268,34 +384,34 @@
                                                     </tr>
                                                     <tr>
                                                         <td><b>Description</b></td>
-                                                        <td><textarea disabled name="description" cols="60" rows="3">${player.description}</textarea></td>
+                                                        <td><textarea name="description" cols="60" rows="3">${player.description}</textarea></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Gender</b></td>
-                                                        <td><textarea disabled name="gender" cols="60" rows="3">${player.gender}</textarea></td>
+                                                        <td><textarea name="gender" cols="60" rows="3">${player.gender}</textarea></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Phone Number</b></td>
-                                                        <td><input disabled name="phone_number" type="number" value="${player.phone_number}"/></td>
+                                                        <td><input name="phone_number" type="number" value="${player.phone_number}"/></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Number of Star</b></td>
-                                                        <td><input disabled name="num_of_star" type="text" style="width: 90%" value="${player.num_of_star}"/></td>
+                                                        <td><input name="num_of_star" type="text" style="width: 90%" value="${player.num_of_star}"/></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Password</b></td>
-                                                        <td><input disabled name="password" type="text" style="width: 90%" value="${player.password}"/></td>
+                                                        <td><input name="password" type="text" style="width: 90%" value="${player.password}"/></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Link Image</b></td>
-                                                        <td><input disabled name="link_image" type="text" style="width: 90%" value="${player.link_image}"/></td>
+                                                        <td><input name="link_image" type="text" style="width: 90%" value="${player.link_image}"/></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Income</b></td>
                                                         <td><input name="income" type="text" style="width: 90%" value="${player.income}"/>$</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Status Player</b></td>
+                                                        <td><b>Allow Player</b></td>
                                                         <td>
                                                             
                                                             <c:if test="${player.status_player eq 1}">
@@ -383,12 +499,12 @@
     </body>
 
     <script type="text/javascript">
-        function deleteMovie(id) {
-            var option = confirm("Do you want to delete this movie ?");
-            if (option === true) {
-                window.location.href = 'deletemovie?movie_id=' + id;
-            }
-        }
+                                                            function deleteMovie(id) {
+                                                                var option = confirm("Do you want to delete this movie ?");
+                                                                if (option === true) {
+                                                                    window.location.href = 'deletemovie?movie_id=' + id;
+                                                                }
+                                                            }
     </script>
 
 </html>

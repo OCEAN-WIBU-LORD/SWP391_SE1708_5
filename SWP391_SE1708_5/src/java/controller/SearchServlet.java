@@ -87,11 +87,22 @@ public class SearchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String search = String.valueOf(request.getParameter("searchInput"));
-        if(search==""){
+        String action = request.getParameter("action");
+        if (action != null && action.equals("1")) {
+            int m = Integer.parseInt(action);
+            request.setAttribute("action", action);
+            request.getRequestDispatcher("/common/login.jsp").forward(request, response);
+
+            if (action != null && action.equals("1")) {
+                request.getRequestDispatcher("/common/login.jsp").forward(request, response);
+            }
+        }
+
+        if (search == "") {
             try (PrintWriter out = response.getWriter()) {
-                    out.print("Please Enter Search Box");
-                    return;
-                }
+                out.print("Please Enter Search Box");
+                return;
+            }
         }
         PlayerDAO n = new PlayerDAO();
         try {

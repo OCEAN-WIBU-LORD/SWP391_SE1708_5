@@ -272,8 +272,74 @@ insert into player (player_id,player_name,gender,phone_number,num_of_star,passwo
 
 create table message (id int primary key, user_id varchar(50), player_id varchar(50));
 
+select * from player;
+alter table player add password varchar(50);
 
-alter table player add password text;
-select * from Player where player_id like '%%'
 
+select * from player;
+
+alter table user_details ADD balance double;
+
+update user_details set balance = '500000' where user_id = 'trangdt12345';
+select * from user_details;
+
+select * from booking_details;
+
+insert into booking (booking_id,user_id,player_id,total_hour,game_id) values ('0','duongdd123','congchuabongbong','10','1');
+
+
+ALTER TABLE booking MODIFY  booking_id int;
+drop table booking_details;
+ALTER TABLE booking_details MODIFY booking_id int;
+ALTER TABLE booking DROP FOREIGN KEY booking_id;
+
+create table booking_details (
+booking_id int,  
+price varchar(50), 
+total_price varchar(50), 
+hour varchar(50), 
+total_hour varchar(50), 
+date_booking datetime, 
+game_id varchar(50),
+ FOREIGN KEY (booking_id) REFERENCES booking(booking_id)
+);
+
+select * from player;
+
+select * from booking;
+insert into booking  values ('duongdd123','chanbaby95','1','2');
+
+update booking set booking_id = '2' where user_id = 'duongdd123'and  total_hour ='3';
+select * from booking;
+
+alter table booking ADD total_price double;
+alter table booking ADD booking_id int ;
+ALTER TABLE booking
+ADD PRIMARY KEY (booking_id);
+alter table booking drop column booking_id;
+
+update player set link_image = 'https://playerduo.net/api/upload-service/images/01d1e26f-ebf6-4aec-960c-a4edbee3b700__31460420-e049-11ed-a19f-23a3b10d190e__player_album.jpg'where player_id = 'trinhnt125';
+select * from booking;
+alter table booking ADD message text;
+
+
+select * from booking;
+
+select * from player ;
+
+SELECT player_id, COUNT(*) AS booking_count
+FROM booking
+GROUP BY player_id
+ORDER BY booking_count DESC
+LIMIT 1;
+
+SELECT p.player_id, p.player_name, p.phone_number
+FROM player p
+INNER JOIN (
+  SELECT player_id, COUNT(*) AS booking_count
+  FROM booking
+  GROUP BY player_id
+  ORDER BY booking_count DESC
+  LIMIT 1
+) b ON p.player_id = b.player_id;
 

@@ -13,7 +13,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Admin</title>
+        <title>SB Admin 2 - Buttons</title>
 
         <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -286,6 +286,7 @@
                                                     <th>Num of Star</th>
                                                     <th>Income</th>
                                                     <th>Link Image</th>
+                                                    <th>Change Profile</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                     <th></th>
@@ -311,7 +312,8 @@
                                                             </c:forEach></td>   --%>
                                                         <td>${o.num_of_star}</td>
                                                         <td>${o.income}</td>
-                                                        <td><img style="max-width: 10%;" src="${o.link_image}" alt="alt"/></td>
+                                                        <td>${o.link_image}</td>
+                                                        <td>${o.link_image}</td>
                                                         <td>${o.status_player eq "1" ? "Enable" : "Disable"}</td>
                                                         <td><a href="editplayer?player_id=${o.player_id}">edit</a>|<a href="#" onclick="deletePlayer(${o.player_id})">delete</a></td>
                                                         <td>${o.status_player eq "1" ? "Enable" : "Disable"}</td>
@@ -342,7 +344,7 @@
 
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Player</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">add player</h6>
                                     </div>
                                     <div class="card-body">
                                         <form action="editplayer" method="post">
