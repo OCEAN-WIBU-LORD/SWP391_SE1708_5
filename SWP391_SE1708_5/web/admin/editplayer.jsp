@@ -297,10 +297,6 @@
                                                     <tr>
                                                         <td><b>Status Player</b></td>
                                                         <td>
-                                                            <select name="status_player">
-                                                                <option value="1" <c:if test="${player.status_player eq 1}">selected</c:if>>Enable</option>
-                                                                <option value="0" <c:if test="${player.status_player ne 1}">selected</c:if>>Disable</option>
-                                                            </select>
                                                             <c:if test="${player.status_player eq 1}">
                                                                 <input name="status_player" type="checkbox"  checked="true"/>
                                                             </c:if>

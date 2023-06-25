@@ -51,10 +51,6 @@ public class User_Details {
         return full_name;
     }
 
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
-    }
-
     public String getUser_id() {
         return user_id;
     }
