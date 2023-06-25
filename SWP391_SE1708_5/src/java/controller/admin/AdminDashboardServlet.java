@@ -35,6 +35,9 @@ public class AdminDashboardServlet extends HttpServlet {
             throws ServletException, IOException {
 //        response.setContentType("text/html;charset=UTF-8");
           HttpSession session = request.getSession();
+//        String bookingrs = request.getParameter("bookingrs");
+        Object obj_acc = session.getAttribute("usercurrent");
+        User_Details account = (User_Details) obj_acc;
           Object obj = session.getAttribute("role");
           if(obj == null){
               response.sendRedirect("login");
@@ -52,6 +55,7 @@ public class AdminDashboardServlet extends HttpServlet {
 //            
             request.setAttribute("playerCount", (player_list.size()));
             request.setAttribute("userCount", (user_list.size()));
+            request.setAttribute("accountMoney", (account.getBalance()));
             
             request.getRequestDispatcher("dashboard.jsp").forward(request, response);
 

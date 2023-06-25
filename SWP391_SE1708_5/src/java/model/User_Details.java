@@ -51,6 +51,10 @@ public class User_Details {
         return full_name;
     }
 
+    public void setFull_name(String full_name) {
+        this.full_name = full_name;
+    }
+    
     public String getUser_id() {
         return user_id;
     }
@@ -107,8 +111,18 @@ public class User_Details {
         this.link_image = link_image;
     }
 
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
+
+    
+
     @Override
     public String toString() {
-        return "User_Details{" + "user_id=" + user_id + ", gender=" + gender + ", phone_number=" + phone_number + ", gmail=" + email + ", address=" + address + ", password=" + password + ", link_image=" + link_image + '}';
+        return "User_Details{" + "user_id=" + user_id + ", gender=" + gender + ", phone_number=" + phone_number + ", gmail=" + email + ", address=" + address + ", password=" + password + ", link_image=" + link_image + ", balance=" + balance + '}';
     }
 }

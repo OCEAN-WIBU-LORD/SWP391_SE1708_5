@@ -76,7 +76,7 @@
 
         <div
             class="hero page-inner overlay"
-            style="background-image: url('images/hero_bg_3.jpg')"
+            style="background-image: url('images/hero_bg_3.jpg'); height: 50%"
             >
 
         </div>
@@ -86,8 +86,8 @@
                 <div class="row justify-content-between">
                     <div class="col-lg-7">
                         <div class="img-property-slide-wrap">
-                            <div class="img-property-slide">
-                                <img src="${player.link_image}" alt="Image" class="img-fluid" />
+                            <div class="img-property-slide" style="">
+                                <img src="${player.link_image}" alt="Image" class="img-fluid"  style="width: fit-content; height: fit-content; border-radius: 12px;"/>
 
                             </div>
                         </div>
@@ -123,7 +123,7 @@
                         <p class="text-black-50">
                             <b>Status: </b>
                             <c:if test="${player.status_player eq '1'}">
-                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="color: white">Can booking</button>
+                                <button class="btn btn-warning" ><a href="bookingplayer?player_id=${player.player_id}" style="color: white">Can booking</a></button>
                             </c:if>
                             <c:if test="${player.status_player ne '1'} ">
                                 <button class="btn btn-warning" ><a href="bookingplayer" style="color: white">Can't booking</a></button>
@@ -131,6 +131,8 @@
                         </p><c:if test="${bookingrs ne null}"><p style="color: greenyellow; font-size: 25px">booking successfull</p>                                  
                             <img style="width: 300px; width: 300px" src="images/sampleQR2.png">
                         </c:if>
+                            Support: <button class="btn btn-warning" ><a href="bookingplayer?player_id=${player.player_id}" style="color: white">Donate</a></button><br><br>
+                            Communication:<button class="btn btn-warning" ><a href="bookingplayer?player_id=${player.player_id}" style="color: white">Chat</a></button>
 
                         <div class="d-block agent-box p-5">
                             <p>${player.description}</p>

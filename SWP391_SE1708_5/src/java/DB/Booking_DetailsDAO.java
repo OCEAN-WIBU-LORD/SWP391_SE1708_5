@@ -5,10 +5,16 @@
  */
 package DB;
 
+import model.Bookings;
+
 /**
  *
  * @author Acer
  */
 public class Booking_DetailsDAO {
+
+    public void addBookingDetails(Bookings bookings) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
