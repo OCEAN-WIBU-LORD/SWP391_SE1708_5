@@ -286,6 +286,7 @@
                                                     <th>Num of Star</th>
                                                     <th>Income</th>
                                                     <th>Link Image</th>
+                                                    <th>Change Profile</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                     <th></th>
