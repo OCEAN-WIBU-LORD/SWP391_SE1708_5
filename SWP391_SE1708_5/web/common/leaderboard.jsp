@@ -6,556 +6,208 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-        <style>@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Leaderboard UI Design</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style_5.css">
+</head>
+<body>
+	<section class="main-content">
+		<div class="container">
+			<h1>Top Earning Player</h1>
+			<br>
+			<br>
 
-            @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="leaderboard-card">
+						<div class="leaderboard-card__top">
+							<h3 class="text-center">$174,124</h3>
+						</div>
+						<div class="leaderboard-card__body">
+							<div class="text-center">
+								<img src="https://playerduo.net/api/upload-service/images/1d1fa3b4-fe53-4a76-983e-6e1470f79367__6260b250-eb2e-11ec-92ac-1b8d2f5bc2b5__player_album.jpg" class="circle-img mb-2" alt="User Img">
+								<h5 class="mb-0">MÈO 3K</h5>
+								<p class="text-muted mb-0">@meowmeow3k</p>
+								<hr>
+								<div class="d-flex justify-content-between align-items-center">
+									<span><i class="fa fa-map-marker"></i> Hanoi,VietNam</span>
+									<button class="btn btn-outline-success btn-sm">View Detail</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="leaderboard-card leaderboard-card--first">
+						<div class="leaderboard-card__top">
+							<h3 class="text-center">$160,124</h3>
+						</div>
+						<div class="leaderboard-card__body">
+							<div class="text-center">
+								<img src="https://playerduo.net/api/upload-service/images/6885cb0a-74b9-4c50-a614-5f8e513a1225__cfaa3500-ce74-11ed-a19f-23a3b10d190e__player_album.jpg" class="circle-img mb-2" alt="User Img">
+								<h5 class="mb-0">Em bé Chan ☁️❤️</h5>
+								<p class="text-muted mb-0">@chanbaby95</p>
+								<hr>
+								<div class="d-flex justify-content-between align-items-center">
+									<span><i class="fa fa-map-marker"></i> NamDinh,VietNam</span>
+									<button class="btn btn-outline-success btn-sm">View Detail</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="leaderboard-card">
+						<div class="leaderboard-card__top">
+							<h3 class="text-center">$66,500</h3>
+						</div>
+						<div class="leaderboard-card__body">
+							<div class="text-center">
+								<img src="https://playerduo.net/api/upload-service/images/dc805681-0d56-4dd6-a1d1-ae2cf3ea4813__5ab17d40-e39f-11ed-a19f-23a3b10d190e__player_album.jpg" class="circle-img mb-2" alt="User Img">
+								<h5 class="mb-0">Thư</h5>
+								<p class="text-muted mb-0">@muasaobang</p>
+								<hr>
+								<div class="d-flex justify-content-between align-items-center">
+									<span><i class="fa fa-map-marker"></i> HCM,VietNam</span>
+									<button class="btn btn-outline-success btn-sm">View Detail</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-            .list::-webkit-scrollbar-track
-            {
-                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-                background-color: #F5F5F5;
-            }
 
-            .list::-webkit-scrollbar
-            {
-                width: 6px;
-                background-color: #F5F5F5;
-            }
+			<h4>All Users</h4>
 
-            .list::-webkit-scrollbar-thumb
-            {
-                background-color: #646464;
-            }
-
-            body {
-                background-color: #b394c9;
-                font-family: 'Amatic SC';
-            }
-
-            #root {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-            }
-
-            .container {
-                width: 445px;
-                height: 600px;
-                background-color: black;
-                margin: auto;
-                font-family: 'Amatic SC';
-                margin: auto;
-                padding: 1rem;
-                border-radius: 5px;
-                box-shadow: 7px 9px 7px #00000052;
-
-                .leader {
-                    display: flex;
-                }
-
-                .crown {
-                    position: absolute;
-                    left: 50%;
-                    transform: translateX(-50%);
-
-                    svg {
-                        width: 3rem;
-                    }
-                }
-
-                .image {
-                    height: 58px;
-                    object-fit: cover;
-                    width: 58px;
-                    background-color: black;
-                    border-radius: 50%;
-                }
-
-                .topLeadersList {
-                    display: flex;
-                    position: relative;
-                    min-height: 120px;
-                    padding-top: 3rem;
-
-                    .image {
-                        border-radius: 50%;
-                        border: 3px solid #b159ffcc;
-                    }
-
-                    .leader:nth-child(1) {
-                        color: black;
-                        position: absolute;
-                        left: 50%;
-                        transform: translateX(-50%);
-
-                        &:after {
-                            content: '1';
-                            width: 30px;
-                            height: 30px;
-                            background: #ffc500;
-                            border-radius: 50%;
-                            position: absolute;
-                            right: 0;
-                            font-family: sans-serif;
-                            text-align: center;
-                            line-height: 30px;
-                            font-weight: 700;
-                            box-shadow: 1px 1px 4px black;
-                        }
-
-                        .image {
-                            width: 130px;
-                            height: 130px;
-                        }
-
-                        .crown {
-                            top: -20%;
-
-                            svg {
-                                fill: #ffc500;
-                            }
-                        }
-
-                    }
-
-                    .leader:nth-child(2) {
-                        color: black;
-                        position: absolute;
-                        left: 15%;
-                        transform: translateX(-15%);
-                        bottom: -20%;
-
-                        &:after {
-                            content: '2';
-                            width: 30px;
-                            height: 30px;
-                            background: #d4d4d4;
-                            border-radius: 50%;
-                            position: absolute;
-                            right: 0;
-                            font-family: sans-serif;
-                            text-align: center;
-                            line-height: 30px;
-                            font-weight: 700;
-                            box-shadow: 1px 1px 4px black;
-                        }
-
-                        .image {
-                            width: 110px;
-                            height: 110px;
-                        }
-
-                        .crown {
-                            top: -25%;
-
-                            svg {
-                                fill: #d4d4d4;
-                            }
-                        }
-                    }
-
-                    .leader:nth-child(3) {
-                        color: black;
-                        position: absolute;
-                        left: 85%;
-                        transform: translateX(-85%);
-                        bottom: -20%;
-
-                        &:after {
-                            content: '3';
-                            width: 30px;
-                            height: 30px;
-                            background: #ab6528;
-                            border-radius: 50%;
-                            position: absolute;
-                            right: 0;
-                            font-family: sans-serif;
-                            text-align: center;
-                            line-height: 30px;
-                            font-weight: 700;
-                            box-shadow: 1px 1px 4px black;
-                        }
-
-                        .image {
-                            width: 110px;
-                            height: 110px;
-                        }
-
-                        .crown {
-                            top: -25%;
-
-                            svg {
-                                fill: #ab6528;
-                            }
-                        }
-                    }
-                }
-
-                .leaderName {
-                    position: absolute;
-                    text-align: center;
-                    color: white;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    font-size: 22px;
-                }
-
-                .player {
-                    background-color: #330b7775;
-                    display: grid;
-                    grid-template-columns: 0.4fr 3fr 1fr 1fr 1fr 1fr 1fr 1fr;
-
-                    align-items: center;
-                    min-height: 42px;
-                    text-align: center;
-                    padding-right: 0.4rem;
-
-                    .image {
-                        width: 28px;
-                        height: 28px;
-                        border: 1.5px solid white;
-                    }
-                }
-
-                .table {
-                    margin-right: 0.1rem;
-                    display: grid;
-                    font-size: 14px;
-                    grid-template-columns: 0.4fr 3fr 1fr 1fr 1fr 1fr 1fr 1fr;
-                    text-align: center;
-
-                    div:nth-child(2) {
-                        text-align: left;
-                        margin-left: 5px;
-                    }
-
-                    .image {
-                        width: 20px;
-                        height: 20px;
-                    }
-                }
-
-                .playerslist {
-                    margin-top: 6rem;
-                    font-size: 16px;
-                    overflow: hidden;
-                    color: white;
-                    font-family: 'Roboto Condensed', sans-serif;
-
-                    .player:nth-child(odd) {
-                        background-color: #b159ffcc;
-                        align-items: center;
-                    }
-                }
-
-                .user {
-                    display: flex;
-                    align-items: center;
-                    gap: 4px;
-                }
-
-                .list {
-                    overflow: scroll;
-                    height: 20rem;
-                    overflow-x: hidden;
-                }
-            }</style>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-        <h1>Hello World!</h1>
-        <div id="root"></div>
-        
-        <script  type="text/babel">import React, { useRef } from "https://cdn.skypack.dev/react@17.0.1";
-import ReactDOM from "https://cdn.skypack.dev/react-dom@17.0.1";
-
-const App = () => {
- const dados = [
-  {
-    id: 1,
-    name: 'Laura',
-    image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-    level: 16,
-    xp: 100,
-    coins: 500,
-    love: 6,
-    beacons: 2,
-    resources: 70,
-  },
-  {
-    id: 1,
-    name: 'Laura',
-    image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-    level: 16,
-    xp: 100,
-    coins: 500,
-    love: 6,
-    beacons: 2,
-    resources: 70,
-  },
-  {
-    id: 1,
-    name: 'Laura',
-    image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-    level: 16,
-    xp: 100,
-    coins: 500,
-    love: 6,
-    beacons: 2,
-    resources: 70,
-  },
-  {
-    id: 1,
-    name: 'Laura',
-    image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-    level: 16,
-    xp: 100,
-    coins: 500,
-    love: 6,
-    beacons: 2,
-    resources: 70,
-  },
-  {
-    id: 1,
-    name: 'Laura',
-    image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-    level: 16,
-    xp: 100,
-    coins: 500,
-    love: 6,
-    beacons: 2,
-    resources: 70,
-  },
-  {
-    id: 1,
-    name: 'Laura',
-    image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-    level: 16,
-    xp: 100,
-    coins: 500,
-    love: 6,
-    beacons: 2,
-    resources: 70,
-  },
-  {
-    id: 1,
-    name: 'Laura',
-    image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-    level: 16,
-    xp: 100,
-    coins: 500,
-    love: 6,
-    beacons: 2,
-    resources: 70,
-  },
-  {
-    id: 1,
-    name: 'Laura',
-    image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-    level: 16,
-    xp: 100,
-    coins: 500,
-    love: 6,
-    beacons: 2,
-    resources: 70,
-  },
-  {
-    id: 1,
-    name: 'Laura',
-    image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-    level: 16,
-    xp: 100,
-    coins: 500,
-    love: 6,
-    beacons: 2,
-    resources: 70,
-  },
-  {
-    id: 1,
-    name: 'Laura',
-    image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-    level: 16,
-    xp: 100,
-    coins: 500,
-    love: 6,
-    beacons: 2,
-    resources: 70,
-  },
-  {
-    id: 1,
-    name: 'Laura',
-    image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-    level: 16,
-    xp: 100,
-    coins: 500,
-    love: 6,
-    beacons: 2,
-    resources: 70,
-  },
-  {
-    id: 1,
-    name: 'Laura',
-    image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-    level: 16,
-    xp: 100,
-    coins: 500,
-    love: 6,
-    beacons: 2,
-    resources: 70,
-  },
-  {
-    id: 1,
-    name: 'Laura',
-    image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-    level: 16,
-    xp: 100,
-    coins: 500,
-    love: 6,
-    beacons: 2,
-    resources: 70,
-  },
-  {
-    id: 1,
-    name: 'Laura',
-    image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-    level: 16,
-    xp: 100,
-    coins: 500,
-    love: 6,
-    beacons: 2,
-    resources: 70,
-  },
-  {
-    id: 1,
-    name: 'Laura',
-    image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-    level: 16,
-    xp: 100,
-    coins: 500,
-    love: 6,
-    beacons: 2,
-    resources: 70,
-  },
-  {
-    id: 1,
-    name: 'Laura',
-    image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-    level: 16,
-    xp: 100,
-    coins: 500,
-    love: 6,
-    beacons: 2,
-    resources: 70,
-  },
-  {
-    id: 1,
-    name: 'Laura',
-    image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-    level: 16,
-    xp: 100,
-    coins: 500,
-    love: 6,
-    beacons: 2,
-    resources: 70,
-  },
-  {
-    id: 1,
-    name: 'Laura',
-    image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-    level: 16,
-    xp: 100,
-    coins: 500,
-    love: 6,
-    beacons: 2,
-    resources: 70,
-  },
-];
-  return (
-    <div className="container">
-      <div className="topLeadersList">
-        {dados.map((leader, index) => (
-          <div className="leader" key={leader.id}>
-            {index + 1 <= 3 && (
-              <div className="containerImage">
-                <img className="image" loading="lazy" src={leader.image} />
-                <div className="crown">
-                  <svg
-                    id="crown1"
-                    fill="#0f74b5"
-                    data-name="Layer 1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 100 50"
-                  >
-                    <polygon
-                      className="cls-1"
-                      points="12.7 50 87.5 50 100 0 75 25 50 0 25.6 25 0 0 12.7 50"
-                    />
-                  </svg>
-                </div>
-                <div className="leaderName">{leader.name}</div>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-
-      <div className="playerslist">
-        <div className="table">
-            <div>#</div>
-        
-            <div>Name</div>
-        
-          
-            <div>LVL</div>
-          
-            <div>XP</div>
-          
-            <div>
-              Coins
-            </div>
-          
-            <div>
-              Likes
-            </div>
-          
-            <div>
-              Pass
-            </div>
-          
-            <div>
-              Resources
-            </div>
-          
-        </div>
-        <div className="list">
-          {dados.map((leader, index) => (
-            <div className="player" key={leader.id}>
-              <span> {index + 1}</span>
-              <div className="user">
-                <img className="image" src={leader.image} />
-                <span> {leader.name} </span>
-              </div>
-              <span> {leader.level} </span>
-              <span> {leader.xp} </span>
-              <span> {leader.coins} </span>
-              <span> {leader.love} </span>
-              <span> {leader.beacons} </span>
-              <span> {leader.resources} </span>
-            </div>
-          ))}
-        </div>
-        </div>
-      </div>
-);
-}
-
-ReactDOM.render(<App />,
-document.getElementById("root"))</script>
-    </body>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Player</th>
+						<th>Total-income</th>
+						<th>Location</th>
+						<th>Email</th>
+						<th>View-Details</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<div class="d-flex align-items-center">
+								<img src="https://playerduo.net/api/upload-service/images/6885cb0a-74b9-4c50-a614-5f8e513a1225__cfaa3500-ce74-11ed-a19f-23a3b10d190e__player_album.jpg" class="circle-img circle-img--small mr-2" alt="User Img">
+								<div class="user-info__basic">
+									<h5 class="mb-0">Em bé Chan ☁️❤️</h5>
+									<p class="text-muted mb-0">@chanbaby95</p>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="d-flex align-items-baseline">
+								<h4 class="mr-1">$160,124</h4><small class="text-success"><i class="fa fa-arrow-up"></i>5%</small>
+							</div>
+						</td>
+						<td>NamDinh,VietNam</td>
+						<td>kiran@kiranmail.com</td>
+						<td>
+							<button class="btn btn-success btn-sm">View Detail</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="d-flex align-items-center">
+								<img src="https://playerduo.net/api/upload-service/images/1d1fa3b4-fe53-4a76-983e-6e1470f79367__6260b250-eb2e-11ec-92ac-1b8d2f5bc2b5__player_album.jpg" class="circle-img circle-img--small mr-2" alt="User Img">
+								<div class="user-info__basic">
+									<h5 class="mb-0">Minh Ngoc</h5>
+									<p class="text-muted mb-0">@congchuabongbong</p>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="d-flex align-items-baseline">
+								<h4 class="mr-1">$174,124</h4><small class="text-success"><i class="fa fa-arrow-up"></i>5%</small>
+							</div>
+						</td>
+						<td>HCM,VietNam</td>
+						<td>sandeep@sandeepmail.com</td>
+						<td>
+							<button class="btn btn-success btn-sm">View Detail</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="d-flex align-items-center">
+								<img src="https://playerduo.net/api/upload-service/images/dc805681-0d56-4dd6-a1d1-ae2cf3ea4813__89118520-e3a1-11ed-a19f-23a3b10d190e__player_album.jpg" class="circle-img circle-img--small mr-2" alt="User Img">
+								<div class="user-info__basic">
+									<h5 class="mb-0">Hạ Lạ</h5>
+									<p class="text-muted mb-0">@hala</p>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="d-flex align-items-baseline">
+								<h4 class="mr-1">$66,500</h4><small class="text-success"><i class="fa fa-arrow-up"></i>5%</small>
+							</div>
+						</td>
+						<td>Hanoi,VietNam</td>
+						<td>kiran@kiranmail.com</td>
+						<td>
+							<button class="btn btn-success btn-sm">View Detail</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="d-flex align-items-center">
+								<img src="https://playerduo.net/api/upload-service/images/75c40a5c-dbda-4ac3-9106-55d6d7ca9b0f__a3c3aef0-cb0c-11ed-a19f-23a3b10d190e__player_album.jpg" class="circle-img circle-img--small mr-2" alt="User Img">
+								<div class="user-info__basic">
+									<h5 class="mb-0">Tran Thi Ha My</h5>
+									<p class="text-muted mb-0">@johnnoakes</p>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="d-flex align-items-baseline">
+								<h4 class="mr-1">$986</h4><small class="text-success"><i class="fa fa-arrow-up"></i>5%</small>
+							</div>
+						</td>
+						<td>Vinh,VietNam</td>
+						<td>kiran@kiranmail.com</td>
+						<td>
+							<button class="btn btn-success btn-sm">View Detail</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="d-flex align-items-center">
+								<img src="https://playerduo.net/api/upload-service/images/66f8b716-ee52-4590-aa0a-73bd28590f5f__3a2689a0-1d52-11eb-89a2-ed059467d76a__player_album.jpg" class="circle-img circle-img--small mr-2" alt="User Img">
+								<div class="user-info__basic">
+									<h5 class="mb-0">Pham Thuy Dung</h5>
+									<p class="text-muted mb-0">@juncutee</p>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="d-flex align-items-baseline">
+								<h4 class="mr-1">$951</h4><small class="text-success"><i class="fa fa-arrow-up"></i>5%</small>
+							</div>
+						</td>
+						<td>Hue,VietNam</td>
+						<td>kiran@kiranmail.com</td>
+						<td>
+							<button class="btn btn-success btn-sm">View Detail</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
 </html>

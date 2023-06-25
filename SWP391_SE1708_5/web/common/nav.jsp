@@ -22,10 +22,10 @@
                                 </ul>
                             </li>
                             <li class="has-children">
-                                <a href="properties.html">Leader Board</a>
+                                <a href="leaderboard">Leader Board</a>
                                 <ul class="dropdown">
-                                    <li><a href="#">Donate Leader Board</a></li>
-                                    <li><a href="#">Top Star Players</a></li>
+                                    <li><a href="leaderboard">Donate Leader Board</a></li>
+                                    <li><a href="leaderboard">Top Star Players</a></li>
                                     <li><a href="#">Top Users</a></li>
                                     <li class="has-children">
                                         <a href="#">MORE</a>

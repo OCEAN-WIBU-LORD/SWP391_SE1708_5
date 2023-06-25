@@ -58,7 +58,7 @@
                         </div>
                         <div class="col-md-5 col-md-pull-7">
                             <div class="booking-form" style="margin-top: 100px">
-                                <form action="historybooking" method="post">
+                                <form action="usermainprofile#historybooking" method="post">
                                     <div class="form-group">
                                         <span class="form-label">Player Name:</span>
                                         <input class="form-control" name="player_name" type="text" placeholder="${player.player_name}" value="${player.player_name}" readonly="">
@@ -97,13 +97,16 @@
                                                 </select>
                                                 <span class="select-arrow"></span>
                                             </div>
+                                            
                                         </div>
                                         <input value="result" hidden="false">${result}
 
                                         <div class="form-group" >
                                             <span class="form-label">Total Cost:  </span> 
                                             <a id="result"></a><a>$</a>
-                                            <input type="text" name="result" value="${result}" id="result" placeholder="${result}">
+                                            <!--<div class="form-label">Donation:  </div>--> 
+                                            <input type="text" name="donate" value="${result}"  placeholder="${result}">
+                                            
                                         </div>
                                         <div class="form-group">
                                             <span class="form-label">Balance:</span>

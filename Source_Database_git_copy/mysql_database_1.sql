@@ -323,3 +323,23 @@ select * from booking;
 alter table booking ADD message text;
 
 
+select * from booking;
+
+select * from player ;
+
+SELECT player_id, COUNT(*) AS booking_count
+FROM booking
+GROUP BY player_id
+ORDER BY booking_count DESC
+LIMIT 1;
+
+SELECT p.player_id, p.player_name, p.phone_number
+FROM player p
+INNER JOIN (
+  SELECT player_id, COUNT(*) AS booking_count
+  FROM booking
+  GROUP BY player_id
+  ORDER BY booking_count DESC
+  LIMIT 1
+) b ON p.player_id = b.player_id;
+
