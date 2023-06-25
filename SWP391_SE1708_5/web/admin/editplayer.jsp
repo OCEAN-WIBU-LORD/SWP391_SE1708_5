@@ -297,6 +297,7 @@
                                                     <tr>
                                                         <td><b>Status Player</b></td>
                                                         <td>
+                                                            
                                                             <c:if test="${player.status_player eq 1}">
                                                                 <input name="status_player" type="checkbox"  checked="true"/>
                                                             </c:if>
