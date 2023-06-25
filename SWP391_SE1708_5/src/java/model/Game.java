@@ -16,6 +16,7 @@ public class Game {
     public String id ;
     public String name;
     public String discription;
+    public String gameType;
 
     public Game() {
     }
@@ -24,6 +25,21 @@ public class Game {
         this.id = id;
         this.name = name;
         this.discription = discription;
+    }
+
+    public Game(String id, String name, String discription, String gameType) {
+        this.id = id;
+        this.name = name;
+        this.discription = discription;
+        this.gameType = gameType;
+    }
+
+    public String getGameType() {
+        return gameType;
+    }
+
+    public void setGameType(String gameType) {
+        this.gameType = gameType;
     }
 
     public String getId() {

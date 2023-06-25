@@ -313,7 +313,6 @@ public class PlayerDAO {
                 conn.close();
             }
         }
-
     }
     
      public void changeStatusPlayer(String playerId, int status) throws SQLException{
@@ -344,7 +343,7 @@ public class PlayerDAO {
             // connnect to database 'testdb'
             conn = db.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement(" delete * from Player where player_id =? ");
+            PreparedStatement stmt = conn.prepareStatement(" delete from Player where player_id =? ");
 
             stmt.setString(1, player_id);
             // get data from table
