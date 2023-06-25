@@ -62,8 +62,7 @@
                         </div>
                     </div>
                 </li>
-                
-                <li class="nav-item active">
+                 <li class="nav-item active">
                     <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
                        aria-controls="collapseTwo">
                         <i class="fas fa-fw fa-cog"></i>
