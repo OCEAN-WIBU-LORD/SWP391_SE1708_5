@@ -264,6 +264,17 @@
                                     <div class="card-header py-3">
                                         <h6 class="m-0 font-weight-bold text-primary">Player List</h6>
                                     </div>
+                                    <div class="card-header py-3">
+                                        <form id="myFormAccPerPage" action="player">
+                                            <h6 class="m-0 font-weight-bold text-primary">Account per page</h6>
+                                            <select name="accPerPage" onchange="submitForm()">
+                                            <option value="5" <c:if test="${5==page.getItemPerPage()}" >selected</c:if>>5</option>
+                                            <option value="10" <c:if test="${10==page.getItemPerPage()}" >selected</c:if>>10</option>
+                                            <option value="15" <c:if test="${15==page.getItemPerPage()}" >selected</c:if>>15</option>
+                                            <option value="20" <c:if test="${20==page.getItemPerPage()}" >selected</c:if>>20</option>
+                                        </select>
+                                        </form>
+                                    </div>
                                     <div class="card-body"> 
 
                                         <table class="table table-hover">
@@ -282,7 +293,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <!--<a>${m}</a>-->
                                             Total Player: <a>${n}</a>
 
                                                 <c:forEach items="${playerList}" var="o">
@@ -311,13 +321,20 @@
                                                         <td><a href="editplayer?player_id=${o.player_id}">Update</a></td>
                                                     </tr>
                                                 </c:forEach>
-
-
                                             </tbody>
                                         </table>
-
-
                                     </div>
+                                            <div style="text-align: center;">
+                                                <table>
+                                                    <tr>
+                                                        <c:forEach begin="1" end="${page.getTottalPage()}" var="i">
+                                                            <td style="border: 1px solid black">
+                                                                <a href="player?paging=${i}" <c:if test="${i==currentPage}" >style="color:red;"</c:if> >${i}</a>
+                                                            </td>
+                                                        </c:forEach>
+                                                    </tr>
+                                                </table>
+                                            </div>
                                 </div>
 
 
@@ -330,7 +347,7 @@
                                         <h6 class="m-0 font-weight-bold text-primary">add player</h6>
                                     </div>
                                     <div class="card-body">
-                                        <form action="addplayer" method="post">
+                                        <form action="editplayer" method="post">
                                             <table class="table table-hover">
 
                                                 <tbody>
@@ -455,6 +472,9 @@
                                                                     window.location.href = '../deletemovie?movie_id=' + id;
                                                                 }
                                                             }
+    function submitForm() {
+        document.getElementById("myFormAccPerPage").submit();
+    }
     </script>
 
 </html>

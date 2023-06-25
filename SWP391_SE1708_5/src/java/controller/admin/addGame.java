@@ -5,13 +5,19 @@
 package controller.admin;
 
 import DB.GameDAO;
+import DB.Game_TypeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Game;
+import model.Game_Type;
 
 /**
  *
@@ -37,27 +43,46 @@ public class addGame extends HttpServlet {
             out.println("</html>");
         }
     }
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            //        processRequest(request, response);
+            GameDAO dao = new GameDAO();
+            ArrayList<Game> data = dao.getListGame();
+            request.setAttribute("gameList", data);
+            Game_TypeDAO gt = new Game_TypeDAO();
+            request.setAttribute("listGameType", gt.getAllGameType());
+            request.getRequestDispatcher("addGameForm.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(addGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("id");
-        if (dao.checkGameIDExist(id)) {
-            // handle error: game with this id already exists
-            request.setAttribute("errorMessage", "A game with this ID already exists.");
-            request.getRequestDispatcher("addGameForm.jsp").forward(request, response);
-        } else {
-            String name = request.getParameter("name");
+        try {
+            String name = request.getParameter("name_game");
             String description = request.getParameter("description");
-            Game game = new Game(id, name, description);
-            dao.addGame(game);
-
-            response.setContentType("text/html");
-            PrintWriter out = response.getWriter();
-            out.println("<script type=\"text/javascript\">");
-            out.println("window.opener.location.reload();");
-            out.println("window.close();");
-            out.println("</script>");
+            GameDAO gd = new GameDAO();
+            if (gd.checkGameNameExist(name) == true){
+                request.setAttribute("errorMessage", "This game has exxist");
+            }else{
+                Game game = new Game(String.valueOf(gd.getListGame().size()+1), name, description);
+                dao.addGame(game);
+                String gameType = request.getParameter("game_type");
+                Game_TypeDAO gtd = new Game_TypeDAO();
+                Game_Type gt = gtd.getGameTypeByName(gameType);
+                gtd.addGame(game.id, gt.getGame_id()+game.id+",");
+                request.setAttribute("listGameType", gtd.getAllGameType());
+            }
+//            request.setAttribute("listGameType", gtd.getAllGameType());
+            request.getRequestDispatcher("addGameForm.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(addGame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

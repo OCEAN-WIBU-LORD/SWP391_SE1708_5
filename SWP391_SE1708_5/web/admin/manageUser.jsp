@@ -1,58 +1,25 @@
 <%-- 
-    Document   : addGameForm
-    Created on : Jun 3, 2023, 8:20:24 AM
-    Author     : ADMIN
+    Document   : manageUser
+    Created on : Jun 26, 2023, 12:36:25 AM
+    Author     : Cuthi
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="model.Game"%>
-<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
     <head>
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Game List Management</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-            }
-            table {
-                border-collapse: collapse;
-                width: 100%;
-            }
-            th, td {
-                text-align: left;
-                padding: 8px;
-            }
-            tr:nth-child(even) {
-                background-color: #f2f2f2;
-            }
-            th {
-                background-color: #4CAF50;
-                color: white;
-            }
-        </style>
 
-        <script>
-            function openAddForm() {
-                window.open("addGameForm", "Add Game", "width=500,height=500");
-            }
+        <title>SB Admin 2</title>
 
-            function openUpdateForm(gameId) {
-                window.open("updateGameForm?id=" + gameId, "Update Game", "width=500,height=500");
-            }
-
-            function confirmDelete(gameId) {
-                if (confirm("Are you sure you want to delete this game?")) {
-                    window.location.href = "deleteGame?id=" + gameId;
-                }
-            }
-        </script>
+        <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -60,13 +27,14 @@
 
         <!-- Custom styles for this template-->
         <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    </head>
-    <body id="page-top">
 
+    </head>
+
+    <body id="page-top">
+        
         <!-- Page Wrapper -->
         <div id="wrapper">
 
-            <!-- Sidebar -->
             <%@include file="slide.jsp" %>
             <!-- End of Sidebar -->
 
@@ -167,13 +135,7 @@
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <h1 class="h3 mb-4 text-gray-800">Manage Game</h1>
-                        <form action="player" method="get" class="h3 mb-4 text-gray-800">
-                            <button type="submit" class="btn btn-success">Add Game</button>
-                        </form>
-                        <form action="addGameType" method="get" class="h3 mb-4 text-gray-800">
-                            <button type="submit" class="btn btn-success">Add Game Type</button>
-                        </form>
+                        <h1 class="h3 mb-4 text-gray-800">User</h1>
 
                         <div class="row">
 
@@ -184,34 +146,42 @@
                                 <!-- Circle Buttons -->
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Player List</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">User List</h6>
                                     </div>
                                     <div class="card-body"> 
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>
-                                                <th>Description</th>
-                                                <th>Game Type</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <c:forEach items="${gameList}"  var="game">
+
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>User ID</th>
+                                                    <th>User Name</th>
+                                                    <th>Phone Number</th>
+                                                    <th>Gender</th>
+                                                    <th>Address</th>
+                                                    <th>Link Image</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            Total User <a>${n}</a>
+
+                                                <c:forEach items="${userList}" var="o">
                                                     <tr>
-                                                        <td>${game.id}</td>
-                                                        <td>${game.name}</td>
-                                                        <td>${game.discription}</td>
-                                                        <td>${game.gameType}</td>
-                                                        <td>
-                                                            <a href="#" onclick="openUpdateForm(${game.id})">Update</a> |
-                                                            <a href="#" onclick="confirmDelete(${game.id})">Delete</a>
-                                                        </td>
+                                                        <td>${o.user_id}</td>
+                                                        <td>${o.full_name}</td>
+                                                        <td>${o.phone_number}</td>
+                                                        <td>${o.gender}</td>
+                                                        <td>${o.address}</td>
+                                                        <td><img style="max-width: 10%;" src="${o.link_image}" alt=""/></td>
+                                                        <td><a href="manageUser?user_id=${o.user_id}">Update</a></td>
                                                     </tr>
                                                 </c:forEach>
-                                        </tbody>
-                                    </table>
+
+
+                                            </tbody>
+                                        </table>
+
+
                                     </div>
                                 </div>
 
@@ -222,39 +192,45 @@
 
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Add game</h6>
-                                        <c:if test="${not empty errorMessage}">
-                                            <p style="color: red;">${errorMessage}</p>
-                                        </c:if>
+                                        <h6 class="m-0 font-weight-bold text-primary">User</h6>
                                     </div>
                                     <div class="card-body">
-                                        <form action="addGame" method="post">
+                                        <form action="manageUser" method="post">
                                             <table class="table table-hover">
-
                                                 <tbody>
                                                     <tr>
-                                                        <td><b>Name</b></td>
-                                                        <td><input name="name_game" type="text" style="width: 90%"/></td>
+                                                         <td><b>User ID</b></td>
+                                                         <td><input disabled name="id" type="text" value="${user.user_id}" style="width: 90%"/></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Description:</b></td>
-                                                        <td><textarea name="description" type="text" style="width: 90%"></textarea></td>
+                                                        <td><b>User Name</b></td>
+                                                        <td><input disabled name="player_name" type="text" value="${user.full_name}" style="width: 90%"/></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Game Type</b></td>
-                                                        <td>
-                                                            <select name="game_type">
-                                                                <c:forEach items="${listGameType}" var="gameType">
-                                                                    <option value="${gameType.game_type}">${gameType.game_type}</option>
-                                                                </c:forEach>
-                                                            </select>
-                                                            </div>
-                                                        </td>
+                                                        <td><b>Gmail</b></td>
+                                                        <td><textarea disabled name="description" cols="60" rows="3">${user.email}</textarea></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Gender</b></td>
+                                                        <td><textarea disabled name="gender" cols="60" rows="3">${user.gender}</textarea></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Phone Number</b></td>
+                                                        <td><input disabled name="phone_number" type="number" value="${user.phone_number}"/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Address</b></td>
+                                                        <td><input disabled name="num_of_star" type="text" style="width: 90%" value="${user.address}"/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Link Image</b></td>
+                                                        <td><input disabled name="link_image" type="text" style="width: 90%" value="${user.link_image}"/></td>
                                                     </tr>
                                                     <tr>
                                                         <td></td>
-                                                        <td><button type="submit" class="btn btn-success">ADD Game</button></td>
+
                                                     </tr>
+
                                                 </tbody>
                                             </table>
                                         </form>
@@ -324,5 +300,14 @@
         <script src="js/sb-admin-2.min.js"></script>
 
     </body>
-</html>
 
+    <script type="text/javascript">
+        function deleteMovie(id) {
+            var option = confirm("Do you want to delete this movie ?");
+            if (option === true) {
+                window.location.href = 'deletemovie?movie_id=' + id;
+            }
+        }
+    </script>
+
+</html>

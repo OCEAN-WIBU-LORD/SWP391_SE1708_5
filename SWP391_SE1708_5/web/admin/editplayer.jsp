@@ -17,7 +17,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>SB Admin 2 - Buttons</title>
+        <title>SB Admin 2</title>
 
         <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -268,6 +268,15 @@
                                     <div class="card-header py-3">
                                         <h6 class="m-0 font-weight-bold text-primary">Player List</h6>
                                     </div>
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Account per page</h6>
+                                        <select name="accPerPage">
+                                            <option value="5">5</option>
+                                            <option value="10" selected>10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                        </select>
+                                    </div>
                                     <div class="card-body"> 
 
                                         <table class="table table-hover">
@@ -335,7 +344,6 @@
                                     <div class="card-body">
                                         <form action="editplayer" method="post">
                                             <table class="table table-hover">
-
                                                 <tbody>
                                                     <tr>
                                                          <td><b>Player ID</b></td>
