@@ -85,30 +85,10 @@
         <servlet-class>controller.admin.deleteGame</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AdminLogin</servlet-name>
-        <servlet-class>controller.admin.AdminLogin</servlet-class>
+        <servlet-name>LeaderBoardServlet</servlet-name>
+        <servlet-class>controller.LeaderBoardServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ChangeStatusAcc</servlet-name>
-        <servlet-class>controller.admin.ChangeStatusAcc</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ManageUser</servlet-name>
-        <servlet-class>controller.admin.ManageUser</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ManageBooking</servlet-name>
-        <servlet-class>controller.admin.ManageBooking</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DeleteGameType</servlet-name>
-        <servlet-class>controller.admin.DeleteGameType</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AddType</servlet-name>
-        <servlet-class>controller.admin.AddType</servlet-class>
-    </servlet>
-     <servlet>
         <servlet-name>UserMainProfileServlet</servlet-name>
         <servlet-class>controller.UserMainProfileServlet</servlet-class>
     </servlet>
