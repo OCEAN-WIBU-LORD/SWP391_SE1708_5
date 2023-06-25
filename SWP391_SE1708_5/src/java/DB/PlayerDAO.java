@@ -271,7 +271,7 @@ public class PlayerDAO {
             // close connection
         } catch (Exception ex) {
             System.out.println("updatePlayer" + ex.getMessage());
-        }finally{
+        } finally{
             if (conn != null){
                 conn.close();
             }
