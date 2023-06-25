@@ -280,6 +280,9 @@
                                                     <th>Income</th>
                                                     <th>Link Image</th>
                                                     <th>Change Profile</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -307,6 +310,8 @@
                                                         <td>${o.link_image}</td>
                                                         <td>${o.status_player eq "1" ? "Enable" : "Disable"}</td>
                                                         <td><a href="editplayer?player_id=${o.player_id}">edit</a>|<a href="#" onclick="deletePlayer(${o.player_id})">delete</a></td>
+                                                        <td><a href="changeStatus?id=${o.player_id}">Change status</a></td>
+                                                        <td><a href="editplayer?player_id=${o.player_id}">Update</a></td>
                                                     </tr>
                                                 </c:forEach>
 
@@ -334,12 +339,11 @@
                                                 <tbody>
                                                     <tr>
                                                          <td><b>Player ID</b></td>
-                                                        <td><input name="player_id" type="text" value="${player.player_id}" placeholder="" style="width: 90%" readonly=""/></td>
-
+                                                        <td><input disabled name="id" type="text" value="${player.player_id}" style="width: 90%"/></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Player Name</b></td>
-                                                        <td><input name="player_name" type="text" value="${player.player_name}" placeholder="" style="width: 90%"/></td>
+                                                        <td><input disabled name="player_name" type="text" value="${player.player_name}" style="width: 90%"/></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Game Can Play:</b></td>

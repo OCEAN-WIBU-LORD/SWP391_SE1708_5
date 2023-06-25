@@ -10,6 +10,7 @@ public class User_Details {
     private String password;
     private String link_image;
     private Double balance;
+    private String full_name;
 
     public User_Details() {
     }
@@ -24,7 +25,36 @@ public class User_Details {
         this.link_image = link_image;
         this.balance = balance;
     }
+    
+     public User_Details(String user_id, String gender, String phone_number, String email, String address, String password, String link_image, String full_name) {
+        this.user_id = user_id;
+        this.gender = gender;
+        this.phone_number = phone_number;
+        this.email = email;
+        this.address = address;
+        this.password = password;
+        this.link_image = link_image;
+        this.full_name = full_name;
+    }
+     
+      public User_Details(String user_id, String gender, String phone_number, String email, String address, String password, String link_image) {
+        this.user_id = user_id;
+        this.gender = gender;
+        this.phone_number = phone_number;
+        this.email = email;
+        this.address = address;
+        this.password = password;
+        this.link_image = link_image;
+    }
 
+      public String getFull_name() {
+        return full_name;
+    }
+
+    public void setFull_name(String full_name) {
+        this.full_name = full_name;
+    }
+    
     public String getUser_id() {
         return user_id;
     }
