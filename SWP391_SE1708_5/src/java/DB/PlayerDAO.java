@@ -308,8 +308,33 @@ public class PlayerDAO {
             // close connection
         } catch (Exception ex) {
             System.out.println("updatePlayer" + ex.getMessage());
+        } finally{
+            if (conn != null){
+                conn.close();
+            }
         }
 
+    }
+    
+     public void changeStatusPlayer(String playerId, int status) throws SQLException{
+        Connection conn = null;
+        try{
+            BaseDAO db = new BaseDAO();
+            // connnect to database 'testdb'
+            conn = db.getConnection();
+            // crate statement
+            PreparedStatement stmt = conn.prepareStatement(
+                    "update Player set status_player=? where player_id = ? ");
+            stmt.setInt(1, status);
+            stmt.setString(2, playerId);
+            stmt.executeUpdate();
+        }catch(Exception e){
+            System.out.println("change status player "+ e.getMessage());
+        }finally{
+            if (conn != null){
+                conn.close();
+            }
+        }
     }
 
     public void deletePlayer(String player_id) throws SQLException {

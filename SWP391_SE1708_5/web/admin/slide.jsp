@@ -37,8 +37,9 @@
                          data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Operation</h6>
-                            <a class="collapse-item ${addplayer}" href="addplayer">Manage player</a>
-                            <a class="collapse-item ${addgame}" href="addgametype">Manage User</a>
+                            <a class="collapse-item ${addplayer}" href="player">Manage Player</a>
+                            <a class="collapse-item ${manageUser}" href="manageUser">Manage User</a>
+                            <a class="collapse-item ${addgame}" href="addgametype">Manage Account</a>
                         </div>
                     </div>
                 </li>
@@ -58,6 +59,21 @@
                             <a class="collapse-item" href="utilities-border.html">Borders</a>
                             <a class="collapse-item" href="utilities-animation.html">Animations</a>
                             <a class="collapse-item" href="utilities-other.html">Other</a>
+                        </div>
+                    </div>
+                </li>
+                 <li class="nav-item active">
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+                       aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>Management Game</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                         data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Operation</h6>
+                            <a class="collapse-item " href="GameList">Manage Game</a>
+                            <a class="collapse-item " href="addGameType">Manage Game Type</a>
                         </div>
                     </div>
                 </li>
