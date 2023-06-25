@@ -313,6 +313,8 @@
                                                         <td>${o.income}</td>
                                                         <td><img style="max-width: 10%;" src="${o.link_image}" alt="alt"/></td>
                                                         <td>${o.status_player eq "1" ? "Enable" : "Disable"}</td>
+                                                        <td><a href="editplayer?player_id=${o.player_id}">edit</a>|<a href="#" onclick="deletePlayer(${o.player_id})">delete</a></td>
+                                                        <td>${o.status_player eq "1" ? "Enable" : "Disable"}</td>
                                                         <td><a href="changeStatus?id=${o.player_id}">Change status</a></td>
                                                         <td><a href="editplayer?player_id=${o.player_id}">Update</a></td>
                                                     </tr>

@@ -202,6 +202,7 @@
                                                         <td>${o.income}</td>
                                                         <td><img style="max-width: 10%;" src="${o.link_image}" alt="alt"/></td>
                                                         <td>${o.status_player eq "1" ? "Enable" : "Disable"}</td>
+                                                        <td><a href="editplayer?player_id=${o.player_id}">edit</a>|<a href="#" onclick="deletePlayer(${o.player_id})">delete</a></td>
                                                         <td><a href="changeStatus?id=${o.player_id}">Change status</a></td>
                                                         <td><a href="editplayer?player_id=${o.player_id}">Update</a></td>
                                                     </tr>
@@ -230,7 +231,7 @@
                                                 <tbody>
                                                     <tr>
                                                          <td><b>Player ID</b></td>
-                                                         <td><input disabled name="id" type="text" value="${player.player_id}" style="width: 90%"/></td>
+                                                        <td><input disabled name="id" type="text" value="${player.player_id}" style="width: 90%"/></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Player Name</b></td>
@@ -300,6 +301,12 @@
                                                                 <option value="1" <c:if test="${player.status_player eq 1}">selected</c:if>>Enable</option>
                                                                 <option value="0" <c:if test="${player.status_player ne 1}">selected</c:if>>Disable</option>
                                                             </select>
+                                                            <c:if test="${player.status_player eq 1}">
+                                                                <input name="status_player" type="checkbox"  checked="true"/>
+                                                            </c:if>
+                                                            <c:if test="${player.status_player ne 1}">
+                                                                <input name="status_player" type="checkbox" />
+                                                            </c:if>
                                                             </td>
                                                     </tr>
                                                     <tr>

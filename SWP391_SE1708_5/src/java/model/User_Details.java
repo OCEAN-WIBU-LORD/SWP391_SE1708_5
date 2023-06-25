@@ -9,12 +9,13 @@ public class User_Details {
     private String address;
     private String password;
     private String link_image;
+    private Double balance;
     private String full_name;
 
     public User_Details() {
     }
 
-    public User_Details(String user_id, String gender, String phone_number, String email, String address, String password, String link_image) {
+    public User_Details(String user_id, String gender, String phone_number, String email, String address, String password, String link_image, Double balance) {
         this.user_id = user_id;
         this.gender = gender;
         this.phone_number = phone_number;
@@ -22,9 +23,10 @@ public class User_Details {
         this.address = address;
         this.password = password;
         this.link_image = link_image;
+        this.balance = balance;
     }
-
-    public User_Details(String user_id, String gender, String phone_number, String email, String address, String password, String link_image, String full_name) {
+    
+     public User_Details(String user_id, String gender, String phone_number, String email, String address, String password, String link_image, String full_name) {
         this.user_id = user_id;
         this.gender = gender;
         this.phone_number = phone_number;
@@ -34,8 +36,18 @@ public class User_Details {
         this.link_image = link_image;
         this.full_name = full_name;
     }
+     
+      public User_Details(String user_id, String gender, String phone_number, String email, String address, String password, String link_image) {
+        this.user_id = user_id;
+        this.gender = gender;
+        this.phone_number = phone_number;
+        this.email = email;
+        this.address = address;
+        this.password = password;
+        this.link_image = link_image;
+    }
 
-    public String getFull_name() {
+      public String getFull_name() {
         return full_name;
     }
 
