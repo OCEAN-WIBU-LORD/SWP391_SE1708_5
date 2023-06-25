@@ -41,7 +41,7 @@
                             <li class="has-children">
                                 <a href="properties.html">MEMBER</a>
                                 <ul class="dropdown">
-                                    <li><a href="historybooking">HISTORY BOOKING</a></li>
+                                    <li><a href="usermainprofile#historybooking">HISTORY BOOKING</a></li>
                                     <li><a href="#">BENEFITS</a></li>
                                 </ul>
                             </li>

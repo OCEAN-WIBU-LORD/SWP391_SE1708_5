@@ -26,7 +26,7 @@ import model.User_Details;
  *
  * @author Acer
  */
-public class HistoryBookingServlet extends HttpServlet {
+public class UserMainProfileServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -89,9 +89,9 @@ public class HistoryBookingServlet extends HttpServlet {
              request.setAttribute("n", n);
              request.setAttribute("historyBooking", historyBooking);
              request.setAttribute("playerlist", playerlist);
-             request.getRequestDispatcher("common/historybooking.jsp").forward(request, response);
+             request.getRequestDispatcher("common/usermainprofile.jsp").forward(request, response);
         } catch (SQLException ex) {
-            System.out.println("doGetHistoryBooking" + ex.getMessage());;
+            System.out.println("doGetUserMainProfileServlet" + ex.getMessage());;
         }
 
 //        String player_id = request.getParameter("player_id");
@@ -164,7 +164,7 @@ public class HistoryBookingServlet extends HttpServlet {
 //                bddao.addBookingDetails(new Bookings(String.valueOf('0'), String.valueOf(acc_id), String.valueOf(player_id), String.valueOf(total_hour), String.valueOf(game_id)));
             PlayerDAO player = new PlayerDAO();
 //                movie.reduceTiket(player_id);
-            response.sendRedirect("historybooking?user_id=" + user_id);
+            response.sendRedirect("usermainprofile?user_id=" + user_id);
         } else {
             response.sendRedirect("login");
         }

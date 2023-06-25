@@ -318,6 +318,8 @@ ALTER TABLE booking
 ADD PRIMARY KEY (booking_id);
 alter table booking drop column booking_id;
 
-update booking set total_price = '600', date_booking ='2023-06-22' where user_id = 'duongdd123'and  total_hour ='1';
+update player set link_image = 'https://playerduo.net/api/upload-service/images/01d1e26f-ebf6-4aec-960c-a4edbee3b700__31460420-e049-11ed-a19f-23a3b10d190e__player_album.jpg'where player_id = 'trinhnt125';
 select * from booking;
 alter table booking ADD message text;
+
+

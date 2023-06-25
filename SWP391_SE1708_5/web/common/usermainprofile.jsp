@@ -425,16 +425,20 @@
             <section id="historybooking" class="historybooking">
                 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
                 <div class="container" style="margin-left: 0px; width: 100%" >
+                    <div class="section-title">
+                        <h2>History Booking</h2>
+
+                    </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="main-box clearfix">
+                            <div class="main-box clearfix" style="width: 2000px">
                                 <div class="table-responsive">
                                     <table class="table user-list" style="width: 2000px">
                                         <span>Total Booking: ${n}</span></br></br>
                                         <thead>
                                             <tr>
                                                 <th style="width: 150px; "><span>Player Image</span></th>
-                                                <th style="width: 350px;"><span>Player Name</span></th>
+                                                <th style="width: 400px;"><span>Player Name</span></th>
                                                 <th style="width: 150px;"><span>Date Booking</span></th>
                                                 <th style="width: 150px;" class="text-center"><span>Total Hour</span></th>
                                                 <th style="width: 150px;"><span>Money</span></th>
@@ -458,7 +462,7 @@
                                                     <td>
                                                         <c:forEach var="player" items="${playerlist}">
                                                             <c:if test="${player.player_id eq m.player_id}">
-                                                                <h1 class="">${player.getPlayer_name()}</h1>
+                                                                <h1 class="" style="font-size: 20px">${player.getPlayer_name()}</h1>
                                                                 <!--<span class="user-subhead">${player.getPlayer_name()}</span>-->
                                                                 <!--<img src="${m.getPlayer_id()}" alt="">-->
                                                                 Player Details:<a href="playerdetail?player_id=${m.player_id}" style="font-size: 20px">${m.getPlayer_id()}</a>
@@ -472,7 +476,7 @@
                                                         <span class="label label-default">${m.getTotal_hour()}</span>
                                                     </td>
                                                     <td>
-                                                        <a href="#">${m.getTotal_price()}</a>
+                                                        <a href="#">${m.getTotal_price()}</a>$
                                                     </td>
                                                     <td>
                                                         <c:forEach var="player" items="${playerlist}">
@@ -548,7 +552,7 @@
                             <div class="portfolio-wrap">
                                 <img src="images/portfolio-1.jpg" class="img-fluid" alt="">
                                 <div class="portfolio-links">
-                                    <a href="images/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
+                                    <a href="images/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
                                     <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
                                 </div>
                             </div>
@@ -844,14 +848,14 @@
         <footer id="footer">
             <div class="container">
                 <div class="copyright">
-                    &copy; Copyright <strong><span>iPortfolio</span></strong>
+                    &copy; Copyright <strong><span>Play2Together</span></strong>
                 </div>
                 <div class="credits">
                     <!-- All the links in the footer should remain intact. -->
                     <!-- You can delete the links only if you purchased the pro version. -->
                     <!-- Licensing information: https://bootstrapmade.com/license/ -->
                     <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
-                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                    <!--Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>-->
                 </div>
             </div>
         </footer><!-- End  Footer -->

@@ -85,8 +85,12 @@
         <servlet-class>controller.LeaderBoardServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>HistoryBookingServlet</servlet-name>
-        <servlet-class>controller.HistoryBookingServlet</servlet-class>
+        <servlet-name>UserMainProfileServlet</servlet-name>
+        <servlet-class>controller.UserMainProfileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChatServlet</servlet-name>
+        <servlet-class>controller.ChatServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -173,8 +177,12 @@
         <url-pattern>/leaderboard</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>HistoryBookingServlet</servlet-name>
-        <url-pattern>/historybooking</url-pattern>
+        <servlet-name>UserMainProfileServlet</servlet-name>
+        <url-pattern>/usermainprofile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChatServlet</servlet-name>
+        <url-pattern>/chat</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
