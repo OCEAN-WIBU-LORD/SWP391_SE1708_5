@@ -14,6 +14,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.User;
 import model.User_Details;
 
@@ -30,14 +32,19 @@ public class User_DetailsDAO {
         System.out.println(a.checkUser("duongdd123"));
     }
     
-    public String checkAdmin(String acc_id) throws SQLException {
+    public String getRole(String acc_id) throws SQLException {
         String role = "";
         try {
             BaseDAO db = new BaseDAO();
             // connnect to database 'testdb'
             conn = db.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("select r.role_name from(select ar.role_id from user a inner join user_role ar on a.user_id = ar.user_id where a.user_id = ?) as tb1 inner join role r on r.role_id = tb1.role_id");
+            PreparedStatement stmt = conn.prepareStatement(
+                    "select r.role_name " +
+                    "from user_details ud left join user_role ur on ud.user_id = ur.user_id " +
+                    "left join role r on ur.role_id = r.role_id " +
+                    "where ud.user_id = ?"
+            );
             stmt.setString(1, acc_id);
 
             // get data from table
@@ -46,7 +53,6 @@ public class User_DetailsDAO {
 
             while (rs.next()) {
                 role = rs.getString(1);
-
             }
             // close connection
 
@@ -92,7 +98,7 @@ public class User_DetailsDAO {
             // connnect to database 'testdb'
             conn = db.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User_Details where user_id = ? and password = ?");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User_Details where user_id like ? and password = ?");
             stmt.setString(1, user_id);
             stmt.setString(2, password);
 
@@ -220,6 +226,66 @@ public class User_DetailsDAO {
     }  
       
       
+    public ArrayList<User_Details> getAllUser(){
+        ArrayList<User_Details> listUser = new ArrayList<>();
+        try {
+            BaseDAO db = new BaseDAO();
+            // connnect to database 'testdb'
+            conn = db.getConnection();
+            // crate statement
+            PreparedStatement stmt = conn.prepareStatement(
+                    "select ud.*, u.full_name from user_details ud left join user u on ud.user_id = u.user_id left join user_role ur on ud.user_id = ur.user_id where ur.role_id=1"
+            );
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                listUser.add(new User_Details(
+                        rs.getString("user_id"), 
+                         rs.getString("gender"), 
+                         rs.getString("phone_number"), 
+                        rs.getNString("gmail"), 
+                        rs.getNString("address"), 
+                        rs.getString("password"), 
+                         rs.getString("link_image"), 
+                         rs.getString("full_name")
+                ));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(User_DetailsDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listUser;
+    }
       
-    
+    public User_Details getUserById(String user_id){
+        User_Details ud = new User_Details();
+        try {
+            BaseDAO db = new BaseDAO();
+            // connnect to database 'testdb'
+            conn = db.getConnection();
+            // crate statement
+            PreparedStatement stmt = conn.prepareStatement(
+                    "select ud.*, u.full_name from user_details ud "
+                            + "left join user u on ud.user_id = u.user_id "
+                            + "left join user_role ur on ud.user_id = ur.user_id "
+                            + "where ur.role_id=1 and ud.user_id = ?"
+            );
+            stmt.setString(1, user_id);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                ud = new User_Details(
+                        rs.getString("user_id"), 
+                         rs.getString("gender"), 
+                         rs.getString("phone_number"), 
+                        rs.getNString("gmail"), 
+                        rs.getNString("address"), 
+                        rs.getString("password"), 
+                         rs.getString("link_image"), 
+                         rs.getString("full_name")
+                );
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(User_DetailsDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ud;
+    }
 }

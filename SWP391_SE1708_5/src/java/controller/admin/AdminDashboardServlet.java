@@ -33,17 +33,15 @@ public class AdminDashboardServlet extends HttpServlet {
       @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+//        response.setContentType("text/html;charset=UTF-8");
           HttpSession session = request.getSession();
           Object obj = session.getAttribute("role");
           if(obj == null){
-              response.sendRedirect("./home");
-             
+              response.sendRedirect("login");
           }else{
               if(!obj.equals("admin")){
-                  response.sendRedirect("./home");
+                  response.sendRedirect("login");
               }
-               
               try {
             PlayerDAO mdao = new PlayerDAO();
             User_DetailsDAO udao = new User_DetailsDAO();
