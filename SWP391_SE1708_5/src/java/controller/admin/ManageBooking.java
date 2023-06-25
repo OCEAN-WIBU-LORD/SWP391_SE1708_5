@@ -4,21 +4,18 @@
  */
 package controller.admin;
 
-import DB.User_DetailsDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import model.User_Details;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author Cuthi
  */
-public class ManageUser extends HttpServlet {
+public class ManageBooking extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +34,10 @@ public class ManageUser extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ManageUser</title>");            
+            out.println("<title>Servlet ManageBooking</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ManageUser at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ManageBooking at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,18 +55,7 @@ public class ManageUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        User_DetailsDAO udDAO = new User_DetailsDAO();
-        ArrayList<User_Details> userList = udDAO.getAllUser();
-        request.setAttribute("n", userList.size());
-        request.setAttribute("userList", userList);
-        Object obj = request.getParameter("user_id");
-        if (obj != null){
-            User_Details ud = udDAO.getUserById(obj.toString());
-            request.setAttribute("user", ud);
-        }
-        request.getRequestDispatcher("manageUser.jsp").forward(request, response);
-        
+        processRequest(request, response);
     }
 
     /**
@@ -83,17 +69,7 @@ public class ManageUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        User_DetailsDAO udDAO = new User_DetailsDAO();
-        ArrayList<User_Details> userList = udDAO.getAllUser();
-        request.setAttribute("n", userList.size());
-        request.setAttribute("userList", userList);
-        Object obj = request.getParameter("user_id");
-        if (obj != null){
-            User_Details ud = udDAO.getUserById(obj.toString());
-            request.setAttribute("user", ud);
-        }
-        request.getRequestDispatcher("manageUser.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**

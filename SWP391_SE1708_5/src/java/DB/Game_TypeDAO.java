@@ -99,24 +99,70 @@ public class Game_TypeDAO {
     public void addNewGameType(String name) throws SQLException{
         Connection cnn=null;
         try {
-            System.out.println("5");
-            String str = "insert into game_type values (?,?)";
+            String str = "insert into game_type values (',',?)";
             BaseDAO db = new BaseDAO();
              cnn = db.getConnection();
-             System.out.println("6");
             PreparedStatement pstm = cnn.prepareStatement(str);
-            System.out.println("7");
             pstm.setString(1, name);
-            pstm.setString(2, name);
-            System.out.println("8");
             pstm.executeUpdate();
-            System.out.println("9");
         } catch (Exception e) {
             System.out.println("DeleteGame:" + e.getMessage());
         } finally{
-            System.out.println("10");
+            cnn.close();
+        }
+    }
+    
+    public void deleteGameType (String name) throws SQLException{
+        Connection cnn=null;
+        try {
+            String str = "delete from game_type where game_type = ?";
+            BaseDAO db = new BaseDAO();
+             cnn = db.getConnection();
+            PreparedStatement pstm = cnn.prepareStatement(str);
+            pstm.setString(1, name);
+            pstm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("DeleteGame:" + e.getMessage());
+        } finally{
             cnn.close();
         }
     }
      
+    public void addGame(String game_id, String game_type) throws SQLException{
+        Connection cnn=null;
+        try {
+            String str = "update set game_id=? where game_type = ?";
+            BaseDAO db = new BaseDAO();
+             cnn = db.getConnection();
+            PreparedStatement pstm = cnn.prepareStatement(str);
+            pstm.setString(1, game_id);
+            pstm.setString(2, game_type);
+            pstm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("DeleteGame:" + e.getMessage());
+        } finally{
+            cnn.close();
+        }
+    }
+    
+    public Game_Type getGameTypeByName(String game_type) throws SQLException{
+        Game_Type gt = new Game_Type();
+        Connection conn = null;
+        try {
+            BaseDAO db = new BaseDAO();
+            conn = db.getConnection();
+            // crate statement
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Game_Type where game_type = ?");
+            stmt.setString(1, game_type);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                gt = new Game_Type(rs.getString("game_id"), rs.getString("game_type"));
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally{
+            conn.close();
+        }
+        return gt; 
+    }
 }

@@ -20,7 +20,7 @@ import model.Game;
 public class GameDAO {
 
     BaseDAO db = new BaseDAO();
-    Connection cnn = db.getConnection();
+    Connection cnn = null;
     ResultSet rs;
     PreparedStatement pstm;
 
@@ -59,6 +59,7 @@ public class GameDAO {
 
     public void updateGame(Game a) {
         try {
+            cnn = db.getConnection();
             String strUpdate = "update game "
                     + "set game_id= ? , "
                     + "game_name = ? ,"
@@ -132,6 +133,25 @@ public class GameDAO {
             String strSelect = "select * from game where game_id=?";
             pstm = cnn.prepareStatement(strSelect);
             pstm.setString(1, id);
+            rs = pstm.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("checkExist: " + e.getMessage());
+        }
+        return false;
+    }
+    
+     public boolean checkGameNameExist(String name) {
+        if (name == null || name.isEmpty()) {
+            return false;
+        }
+        try {
+            cnn = db.getConnection();
+            String strSelect = "select * from game where game_name=?";
+            pstm = cnn.prepareStatement(strSelect);
+            pstm.setString(1, name);
             rs = pstm.executeQuery();
             if (rs.next()) {
                 return true;

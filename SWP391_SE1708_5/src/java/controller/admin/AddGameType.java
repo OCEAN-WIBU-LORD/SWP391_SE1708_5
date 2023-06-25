@@ -61,7 +61,6 @@ public class AddGameType extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                        request.setAttribute("mess", "This game type has existed!");
         try {
             Game_TypeDAO gameType = new Game_TypeDAO();
             request.setAttribute("listGameType", gameType.getAllGameType());
@@ -83,19 +82,13 @@ public class AddGameType extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Game_TypeDAO game = new Game_TypeDAO();
-        String newName = (String) request.getAttribute("nameOfGameType");
-                    request.setAttribute("mess", "BHNJK");
-                    System.out.println("1");
+        String newName = (String) request.getParameter("name_type");
         try{
             if (game.checkGameType(newName) == false){
-                System.out.println("2");
                 game.addNewGameType(newName);
             }else{
-                System.out.println("3");
                 request.setAttribute("mess", "This game type has existed!");
             }
-            System.out.println("4");
-            request.setAttribute("mess", newName);
 
             request.setAttribute("listGameType", game.getAllGameType());
         } catch (SQLException ex) {

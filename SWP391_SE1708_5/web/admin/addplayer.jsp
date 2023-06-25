@@ -264,6 +264,17 @@
                                     <div class="card-header py-3">
                                         <h6 class="m-0 font-weight-bold text-primary">Player List</h6>
                                     </div>
+                                    <div class="card-header py-3">
+                                        <form id="myFormAccPerPage" action="player">
+                                            <h6 class="m-0 font-weight-bold text-primary">Account per page</h6>
+                                            <select name="accPerPage" onchange="submitForm()">
+                                            <option value="5" <c:if test="${5==page.getItemPerPage()}" >selected</c:if>>5</option>
+                                            <option value="10" <c:if test="${10==page.getItemPerPage()}" >selected</c:if>>10</option>
+                                            <option value="15" <c:if test="${15==page.getItemPerPage()}" >selected</c:if>>15</option>
+                                            <option value="20" <c:if test="${20==page.getItemPerPage()}" >selected</c:if>>20</option>
+                                        </select>
+                                        </form>
+                                    </div>
                                     <div class="card-body"> 
 
                                         <table class="table table-hover">
@@ -276,6 +287,7 @@
                                                     <th>Income</th>
                                                     <th>Link Image</th>
                                                     <th>Status</th>
+                                                    <th>Action</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
@@ -301,6 +313,7 @@
                                                         <td>${o.income}</td>
                                                         <td><img style="max-width: 10%;" src="${o.link_image}" alt="alt"/></td>
                                                         <td>${o.status_player eq "1" ? "Enable" : "Disable"}</td>
+                                                        <td><a href="changeStatus?id=${o.player_id}">Change status</a></td>
                                                         <td><a href="editplayer?player_id=${o.player_id}">Update</a></td>
                                                     </tr>
                                                 </c:forEach>
@@ -455,6 +468,9 @@
                                                                     window.location.href = '../deletemovie?movie_id=' + id;
                                                                 }
                                                             }
+    function submitForm() {
+        document.getElementById("myFormAccPerPage").submit();
+    }
     </script>
 
 </html>

@@ -154,6 +154,15 @@
                                     <div class="card-header py-3">
                                         <h6 class="m-0 font-weight-bold text-primary">Player List</h6>
                                     </div>
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Account per page</h6>
+                                        <select name="accPerPage">
+                                            <option value="5">5</option>
+                                            <option value="10" selected>10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                        </select>
+                                    </div>
                                     <div class="card-body"> 
 
                                         <table class="table table-hover">

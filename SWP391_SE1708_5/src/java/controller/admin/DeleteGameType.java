@@ -4,21 +4,22 @@
  */
 package controller.admin;
 
-import DB.User_DetailsDAO;
+import DB.Game_TypeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.User_Details;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Cuthi
  */
-public class ManageUser extends HttpServlet {
+public class DeleteGameType extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +38,10 @@ public class ManageUser extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ManageUser</title>");            
+            out.println("<title>Servlet DeleteGameType</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ManageUser at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeleteGameType at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,18 +59,15 @@ public class ManageUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        User_DetailsDAO udDAO = new User_DetailsDAO();
-        ArrayList<User_Details> userList = udDAO.getAllUser();
-        request.setAttribute("n", userList.size());
-        request.setAttribute("userList", userList);
-        Object obj = request.getParameter("user_id");
-        if (obj != null){
-            User_Details ud = udDAO.getUserById(obj.toString());
-            request.setAttribute("user", ud);
+        try {
+            //        processRequest(request, response);
+            String gameType = request.getParameter("id").toString();
+            Game_TypeDAO dao = new Game_TypeDAO();
+            dao.deleteGameType(gameType);
+        } catch (SQLException ex) {
+            Logger.getLogger(DeleteGameType.class.getName()).log(Level.SEVERE, null, ex);
         }
-        request.getRequestDispatcher("manageUser.jsp").forward(request, response);
-        
+        response.sendRedirect("addGameType");
     }
 
     /**
@@ -83,17 +81,7 @@ public class ManageUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        User_DetailsDAO udDAO = new User_DetailsDAO();
-        ArrayList<User_Details> userList = udDAO.getAllUser();
-        request.setAttribute("n", userList.size());
-        request.setAttribute("userList", userList);
-        Object obj = request.getParameter("user_id");
-        if (obj != null){
-            User_Details ud = udDAO.getUserById(obj.toString());
-            request.setAttribute("user", ud);
-        }
-        request.getRequestDispatcher("manageUser.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**

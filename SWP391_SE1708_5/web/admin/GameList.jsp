@@ -165,7 +165,7 @@
                         <form action="addGame" method="get" class="h3 mb-4 text-gray-800">
                             <button type="submit" class="btn btn-success">Add Game</button>
                         </form>
-                        <form action="player" method="get" class="h3 mb-4 text-gray-800">
+                        <form action="addGameType" method="get" class="h3 mb-4 text-gray-800">
                             <button type="submit" class="btn btn-success">Add Game Type</button>
                         </form>
 
@@ -233,7 +233,7 @@
 
 
                                                                 <c:forEach items="${gameList}" var="s">
-                                                                    <input name="${s.cate_name}" type="checkbox"  placeholder="" /> ${s.cate_name}<br>
+                                                                    <input name="${s.id}" type="checkbox"  placeholder="" /> ${s.name}<br>
                                                                 </c:forEach>
 
 

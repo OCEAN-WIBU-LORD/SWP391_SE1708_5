@@ -69,7 +69,7 @@ public class EditPlayerServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            String player_id = request.getParameter("id").toString();
+            String player_id = request.getParameter("id");
 //            String player_name = request.getParameter("player_name");
 //            String description = request.getParameter("description");
 //            String gender = request.getParameter("gender");
@@ -80,7 +80,7 @@ public class EditPlayerServlet extends HttpServlet {
 //            String password = request.getParameter("password");
 //            String link_image = request.getParameter("link_image");
 //            String income = request.getParameter("income");
-            String status_player = request.getParameter("status_player").toString();
+            String status_player = request.getParameter("status_player");
 
             Game_TypeDAO cdao = new Game_TypeDAO();
             PlayerDAO playerDao = new PlayerDAO();

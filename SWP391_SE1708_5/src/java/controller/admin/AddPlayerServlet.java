@@ -61,7 +61,12 @@ public class AddPlayerServlet extends HttpServlet {
                 } catch (Exception e) {
                     page = 1;
                 }
-                Paging paging = new Paging(page, playerList.size(), 10);
+                Object itemPerPage = request.getParameter("accPerPage");
+                int accPerPage = 10;
+                if (itemPerPage != null){
+                    accPerPage = Integer.parseInt(itemPerPage.toString());
+                }
+                Paging paging = new Paging(page, playerList.size(), accPerPage);
                 List<Player> listPlayerPage = new ArrayList<>();
                 for (int i=paging.getStartItem(); i<= paging.getEndItem(); i++){
                     listPlayerPage.add(playerList.get(i));

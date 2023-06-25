@@ -232,24 +232,20 @@
                                             <table class="table table-hover">
 
                                                 <tbody>
-                                                        <tr>
-                                                            <td>ID: </td>
-                                                            <td><input type="text" id="id" name="id"/></td>
-                                                        </tr>
                                                     <tr>
                                                         <td><b>Name</b></td>
-                                                        <td><input name="name" type="text" placeholder="" style="width: 90%"/></td>
+                                                        <td><input name="name_game" type="text" style="width: 90%"/></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Description:</b></td>
-                                                        <td><input name="description" type="text" placeholder="" style="width: 90%"/></td>
+                                                        <td><textarea name="description" type="text" style="width: 90%"></textarea></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Game Type</b></td>
                                                         <td>
                                                             <select name="game_type">
                                                                 <c:forEach items="${listGameType}" var="gameType">
-                                                                    <option value="${gameType.game_id}">${gameType.game_type}</option>
+                                                                    <option value="${gameType.game_type}">${gameType.game_type}</option>
                                                                 </c:forEach>
                                                             </select>
                                                             </div>

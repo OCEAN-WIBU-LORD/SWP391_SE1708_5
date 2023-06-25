@@ -101,6 +101,7 @@
                                                     <c:forEach items="${listGameType}" var="g">
                                                         <tr>
                                                         <td>${g.game_type}</td>
+                                                        <td><a href="deleteGameType?id=${g.game_type}">Delete</a></td>
                                                         </tr>
                                                     </c:forEach>
 
@@ -130,7 +131,7 @@
                                                     
                                                     <tr>
                                                         <td><b>Game Type</b></td>
-                                                        <td><input name="nameOfGameType" type="text" placeholder="" style="width: 90%"/></td>
+                                                        <td><input name="name_type" type="text"style="width: 90%"/></td>
                                                     </tr>
                                                     
                                                     <tr>
