@@ -4,24 +4,23 @@
  */
 package controller.admin;
 
-import DB.Game_TypeDAO;
+import DB.PlayerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import model.Player;
 
 /**
  *
  * @author Cuthi
  */
-@WebServlet(name = "AddGameType", urlPatterns = {"/admin/addGameType"})
-public class AddGameType extends HttpServlet {
+public class ChangeStatusAcc extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +39,10 @@ public class AddGameType extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddGameType</title>");            
+            out.println("<title>Servlet ChangeStatusAcc</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddGameType at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ChangeStatusAcc at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,13 +60,16 @@ public class AddGameType extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                        request.setAttribute("mess", "This game type has existed!");
         try {
-            Game_TypeDAO gameType = new Game_TypeDAO();
-            request.setAttribute("listGameType", gameType.getAllGameType());
-            request.getRequestDispatcher("addgametype.jsp").forward(request, response);
+//            processRequest(request, response);
+            String id = request.getParameter("id").toString();
+            PlayerDAO playerDao = new PlayerDAO();
+            Player p = playerDao.getPlayerByID(id);
+            String status = (p.getStatus_player().equals("0"))? "1":"0";
+            playerDao.changeStatusPlayer(id, Integer.parseInt(status));
+            response.sendRedirect("player");
         } catch (SQLException ex) {
-            Logger.getLogger(AddGameType.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ChangeStatusAcc.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -82,28 +84,18 @@ public class AddGameType extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Game_TypeDAO game = new Game_TypeDAO();
-        String newName = (String) request.getAttribute("nameOfGameType");
-                    request.setAttribute("mess", "BHNJK");
-                    System.out.println("1");
-        try{
-            if (game.checkGameType(newName) == false){
-                System.out.println("2");
-                game.addNewGameType(newName);
-            }else{
-                System.out.println("3");
-                request.setAttribute("mess", "This game type has existed!");
-            }
-            System.out.println("4");
-            request.setAttribute("mess", newName);
-
-            request.setAttribute("listGameType", game.getAllGameType());
+        processRequest(request, response);
+         try {
+            processRequest(request, response);
+            String id = request.getParameter("id").toString();
+            PlayerDAO playerDao = new PlayerDAO();
+            Player p = playerDao.getPlayerByID(id);
+            String status = (p.getStatus_player().equals("0"))? "1":"0";
+            playerDao.changeStatusPlayer(id, Integer.parseInt(status));
+            response.sendRedirect("player");
         } catch (SQLException ex) {
-                        request.setAttribute("mess", ex.getMessage());
-            Logger.getLogger(AddGameType.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ChangeStatusAcc.class.getName()).log(Level.SEVERE, null, ex);
         }
-        request.getRequestDispatcher("addgametype.jsp").forward(request, response);
-
     }
 
     /**

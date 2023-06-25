@@ -99,15 +99,22 @@ public class Game_TypeDAO {
     public void addNewGameType(String name) throws SQLException{
         Connection cnn=null;
         try {
-            String str = "insert into game_type values (',',?)";
+            System.out.println("5");
+            String str = "insert into game_type values (?,?)";
             BaseDAO db = new BaseDAO();
              cnn = db.getConnection();
+             System.out.println("6");
             PreparedStatement pstm = cnn.prepareStatement(str);
+            System.out.println("7");
             pstm.setString(1, name);
+            pstm.setString(2, name);
+            System.out.println("8");
             pstm.executeUpdate();
+            System.out.println("9");
         } catch (Exception e) {
             System.out.println("DeleteGame:" + e.getMessage());
         } finally{
+            System.out.println("10");
             cnn.close();
         }
     }

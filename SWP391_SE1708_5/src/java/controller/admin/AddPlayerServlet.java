@@ -16,12 +16,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Player;
 import model.Game;
 import model.Game_Type;
+import model.Paging;
 
 /**
  *
@@ -35,37 +37,45 @@ public class AddPlayerServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
           Object obj = session.getAttribute("role");
-          if(obj == null){
-              response.sendRedirect("Admin");
+          if(obj == null || !obj.equals("admin")){
+              response.sendRedirect("login");
              
           }else{
-              if(!obj.equals("admin")){
-                  response.sendRedirect("Admin");
-              }
               String updaters = request.getParameter("updaters");
-        if(updaters != null){
-            request.setAttribute("updaters", "true");
-        }
+            if(updaters != null){
+                request.setAttribute("updaters", "true");
+            }
         try {
             Game_TypeDAO cdao = new Game_TypeDAO();
             PlayerDAO mdao = new PlayerDAO();
             List<Player> playerList = mdao.getAllPlayer();
-            String m = "oke";
             String n = String.valueOf(playerList.size());
-            
-
-            request.setAttribute("m", m);
+            Object currentPage = request.getParameter("paging");
             request.setAttribute("n", n);
-            request.setAttribute("playerList", playerList);
-            response.getWriter().print("ddddsss");
-
-            request.getRequestDispatcher("addplayer.jsp").forward(request, response);
+            int page =1;
+            if (currentPage == null){
+                response.sendRedirect("player?paging=1");
+            } else {
+                try {
+                    page = Integer.parseInt(currentPage.toString());
+                } catch (Exception e) {
+                    page = 1;
+                }
+                Paging paging = new Paging(page, playerList.size(), 10);
+                List<Player> listPlayerPage = new ArrayList<>();
+                for (int i=paging.getStartItem(); i<= paging.getEndItem(); i++){
+                    listPlayerPage.add(playerList.get(i));
+                }
+                request.setAttribute("playerList", listPlayerPage);
+                request.setAttribute("page", paging);
+                request.setAttribute("currentPage", page);
+                request.getRequestDispatcher("addplayer.jsp").forward(request, response);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(AddPlayerServlet.class.getName()).log(Level.SEVERE, null, ex);
              response.getWriter().print("something wrong");
         }
-        response.getWriter().print("ddd");
-          }
+        }
         
     }
 

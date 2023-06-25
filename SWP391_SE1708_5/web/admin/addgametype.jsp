@@ -123,7 +123,7 @@
                                         <h6>${mess}</h6>
                                     </div>
                                     <div class="card-body">
-                                        <form action="addGameType" method="POST">
+                                        <form action="addGameType" method="post">
                                             <table class="table table-hover">
 
                                                 <tbody>
@@ -135,7 +135,7 @@
                                                     
                                                     <tr>
                                                         <td></td>
-                                                        <td><button type="submit" class="btn btn-success">ADD</button></td>
+                                                        <td><button type="submit">ADD</button></td>
 
                                                     </tr>
 

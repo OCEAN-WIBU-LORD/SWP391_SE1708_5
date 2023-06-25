@@ -280,7 +280,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <!--<a>${m}</a>-->
                                             Total Player: <a>${n}</a>
 
                                                 <c:forEach items="${playerList}" var="o">
@@ -305,13 +304,20 @@
                                                         <td><a href="editplayer?player_id=${o.player_id}">Update</a></td>
                                                     </tr>
                                                 </c:forEach>
-
-
                                             </tbody>
                                         </table>
-
-
                                     </div>
+                                            <div style="text-align: center;">
+                                                <table>
+                                                    <tr>
+                                                        <c:forEach begin="1" end="${page.getTottalPage()}" var="i">
+                                                            <td style="border: 1px solid black">
+                                                                <a href="player?paging=${i}" <c:if test="${i==currentPage}" >style="color:red;"</c:if> >${i}</a>
+                                                            </td>
+                                                        </c:forEach>
+                                                    </tr>
+                                                </table>
+                                            </div>
                                 </div>
 
 
@@ -324,7 +330,7 @@
                                         <h6 class="m-0 font-weight-bold text-primary">Player</h6>
                                     </div>
                                     <div class="card-body">
-                                        <form action="addplayer" method="post">
+                                        <form action="editplayer" method="post">
                                             <table class="table table-hover">
 
                                                 <tbody>
