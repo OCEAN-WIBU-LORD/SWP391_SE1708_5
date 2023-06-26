@@ -40,10 +40,11 @@ public class ProfileController extends HttpServlet {
         String address = request.getParameter("address");
         String password = request.getParameter("password");
         String linkImage = request.getParameter("linkImage");
+        String description = request.getParameter("description");
         UserDAO udao = new UserDAO();
         if (udao.checkUser(id) != false) {
             User user = new User(id, fullName);
-            User_Details User_Details = new User_Details(id, gender, phoneNumber, email, address, password, linkImage,Double.NaN);
+            User_Details User_Details = new User_Details(id, gender, phoneNumber, email, address, password, linkImage,Double.NaN,description);
             udao.updateUserprofile(User_Details, user);
         }
         response.sendRedirect("home.jsp");

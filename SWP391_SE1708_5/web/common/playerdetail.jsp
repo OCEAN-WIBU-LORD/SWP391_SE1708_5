@@ -106,6 +106,9 @@
                         <p class="text-black-50">
                             <b>Phone Number: </b>${player.phone_number}
                         </p>
+                        <p class="text-black-50">
+                            <b>Price Per hour: </b>${player.income} $
+                        </p>
 
                         <p class="text-black-50">
                             <b>Number of Stars: 

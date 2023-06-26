@@ -57,6 +57,10 @@
         <servlet-class>controller.admin.DeletePlayerServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>DeleteBookingServlet</servlet-name>
+        <servlet-class>controller.admin.DeleteBookingServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>GameList</servlet-name>
         <servlet-class>controller.admin.GameListServlet</servlet-class>
     </servlet>
@@ -147,6 +151,10 @@
     <servlet-mapping>
         <servlet-name>DeletePlayerServlet</servlet-name>
         <url-pattern>/deleteplayer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteBookingServlet</servlet-name>
+        <url-pattern>/deletebooking</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GameList</servlet-name>

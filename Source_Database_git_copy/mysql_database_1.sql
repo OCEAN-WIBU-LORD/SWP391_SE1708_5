@@ -340,6 +340,43 @@ INNER JOIN (
   FROM booking
   GROUP BY player_id
   ORDER BY booking_count DESC
-  LIMIT 1
+  LIMIT 3
 ) b ON p.player_id = b.player_id;
 
+SELECT p.player_id, p.player_name, b.total_money_booking, p.link_image
+FROM player p
+INNER JOIN (
+  SELECT player_id, SUM(total_price) AS total_money_booking
+  FROM booking
+  GROUP BY player_id
+  ORDER BY total_money_booking DESC
+  LIMIT 3
+) b ON p.player_id = b.player_id;
+
+select * from player;
+select * from user_details;
+select * from booking;
+
+SELECT u.user_id, u.full_name, b.total_hour_booking
+FROM user u
+INNER JOIN (
+  SELECT user_id, SUM(total_hour) AS total_hour_booking
+  FROM booking
+  GROUP BY user_id
+  ORDER BY total_hour_booking DESC
+  LIMIT 3
+) b ON u.user_id = b.user_id;
+
+
+select SUM(total_hour) as total_hour_booking from booking where user_id = 'duongdd123';
+
+
+SELECT p.player_id, p.player_name, p.phone_number
+FROM player p
+INNER JOIN (
+  SELECT user_id, COUNT(*) AS booking_count
+  FROM booking
+  GROUP BY user_id
+  ORDER BY booking_count DESC
+  LIMIT 3
+) b ON p.player_id = b.player_id;

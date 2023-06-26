@@ -54,7 +54,7 @@ public class UserDAO {
             st.setString(1, userID);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                return new User_Details(userID, query, query, query, query, userID, userID, Double.NaN);
+                return new User_Details(userID, query, query, query, query, userID, userID, Double.NaN,userID);
             }
         } catch (SQLException e) {
         }

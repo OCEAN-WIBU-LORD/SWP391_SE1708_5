@@ -238,10 +238,11 @@ h6 {
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
+
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("images/hero-bg.jpg") top center;
+  background: url("https://images.hdqwalls.com/wallpapers/snow-mountains-landscape-4k-q5.jpg") top center;
   background-size: cover;
 }
 
@@ -284,7 +285,7 @@ h6 {
   border-bottom: 3px solid #149ddd;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 0px) {
   #hero {
     background-attachment: fixed;
   }

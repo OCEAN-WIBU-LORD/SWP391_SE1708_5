@@ -63,6 +63,7 @@ public class PlayerDAO {
         }
         return list;
     }
+
     public List<Player> getTop3BestBookingPlayer() {
         List<Player> list = null;
         Connection conn = null;
@@ -72,7 +73,61 @@ public class PlayerDAO {
             // connnect to database 'testdb'
             conn = db.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("select * from Player m order by m.num_of_star desc limit 20");
+            PreparedStatement stmt = conn.prepareStatement("SELECT p.player_id, p.player_name, p.phone_number\n"
+                    + "FROM player p\n"
+                    + "INNER JOIN (\n"
+                    + "  SELECT player_id, COUNT(*) AS booking_count\n"
+                    + "  FROM booking\n"
+                    + "  GROUP BY player_id\n"
+                    + "  ORDER BY booking_count DESC\n"
+                    + "  LIMIT 3\n"
+                    + ") b ON p.player_id = b.player_id;");
+
+            // get data from table
+            ResultSet rs = stmt.executeQuery();
+            // show data
+            list = new ArrayList<>();
+            while (rs.next()) {
+                Player a = null;
+                a = new Player(
+                        rs.getString("player_id"),
+                        rs.getNString("player_name"),
+                        rs.getString("gender"),
+                        rs.getString("phone_number"),
+                        rs.getInt("num_of_star"),
+                        rs.getString("password"),
+                        rs.getString("link_image"),
+                        rs.getDouble("income"),
+                        rs.getString("status_player"),
+                        rs.getString("description"));
+                list.add(a);
+            }
+            // close connection
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<Player> getTop3BestIncomePlayer() {
+        List<Player> list = null;
+        Connection conn = null;
+
+        try {
+            BaseDAO db = new BaseDAO();
+            // connnect to database 'testdb'
+            conn = db.getConnection();
+            // crate statement
+            PreparedStatement stmt = conn.prepareStatement("SELECT p.player_id, p.player_name, b.total_money_booking, p.link_image\n"
+                    + "FROM player p\n"
+                    + "INNER JOIN (\n"
+                    + "  SELECT player_id, SUM(total_price) AS total_money_booking\n"
+                    + "  FROM booking\n"
+                    + "  GROUP BY player_id\n"
+                    + "  ORDER BY total_money_booking DESC\n"
+                    + "  LIMIT 3\n"
+                    + ") b ON p.player_id = b.player_id;");
 
             // get data from table
             ResultSet rs = stmt.executeQuery();
@@ -139,7 +194,7 @@ public class PlayerDAO {
         return list;
     }
 
-    public ArrayList<Player> searchPlayer(String search)  {
+    public ArrayList<Player> searchPlayer(String search) {
         ArrayList<Player> player = null;
         Connection conn = null;
         try {
@@ -171,7 +226,7 @@ public class PlayerDAO {
         return null;
 
     }
-    
+
     public ArrayList<Player> searchPlayer1(String search) throws SQLException {
         ArrayList<Player> player = new ArrayList<Player>();
         Connection conn = null;
@@ -197,7 +252,7 @@ public class PlayerDAO {
                         rs.getString("description"));
                 player.add(a);
             }
-                return player;
+            return player;
         } catch (Exception e) {
             System.out.println("searchMovie" + e.getMessage());
         }
@@ -366,7 +421,7 @@ public class PlayerDAO {
             // close connection
 
         } catch (Exception ex) {
-             System.out.println("getPlayerDetails" + ex.getMessage());
+            System.out.println("getPlayerDetails" + ex.getMessage());
         } finally {
             conn.close();
         }
@@ -390,7 +445,7 @@ public class PlayerDAO {
         }
         return null;
     }
-    
+
     public Double getIncomePlayerById(String player_id) {
         Double money;
         Connection conn = null;
@@ -405,7 +460,7 @@ public class PlayerDAO {
                 return money;
             }
         } catch (Exception ex) {
-             System.out.println("getIncomePlayerById" + ex.getMessage());
+            System.out.println("getIncomePlayerById" + ex.getMessage());
         }
         return 0.0;
     }

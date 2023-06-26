@@ -7,6 +7,8 @@ package controller;
 
 import DB.BookingDAO;
 import DB.PlayerDAO;
+import DB.UserDAO;
+import DB.User_DetailsDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -20,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Bookings;
 import model.Player;
+import model.User;
 import model.User_Details;
 
 /**
@@ -72,6 +75,7 @@ public class UserMainProfileServlet extends HttpServlet {
         String player_id = request.getParameter("player_id");
             PlayerDAO mdao = new PlayerDAO();
             Player player = mdao.getPlayerByID(player_id);
+            UserDAO u = new UserDAO();
 //        if(!bookingrs.equals("")){
 //            request.setAttribute("bookingrs", "true");
 //        }
@@ -82,11 +86,19 @@ public class UserMainProfileServlet extends HttpServlet {
         try {
          User_Details account = (User_Details) obj_acc;
         String user_id = account.getUser_id() + "";
+         
+         String username = u.getUserName(user_id);
+         request.setAttribute("username", username);
         BookingDAO bddao = new BookingDAO();
             List<Bookings> historyBooking = bddao.bookingList(user_id);
             List<Player> playerlist = mdao.getAllPlayer();
             int n = historyBooking.size();
+            String m = u.getTotalHour(user_id);
+            String totalmoney = u.getTotalMoneySpend(user_id);
              request.setAttribute("n", n);
+             request.setAttribute("m", m);
+             request.setAttribute("totalmoney", totalmoney);
+             request.setAttribute("account", account);
              request.setAttribute("historyBooking", historyBooking);
              request.setAttribute("playerlist", playerlist);
              request.getRequestDispatcher("common/usermainprofile.jsp").forward(request, response);
@@ -137,6 +149,7 @@ public class UserMainProfileServlet extends HttpServlet {
         
         Object obj_acc = session.getAttribute("usercurrent");
         PlayerDAO m = new PlayerDAO();
+        User_DetailsDAO udao = new User_DetailsDAO();
         if (obj_acc != null) {
             User_Details account = (User_Details) obj_acc;
 //            String game_id = request.getParameter("game_id");
@@ -147,6 +160,14 @@ public class UserMainProfileServlet extends HttpServlet {
             String player_name = m.getPlayerNameById(player_id);
             Double money = m.getIncomePlayerById(player_id)*Double.valueOf(total_hour);
             String money2 = String.valueOf(money);
+            Double money4 =  account.getBalance();
+            if(money4 <= 0 || money4 < money){
+                try (PrintWriter out = response.getWriter()) {
+                out.print("Please deposit more money into the system Account!!");
+                return;
+            }
+            }
+            Double money3 = money4 - money;
 //            String total_cost = request.getParameter("result");
 //            Double total_cost2 = Double.parseDouble(total_cost);
             if(user_id == ""){
@@ -156,6 +177,7 @@ public class UserMainProfileServlet extends HttpServlet {
             //                BookingDAO bdao = new BookingDAO();
                 BookingDAO bddao = new BookingDAO();
             try {
+                udao.reduceBalance(user_id, money3);
                 bddao.addBooking(new Bookings(String.valueOf(user_id), String.valueOf(player_id), String.valueOf(total_hour), String.valueOf(game_id),money,"",String.valueOf(message)));
 //                bddao.addBooking(new Bookings("duongdd123", "chanbaby95", "5", "1",4000,""));
             } catch (SQLException ex) {

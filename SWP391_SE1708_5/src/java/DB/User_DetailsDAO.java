@@ -101,7 +101,7 @@ public class User_DetailsDAO {
             // show data
 
             while (rs.next()) {
-                u = new User_Details(rs.getString("user_id"), rs.getString("gender"), rs.getString("phone_number"), rs.getNString("gmail"), rs.getNString("address"), rs.getString("password"), rs.getString("link_image"),rs.getDouble("balance"));
+                u = new User_Details(rs.getString("user_id"), rs.getString("gender"), rs.getString("phone_number"), rs.getNString("gmail"), rs.getNString("address"), rs.getString("password"), rs.getString("link_image"),rs.getDouble("balance"), rs.getString("description"));
 
             }
             // close connection
@@ -187,7 +187,7 @@ public class User_DetailsDAO {
             list = new ArrayList<>();
             while (rs.next()) {
                 User_Details a = null;
-                a = new User_Details(rs.getString("user_id"), rs.getString("gender"), rs.getString("phone_number"), rs.getNString("gmail"), rs.getNString("address"), rs.getString("password"), rs.getString("link_image"),rs.getDouble("balance"));
+                a = new User_Details(rs.getString("user_id"), rs.getString("gender"), rs.getString("phone_number"), rs.getNString("gmail"), rs.getNString("address"), rs.getString("password"), rs.getString("link_image"),rs.getDouble("balance"), rs.getString("description"));
                 list.add(a);
             }
             // close connection
@@ -218,6 +218,21 @@ public class User_DetailsDAO {
              System.out.println("updateAccount" + ex.getMessage());
         }
     }  
+
+    public void reduceBalance(String user_id, Double money3) {
+        try {
+
+            BaseDAO db = new BaseDAO();
+            // connnect to database 'testdb'
+            conn = db.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("Update User_Details set balance =? WHERE user_id= ?");
+            stmt.setDouble(1, money3);
+            stmt.setString(2, user_id);
+            stmt.executeUpdate();
+        } catch (Exception ex) {
+             System.out.println("reduceBalance" + ex.getMessage());
+        }
+    }
       
       
       

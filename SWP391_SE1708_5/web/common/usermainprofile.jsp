@@ -226,10 +226,10 @@
             <div class="d-flex flex-column">
 
                 <div class="profile">
-                    <img src="images/profile-img.jpg" alt="" class="img-fluid rounded-circle">
-                    <h1 class="text-light"><a href="index.html">Alex Smith</a></h1>
+                    <img src="https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/343340985_609038264590654_7861074615788473177_n.jpg?_nc_cat=110&cb=99be929b-59f725be&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=2X-baBqp4vIAX9nxCVH&_nc_ht=scontent.fhan2-4.fna&oh=00_AfBVK2EH5AmTvyA7Z7VJalAAcqjZUbjwvDA9lUHlRjFQ3w&oe=649E389A" alt="" class="img-fluid rounded-circle">
+                    <h1 class="text-light"><a href="index.html">${username}</a></h1>
                     <div class="social-links mt-3 text-center">
-                        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                        <a href="home" class="twitter"><i class="bx bxl-twitter"></i></a>
                         <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
                         <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
                         <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
@@ -249,15 +249,17 @@
                 </nav><!-- .nav-menu -->
             </div>
         </header><!-- End Header -->
-
+        
         <!-- ======= Hero Section ======= -->
+        
         <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
             <div class="hero-container" data-aos="fade-in">
-                <h1>Alex Smith</h1>
-                <p>I'm <span class="typed" data-typed-items="Gamer, Player, Co-Player, Photographer"></span></p>
+                
+                <h1>${username}</h1>
+                <p>I'm <span class="typed" data-typed-items="Gamer, Player, Co-Player, Web Designer"></span></p>
             </div>
         </section><!-- End Hero -->
-
+        
         <main id="main">
 
             <!-- ======= About Section ======= -->
@@ -266,15 +268,15 @@
 
                     <div class="section-title">
                         <h2>About</h2>
-                        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                        <p>Exploring forests, hiking trails, or camping under starlit skies rejuvenates my spirit and nourishes my soul. The serenity of nature inspires me and fuels my creativity. Whether it's capturing breathtaking landscapes through photography or simply immersing myself in the peacefulness of the outdoors, I find solace and a deep sense of connection with the natural world.</p>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-4" data-aos="fade-right">
-                            <img src="images/profile-img.jpg" class="img-fluid" alt="">
+                            <img src="https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/343340985_609038264590654_7861074615788473177_n.jpg?_nc_cat=110&cb=99be929b-59f725be&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=2X-baBqp4vIAX9nxCVH&_nc_ht=scontent.fhan2-4.fna&oh=00_AfBVK2EH5AmTvyA7Z7VJalAAcqjZUbjwvDA9lUHlRjFQ3w&oe=649E389A" class="img-fluid" alt="">
                         </div>
                         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-                            <h3>UI/UX Designer &amp; Web Developer.</h3>
+                            <h3>University Student &amp; Web Developer.</h3>
                             <p class="fst-italic">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
                                 magna aliqua.
@@ -282,24 +284,23 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <ul>
-                                        <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>1 May 1995</span></li>
-                                        <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>www.example.com</span></li>
-                                        <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+123 456 7890</span></li>
-                                        <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>New York, USA</span></li>
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>14 Sep 2003</span></li>
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>https://github.com/OCEAN-WIBU-LORD</span></li>
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>0978123456</span></li>
+                                        <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>HaNoi, VietNam</span></li>
                                     </ul>
                                 </div>
                                 <div class="col-lg-6">
                                     <ul>
-                                        <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>30</span></li>
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>21</span></li>
                                         <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Master</span></li>
-                                        <li><i class="bi bi-chevron-right"></i> <strong>PhEmailone:</strong> <span>email@example.com</span></li>
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>duongddhe176496@fpt.edu.vn</span></li>
                                         <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
                                     </ul>
                                 </div>
                             </div>
                             <p>
-                                Officiis eligendi itaque labore et dolorum mollitia officiis optio vero. Quisquam sunt adipisci omnis et ut. Nulla accusantium dolor incidunt officia tempore. Et eius omnis.
-                                Cupiditate ut dicta maxime officiis quidem quia. Sed et consectetur qui quia repellendus itaque neque. Aliquid amet quidem ut quaerat cupiditate. Ab et eum qui repellendus omnis culpa magni laudantium dolores.
+                                ${account.getDescription()}
                             </p>
                         </div>
                     </div>
@@ -313,7 +314,7 @@
 
                     <div class="section-title">
                         <h2>Facts</h2>
-                        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                        <p>I have an inherent passion for music, and playing the guitar has been a significant part of my life. Whether strumming the strings to create soothing melodies or rocking out to energetic tunes, music allows me to express myself and find solace. It has taught me discipline, perseverance, and the power of artistic expression. Sharing my music with others brings me joy and connects me with people on a deeper level.</p>
                     </div>
 
                     <div class="row no-gutters">
@@ -321,8 +322,8 @@
                         <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up">
                             <div class="count-box">
                                 <i class="bi bi-emoji-smile"></i>
-                                <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-                                <p><strong>Happy Clients</strong> consequuntur quae</p>
+                                <span data-purecounter-start="0" data-purecounter-end="${totalmoney}" data-purecounter-duration="1" class="purecounter" ></span><h1>Dollar $</h1>
+                                <p><strong>Total Money Spend</strong> 100% Confirmation</p>
                             </div>
                         </div>
 
@@ -330,15 +331,15 @@
                             <div class="count-box">
                                 <i class="bi bi-journal-richtext"></i>
                                 <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-                                <p><strong>Projects</strong> adipisci atque cum quia aut</p>
+                                <p><strong>Number of Donation</strong> Best Good Attitude User</p>
                             </div>
                         </div>
 
                         <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="200">
                             <div class="count-box">
                                 <i class="bi bi-headset"></i>
-                                <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
-                                <p><strong>Hours Of Support</strong> aut commodi quaerat</p>
+                                <span data-purecounter-start="0" data-purecounter-end="${m}" data-purecounter-duration="1" class="purecounter"></span>
+                                <p><strong>Hours Of Bookings</strong> On the mic with Player</p>
                             </div>
                         </div>
 
@@ -346,7 +347,7 @@
                             <div class="count-box">
                                 <i class="bi bi-people"></i>
                                 <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>
-                                <p><strong>Hard Workers</strong> rerum asperiores dolor</p>
+                                <p><strong>Relation Ship</strong> Include Friends and Player in game</p>
                             </div>
                         </div>
 
@@ -361,7 +362,7 @@
 
                     <div class="section-title">
                         <h2>Skills</h2>
-                        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                        <p>I possess a diverse range of IT skills that enable me to navigate the digital landscape with confidence. With a solid foundation in programming languages such as Java and Python, I can develop efficient and robust applications. Additionally, my proficiency in web development technologies like HTML, CSS, and JavaScript allows me to create dynamic and interactive websites. I am well-versed in database management, utilizing SQL to handle data effectively. Moreover, I have experience in network administration and troubleshooting, ensuring smooth connectivity and resolving technical issues. With a continuous drive for learning and adapting to new technologies, I am eager to tackle any IT challenge that comes my way.</p>
                     </div>
 
                     <div class="row skills-content">
@@ -498,6 +499,7 @@
                                                                 <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
                                                             </span>
                                                         </a>
+                                                        <!--<a href="#" onclick="deleteMovie(${o.movie_id})">delete</a></td>-->
                                                         <a href="#" class="table-link danger">
                                                             <span class="fa-stack">
                                                                 <i class="fa fa-square fa-stack-2x"></i>
@@ -693,8 +695,8 @@
                 <div class="container">
 
                     <div class="section-title">
-                        <h2>Testimonials</h2>
-                        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                        <h2>Nhận xét, đánh giá:</h2>
+                        <p>Tôi rất ấn tượng với khả năng của bạn trong việc thể hiện các kỹ năng IT. Bạn đã trình bày một tập hợp đa dạng các kỹ năng mà bạn sở hữu, cho thấy sự đa năng và tự tin của mình khi làm việc trong môi trường kỹ thuật số. Sự thông thạo của bạn trong các ngôn ngữ lập trình như Java và Python, cùng với khả năng phát triển ứng dụng hiệu quả và mạnh mẽ, làm cho bạn trở thành một lập trình viên đáng tin cậy. Sự thành thạo của bạn trong các công nghệ phát triển web như HTML, CSS, và JavaScript cho phép bạn tạo ra các trang web động và tương tác. Khả năng quản lý cơ sở dữ liệu của bạn và sử dụng SQL để xử lý dữ liệu một cách hiệu quả là một lợi thế vô cùng quan trọng. Bên cạnh đó, bạn cũng có kinh nghiệm trong quản trị mạng và khắc phục sự cố, đảm bảo sự kết nối liên tục và giải quyết các vấn đề kỹ thuật. Tinh thần học hỏi và sẵn lòng thích nghi với các công nghệ mới của bạn cũng là một điểm mạnh. Tôi tin rằng với tập hợp các kỹ năng ấn tượng này, bạn có thể đối mặt với bất kỳ thách thức nào trong lĩnh vực IT.</p>
                     </div>
 
                     <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
@@ -704,7 +706,7 @@
                                 <div class="testimonial-item" data-aos="fade-up">
                                     <p>
                                         <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                                        User này thật tuyệt vời, chúc bạn ý luôn làm ăn phát đạt. Lần sau nhớ thuê mình tiếp nhé <3
                                         <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                                     </p>
                                     <img src="images/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
@@ -717,7 +719,7 @@
                                 <div class="testimonial-item" data-aos="fade-up" data-aos-delay="100">
                                     <p>
                                         <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                                        Một người bạn tuyệt vời, người thường xuyên giúp đỡ tôi khi chơi game cùng. Rất vui khi được làm bạn với anh ấy.
                                         <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                                     </p>
                                     <img src="images/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
@@ -730,7 +732,7 @@
                                 <div class="testimonial-item" data-aos="fade-up" data-aos-delay="200">
                                     <p>
                                         <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                                        User này rất uy tín, lại còn hay donate mình nữa <3
                                         <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                                     </p>
                                     <img src="images/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
@@ -743,7 +745,7 @@
                                 <div class="testimonial-item" data-aos="fade-up" data-aos-delay="300">
                                     <p>
                                         <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
+                                        Bạn này tuyệt vời lắm, video call chơi game cùng mình rất thoải mái, hay tặng xu và quà nữa.
                                         <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                                     </p>
                                     <img src="images/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
@@ -756,7 +758,7 @@
                                 <div class="testimonial-item" data-aos="fade-up" data-aos-delay="400">
                                     <p>
                                         <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+                                        Theo dõi mình với bạn thân yêu ơi <3 <3 <3 
                                         <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                                     </p>
                                     <img src="images/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">

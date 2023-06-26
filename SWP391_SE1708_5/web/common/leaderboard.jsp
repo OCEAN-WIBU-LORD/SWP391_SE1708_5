@@ -26,7 +26,7 @@
 				<div class="col-sm-4">
 					<div class="leaderboard-card">
 						<div class="leaderboard-card__top">
-							<h3 class="text-center">$174,124</h3>
+							<h3 class="text-center">$160,124</h3>
 						</div>
 						<div class="leaderboard-card__body">
 							<div class="text-center">
@@ -45,7 +45,7 @@
 				<div class="col-sm-4">
 					<div class="leaderboard-card leaderboard-card--first">
 						<div class="leaderboard-card__top">
-							<h3 class="text-center">$160,124</h3>
+							<h3 class="text-center">$174,124</h3>
 						</div>
 						<div class="leaderboard-card__body">
 							<div class="text-center">
@@ -108,7 +108,7 @@
 						</td>
 						<td>
 							<div class="d-flex align-items-baseline">
-								<h4 class="mr-1">$160,124</h4><small class="text-success"><i class="fa fa-arrow-up"></i>5%</small>
+								<h4 class="mr-1">$174,124</h4><small class="text-success"><i class="fa fa-arrow-up"></i>5%</small>
 							</div>
 						</td>
 						<td>NamDinh,VietNam</td>
@@ -129,7 +129,7 @@
 						</td>
 						<td>
 							<div class="d-flex align-items-baseline">
-								<h4 class="mr-1">$174,124</h4><small class="text-success"><i class="fa fa-arrow-up"></i>5%</small>
+								<h4 class="mr-1">$160,124</h4><small class="text-success"><i class="fa fa-arrow-up"></i>5%</small>
 							</div>
 						</td>
 						<td>HCM,VietNam</td>

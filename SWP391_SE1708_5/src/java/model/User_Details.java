@@ -10,11 +10,12 @@ public class User_Details {
     private String password;
     private String link_image;
     private Double balance;
+    private String description;
 
     public User_Details() {
     }
 
-    public User_Details(String user_id, String gender, String phone_number, String email, String address, String password, String link_image, Double balance) {
+    public User_Details(String user_id, String gender, String phone_number, String email, String address, String password, String link_image, Double balance, String description) {
         this.user_id = user_id;
         this.gender = gender;
         this.phone_number = phone_number;
@@ -23,6 +24,7 @@ public class User_Details {
         this.password = password;
         this.link_image = link_image;
         this.balance = balance;
+        this.description = description;
     }
 
     public String getUser_id() {
@@ -89,10 +91,20 @@ public class User_Details {
         this.balance = balance;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    
+
     
 
     @Override
     public String toString() {
-        return "User_Details{" + "user_id=" + user_id + ", gender=" + gender + ", phone_number=" + phone_number + ", gmail=" + email + ", address=" + address + ", password=" + password + ", link_image=" + link_image + ", balance=" + balance + '}';
+        return "User_Details{" + "user_id=" + user_id + ", gender=" + gender + ", phone_number=" + phone_number + ", gmail=" + email + ", address=" + address + ", password=" + password + ", link_image=" + link_image + ", balance=" + balance +", description=" + description + '}';
     }
 }

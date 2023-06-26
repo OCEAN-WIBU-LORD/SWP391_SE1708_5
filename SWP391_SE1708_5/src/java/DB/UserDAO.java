@@ -98,7 +98,8 @@ public class UserDAO {
             System.out.println("insertUser" + e.getMessage());
         }
     }
-    public String getUserName (String username) throws SQLException {
+
+    public String getUserName(String username) throws SQLException {
         String u = null;
         try {
             BaseDAO db = new BaseDAO();
@@ -120,6 +121,58 @@ public class UserDAO {
             System.out.println("getUserName" + ex.getMessage());
         } finally {
             conn.close();
+        }
+        return u;
+    }
+
+    public String getTotalHour(String user_id) {
+        String u = null;
+        try {
+            BaseDAO db = new BaseDAO();
+            // connnect to database 'testdb'
+            conn = db.getConnection();
+            // create statement
+            PreparedStatement stmt = conn.prepareStatement("select SUM(total_hour) as total_hour_booking from booking where user_id = ?");
+            stmt.setString(1, user_id);
+
+            // get data from table
+            ResultSet rs = stmt.executeQuery();
+            // show data
+            while (rs.next()) {
+                u = String.valueOf(rs.getString("total_hour_booking"));
+            }
+            // close connection
+
+        } catch (Exception ex) {
+            System.out.println("getTotalHour" + ex.getMessage());
+        } finally {
+//            conn.close();
+        }
+        return u;
+    }
+
+    public String getTotalMoneySpend(String user_id) {
+        String u = null;
+        try {
+            BaseDAO db = new BaseDAO();
+            // connnect to database 'testdb'
+            conn = db.getConnection();
+            // create statement
+            PreparedStatement stmt = conn.prepareStatement("select SUM(total_price) as total_money_booking from booking where user_id = ?");
+            stmt.setString(1, user_id);
+
+            // get data from table
+            ResultSet rs = stmt.executeQuery();
+            // show data
+            while (rs.next()) {
+                u = String.valueOf(rs.getString("total_money_booking"));
+            }
+            // close connection
+
+        } catch (Exception ex) {
+            System.out.println("getTotalBooking" + ex.getMessage());
+        } finally {
+//            conn.close();
         }
         return u;
     }
