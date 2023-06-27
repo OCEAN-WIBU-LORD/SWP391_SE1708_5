@@ -73,7 +73,8 @@ public class AddType extends HttpServlet {
                         request.setAttribute("mess", ex.getMessage());
             Logger.getLogger(AddGameType.class.getName()).log(Level.SEVERE, null, ex);
         }
-        request.getRequestDispatcher("addgametype.jsp").forward(request, response);    }
+        request.getRequestDispatcher("addgametype.jsp").forward(request, response);   
+    }
 
     /**
      * Handles the HTTP <code>POST</code> method.
