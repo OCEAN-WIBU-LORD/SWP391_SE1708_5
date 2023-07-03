@@ -368,7 +368,7 @@ INNER JOIN (
 ) b ON u.user_id = b.user_id;
 
 
-select SUM(total_hour) as total_hour_booking from booking where user_id = 'duongdd123';
+select SUM(total_price) as total_hour_booking from booking where user_id = 'duongdd123';
 
 
 SELECT p.player_id, p.player_name, p.phone_number
@@ -380,3 +380,37 @@ INNER JOIN (
   ORDER BY booking_count DESC
   LIMIT 3
 ) b ON p.player_id = b.player_id;
+
+SELECT user_id, COUNT(*) AS booking_count FROM booking where user_id ='duongdd123';
+alter table user_details add column description text;
+
+
+select * from booking  order by date_booking desc;
+
+select * from user_details;
+
+select * from booking;
+
+Update User_Details set phone_number='1',gmail='1',address='1',link_image='1' WHERE user_id= 'abcdxyz';
+
+
+update user_details set link_image = 'https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/343340985_609038264590654_7861074615788473177_n.jpg?_nc_cat=110&cb=99be929b-59f725be&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=2X-baBqp4vIAX9nxCVH&_nc_ht=scontent.fhan2-4.fna&oh=00_AfBVK2EH5AmTvyA7Z7VJalAAcqjZUbjwvDA9lUHlRjFQ3w&oe=649E389A' where user_id ='duongdd123';
+
+
+create table message (
+messageid int primary key,
+user_id nvarchar(50),
+player_id nvarchar(50),
+date_time date,
+message text
+);
+
+ALTER TABLE message
+ADD FOREIGN KEY (user_id) REFERENCES user(user_id);
+
+ALTER TABLE message
+ADD FOREIGN KEY (player_id) REFERENCES player(player_id);
+
+
+select * from player
+
