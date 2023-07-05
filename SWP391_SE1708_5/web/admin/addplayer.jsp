@@ -13,7 +13,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>SB Admin 2 - Buttons</title>
+        <title>Admin</title>
 
         <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -264,6 +264,17 @@
                                     <div class="card-header py-3">
                                         <h6 class="m-0 font-weight-bold text-primary">Player List</h6>
                                     </div>
+                                    <div class="card-header py-3">
+                                        <form id="myFormAccPerPage" action="player">
+                                            <h6 class="m-0 font-weight-bold text-primary">Account per page</h6>
+                                            <select name="accPerPage" onchange="submitForm()">
+                                            <option value="5" <c:if test="${5==page.getItemPerPage()}" >selected</c:if>>5</option>
+                                            <option value="10" <c:if test="${10==page.getItemPerPage()}" >selected</c:if>>10</option>
+                                            <option value="15" <c:if test="${15==page.getItemPerPage()}" >selected</c:if>>15</option>
+                                            <option value="20" <c:if test="${20==page.getItemPerPage()}" >selected</c:if>>20</option>
+                                        </select>
+                                        </form>
+                                    </div>
                                     <div class="card-body"> 
 
                                         <table class="table table-hover">
@@ -276,10 +287,12 @@
                                                     <th>Income</th>
                                                     <th>Link Image</th>
                                                     <th>Change Profile</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <!--<a>${m}</a>-->
                                             Total Player: <a>${n}</a>
 
                                                 <c:forEach items="${playerList}" var="o">
@@ -299,19 +312,28 @@
                                                             </c:forEach></td>   --%>
                                                         <td>${o.num_of_star}</td>
                                                         <td>${o.income}</td>
-                                                        <td>${o.link_image}</td>
-                                                        <td>${o.link_image}</td>
+                                                        <td><img style="max-width: 10%;" src="${o.link_image}" alt="alt"/></td>
                                                         <td>${o.status_player eq "1" ? "Enable" : "Disable"}</td>
                                                         <td><a href="editplayer?player_id=${o.player_id}">edit</a>|<a href="#" onclick="deletePlayer(${o.player_id})">delete</a></td>
+                                                        <td>${o.status_player eq "1" ? "Enable" : "Disable"}</td>
+                                                        <td><a href="changeStatus?id=${o.player_id}">Change status</a></td>
+                                                        <td><a href="editplayer?player_id=${o.player_id}">Update</a></td>
                                                     </tr>
                                                 </c:forEach>
-
-
                                             </tbody>
                                         </table>
-
-
                                     </div>
+                                            <div style="text-align: center;">
+                                                <table>
+                                                    <tr>
+                                                        <c:forEach begin="1" end="${page.getTottalPage()}" var="i">
+                                                            <td style="border: 1px solid black">
+                                                                <a href="player?paging=${i}" <c:if test="${i==currentPage}" >style="color:red;"</c:if> >${i}</a>
+                                                            </td>
+                                                        </c:forEach>
+                                                    </tr>
+                                                </table>
+                                            </div>
                                 </div>
 
 
@@ -321,10 +343,10 @@
 
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">add player</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Player</h6>
                                     </div>
                                     <div class="card-body">
-                                        <form action="addplayer" method="post">
+                                        <form action="editplayer" method="post">
                                             <table class="table table-hover">
 
                                                 <tbody>
@@ -449,6 +471,9 @@
                                                                     window.location.href = '../deletemovie?movie_id=' + id;
                                                                 }
                                                             }
+    function submitForm() {
+        document.getElementById("myFormAccPerPage").submit();
+    }
     </script>
 
 </html>

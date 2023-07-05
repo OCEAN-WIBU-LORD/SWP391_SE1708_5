@@ -1,7 +1,7 @@
 <%-- 
-    Document   : addmovie
-    Created on : Mar 12, 2023, 12:08:06 AM
-    Author     : Nguyen Van Ky
+    Document   : manageUser
+    Created on : Jun 26, 2023, 12:36:25 AM
+    Author     : Cuthi
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -35,9 +35,6 @@
         <!-- Page Wrapper -->
         <div id="wrapper">
 
-            <!-- Sidebar -->
-            <c:set  var="addmovie" value="active"/>
-             <c:set  var="addmovie2" value="show"/>
             <%@include file="slide.jsp" %>
             <!-- End of Sidebar -->
 
@@ -138,10 +135,7 @@
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <h1 class="h3 mb-4 text-gray-800">Player</h1>
-                        <form action="player" method="get" class="h3 mb-4 text-gray-800">
-                            <button type="submit" class="btn btn-success">Add Player</button>
-                        </form>
+                        <h1 class="h3 mb-4 text-gray-800">User</h1>
 
                         <div class="row">
 
@@ -152,60 +146,34 @@
                                 <!-- Circle Buttons -->
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Player List</h6>
-                                    </div>
-                                    <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Account per page</h6>
-                                        <select name="accPerPage">
-                                            <option value="5">5</option>
-                                            <option value="10" selected>10</option>
-                                            <option value="15">15</option>
-                                            <option value="20">20</option>
-                                        </select>
+                                        <h6 class="m-0 font-weight-bold text-primary">User List</h6>
                                     </div>
                                     <div class="card-body"> 
 
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th>PlayerID</th>
-                                                    <th>PlayerName</th>
+                                                    <th>User ID</th>
+                                                    <th>User Name</th>
                                                     <th>Phone Number</th>
-                                                    <th>Num of Star</th>
-                                                    <th>Income</th>
+                                                    <th>Gender</th>
+                                                    <th>Address</th>
                                                     <th>Link Image</th>
-                                                    <th>Change Profile</th>
-                                                    <th>Status</th>
                                                     <th>Action</th>
-                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <!--<a>${m}</a>-->
-                                            Total Player: <a>${n}</a>
+                                            Total User <a>${n}</a>
 
-                                                <c:forEach items="${playerList}" var="o">
+                                                <c:forEach items="${userList}" var="o">
                                                     <tr>
-                                                        <td>${o.player_id}</td>
-                                                        <td>${o.player_name}</td>
+                                                        <td>${o.user_id}</td>
+                                                        <td>${o.full_name}</td>
                                                         <td>${o.phone_number}</td>
-                                                        <%--                   <td><c:forEach items="${gameList}" var="p" >
-
-                                                                <c:if test="${p.player_id eq o.player_id}">
-                                                                    <c:forEach items="${gameList}" var="v" >
-                                                                        <c:if test="${v.game_id eq p.game_id}">
-                                                                            <p>${v.game_name} </p>
-                                                                        </c:if>
-                                                                    </c:forEach>
-                                                                </c:if>
-                                                            </c:forEach></td>   --%>
-                                                        <td>${o.num_of_star}</td>
-                                                        <td>${o.income}</td>
-                                                        <td><img style="max-width: 10%;" src="${o.link_image}" alt="alt"/></td>
-                                                        <td>${o.status_player eq "1" ? "Enable" : "Disable"}</td>
-                                                        <td><a href="editplayer?player_id=${o.player_id}">edit</a>|<a href="#" onclick="deletePlayer(${o.player_id})">delete</a></td>
-                                                        <td><a href="changeStatus?id=${o.player_id}">Change status</a></td>
-                                                        <td><a href="editplayer?player_id=${o.player_id}">Update</a></td>
+                                                        <td>${o.gender}</td>
+                                                        <td>${o.address}</td>
+                                                        <td><img style="max-width: 10%;" src="${o.link_image}" alt=""/></td>
+                                                        <td><a href="manageUser?user_id=${o.user_id}">Update</a></td>
                                                     </tr>
                                                 </c:forEach>
 
@@ -224,92 +192,42 @@
 
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Player</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">User</h6>
                                     </div>
                                     <div class="card-body">
-                                        <form action="editplayer" method="post">
+                                        <form action="manageUser" method="post">
                                             <table class="table table-hover">
                                                 <tbody>
                                                     <tr>
-                                                         <td><b>Player ID</b></td>
-                                                        <td><input disabled name="id" type="text" value="${player.player_id}" style="width: 90%"/></td>
+                                                         <td><b>User ID</b></td>
+                                                         <td><input disabled name="id" type="text" value="${user.user_id}" style="width: 90%"/></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Player Name</b></td>
-                                                        <td><input disabled name="player_name" type="text" value="${player.player_name}" style="width: 90%"/></td>
+                                                        <td><b>User Name</b></td>
+                                                        <td><input disabled name="player_name" type="text" value="${user.full_name}" style="width: 90%"/></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Game Can Play:</b></td>
-                                                        <td><div style="width: 90%">
-                                                             <%--
-                                                                <c:forEach items="${categoryList}" var="p" >
-                                                                    
-                                                                    <c:set var="check" value="true" />
-                                                                    <c:forEach items="${mcList}" var="mc">
-                                                                        <c:choose>
-                                                                            <c:when test="${mc.cate_id eq p.cate_id and movie.movie_id eq mc.movie_id}">
-                                                                                <input name="${p.cate_name}" type="checkbox" checked="true" />${p.cate_name}<br> 
-                                                                                <c:set var="check" value="false" />
-                                                                            </c:when>
-                                                                            <c:otherwise>
-                                                                                
-                                                                            </c:otherwise>
-                                                                        </c:choose>
-                                                                        
-                                                                    </c:forEach>
-                                                                    <c:if test="${check ne 'false'}">
-                                                                        <input name="${p.cate_name}" type="checkbox" />${p.cate_name}<br>
-                                                                    </c:if> 
-                                                                </c:forEach>
-                                                                                 
-                                                                       --%>
-
-                                                                
-                                                            </div></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Description</b></td>
-                                                        <td><textarea disabled name="description" cols="60" rows="3">${player.description}</textarea></td>
+                                                        <td><b>Gmail</b></td>
+                                                        <td><textarea disabled name="description" cols="60" rows="3">${user.email}</textarea></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Gender</b></td>
-                                                        <td><textarea disabled name="gender" cols="60" rows="3">${player.gender}</textarea></td>
+                                                        <td><textarea disabled name="gender" cols="60" rows="3">${user.gender}</textarea></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Phone Number</b></td>
-                                                        <td><input disabled name="phone_number" type="number" value="${player.phone_number}"/></td>
+                                                        <td><input disabled name="phone_number" type="number" value="${user.phone_number}"/></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Number of Star</b></td>
-                                                        <td><input disabled name="num_of_star" type="text" style="width: 90%" value="${player.num_of_star}"/></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Password</b></td>
-                                                        <td><input disabled name="password" type="text" style="width: 90%" value="${player.password}"/></td>
+                                                        <td><b>Address</b></td>
+                                                        <td><input disabled name="num_of_star" type="text" style="width: 90%" value="${user.address}"/></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Link Image</b></td>
-                                                        <td><input disabled name="link_image" type="text" style="width: 90%" value="${player.link_image}"/></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Income</b></td>
-                                                        <td><input name="income" type="text" style="width: 90%" value="${player.income}"/>$</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Status Player</b></td>
-                                                        <td>
-                                                            
-                                                            <c:if test="${player.status_player eq 1}">
-                                                                <input name="status_player" type="checkbox"  checked="true"/>
-                                                            </c:if>
-                                                            <c:if test="${player.status_player ne 1}">
-                                                                <input name="status_player" type="checkbox" />
-                                                            </c:if>
-                                                            </td>
+                                                        <td><input disabled name="link_image" type="text" style="width: 90%" value="${user.link_image}"/></td>
                                                     </tr>
                                                     <tr>
                                                         <td></td>
-                                                        <td><button type="submit" class="btn btn-success">UPDATE</button></td>
 
                                                     </tr>
 

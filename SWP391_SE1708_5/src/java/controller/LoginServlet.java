@@ -91,7 +91,7 @@ public class LoginServlet extends HttpServlet {
             userdetails = adao.getUser_Details(username, password);
             if (userdetails != null) {
                 HttpSession session = request.getSession();
-                String role = adao.checkAdmin(String.valueOf(userdetails.getUser_id()));
+                String role = adao.getRole(String.valueOf(userdetails.getUser_id()));
                 full_name = userDAO.getUserName(username);
                  session.setAttribute("role", role);
                  session.setAttribute("full_name", full_name);
