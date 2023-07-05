@@ -226,7 +226,7 @@
             <div class="d-flex flex-column">
 
                 <div class="profile">
-                    <img src="https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/343340985_609038264590654_7861074615788473177_n.jpg?_nc_cat=110&cb=99be929b-59f725be&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=2X-baBqp4vIAX9nxCVH&_nc_ht=scontent.fhan2-4.fna&oh=00_AfBVK2EH5AmTvyA7Z7VJalAAcqjZUbjwvDA9lUHlRjFQ3w&oe=649E389A" alt="" class="img-fluid rounded-circle">
+                    <img src="${udetail.getLink_image()}" alt="" class="img-fluid rounded-circle">
                     <h1 class="text-light"><a href="index.html">${username}</a></h1>
                     <div class="social-links mt-3 text-center">
                         <a href="home" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -267,13 +267,14 @@
                 <div class="container">
 
                     <div class="section-title">
+                        <a href="editprofile" type="button" class="btn btn-secondary btn-rounded" style="margin-left: 1200px; width: 170px">Edit Profile</a>
                         <h2>About</h2>
                         <p>Exploring forests, hiking trails, or camping under starlit skies rejuvenates my spirit and nourishes my soul. The serenity of nature inspires me and fuels my creativity. Whether it's capturing breathtaking landscapes through photography or simply immersing myself in the peacefulness of the outdoors, I find solace and a deep sense of connection with the natural world.</p>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-4" data-aos="fade-right">
-                            <img src="https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/343340985_609038264590654_7861074615788473177_n.jpg?_nc_cat=110&cb=99be929b-59f725be&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=2X-baBqp4vIAX9nxCVH&_nc_ht=scontent.fhan2-4.fna&oh=00_AfBVK2EH5AmTvyA7Z7VJalAAcqjZUbjwvDA9lUHlRjFQ3w&oe=649E389A" class="img-fluid" alt="">
+                            <img src="${udetail.getLink_image()}" class="img-fluid" alt="">
                         </div>
                         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
                             <h3>University Student &amp; Web Developer.</h3>
@@ -313,7 +314,7 @@
                 <div class="container">
 
                     <div class="section-title">
-                        <h2>Facts</h2>
+                        <h2>Information</h2>
                         <p>I have an inherent passion for music, and playing the guitar has been a significant part of my life. Whether strumming the strings to create soothing melodies or rocking out to energetic tunes, music allows me to express myself and find solace. It has taught me discipline, perseverance, and the power of artistic expression. Sharing my music with others brings me joy and connects me with people on a deeper level.</p>
                     </div>
 
@@ -444,6 +445,7 @@
                                                 <th style="width: 150px;" class="text-center"><span>Total Hour</span></th>
                                                 <th style="width: 150px;"><span>Money</span></th>
                                                 <th ><span>Message</span></th>
+                                                <th ><span>Action</span></th>
                                                 <th>&nbsp;</th>
                                             </tr>
                                         </thead>

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package controller;
-
+import junit.framework.*;
 import DB.BookingDAO;
 import DB.PlayerDAO;
 import DB.UserDAO;
@@ -12,24 +12,23 @@ import DB.User_DetailsDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.Bookings;
 import model.Player;
-import model.User;
 import model.User_Details;
 
 /**
  *
  * @author Acer
  */
-public class UserMainProfileServlet extends HttpServlet {
+@WebServlet(name = "EditProfileServlet", urlPatterns = {"/EditProfileServlet"})
+public class EditProfileServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -47,10 +46,10 @@ public class UserMainProfileServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet HistoryBookingServlet</title>");            
+            out.println("<title>Servlet EditProfileServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet HistoryBookingServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet EditProfileServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -68,7 +67,6 @@ public class UserMainProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
          HttpSession session = request.getSession();
 
         Object obj_acc = session.getAttribute("usercurrent");
@@ -90,7 +88,9 @@ public class UserMainProfileServlet extends HttpServlet {
          User_Details udetail = udt.getUserDetailsById(user_id);
          request.setAttribute("udetail", udetail);
          String username = u.getUserName(user_id);
+         String user_role  = udt.checkAdmin(user_id);
          request.setAttribute("username", username);
+         request.setAttribute("user_role", user_role);
         BookingDAO bddao = new BookingDAO();
             List<Bookings> historyBooking = bddao.bookingList(user_id);
             List<Player> playerlist = mdao.getAllPlayer();
@@ -103,25 +103,11 @@ public class UserMainProfileServlet extends HttpServlet {
              request.setAttribute("account", account);
              request.setAttribute("historyBooking", historyBooking);
              request.setAttribute("playerlist", playerlist);
-             request.getRequestDispatcher("common/usermainprofile.jsp").forward(request, response);
+             request.getRequestDispatcher("/common/editprofile.jsp").forward(request, response);
         } catch (SQLException ex) {
-            System.out.println("doGetUserMainProfileServlet" + ex.getMessage());;
+            System.out.println("doGetEditProfileServlet" + ex.getMessage());;
         }
-
-//        String player_id = request.getParameter("player_id");
-//        PlayerDAO mdao = new PlayerDAO();
-//        Double balance = account.getBalance();
-//            LocationDAO locationDAO = new LocationDAO();
-//            List<LocationType> ltList = locationDAO.getListLationType();
-//            List<Positions> positionList = locationDAO.getListPositions();
-//            List<Location> locationList = locationDAO.getListLocation();
-//            request.setAttribute("ltList", ltList);
-//request.setAttribute("player_id", player_id);
-//        request.setAttribute("balance", balance);
-//        request.setAttribute("player", player);
-//            request.setAttribute("positionList", positionList);
-//            request.setAttribute("locationList", locationList);
-        
+         
     }
 
     /**
@@ -135,62 +121,57 @@ public class UserMainProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        
-        
-//        PrintWriter out = response.getWriter();
-//
-//        String n1 = request.getParameter("number");
-//
-//        if (n1.isEmpty()) {
-//            out.print("Please Code Elements");
-//            return;
-//        }
-        
-        
         Object obj_acc = session.getAttribute("usercurrent");
-        PlayerDAO m = new PlayerDAO();
-        User_DetailsDAO udao = new User_DetailsDAO();
-        if (obj_acc != null) {
-            User_Details account = (User_Details) obj_acc;
-//            String game_id = request.getParameter("game_id");
-            String total_hour = request.getParameter("totalhours");
-            String player_id = request.getParameter("player_id");
-            String message = request.getParameter("message");
-            String user_id = account.getUser_id() + "";
-            String player_name = m.getPlayerNameById(player_id);
-            Double money = m.getIncomePlayerById(player_id)*Double.valueOf(total_hour);
-            String money2 = String.valueOf(money);
-            Double money4 =  account.getBalance();
-            if(money4 <= 0 || money4 < money){
-                try (PrintWriter out = response.getWriter()) {
-                out.print("Please deposit more money into the system Account!!");
-                return;
-            }
-            }
-            Double money3 = money4 - money;
-//            String total_cost = request.getParameter("result");
-//            Double total_cost2 = Double.parseDouble(total_cost);
-            if(user_id == ""){
-                request.getRequestDispatcher("common/login.jsp").forward(request, response);
-            }
-            String game_id = "1";
-            //                BookingDAO bdao = new BookingDAO();
-                BookingDAO bddao = new BookingDAO();
-            try {
-                udao.reduceBalance(user_id, money3);
-                bddao.addBooking(new Bookings(String.valueOf(user_id), String.valueOf(player_id), String.valueOf(total_hour), String.valueOf(game_id),money,"",String.valueOf(message)));
-//                bddao.addBooking(new Bookings("duongdd123", "chanbaby95", "5", "1",4000,""));
-            } catch (SQLException ex) {
-                Logger.getLogger(BookingPlayerServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-//                bddao.addBookingDetails(new Bookings(String.valueOf('0'), String.valueOf(acc_id), String.valueOf(player_id), String.valueOf(total_hour), String.valueOf(game_id)));
-            PlayerDAO player = new PlayerDAO();
-//                movie.reduceTiket(player_id);
-            response.sendRedirect("usermainprofile?user_id=" + user_id);
-        } else {
-            response.sendRedirect("login");
+        String player_id = request.getParameter("player_id");
+            PlayerDAO mdao = new PlayerDAO();
+            Player player = mdao.getPlayerByID(player_id);
+            UserDAO u = new UserDAO();
+//        if(!bookingrs.equals("")){
+//            request.setAttribute("bookingrs", "true");
+//        }
+        if (obj_acc == null) {
+             request.setAttribute("messenger", "Please Login");
+            request.getRequestDispatcher("common/login.jsp").forward(request, response);
+        }
+        try {
+         User_Details account = (User_Details) obj_acc;
+         User_DetailsDAO udt = new User_DetailsDAO();
+        String user_id = account.getUser_id() + "";
+        String gender = account.getGender();
+        String phonenumber = request.getParameter("phonenumber");
+        String gmail = request.getParameter("gmail");
+        
+        String address = request.getParameter("address");
+        String description = request.getParameter("description");
+        String link_image = request.getParameter("link_image");
+        String password = request.getParameter("password");
+        String repassword = request.getParameter("repassword");
+        
+        User_Details account1 = new User_Details(user_id, gender, phonenumber, gmail, address, password, link_image, Double.NaN, description);
+        udt.updateAccount(account1);
+        
+         User_Details udetail = udt.getUserDetailsById(user_id);
+         request.setAttribute("udetail", udetail);
+         String username = u.getUserName(user_id);  
+         String user_role  = udt.checkAdmin(user_id);
+         request.setAttribute("username", username);
+         request.setAttribute("user_role", user_role);
+        BookingDAO bddao = new BookingDAO();
+            List<Bookings> historyBooking = bddao.bookingList(user_id);
+            List<Player> playerlist = mdao.getAllPlayer();
+            int n = historyBooking.size();
+            String m = u.getTotalHour(user_id);
+            String totalmoney = u.getTotalMoneySpend(user_id);
+             request.setAttribute("n", n);
+             request.setAttribute("m", m);
+             request.setAttribute("totalmoney", totalmoney);
+             request.setAttribute("account", account);
+             request.setAttribute("historyBooking", historyBooking);
+             request.setAttribute("playerlist", playerlist);
+             request.getRequestDispatcher("/common/editprofile.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            System.out.println("doGetEditProfileServlet" + ex.getMessage());;
         }
     }
 

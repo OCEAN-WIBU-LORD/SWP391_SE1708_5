@@ -27,13 +27,15 @@
         <link rel="stylesheet" href="css/tiny-slider.css" />
         <link rel="stylesheet" href="css/aos.css" />
         <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/style_6.css" />
 
         <title>
             Play2Together &mdash; Player_Hiring
         </title>
+        
     </head>
     <body>
-        
+
         <div class="site-mobile-menu site-navbar-target">
             <div class="site-mobile-menu-header">
                 <div class="site-mobile-menu-close">
@@ -51,14 +53,14 @@
                     class="img overlay"
                     style="background-image: url('https://encdn.ldmnq.com/ldstore/en/SwfDs8-1628579160714.webp')"
                     ></div>
-                
-                
+
+
             </div>
 
 
-            <div class="container">
-                <div class="row justify-content-center align-items-center">
-                    <div class="col-lg-9 text-center">
+            <div class="container"style="max-width: 100%">
+                <div class="row justify-content-center align-items-center " style="max-width: 100%">
+                    <div class="col-lg-9 text-center" style="max-width: 100%">
                         <h1 class="heading" data-aos="fade-up">
                             Easiest way to find your Gaming Co-Players
                         </h1>
@@ -110,11 +112,11 @@
                                         <a href="playerdetail?player_id=${o.player_id}" class="img" >
                                             <img src="${o.link_image}" alt="Image" class="img-fluid" style="height: 500px; weight: 500px; object-fit: scale-down; object-position: 100%;"/>
                                         </a>
-                                        
+
                                         <div class="property-content" style="height: 300px">
                                             <div class="price mb-2"><span>${o.player_name}</span></div>
                                             <div style="height:90%">
-                                                
+
                                                 <a
                                                     href="playerdetail?player_id=${o.player_id}"
                                                     class="btn btn-primary py-2 px-3"
@@ -125,18 +127,18 @@
                                     </div>
                                     <!-- .item -->
                                 </c:forEach>
-                                    <br>
+                                <br>
                                 <c:forEach items="${playerList2}" var = "o">
                                     <!--//-->
                                     <div class="property-item" >
                                         <a href="playerdetail?player_id=${o.player_id}" class="img" >
                                             <img src="${o.link_image}" alt="Image" class="img-fluid" style="height: 500px; weight: 500px; object-fit: scale-down; object-position: 100%;"/>
                                         </a>
-                                        
+
                                         <div class="property-content" style="height: 300px">
                                             <div class="price mb-2"><span>${o.player_name}</span></div>
                                             <div style="height:90%">
-                                                
+
                                                 <a
                                                     href="playerdetail?player_id=${o.player_id}"
                                                     class="btn btn-primary py-2 px-3"
@@ -147,7 +149,7 @@
                                     </div>
                                     <!-- .item -->
                                 </c:forEach>
-                                    
+
                             </div>
 
                             <div
@@ -174,18 +176,22 @@
                         </div>
                     </div>
                 </div>
-                    <a>${a}</a>
-                    <a>${full_name}</a>
-                
+                <a>${a}</a>
+                <a>${full_name}</a>
+
             </div>
-                    
-            
+
+
+
         </div>
-        
 
 
-        <div class="site-footer">
-            <div class="container">
+
+
+
+
+        <div class="site-footer" >
+            <div class="container" >
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="widget">
@@ -304,6 +310,144 @@
         <script src="js/navbar.js"></script>
         <script src="js/counter.js"></script>
         <script src="js/custom.js"></script>
+        
+        
+        <section style="background-color: #eee;">
+            <div class="container py-5">
+
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-8 col-lg-6 col-xl-4">
+
+                        <!-- Buttons trigger collapse -->
+                        <a class="btn btn-info btn-lg btn-block" data-mdb-toggle="collapse" href="home#collapseExample"
+                           role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Collapsible Chat App</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </a>
+
+                        <!-- Collapsed content -->
+                        <div class="collapse mt-3" id="collapseExample">
+                            <div class="card" id="chat4">
+                                <div class="card-body" data-mdb-perfect-scrollbar="true"
+                                     style="position: relative; height: 400px">
+
+                                    <div class="d-flex flex-row justify-content-start">
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                                             alt="avatar 1" style="width: 45px; height: 100%;">
+                                        <div>
+                                            <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">Hi</p>
+                                            <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">How are you
+                                                ...???</p>
+                                            <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">What are you
+                                                doing
+                                                tomorrow? Can we come up a bar?</p>
+                                            <p class="small ms-3 mb-3 rounded-3 text-muted">23:58</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="divider d-flex align-items-center mb-4">
+                                        <p class="text-center mx-3 mb-0" style="color: #a2aab7;">Today</p>
+                                    </div>
+
+                                    <div class="d-flex flex-row justify-content-end mb-4 pt-1">
+                                        <div>
+                                            <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-info">Hiii, I'm good.</p>
+                                            <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-info">How are you doing?</p>
+                                            <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-info">Long time no see! Tomorrow
+                                                office. will
+                                                be free on sunday.</p>
+                                            <p class="small me-3 mb-3 rounded-3 text-muted d-flex justify-content-end">00:06</p>
+                                        </div>
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                                             alt="avatar 1" style="width: 45px; height: 100%;">
+                                    </div>
+
+                                    <div class="d-flex flex-row justify-content-start mb-4">
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                                             alt="avatar 1" style="width: 45px; height: 100%;">
+                                        <div>
+                                            <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">Okay</p>
+                                            <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">We will go on
+                                                Sunday?</p>
+                                            <p class="small ms-3 mb-3 rounded-3 text-muted">00:07</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row justify-content-end mb-4">
+                                        <div>
+                                            <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-info">That's awesome!</p>
+                                            <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-info">I will meet you Sandon Square
+                                                sharp at
+                                                10 AM</p>
+                                            <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-info">Is that okay?</p>
+                                            <p class="small me-3 mb-3 rounded-3 text-muted d-flex justify-content-end">00:09</p>
+                                        </div>
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                                             alt="avatar 1" style="width: 45px; height: 100%;">
+                                    </div>
+
+                                    <div class="d-flex flex-row justify-content-start mb-4">
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                                             alt="avatar 1" style="width: 45px; height: 100%;">
+                                        <div>
+                                            <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">Okay i will meet
+                                                you on
+                                                Sandon Square</p>
+                                            <p class="small ms-3 mb-3 rounded-3 text-muted">00:11</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row justify-content-end mb-4">
+                                        <div>
+                                            <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-info">Do you have pictures of Matley
+                                                Marriage?</p>
+                                            <p class="small me-3 mb-3 rounded-3 text-muted d-flex justify-content-end">00:11</p>
+                                        </div>
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                                             alt="avatar 1" style="width: 45px; height: 100%;">
+                                    </div>
+
+                                    <div class="d-flex flex-row justify-content-start mb-4">
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                                             alt="avatar 1" style="width: 45px; height: 100%;">
+                                        <div>
+                                            <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">Sorry I don't
+                                                have. i
+                                                changed my phone.</p>
+                                            <p class="small ms-3 mb-3 rounded-3 text-muted">00:13</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row justify-content-end">
+                                        <div>
+                                            <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-info">Okay then see you on sunday!!
+                                            </p>
+                                            <p class="small me-3 mb-3 rounded-3 text-muted d-flex justify-content-end">00:15</p>
+                                        </div>
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                                             alt="avatar 1" style="width: 45px; height: 100%;">
+                                    </div>
+
+                                </div>
+                                <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                                         alt="avatar 3" style="width: 40px; height: 100%;">
+                                    <input type="text" class="form-control form-control-lg" id="exampleFormControlInput3"
+                                           placeholder="Type message">
+                                    <a class="ms-1 text-muted" href="#!"><i class="fas fa-paperclip"></i></a>
+                                    <a class="ms-3 text-muted" href="#!"><i class="fas fa-smile"></i></a>
+                                    <a class="ms-3 link-info" href="#!"><i class="fas fa-paper-plane"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
     </body>
 </html>
 

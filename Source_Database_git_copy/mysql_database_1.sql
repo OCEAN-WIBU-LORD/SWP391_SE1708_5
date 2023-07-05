@@ -398,11 +398,13 @@ update user_details set link_image = 'https://scontent.fhan2-4.fna.fbcdn.net/v/t
 
 
 create table message (
-messageid int primary key,
+messageid int primary key AUTO_INCREMENT,
 user_id nvarchar(50),
 player_id nvarchar(50),
-date_time date,
-message text
+date_time datetime,
+message text,
+FOREIGN KEY (user_id) REFERENCES user(user_id),
+FOREIGN KEY (player_id) REFERENCES player(player_id)
 );
 
 ALTER TABLE message
@@ -412,5 +414,27 @@ ALTER TABLE message
 ADD FOREIGN KEY (player_id) REFERENCES player(player_id);
 
 
-select * from player
+select * from player;
 
+select * from message;
+
+insert into message (messageid, user_id,player_id, date_time,message,status) values('0','duongdd123','chanbaby95','2023-12-04 12:34:56','toi nhan tiep cho minh nhe','1');
+
+drop table message;
+
+ALTER TABLE message
+MODIFY COLUMN messageid int AUTO_INCREMENT;
+
+
+Select * from Message  where user_id ='duongdd123' order by date_time asc;
+
+alter table message add column status int;
+
+UPDATE message
+SET status = '0'
+WHERE messageid = '4';
+
+
+select* from player;
+
+select* from user_details;

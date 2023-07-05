@@ -114,11 +114,11 @@ public class User_DetailsDAO {
         return u;
     }
       
-      public void insertUserDetails(String user_id, String gender, String phone_number, String gmail, String address, String password, String link_image) {
+      public void insertUserDetails(String user_id, String gender, String phone_number, String gmail, String address, String password, String link_image, String balance) {
         try {
 
             conn = BaseDAO.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("insert into user_details (user_id,gender,phone_number,gmail,address,password,link_image) values (?,?,?,?,?,?,?)");
+            PreparedStatement stmt = conn.prepareStatement("insert into user_details (user_id,gender,phone_number,gmail,address,password,link_image,balance) values (?,?,?,?,?,?,?,?)");
             stmt.setString(1, user_id);
             stmt.setString(2, gender);
             stmt.setString(3, phone_number);
@@ -126,6 +126,7 @@ public class User_DetailsDAO {
             stmt.setString(5, address);
             stmt.setString(6, password);
             stmt.setString(7, link_image);
+            stmt.setString(8, balance);
             stmt.executeUpdate();
         } catch (Exception e) {
             System.out.println("insertUserDetails" + e.getMessage());
@@ -205,14 +206,12 @@ public class User_DetailsDAO {
             BaseDAO db = new BaseDAO();
             // connnect to database 'testdb'
             conn = db.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("Update User_Details set gender =?,phone_number=?,gmail=?,address=?,password=?,link_image=? WHERE user_id= ?");
-            stmt.setString(1, a.getGender());
-            stmt.setString(2, a.getPhone_number());
-            stmt.setString(3, a.getEmail());
-            stmt.setString(4, a.getAddress());
-            stmt.setString(5, a.getPassword());
-            stmt.setString(6, a.getLink_image());
-            stmt.setString(7, a.getUser_id());
+            PreparedStatement stmt = conn.prepareStatement("Update User_Details set phone_number=?,gmail=?,address=?,link_image=? WHERE user_id= ?");
+            stmt.setString(1, a.getPhone_number());
+            stmt.setString(2, a.getEmail());
+            stmt.setString(3, a.getAddress());
+            stmt.setString(4, a.getLink_image());
+            stmt.setString(5, a.getUser_id());
             stmt.executeUpdate();
         } catch (Exception ex) {
              System.out.println("updateAccount" + ex.getMessage());
@@ -232,6 +231,33 @@ public class User_DetailsDAO {
         } catch (Exception ex) {
              System.out.println("reduceBalance" + ex.getMessage());
         }
+    }
+
+    public User_Details getUserDetailsById(String user_id) throws SQLException {
+        User_Details u = null;
+        try {
+            BaseDAO db = new BaseDAO();
+            // connnect to database 'testdb'
+            conn = db.getConnection();
+            // crate statement
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User_Details where user_id = ?");
+            stmt.setString(1, user_id);
+            // get data from table
+            ResultSet rs = stmt.executeQuery();
+            // show data
+
+            while (rs.next()) {
+                u = new User_Details(rs.getString("user_id"), rs.getString("gender"), rs.getString("phone_number"), rs.getNString("gmail"), rs.getNString("address"), rs.getString("password"), rs.getString("link_image"),rs.getDouble("balance"), rs.getString("description"));
+
+            }
+            // close connection
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            conn.close();
+        }
+        return u;
     }
       
       

@@ -135,7 +135,7 @@
                             <img style="width: 300px; width: 300px" src="images/sampleQR2.png">
                         </c:if>
                             Support: <button class="btn btn-warning" ><a href="bookingplayer?player_id=${player.player_id}" style="color: white">Donate</a></button><br><br>
-                            Communication:<button class="btn btn-warning" ><a href="bookingplayer?player_id=${player.player_id}" style="color: white">Chat</a></button>
+                            Communication:<button class="btn btn-warning" ><a href="chat?player_id=${player.player_id}" style="color: white">Chat</a></button>
 
                         <div class="d-block agent-box p-5">
                             <p>${player.description}</p>

@@ -25,6 +25,7 @@ import java.util.logging.Logger;
 //import model.MovieActor;
 //import model.Movie_category;
 import model.Player;
+import model.User_Details;
 
 /**
  *
@@ -37,13 +38,17 @@ public class HomeServlet extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
+
+        Object obj_acc = session.getAttribute("usercurrent");
         PlayerDAO mdao = new PlayerDAO();
         UserDAO udao = new UserDAO();
         //     Game_TypeDAO adao = new Game_TypeDAO();
         List<Player> playerList = mdao.getTop5GoodPlayer();
         List<Player> playerList2 = mdao.getTop5BestBookingPlayer();
         String full_name = String.valueOf(session.getAttribute("full_name"));
+
         int a = playerList.size();
+
 //            List<Actor> actorList = adao.getAllActor();
 //            List<GameType> cateList = cdao.getGameType();
 //            List<PlayerGame> movieActorList = mdao.getPlayerGame();
@@ -53,11 +58,27 @@ public class HomeServlet extends HttpServlet {
         request.setAttribute("playerList2", playerList2);
         request.setAttribute("a", a);
         request.setAttribute("full_name", full_name);
+
+        User_Details account = (User_Details) obj_acc;
+        User_DetailsDAO udt = new User_DetailsDAO();
+
+        if (account != null) {
+            String user_id = account.getUser_id() + "";
+            User_Details udetail = udt.getUserDetailsById(user_id);
+            request.setAttribute("udetail", udetail);
+            request.getRequestDispatcher("common/home.jsp").forward(request, response);
+            return;
+            
+        } else {
+            request.getRequestDispatcher("common/home.jsp").forward(request, response);
+            return;
+
+        }
+
 //            request.setAttribute("actorList", actorList);
 //            request.setAttribute("cateList", cateList);
 //            request.setAttribute("movieActorList", movieActorList);
 //            response.getWriter().print(playerList.get(0).getDirected_by());
-        request.getRequestDispatcher("common/home.jsp").forward(request, response);
     }
 
     @Override

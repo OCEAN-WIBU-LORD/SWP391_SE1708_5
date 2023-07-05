@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import model.Bookings;
+import model.Message;
 import model.Game;
 import model.Game_Type;
 
@@ -20,35 +20,34 @@ import model.Game_Type;
  *
  * @author Nguyen Van Ky
  */
-public class BookingDAO {
+public class MessageDAO {
 
     BaseDAO baseDAO = new BaseDAO();
     Connection conn = null;
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
     String getTime = (dtf.format(now));
 
     public static void main(String[] args) throws SQLException {
-        BookingDAO bdao = new BookingDAO();
+        MessageDAO bdao = new MessageDAO();
 
         System.out.println(bdao.getTime);
     }
 
     // account
-    public void addBooking(Bookings c) throws SQLException {
+    public void addMessage(Message c) throws SQLException {
         try {
 
             // connnect to database 'testdb'
             conn = baseDAO.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Booking VALUES (?,?,?,?,?,?,?)");
-            stmt.setString(1, c.getUser_id());
-            stmt.setString(2, c.getPlayer_id());
-            stmt.setString(3, c.getTotal_hour());
-            stmt.setString(4, c.getGame_id());
-            stmt.setDouble(5, c.getTotal_price());
-            stmt.setString(6, getTime);
-            stmt.setString(7, c.getMessage());
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Message VALUES (?,?,?,?,?,?)");
+            stmt.setInt(1, c.getMessageid());
+            stmt.setString(2, c.getUser_id());
+            stmt.setString(3, c.getPlayer_id());
+            stmt.setString(4, getTime);
+            stmt.setString(5, c.getMessage());
+            stmt.setString(6, c.getStatus());
 
             // get data from table
             stmt.executeUpdate();
@@ -56,24 +55,22 @@ public class BookingDAO {
 
             // close connection
         } catch (Exception ex) {
-            System.out.println("addBooking " + ex.getMessage());
+            System.out.println("addMessage " + ex.getMessage());
         }
 
     }
 
-    public void updateBooking(Bookings c) throws SQLException {
+    public void updateMessage(Message c) throws SQLException {
         try {
 
             // connnect to database 'testdb'
             conn = baseDAO.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("UPDATE Bookings set user_id = ?,player_id=?,total_hour=?, total_price=? where date_booking=?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Message set user_id = ?,player_id=?,total_hour=?, total_price=? where date_booking=?");
             stmt.setString(1, c.getUser_id());
             stmt.setString(2, c.getPlayer_id());
-            stmt.setString(3, c.getTotal_hour());
-            stmt.setString(4, c.getGame_id());
-            stmt.setDouble(5, c.getTotal_price());
-            stmt.setString(6, c.getDate_booking());
+            stmt.setString(3, getTime);
+            stmt.setString(4, c.getMessage());
 
             // get data from table
             stmt.executeUpdate();
@@ -86,13 +83,13 @@ public class BookingDAO {
 
     }
 
-    public void deleteBooking(String booking_id) throws SQLException {
+    public void deleteMessage(String booking_id) throws SQLException {
         try {
 
             // connnect to database 'testdb'
             conn = baseDAO.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("Delete from Bookings where  booking_id=?");
+            PreparedStatement stmt = conn.prepareStatement("Delete from Message where  booking_id=?");
             stmt.setString(1, booking_id);
 
             // get data from table
@@ -106,70 +103,72 @@ public class BookingDAO {
 
     }
 
-    public List<Bookings> bookingList(String user_id) throws SQLException {
-        List<Bookings> list = null;
+    public List<Message> messageList(String user_id, String player_id) throws SQLException {
+        List<Message> list = null;
         try {
 
+            BaseDAO db = new BaseDAO();
             // connnect to database 'testdb'
-            conn = baseDAO.getConnection();
+            conn = db.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("Select * from Booking  where user_id = ? order by date_booking desc");
+            PreparedStatement stmt = conn.prepareStatement("Select * from Message  where user_id = ? and player_id = ? order by date_time asc");
             stmt.setString(1, user_id);
+            stmt.setString(2, player_id);
 
             list = new ArrayList<>();
             // get data from table
             ResultSet rs = stmt.executeQuery();
             // show data
             while (rs.next()) {
-                Bookings bookings = new Bookings(rs.getString("user_id"), rs.getString("player_id"), rs.getNString("total_hour"), rs.getString("game_id"),rs.getDouble("total_price"),rs.getString("date_booking"),rs.getString("message"));
-                list.add(bookings);
+                Message message = new Message(rs.getInt("messageid"), rs.getString("user_id"), rs.getNString("player_id"), rs.getString("date_time"),rs.getNString("message"),rs.getString("status"));
+                list.add(message);
             }
             // close connection
         } catch (Exception ex) {
-            System.out.println("bookingList" + ex.getMessage());;
+            System.out.println("messageList" + ex.getMessage());;
         }
         return list;
     }
 
-    public ArrayList<Bookings> getListBooking(int acc_id) throws SQLException {
-        ArrayList<Bookings> bookings1 = new ArrayList<>();
+    public ArrayList<Message> getListMessage(int acc_id) throws SQLException {
+        ArrayList<Message> bookings1 = new ArrayList<>();
         try {
 
             // connnect to database 'testdb'
             conn = baseDAO.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("Select * from Bookings  where acc_id  = ?");
+            PreparedStatement stmt = conn.prepareStatement("Select * from Message  where user_id  = ?");
             stmt.setInt(1, acc_id);
 
             // get data from table
             ResultSet rs = stmt.executeQuery();
             // show data
             while (rs.next()) {
-                Bookings book = new Bookings(rs.getString("user_id"), rs.getString("player_id"), rs.getNString("total_hour"), rs.getString("game_id"),rs.getDouble("total_price"),rs.getString("date_booking"),rs.getString("message"));
-                bookings1.add(book);
+                Message message = new Message(rs.getInt("messageid"), rs.getString("user_id"), rs.getNString("player_id"), rs.getString("date_time"),rs.getString("message"),rs.getString("status"));
+                bookings1.add(message);
             }
             return bookings1;
             // close connection
         } catch (Exception ex) {
-            System.out.println("getListBooking" + ex.getMessage());;
+            System.out.println("getListMessage" + ex.getMessage());;
         }
         return null;
     }
 
-    public int getBookingIdByAccId(int acc_Id2) {
-        int BookingId;
+    public int getMessageIdByAccId(int acc_Id2) {
+        int MessageId;
         try {
             // connnect to database 'testdb'
             conn = baseDAO.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("Select booking_id from Bookings  where acc_id  = ?");
+            PreparedStatement stmt = conn.prepareStatement("Select messageid from Message  where user_id  = ?");
             stmt.setInt(1, acc_Id2);
 
             // get data from table
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                BookingId = rs.getInt("booking_id");
-                return BookingId;
+                MessageId = rs.getInt("user_id");
+                return MessageId;
             }
 
         } catch (Exception e) {
@@ -177,12 +176,12 @@ public class BookingDAO {
         return 0;
     }
 
-    public int getLocationIdByBookingId(int booking_id) {
+    public int getLocationIdByMessageId(int booking_id) {
         int location_Id;
         try {
             conn = baseDAO.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("Select location_id from Bookings  where booking_id  = ?");
+            PreparedStatement stmt = conn.prepareStatement("Select location_id from Message  where messageid  = ?");
             stmt.setInt(1, booking_id);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {

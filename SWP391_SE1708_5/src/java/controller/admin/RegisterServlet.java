@@ -58,7 +58,9 @@ public class RegisterServlet extends HttpServlet {
             String address = request.getParameter("address");
             boolean gender1 = request.getParameter("gender").equals("Male");
             String gender = String.valueOf(gender1);
+            String gender3 = request.getParameter("gender");
             String link_image = request.getParameter("link_image");
+            String balance = "0";
             
             
             UserDAO userDAO = new UserDAO();
@@ -80,7 +82,7 @@ public class RegisterServlet extends HttpServlet {
                 HttpSession session = request.getSession(); 
                 
                  userDAO.insertUser(user_id, full_name);
-                 adao.insertUserDetails(user_id,gender,phone_number,gmail,address,password,link_image);
+                 adao.insertUserDetails(user_id,gender3,phone_number,gmail,address,password,link_image,balance);
 
                  udao.insertRole(user_id);
                  

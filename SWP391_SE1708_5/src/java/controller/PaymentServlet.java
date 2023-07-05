@@ -5,23 +5,20 @@
  */
 package controller;
 
-import DB.PlayerDAO;
-import DB.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.util.List;
-import model.Player;
 
 /**
  *
  * @author Acer
  */
-public class LeaderBoardServlet extends HttpServlet {
+@WebServlet(name = "PaymentServlet", urlPatterns = {"/payment"})
+public class PaymentServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -39,10 +36,10 @@ public class LeaderBoardServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LeaderBoardServlet</title>");            
+            out.println("<title>Servlet PaymentServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LeaderBoardServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet PaymentServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,29 +57,7 @@ public class LeaderBoardServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession();
-        PlayerDAO mdao = new PlayerDAO();
-        UserDAO udao = new UserDAO();
-        //     Game_TypeDAO adao = new Game_TypeDAO();
-        List<Player> playerList = mdao.getTop5GoodPlayer();
-        List<Player> playerList2 = mdao.getTop5BestBookingPlayer();
-        String full_name = String.valueOf(session.getAttribute("full_name"));
-        int a = playerList.size();
-//            List<Actor> actorList = adao.getAllActor();
-//            List<GameType> cateList = cdao.getGameType();
-//            List<PlayerGame> gameList = mdao.getPlayerGame();
-//            List<Player_category> mcList = cdao.getPlayerCategory();
-//            request.setAttribute("mcList", mcList);
-        request.setAttribute("playerList", playerList);
-        request.setAttribute("playerList2", playerList2);
-        request.setAttribute("a", a);
-        request.setAttribute("full_name", full_name);
-//            request.setAttribute("actorList", actorList);
-//            request.setAttribute("cateList", cateList);
-//            request.setAttribute("movieActorList", movieActorList);
-//            response.getWriter().print(playerList.get(0).getDirected_by());\
-        request.getRequestDispatcher("common/leaderboard.jsp").forward(request, response);
+        request.getRequestDispatcher("common/payment.jsp").forward(request, response);
     }
 
     /**
