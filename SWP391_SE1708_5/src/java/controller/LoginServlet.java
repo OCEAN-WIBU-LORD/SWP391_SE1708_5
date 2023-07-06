@@ -89,6 +89,7 @@ public class LoginServlet extends HttpServlet {
         String mess = "";
         try {
             userdetails = adao.getUser_Details(username, password);
+            System.out.println(username);
             if (userdetails != null) {
                 
                 
