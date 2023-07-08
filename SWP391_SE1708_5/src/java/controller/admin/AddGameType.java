@@ -65,10 +65,12 @@ public class AddGameType extends HttpServlet {
             Game_TypeDAO gameType = new Game_TypeDAO();
             request.setAttribute("listGameType", gameType.getAllGameType());
             request.getRequestDispatcher("addgametype.jsp").forward(request, response);
+//            
         } catch (SQLException ex) {
             Logger.getLogger(AddGameType.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //
+//        
+//
     }
 
     /**

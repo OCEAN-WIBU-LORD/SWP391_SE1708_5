@@ -117,7 +117,7 @@ public class AddPlayerServlet extends HttpServlet {
             for (Game_Type game_type : game_typeList) {
                 String cate = request.getParameter(game_type.getGameType_name());
                 if(cate != null){
-//                    mdao.addMovieCategory(new Game_Type(lastPlayerID+1, category.getCate_id()));
+                    mdao.addMovieCategory(new Game_Type(lastPlayerID+1, category.getCate_id()));
                 }
                 
 //response.getWriter().println(cate);
