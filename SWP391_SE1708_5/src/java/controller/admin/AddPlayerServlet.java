@@ -11,6 +11,7 @@ import DB.PlayerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -29,6 +30,8 @@ import model.Paging;
  *
  * @author Nguyen Van Ky
  */
+//@WebServlet(name = "AddPlayerServlet", urlPatterns = {"/admin/player"})
+
 public class AddPlayerServlet extends HttpServlet {
 
     @Override
@@ -117,7 +120,7 @@ public class AddPlayerServlet extends HttpServlet {
             for (Game_Type game_type : game_typeList) {
                 String cate = request.getParameter(game_type.getGameType_name());
                 if(cate != null){
-                    mdao.addMovieCategory(new Game_Type(lastPlayerID+1, category.getCate_id()));
+//                    mdao.addMovieCategory(new Game_Type(lastPlayerID+1, category.getCate_id()));
                 }
                 
 //response.getWriter().println(cate);

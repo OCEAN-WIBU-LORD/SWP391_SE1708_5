@@ -9,6 +9,7 @@ import DB.Game_TypeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,6 +24,8 @@ import model.Game_Type;
  *
  * @author ADMIN
  */
+//@WebServlet(name = "addGame", urlPatterns = {"/admin/addGame"})
+
 public class addGame extends HttpServlet {
 
     private GameDAO dao = new GameDAO();

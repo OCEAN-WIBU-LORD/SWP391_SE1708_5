@@ -10,6 +10,7 @@ import DB.PlayerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -22,6 +23,8 @@ import java.util.logging.Logger;
  *
  * @author ADMIN
  */
+//@WebServlet(name = "deleteGame", urlPatterns = {"/admin/deleteGame"})
+
 public class deleteGame extends HttpServlet {
 
     private GameDAO dao = new GameDAO();
@@ -46,23 +49,30 @@ public class deleteGame extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String role = session.getAttribute("role").toString();
-        if (role.isEmpty()) {
-            response.sendRedirect("Unauthorized.html");
-        } else {
-            if (role.equals("user")) {
-                response.sendRedirect("Unauthorized.html");
-            } else {
-                try {
+//        HttpSession session = request.getSession();
+//        String role = session.getAttribute("role").toString();
+//        if (role.isEmpty()) {
+//            response.sendRedirect("Unauthorized.html");
+//        } else {
+//            if (role.equals("user")) {
+//                response.sendRedirect("Unauthorized.html");
+//            } else {
+//                try {
+//                    String game_id = request.getParameter("id");
+//                    dao.DeleteGame(game_id);
+//                    response.sendRedirect("GameList");
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(deleteGame.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        }
+ try {
                     String game_id = request.getParameter("id");
                     dao.DeleteGame(game_id);
                     response.sendRedirect("GameList");
                 } catch (SQLException ex) {
                     Logger.getLogger(deleteGame.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
-        }
     }
      @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

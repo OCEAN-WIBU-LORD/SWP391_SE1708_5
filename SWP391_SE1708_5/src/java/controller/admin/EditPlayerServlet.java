@@ -79,13 +79,16 @@ public class EditPlayerServlet extends HttpServlet {
 //            int num_of_star = Integer.parseInt(numStart);
 //            String password = request.getParameter("password");
 //            String link_image = request.getParameter("link_image");
-//            String income = request.getParameter("income");
+            String income = request.getParameter("income");
             String status_player = request.getParameter("status_player");
 
             Game_TypeDAO cdao = new Game_TypeDAO();
             PlayerDAO playerDao = new PlayerDAO();
             
-            playerDao.changeStatusPlayer(player_id, Integer.parseInt(status_player));
+            Player p = playerDao.getPlayerByID(player_id);
+            p.setIncome(Double.parseDouble(income));
+//            playerDao.changeStatusPlayer(player_id, Integer.parseInt(status_player));
+            playerDao.updatePlayer(p);
             response.sendRedirect("player");
         } catch (SQLException ex) {
             Logger.getLogger(AddPlayerServlet.class.getName()).log(Level.SEVERE, null, ex);
