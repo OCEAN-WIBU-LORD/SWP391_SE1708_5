@@ -61,7 +61,7 @@ public class addGame extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(addGame.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+//
     }
 
     @Override
