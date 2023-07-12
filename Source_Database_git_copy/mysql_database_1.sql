@@ -438,3 +438,29 @@ WHERE messageid = '4';
 select* from player;
 
 select* from user_details;
+
+delete  from message where messageid = '13';
+select * from message;
+
+SELECT DISTINCT player_id
+FROM message
+WHERE user_id = 'duongdd123'
+GROUP BY player_id;
+
+Delete from Message where  user_id = ? and player_id = ?;
+
+select * from booking;
+select * from player;
+SELECT p.player_id, p.player_name, p.gender,p.phone_number,p.num_of_star,p.password,p.link_image,p.income,p.status_player,p.description, COUNT(b.player_id) AS booking_count
+FROM Player p
+JOIN Booking b ON p.player_id = b.player_id
+where p.player_name like '%e%'
+GROUP BY p.player_id, p.player_name, p.gender,p.phone_number,p.num_of_star,p.password,p.link_image,p.income,p.status_player,p.description
+ORDER BY booking_count DESC;
+
+SELECT p.player_id, p.player_name, p.gender,p.phone_number,p.num_of_star,p.password,p.link_image,p.income,p.status_player,p.description, sum(b.total_price) AS moneyreceived
+FROM Player p
+JOIN Booking b ON p.player_id = b.player_id
+where p.player_name like '%e%'
+GROUP BY p.player_id, p.player_name, p.gender,p.phone_number,p.num_of_star,p.password,p.link_image,p.income,p.status_player,p.description
+ORDER BY moneyreceived DESC;
