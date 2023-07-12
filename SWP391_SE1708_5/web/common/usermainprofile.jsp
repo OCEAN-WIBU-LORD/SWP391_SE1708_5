@@ -444,6 +444,7 @@
                                                 <th style="width: 150px;"><span>Money</span></th>
                                                 <th ><span>Message</span></th>
                                                 <th>&nbsp;</th>
+                                                <th style="width: 150px; ">Report</th>
                                             </tr>
                                         </thead>
 
@@ -504,6 +505,12 @@
                                                                 <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
                                                             </span>
                                                         </a>
+                                                    </td>
+                                                    <td>
+                                                        <form action="createReport" method="get">
+                                                            <input hidden name="bookingId" value="${m.getId()}">   
+                                                            <button style="width: 100px; height: 50px" type="submit" style="color: red">Report</button>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                             </c:forEach>

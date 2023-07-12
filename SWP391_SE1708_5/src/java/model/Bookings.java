@@ -18,6 +18,7 @@ public class Bookings {
     private double total_price;
     private String date_booking;
     private String message;
+    private String id;
 
     public Bookings() {
     }
@@ -30,6 +31,25 @@ public class Bookings {
         this.total_price = total_price;
         this.date_booking = date_booking;
         this.message = message;
+    }
+
+    public Bookings(String user_id, String player_id, String total_hour, String game_id, double total_price, String date_booking, String message, String id) {
+        this.user_id = user_id;
+        this.player_id = player_id;
+        this.total_hour = total_hour;
+        this.game_id = game_id;
+        this.total_price = total_price;
+        this.date_booking = date_booking;
+        this.message = message;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUser_id() {

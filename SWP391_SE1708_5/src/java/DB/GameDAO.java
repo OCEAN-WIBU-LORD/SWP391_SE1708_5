@@ -91,11 +91,12 @@ public class GameDAO {
 
     public void addGame(Game a) {
         try {
+            cnn = db.getConnection();
             String strAdd = "insert into game(game_id,game_name,game_discription) values(?,?,?)";
             pstm = cnn.prepareStatement(strAdd);
             pstm.setString(1, a.id);
             pstm.setString(2, a.name);
-            pstm.setString(1, a.discription);
+            pstm.setString(3, a.discription);
             pstm.executeUpdate();
         } catch (Exception e) {
             System.out.println("AddGame:" + e.getMessage());
