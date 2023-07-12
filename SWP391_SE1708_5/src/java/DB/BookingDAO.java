@@ -121,7 +121,9 @@ public class BookingDAO {
             ResultSet rs = stmt.executeQuery();
             // show data
             while (rs.next()) {
-                Bookings bookings = new Bookings(rs.getString("user_id"), rs.getString("player_id"), rs.getNString("total_hour"), rs.getString("game_id"),rs.getDouble("total_price"),rs.getString("date_booking"),rs.getString("message"));
+//                Bookings bookings = new Bookings(rs.getString("user_id"), rs.getString("player_id"), rs.getNString("total_hour"), rs.getString("game_id"),rs.getDouble("total_price"),rs.getString("date_booking"),rs.getString("message"));
+                Bookings bookings = new Bookings(rs.getString("user_id"), rs.getString("player_id"), rs.getNString("total_hour"), rs.getString("game_id"),rs.getDouble("total_price"),rs.getString("date_booking"),rs.getString("message"), rs.getString("booking_id"));
+
                 list.add(bookings);
             }
             // close connection
@@ -130,8 +132,8 @@ public class BookingDAO {
         }
         return list;
     }
-
-    public ArrayList<Bookings> getListBooking(int acc_id) throws SQLException {
+    
+     public ArrayList<Bookings> getListBooking(int acc_id) throws SQLException {
         ArrayList<Bookings> bookings1 = new ArrayList<>();
         try {
 
@@ -156,25 +158,29 @@ public class BookingDAO {
         return null;
     }
 
-    public int getBookingIdByAccId(int acc_Id2) {
-        int BookingId;
+    public Bookings getBookingById(String id) throws SQLException {
+        Bookings b = null;
         try {
             // connnect to database 'testdb'
             conn = baseDAO.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("Select booking_id from Bookings  where acc_id  = ?");
-            stmt.setInt(1, acc_Id2);
+            PreparedStatement stmt = conn.prepareStatement("Select * from Booking  where booking_id  = ?");
+            stmt.setString(1, id);
 
             // get data from table
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                BookingId = rs.getInt("booking_id");
-                return BookingId;
+                b = new Bookings(rs.getString("user_id"), rs.getString("player_id"), rs.getNString("total_hour"), rs.getString("game_id"),rs.getDouble("total_price"),rs.getString("date_booking"),rs.getString("message"), rs.getString("booking_id"));
+                return b;
             }
 
         } catch (Exception e) {
+        }finally{
+            if (conn!=null){
+                conn.close();
+            }
         }
-        return 0;
+        return b;
     }
 
     public int getLocationIdByBookingId(int booking_id) {
