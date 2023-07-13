@@ -56,16 +56,23 @@ public class AddPlayerServlet extends HttpServlet {
             Object currentPage = request.getParameter("paging");
             request.setAttribute("n", n);
             int page =1;
-            if (currentPage == null){
-                response.sendRedirect("player?paging=1");
-            } else {
+            Object pageSize = session.getAttribute("page_size");
+            Object itemPerPage = request.getParameter("accPerPage");
+            int accPerPage = 10;
+            if (pageSize != null){
+                accPerPage = Integer.parseInt(pageSize.toString());
+            }
+            if (itemPerPage != null){
+                accPerPage = Integer.parseInt(itemPerPage.toString());
+                session.setAttribute("page_size", accPerPage);
+            }
+            if (currentPage != null){
                 try {
                     page = Integer.parseInt(currentPage.toString());
                 } catch (Exception e) {
                     page = 1;
                 }
-                Object itemPerPage = request.getParameter("accPerPage");
-                int accPerPage = 10;
+            }    
                 if (itemPerPage != null){
                     accPerPage = Integer.parseInt(itemPerPage.toString());
                 }
@@ -78,7 +85,7 @@ public class AddPlayerServlet extends HttpServlet {
                 request.setAttribute("page", paging);
                 request.setAttribute("currentPage", page);
                 request.getRequestDispatcher("addplayer.jsp").forward(request, response);
-            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(AddPlayerServlet.class.getName()).log(Level.SEVERE, null, ex);
              response.getWriter().print("something wrong");

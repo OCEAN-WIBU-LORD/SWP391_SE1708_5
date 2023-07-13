@@ -11,6 +11,7 @@ public class User_Details {
     private String link_image;
     private Double balance;
     private String full_name;
+    private int status;
 
     public User_Details() {
     }
@@ -47,6 +48,27 @@ public class User_Details {
         this.link_image = link_image;
     }
 
+    public User_Details(String user_id, String gender, String phone_number, String email, String address, String password, String link_image, Double balance, String full_name, int status) {
+        this.user_id = user_id;
+        this.gender = gender;
+        this.phone_number = phone_number;
+        this.email = email;
+        this.address = address;
+        this.password = password;
+        this.link_image = link_image;
+        this.balance = balance;
+        this.full_name = full_name;
+        this.status = status;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+      
       public String getFull_name() {
         return full_name;
     }

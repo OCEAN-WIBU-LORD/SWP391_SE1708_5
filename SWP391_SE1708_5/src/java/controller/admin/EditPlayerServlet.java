@@ -34,21 +34,14 @@ public class EditPlayerServlet extends HttpServlet {
             PlayerDAO mdao = new PlayerDAO();
             String player_id = request.getParameter("player_id");
             Player player = mdao.getPlayerByID(player_id);
-//            Game_TypeDAO cdao = new Game_TypeDAO();
             List<Player> playerList = mdao.getAllPlayer();
-//            List<Game_Type> categoryList = cdao.getAllGame_Type();
-//            List<Movie_category> mcList = cdao.getMovieCategory();
-
-//            request.setAttribute("categoryList", categoryList);
             request.setAttribute("playerList", playerList);
-//            request.setAttribute("mcList", mcList);
-            response.getWriter().print("ddddsss");
 
             if (player != null) {
                 request.setAttribute("player", player);
                 request.getRequestDispatcher("editplayer.jsp").forward(request, response);
-            } else {
-                response.getWriter().print("player with id: " + player_id + "not exist");
+            }else{
+                response.sendRedirect("player");
             }
         } catch (SQLException ex) {
             Logger.getLogger(EditPlayerServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -69,7 +62,7 @@ public class EditPlayerServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            String player_id = request.getParameter("id");
+            String player_id = request.getParameter("player_id");
 //            String player_name = request.getParameter("player_name");
 //            String description = request.getParameter("description");
 //            String gender = request.getParameter("gender");
@@ -87,7 +80,7 @@ public class EditPlayerServlet extends HttpServlet {
             
             Player p = playerDao.getPlayerByID(player_id);
             p.setIncome(Double.parseDouble(income));
-//            playerDao.changeStatusPlayer(player_id, Integer.parseInt(status_player));
+            p.setStatus_player(status_player);
             playerDao.updatePlayer(p);
             response.sendRedirect("player");
         } catch (SQLException ex) {

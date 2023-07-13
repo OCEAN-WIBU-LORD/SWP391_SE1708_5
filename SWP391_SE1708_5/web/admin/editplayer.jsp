@@ -226,7 +226,7 @@
                                                 <tbody>
                                                     <tr>
                                                          <td><b>Player ID</b></td>
-                                                        <td><input disabled name="id" type="text" value="${player.player_id}" style="width: 90%"/></td>
+                                                        <td><input disabled name="player_id" type="text" value="${player.player_id}" style="width: 90%"/></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Player Name</b></td>
@@ -294,15 +294,15 @@
                                                         <td>
                                                             
                                                             <c:if test="${player.status_player eq 1}">
-                                                                <input name="status_player" type="checkbox"  checked="true"/>
+                                                                <input name="status_player" type="checkbox"  checked="true" value="1"/>Enable
                                                             </c:if>
                                                             <c:if test="${player.status_player ne 1}">
-                                                                <input name="status_player" type="checkbox" />
+                                                                <input name="status_player" type="checkbox" value="0" />Enable
                                                             </c:if>
                                                             </td>
                                                     </tr>
                                                     <tr>
-                                                        <td></td>
+                                                        <td><input hidden name="player_id" type="text" value="${player.player_id}" style="width: 90%"/></td>
                                                         <td><button type="submit" class="btn btn-success">UPDATE</button></td>
 
                                                     </tr>

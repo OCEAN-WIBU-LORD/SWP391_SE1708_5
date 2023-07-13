@@ -69,6 +69,7 @@ public class ManageUser extends HttpServlet {
         Object obj = request.getParameter("user_id");
         if (obj != null){
             User_Details ud = udDAO.getUserById(obj.toString());
+            System.out.println(ud.getStatus());
             request.setAttribute("user", ud);
         }
         request.getRequestDispatcher("manageUser.jsp").forward(request, response);
@@ -86,17 +87,35 @@ public class ManageUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
+        String playerId = request.getParameter("id");
         User_DetailsDAO udDAO = new User_DetailsDAO();
-        ArrayList<User_Details> userList = udDAO.getAllUser();
-        request.setAttribute("n", userList.size());
-        request.setAttribute("userList", userList);
-        Object obj = request.getParameter("user_id");
-        if (obj != null){
-            User_Details ud = udDAO.getUserById(obj.toString());
-            request.setAttribute("user", ud);
+        User_Details user = udDAO.getUserById(playerId);
+        
+        String balance = request.getParameter("balance");
+        String status = request.getParameter("select_status");
+        double income = 0;
+        try{
+            income = Double.parseDouble(balance);
+            if (income<0){
+                income = user.getBalance();
+            }
+        }catch (Exception e){
+            income = user.getBalance();
         }
-        request.getRequestDispatcher("manageUser.jsp").forward(request, response);
+        user.setStatus(Integer.parseInt(status));
+        user.setBalance(income);
+        udDAO.updateAccount(user);
+        response.sendRedirect("manageUser");
+        
+//        ArrayList<User_Details> userList = udDAO.getAllUser();
+//        request.setAttribute("n", userList.size());
+//        request.setAttribute("userList", userList);
+//        Object obj = request.getParameter("user_id");
+//        if (obj != null){
+//            User_Details ud = udDAO.getUserById(obj.toString());
+//            request.setAttribute("user", ud);
+//        }
+//        request.getRequestDispatcher("manageUser.jsp").forward(request, response);
     }
 
     /**

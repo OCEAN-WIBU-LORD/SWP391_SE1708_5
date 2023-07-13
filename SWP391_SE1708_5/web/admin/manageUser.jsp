@@ -159,6 +159,8 @@
                                                     <th>Gender</th>
                                                     <th>Address</th>
                                                     <th>Link Image</th>
+                                                    <th>Balance</th>
+                                                    <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -170,9 +172,25 @@
                                                         <td>${o.user_id}</td>
                                                         <td>${o.full_name}</td>
                                                         <td>${o.phone_number}</td>
-                                                        <td>${o.gender}</td>
+                                                        <td>
+                                                            <c:if test="${o.gender eq true}">
+                                                                Male
+                                                            </c:if>
+                                                            <c:if test="${o.gender ne true}">
+                                                                Female
+                                                            </c:if>
+                                                        </td>
                                                         <td>${o.address}</td>
                                                         <td><img style="max-width: 10%;" src="${o.link_image}" alt=""/></td>
+                                                        <td>${o.balance}</td>
+                                                        <td>
+                                                             <c:if test="${o.status eq 1}">
+                                                                Enable
+                                                            </c:if>
+                                                            <c:if test="${o.status ne 1}">
+                                                                Disable
+                                                            </c:if>
+                                                        </td>
                                                         <td><a href="manageUser?user_id=${o.user_id}">Update</a></td>
                                                     </tr>
                                                 </c:forEach>
@@ -227,10 +245,22 @@
                                                         <td><input disabled name="link_image" type="text" style="width: 90%" value="${user.link_image}"/></td>
                                                     </tr>
                                                     <tr>
-                                                        <td></td>
-
+                                                        <td><b>Balance</b></td>
+                                                        <td><input name="balance" type="number" style="width: 90%" value="${user.balance}"/></td>
                                                     </tr>
-
+                                                    <tr>
+                                                        <td><b>Status</b></td>
+                                                        <td>
+                                                            <select name="select_status">
+                                                                <option value="0">Disable</option>
+                                                                <option value="1" <c:if test="${user.getStatus() eq 1}">selected</c:if>>Enable</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input hidden name="id" type="text" value="${user.user_id}" style="width: 90%"/></td>
+                                                        <td><button type="submit">Update</td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </form>

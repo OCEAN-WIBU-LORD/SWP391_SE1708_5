@@ -211,14 +211,16 @@ public class User_DetailsDAO {
             BaseDAO db = new BaseDAO();
             // connnect to database 'testdb'
             conn = db.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("Update User_Details set gender =?,phone_number=?,gmail=?,address=?,password=?,link_image=? WHERE user_id= ?");
+            PreparedStatement stmt = conn.prepareStatement("Update User_Details set gender =?,phone_number=?,gmail=?,address=?,password=?,link_image=?, status=?, balance=? WHERE user_id= ?");
             stmt.setString(1, a.getGender());
             stmt.setString(2, a.getPhone_number());
             stmt.setString(3, a.getEmail());
             stmt.setString(4, a.getAddress());
             stmt.setString(5, a.getPassword());
             stmt.setString(6, a.getLink_image());
-            stmt.setString(7, a.getUser_id());
+            stmt.setInt(7, a.getStatus());
+            stmt.setDouble(8, a.getBalance());
+            stmt.setString(9, a.getUser_id());
             stmt.executeUpdate();
         } catch (Exception ex) {
              System.out.println("updateAccount" + ex.getMessage());
@@ -247,7 +249,9 @@ public class User_DetailsDAO {
                         rs.getNString("address"), 
                         rs.getString("password"), 
                          rs.getString("link_image"), 
-                         rs.getString("full_name")
+                        rs.getDouble("balance"),
+                         rs.getString("full_name"),
+                        rs.getInt("status")
                 ));
             }
         } catch (SQLException ex) {
@@ -280,7 +284,9 @@ public class User_DetailsDAO {
                         rs.getNString("address"), 
                         rs.getString("password"), 
                          rs.getString("link_image"), 
-                         rs.getString("full_name")
+                        rs.getDouble("balance"),
+                         rs.getString("full_name"),
+                        rs.getInt("status")
                 );
             }
         } catch (SQLException ex) {
