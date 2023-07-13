@@ -189,6 +189,7 @@
                                                 <th>Description</th>
                                                 <th>Game Type</th>
                                                 <th>Actions</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -199,7 +200,9 @@
                                                         <td>${game.discription}</td>
                                                         <td>${game.gameType}</td>
                                                         <td>
-                                                            <a href="#" onclick="openUpdateForm(${game.id})">Update</a> |
+                                                            <a href="GameList?game=${game.id}">Update</a>
+                                                        </td>
+                                                        <td>
                                                             <a href="#" onclick="confirmDelete(${game.id})">Delete</a>
                                                         </td>
                                                     </tr>
@@ -216,54 +219,48 @@
 
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Game</h6>
+                                        <c:if test="${game eq null}">
+                                            <h6 class="m-0 font-weight-bold text-primary">Add game</h6>
+                                        </c:if>
+                                        <c:if test="${game ne null}">
+                                            <h6 class="m-0 font-weight-bold text-primary">Update game</h6>
+                                        </c:if>
+                                        <c:if test="${not empty errorMessage}">
+                                            <p style="color: red;">${errorMessage}</p>
+                                        </c:if>
                                     </div>
                                     <div class="card-body">
-                                        <form action="addplayer" method="post">
+                                        <form action="" method="post">
                                             <table class="table table-hover">
 
                                                 <tbody>
                                                     <tr>
-                                                        <td><b>Player_id</b></td>
-                                                        <td><input name="title" type="text" placeholder="" style="width: 90%"/></td>
+                                                        <td><b>Name</b></td>
+                                                        <td><input name="name_game" type="text" style="width: 90%" value="${game.name}"/></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>GamePlayed</b></td>
-                                                        <td><div style="width: 90%">
-
-
-                                                                <c:forEach items="${gameList}" var="s">
-                                                                    <input name="${s.id}" type="checkbox"  placeholder="" /> ${s.name}<br>
+                                                        <td><b>Description:</b></td>
+                                                        <td><textarea name="description" type="text" style="width: 90%" value="${game.discription}"></textarea></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Game Type</b></td>
+                                                        <td>
+                                                            <select name="game_type">
+                                                                <c:forEach items="${listGameType}" var="gameType">
+                                                                    <option value="${gameType.game_type}" <c:if test="${gameType.game_type eq game.gameType}">selected</c:if> >
+                                                                        ${gameType.game_type}
+                                                                    </option>
                                                                 </c:forEach>
-
-
-
-
-                                                            </div></td>
+                                                            </select>
+                                                            </div>
+                                                        </td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Player Name</b></td>
-                                                        <td><textarea name="description" cols="60" rows="3"></textarea></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Gender</b></td>
-                                                        <td><input name="timeshow" type="number" /></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Phone Number</b></td>
-                                                        <td><input name="subtitle" type="text" style="width: 90%"/></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Password</b></td>
-                                                        <td><input name="linkposter" type="text" style="width: 90%"/></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Link Image</b></td>
-                                                        <td><input name="request" type="text" style="width: 90%"/></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td></td>
-                                                        <td><button type="submit" class="btn btn-success">ADD</button></td>
+                                                        <td><input hidden value="${game.id}" name="game" ></td>
+                                                        <td><button type="submit" class="btn btn-success">
+                                                                <c:if test="${game eq null}">Add Game</c:if>
+                                                                <c:if test="${game ne null}">Update Game</c:if>
+                                                            </button></td>
                                                     </tr>
                                                 </tbody>
                                             </table>

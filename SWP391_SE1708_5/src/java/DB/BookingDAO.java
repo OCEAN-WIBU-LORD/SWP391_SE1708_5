@@ -153,7 +153,7 @@ public class BookingDAO {
             return bookings1;
             // close connection
         } catch (Exception ex) {
-            System.out.println("getListBooking" + ex.getMessage());;
+            System.out.println("getListBooking" + ex.getMessage());
         }
         return null;
     }
@@ -198,6 +198,30 @@ public class BookingDAO {
         } catch (Exception e) {
         }
         return 0;
+    }
+    
+    public ArrayList<Bookings> getAllBooking(){
+        ArrayList<Bookings> listBooking = new ArrayList<>();
+         try {
+            conn = baseDAO.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(
+                    "select b.booking_id, b.user_id, u.full_name, b.player_id, p.player_name, b.total_hour, b.game_id, g.game_name, b.total_price, b.date_booking, b.message from booking b \n" +
+"left join user_details ud on b.user_id = ud.user_id\n" +
+"left join player p on b.player_id = p.player_id\n" +
+"left join game g on b.game_id = g.game_id\n" +
+"left join user u on u.user_id = ud.user_id"
+            );
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Bookings book = new Bookings(rs.getString("user_id"), rs.getString("player_id"), rs.getNString("total_hour"), rs.getString("game_id"),rs.getDouble("total_price"),rs.getString("date_booking"),rs.getString("message"));
+                listBooking.add(book);
+            }
+            return listBooking;
+            // close connection
+        } catch (Exception ex) {
+            System.out.println("getListBooking" + ex.getMessage());
+        }
+        return listBooking;
     }
 
 }

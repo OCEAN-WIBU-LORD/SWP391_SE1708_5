@@ -94,6 +94,7 @@
                                                 <tr>
                                                     <th>Game Type Name</th>
                                                     <th>Action</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -102,6 +103,7 @@
                                                         <tr>
                                                         <td>${g.game_type}</td>
                                                         <td><a href="deleteGameType?id=${g.game_type}">Delete</a></td>
+                                                        <td><a href="addGameType?gameType=${g.game_type}">Update</a></td>
                                                         </tr>
                                                     </c:forEach>
 
@@ -120,7 +122,12 @@
 
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Add game type</h6>
+                                        <c:if test="${type ne null}">
+                                            <h6 class="m-0 font-weight-bold text-primary">Edit game type</h6>
+                                        </c:if>
+                                        <c:if test="${type eq null}">
+                                            <h6 class="m-0 font-weight-bold text-primary">Add game type</h6>
+                                        </c:if>
                                         <h6>${mess}</h6>
                                     </div>
                                     <div class="card-body">
@@ -131,12 +138,16 @@
                                                     
                                                     <tr>
                                                         <td><b>Game Type</b></td>
-                                                        <td><input name="name_type" type="text"style="width: 90%"/></td>
+                                                        <td>
+                                                            <input name="name_type_new" type="text"style="width: 90%" value="${type.getGame_type()}"/>
+                                                        </td>
                                                     </tr>
                                                     
                                                     <tr>
-                                                        <td></td>
-                                                        <td><button type="submit">ADD</button></td>
+                                                        <td><input hidden name="name_type" type="text"style="width: 90%" value="${type.getGame_type()}"/></td>
+                                                        <td><button type="submit">
+                                                                ${type eq null ? "Add" : "Update"}
+                                                            </button></td>
 
                                                     </tr>
 

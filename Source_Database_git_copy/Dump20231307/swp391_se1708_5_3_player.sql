@@ -1,0 +1,60 @@
+-- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
+--
+-- Host: localhost    Database: swp391_se1708_5_3
+-- ------------------------------------------------------
+-- Server version	8.0.33
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `player`
+--
+
+DROP TABLE IF EXISTS `player`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `player` (
+  `player_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `player_name` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `gender` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `phone_number` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `num_of_star` int DEFAULT NULL,
+  `password` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `link_image` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `income` double DEFAULT NULL,
+  `status_player` int DEFAULT NULL,
+  `description` text,
+  `more_image` text,
+  PRIMARY KEY (`player_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `player`
+--
+
+LOCK TABLES `player` WRITE;
+/*!40000 ALTER TABLE `player` DISABLE KEYS */;
+INSERT INTO `player` VALUES ('chanbaby95','Em bé Chan ☁️❤️','female','0967778899',5,'123456789','https://playerduo.net/api/upload-service/images/6885cb0a-74b9-4c50-a614-5f8e513a1225__cfaa3500-ce74-11ed-a19f-23a3b10d190e__player_album.jpg',500,NULL,'??à? ?ừ?? ??? đế? ?ớ? ?ì?? ????ê? ?ô ?ậ? ?ủ? ???? ??é ❤️❤️\r\n\r\n? Bé nhận call/call video/oncam trên fb (mess), zalo, ins, discord, rent bé nè ?\r\n\r\n? Bé có nhận rent qua chuyển khoản hoặc momo nha nên nếu anh hong nạp dou thì yên tâm bé vẫn nhận dc nè ?\r\n\r\n❤️ ?ặ?? ??ì? ?ơ? ?ơ ??ẹ ?? ?? ?à? ?ầ? ??ơ...\r\n\r\n❤️ Chan chơi game mobile là ???? ​ ???? và liên quân nè... nhưng bé có thể tải bất cứ game gì chỉ cần anh mún thì bé chiều ??\r\n\r\n❤️ Ngoài game, Chan có thể ???? ?Â? ?Ự cùng anh nè, kể chuyện nè, xem phim cùng...\r\n\r\n❤️ Chan có máy riêng, phòng riêng, không ồn, thế giới này chỉ có hai ta ? nên rất thoải mái hihi ?\r\n\r\n❤️ ???? ???: 200k/1h thoi anh nè\r\n\r\n❤️ ??ậ? ???: x5 giá anh nhé, để bé còn chuẩn bị đồ nhậu cùng anh hihi\r\n\r\n❤️ Trải bài tarot: Anh hứng thú tìm hiểu về tình yêu và công việc thông qua những lá bài tarot thần kỳ thì để bé Chan dẫn lối nhé, bé sẽ mang đến những thông điệp tươi sáng cho cuộc đời của anh, giá x5 anh nhé ?\r\n\r\n? ?é ?ả? ?? ?ấ? ??ì? ?ế? ??? ??ọ? ???ê ?é ❤️❤️\r\n\r\n? ??ậ? ???ệ? ?ế? ??? ?????? ??ú? ?é ???? ??à? ??à?? ?ụ? ??ê? ?ủ? ?ì??, ?? ??ươ?? ❤️\r\n\r\n---Chinh phục Top 1 donate cho Chan nè ?---\r\n\r\n??????????????????',NULL),('congchuabongbong','Minh Ngoc','female','0967623421',5,'123456789','https://playerduo.net/api/upload-service/images/dc805681-0d56-4dd6-a1d1-ae2cf3ea4813__89118520-e3a1-11ed-a19f-23a3b10d190e__player_album.jpg',400,1,'Giọng miền nam - mic nhà nên không ồn\n\nMỌI NGƯỜI THUÊ CHƠi GAME THUÊ GIÚP EM TRÊN 2H nha UwU ?',NULL),('hala','Hạ Lạ','female','0967753441',5,'123456789','https://playerduo.net/api/upload-service/images/75c40a5c-dbda-4ac3-9106-55d6d7ca9b0f__a3c3aef0-cb0c-11ed-a19f-23a3b10d190e__player_album.jpg',600,1,'Hellooooo. Mình là Phương Trúc. Mọi người thường gọi mình là Hạ Lạ\n\nCực kì tôn trọng đồng đội và yêu thương đồng đội, tay ko to lắm nhưng mình tự lo được\n\nVui vẻ , nhiệt tình, thân thiện, hay cười, mình cũng dễ thương nữa =))\n\nRất vui nếu được chơi game cùng bạn\n\nNgoài ra mình còn nhận chơi các game steam (bạn chịu dạy mình chịu chơi :))), stream phim netflix, bật nhạc,...\n\nNếu ko thấy mình trả lời thì ib facebook giúp mình, đừng hủy tội mình :(( https://www.facebook.com/profile.php?id=100005884657459',NULL),('juncutee','Pham Thuy Dung','female','0967555461',5,'123456789','https://playerduo.net/api/upload-service/images/66f8b716-ee52-4590-aa0a-73bd28590f5f__3a2689a0-1d52-11eb-89a2-ed059467d76a__player_album.jpg',700,1,'- Giọng bắc\n\n- Chè Thái gái Tuyênnn\n\n- Link fb https://www.facebook.com/phmthuydung\n\n- Mng thuê ủng hộ tui đóng tiền đi học nha ^^\n\n? Liên minh huyền thoại ( BK vị trí Ad, Sp, Mid ) Liên quân ( Tinh Anh vị trí AD, Sp, Mid )\n\n? Valorant ( Bạc vị trí smoke ), CS GO ( bắn forfun được map mirage, inferno thui )\n\n? Naraka ( BK )\n\n? Onl Camx5\n\n? Mở nhạc, Mở Fim ( có netflix ) Cờ tỉ phú, tốc chiến, liên quân, among US, ma sói .... game gì cũng chơi\n\n❌Lưu ý: KHÔNG call sexy, 18+ khỏi pm cảm ơn\n\nPm trên playerduo nếu mình không rep thì bạn nhắn tin qua fb tại tin nhắn ở pld không có chuông nên mình không biết T.T\n\nHoặc nhắn tin qua sdt ~ 0866095876~\n\nĐọc đến đây mà hông thuê là mình buồn lắm ><',NULL),('meone','Little Cat','female','0967565461',4,'123456789','https://playerduo.net/api/upload-service/images/0daea254-1a71-44ce-903d-88a781d83124__c016c0d0-73a8-11ed-a19f-23a3b10d190e__player_album.jpg',4430,1,'? Xin chàooo\n\n? Mình là Sâu giọng miền Bắc\n\n? Mình khá là ngoan , máy nhà míc k ồn và ít khi toxic.\n\n? Chơi game có 3 mode là :\n\n- ??̂̃ ???̛?̛?? , ??̂́? ??̀? và ???? ???̂̀? . Đôi lúc có chút khùng\n\n? Nhận chơi các game :\n\n✅ - ???? ?? :- 2000h nhận all sv\n\n✅ - ??? :- Rank, Aram, Flex, Custom ...... (nhận cả sv NA, OCE)\n\n✅ - ??? :- Rank bạch kim :3\n\n✅ - ?????? :- đánh 1 champ nên hãy cân nhắc trước khi thuê để tryhard rank\n\n✅ - ???????\n\n✅ - ?????\n\n✅ - ???????? ????\n\n⭐️ Khi thuê Sâu chơi game 7h đc tặng 1h nha :)) ?\n\n⭐️ Có nhận tải game theo ý user , chơi game k hay nhưng sẽ ngoan nếu đc chỉ dạy (^o^)\n\n? Vì app dạo này k có thông báo, nên nếu nhắn tin k thấy Sâu trả lời, anh muốn thuê có thể liên lạc qua Fb giúp Sâu nha ❤\n\n? Cảm ơn vì đã đọc tới đây, iuuu❤️',NULL),('meowmeow','Tran Thi Ha My','female','0967665461',3,'123456789','https://playerduo.net/api/upload-service/images/1d1fa3b4-fe53-4a76-983e-6e1470f79367__f262f5b0-41d3-11ed-838c-b120e70abb59__player_album.jpg',5000,1,'Sinh sống và làm việc tại Hà Nội.\n\nGame : LOL (NA), TFT, Tốc Chiến, Valorant, GTA , Apex......\n\nNhận tải game theo yêu cầu .\n\nLoL rank Vàng,Bk\n\nTốc Chiến rank ĐCT\n\nOncam ( chỉ nhận oncam discord) nc vui ve (690k/h)\n\n- NHẬN TIỀN TRƯỚC CHƠI GAME SAU',NULL),('meowmeow3k','MÈO 3K','female','0967543461',5,'123456789','https://playerduo.net/api/upload-service/images/1d1fa3b4-fe53-4a76-983e-6e1470f79367__6260b250-eb2e-11ec-92ac-1b8d2f5bc2b5__player_album.jpg',2500,1,'? Mình nhận chơi game ALL SERVER và tải game theo yêu cầu của User luôn nhaaaa\n\n. ??? ( ?? / ?? / ?? / ?? / ??? )\n\n. ????\n\n. ????\n\n. ????????\n\n? ???????? ????? : ARK - Green Hell - Raft - Grounded - The Forest - Valheim - The Survivalists - Dont Starve Together - V Rising\n\n? ????? ????? : Sea of Thieves - Business Tour - Among Us - Prop And Seek - Deceit - Pummel Party - Human Fall Flat - Sun Haven - Dinkum - Farm together - World War Z\n\n----------------------------------------------\n\n? Mình không nhận duo sau 12h đêm, do bệnh về mắt nên không chơi game nhiều được. Cảm ơn mọi người vì đã ghé qua !',NULL),('muasaobang','Thư','female','0967655461',5,'123456789','https://playerduo.net/api/upload-service/images/dc805681-0d56-4dd6-a1d1-ae2cf3ea4813__5ab17d40-e39f-11ed-a19f-23a3b10d190e__player_album.jpg',3500,1,'???? ?? + ??? + ??̛̉ ???̣? + ??? ???? + ??:?? + ???̂? ???̂? ?????? + ??? ???? ????? ????\n\n❌ \" THÀNH PHẦN MÕM , HỎI CHƠI ĐỪNG PHIỀN \"\n\n❌ -- ( ?ℎ?̂?? ?ℎ?̣̂? ????? - ??????? ) -- ??\n\n---------------------------------------------------------------------------------\n\n-- https://www.facebook.com/hoangha2k\n\n?????, mọi người\n\n❤️ Name: Hoàng Hà\n\n❤️ Mic nhà không ổn , không rè\n\n❤ Sau 12h đêm thì mình nhận 2h trở lên\n\n? Ngoài ra có nhận ONl CAM x5\n\n? ? Onl cam?: ( nhận qua link pay hoặc chuyển khoản )\n\n? Nhậu onl + đồ (bất tử trên bàn nhậu hậu đậu trong tình yêu )\n\nOnl 24/7\n\n---------------------------------------------------------------------------------\n\n? Liên Quân hệ sp tank cơ , top , AD\n\n? Pubg PC ( hơn 7000h ) + CS:GO ( gọi là biết bắn )\n\n? LOL ( tấu hài vô nói chuyện với uscer )\n\n? NHẬN MỞ NHẠC , XEM PHIM cùng USER\n\n---------------------------------------------------------------------------------\n\nNhận cày phim cùng + bật nhạc chill overnight, đủ thể loại!!\n\n?? Ước được rent ??\n\n=> CHỈ DÙNG MIC Ở DISCORD, GAME, FACEBOOK',NULL),('nhungpd123','Pham Dang Nhung','female','0966566712',5,'123456789','https://playerduo.net/api/upload-service/images/d86ae4dc-c632-4900-b6fb-ec675c50bc38__89d28c20-f08f-11ed-a657-a54d6be1d46a__player_album.jpg',1500,1,'Mình giọng Bắc. Quê Thái Bình. Đang làm việc tại HN\n\n❌ PUBG MOBILE: rank Bậc Thầy Siêu Việt KDA trung bình 5.xx ( K PHỤ KIỆN, BẮN 2 NGÓN, CÓ ON MIC)\n\nID: 5139159838 ( acc chính )\n\n- Chơi từ ss3 rank thấp nhất Cao Thủ, cao nhất Chí Tôn ASIA FPP Squad ss9\n\n- Bắn được cả FPP & TPP. Chiều user all rank, all maps chỉ cần thuê e :3\n\n- Đa số các mùa đều ACE trừ 1-2 mùa k bắn ?\n\n- Có 4 acc phụ để chơi các rank cùng user. Đều ACE KDA 4.xx\n\n❌ LOL đi được tất cả các lane nhưng main ADC, Jung, Mid ? rank KC 2 ạ\n\n❌ TFT rank KC 2. TFT cặp đôi đại cao thủ\n\n❌Nhận duo game từ 2h ạ\n\n❌ Nhận nghe tâm sự, nói chuyện, tư vấn tc 100k/h\n\nE K NHẬN RENT NỢ HAY CHƠI TRƯỚC TT SAU Ạ\n\nK NHẬN CALL VIDEO DƯỚI MỌI HÌNH THỨC NÊN ĐỪNG AI NT HAY HỎI E Ạ. E CHỈ NHẬN CHƠI GAME THÔI NÊN ĐỌC KĨ TRƯỚC KHI RENT HAY NT ĐỠ MẤT THỜI GIAN CẢ 2 BÊN.',NULL),('trinhnt125','Yume','female','0966544212',4,'123456789','https://playerduo.net/api/upload-service/images/64c723d5-93c1-4626-a7e8-cb24f6b516f6__8648eb90-f863-11ed-a657-a54d6be1d46a__player_album.jpg',600,1,'? HELLO MỌI NGƯỜI ?\n\n? Mình tên Phương - Bơ - Ber (20/04/1999)\n\n? Giọng Bắc mic k ồn\n\n? Nhận tải game theo yêu cầu (mình chơi tất cả các thể loại game được nha ạ)\n\n? Sau 22h nhận duo trên 2h trở lên\n\n? Game:\n\n- LOL , TFT : Siêu cấp vippro ARAM, TFT ng lót đường :>\n\n- Valorant, CSGO : Biết cầm súng, chơi hong nguuuu\n\n- PUBG PC: Pro 500h chạy bo nhanh hơn chó đuổiiii =))\n\n- Naraka : mới chơi ạ\n\n- ARK : Chủ muôn thú\n\n- GTAV : có kinh nghiệm chơi nhiều sv, tuong tác tốt\n\n- Sea of Thieves , Dont Starve Together , Business Tour, Devour , Grounded , Lost Ark , New World , Pummel Party , Apex Legends,...\n\nOnl cam x24h vì mình k có nhu cầu ạ ^^\n\nHát x10 vì hát xong mọi người sẽ mất hút theo tiếng hát',NULL),('windyiu','Windy','female','096724421',5,'123456789','https://playerduo.net/api/upload-service/images/0daea254-1a71-44ce-903d-88a781d83124__d733b5f0-90c9-11ed-a19f-23a3b10d190e__player_album.jpg',4000,1,'?Nhận Pubgm , Liên quân , Tốc Chiến , Mobile legends , Cờ tỷ phú ,….vv?\n\n?Mở nhạc , Call , Stream film?\n\n? On cam : 300k/h\n\n?Game Pc :\n\n+ Valorant\n\n+ Lol sv SE , NA , EU , OCE , Pbe\n\n+ Pubg\n\n+ Scribble It\n\n+ Pummel Party\n\n+ Overcooked 2\n\n? Giọng Bắc!!\n\n‼️ Nhắn trước khi bấm thuê',NULL);
+/*!40000 ALTER TABLE `player` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-07-13 18:19:57

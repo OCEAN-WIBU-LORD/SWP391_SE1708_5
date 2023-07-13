@@ -14,6 +14,7 @@ import DB.*;
 public class Game_Type {
      private String game_id;
     private String game_type;
+    private int status;
 
     public Game_Type() {
     }
@@ -23,6 +24,20 @@ public class Game_Type {
         this.game_type = game_type;
     }
 
+    public Game_Type(String game_id, String game_type, int status) {
+        this.game_id = game_id;
+        this.game_type = game_type;
+        this.status = status;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+    
     public String getGame_id() {
         return game_id;
     }

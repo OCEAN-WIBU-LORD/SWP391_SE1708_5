@@ -5,6 +5,7 @@
 package controller.admin;
 
 import DB.GameDAO;
+import DB.Game_TypeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Game;
+import model.Game_Type;
 
 /**
  *
@@ -77,6 +79,13 @@ public class GameListServlet extends HttpServlet {
                     GameDAO dao = new GameDAO();
                     ArrayList<Game> data = dao.getListGame();
                     request.setAttribute("gameList", data);
+                    Game_TypeDAO gt = new Game_TypeDAO();
+                    request.setAttribute("listGameType", gt.getAllGameType());
+                    String gameId = request.getParameter("game");
+                    if (!(gameId==null || gameId.isEmpty())){
+                        GameDAO gameDAO = new GameDAO();
+                        request.setAttribute("game", gameDAO.getGame(gameId));
+                    }
                     
                     request.getRequestDispatcher("GameList.jsp").forward(request, response);
                 } catch (SQLException ex) {
@@ -97,7 +106,51 @@ public class GameListServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        GameDAO gd = new GameDAO();
+        try {
+            String name = request.getParameter("name_game");
+            String description = request.getParameter("description");
+            String gameType = request.getParameter("game_type");
+            String gameId = request.getParameter("game");
+            Game g = gd.getGame(gameId);
+            Game_TypeDAO gtd = new Game_TypeDAO();
+            boolean duplicateName = gd.checkGameNameExist(name);         
+            
+            if (!(gameId==null || gameId.isEmpty())){
+                //update
+                if (g.getName() == name){
+                    Game game = gd.getGame(gameId);
+                    game.setName(name);
+                    game.setDiscription(description);
+                    game.setGameType(gameType);
+                    gd.updateGame(game);
+                } else {
+                    if (duplicateName == true){
+                        request.setAttribute("errorMessage", "This game has exxist");
+                    }else {
+                        Game game = gd.getGame(gameId);
+                        game.setName(name);
+                        game.setDiscription(description);
+                        game.setGameType(gameType);
+                        gd.updateGame(game);
+                    }
+                }
+            } else {
+                if (duplicateName == true){
+                    request.setAttribute("errorMessage", "This game has exxist");
+                } else {
+                    Game game = new Game(String.valueOf(gd.getListGame().size()+1), name, description, gameType);
+                    gd.addGame(game);
+                }
+            }
+            
+            request.setAttribute("game", gd.getGame(gameId));
+            request.setAttribute("listGameType", gtd.getAllGameType());
+            request.setAttribute("gameList", gd.getListGame());
+            request.getRequestDispatcher("GameList.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(addGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
