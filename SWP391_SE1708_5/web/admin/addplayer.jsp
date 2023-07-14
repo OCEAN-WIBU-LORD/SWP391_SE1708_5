@@ -275,7 +275,10 @@
                                                     <th>Num of Star</th>
                                                     <th>Income</th>
                                                     <th>Link Image</th>
-                                                    <th>Change Profile</th>
+
+
+                                                    <th>Status</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -302,7 +305,12 @@
                                                         <td>${o.link_image}</td>
                                                         <td>${o.link_image}</td>
                                                         <td>${o.status_player eq "1" ? "Enable" : "Disable"}</td>
+
                                                         <td><a href="editplayer?player_id=${o.player_id}">edit</a>|<a href="#" onclick="deletePlayer(${o.player_id})">delete</a></td>
+
+                                                        <td><a href="changeStatus?id=${o.player_id}">Change status</a></td>
+                                                        <td><a href="editplayer?player_id=${o.player_id}">Update</a></td>
+
                                                     </tr>
                                                 </c:forEach>
 

@@ -4,25 +4,26 @@
  */
 package controller.admin;
 
-import DB.GameDAO;
+import DB.PlayerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.util.ArrayList;
-import model.Game;
+import model.Player;
 
 /**
  *
- * @author ADMIN
+ * @author Cuthi
  */
-@WebServlet(name = "GameListServlet", urlPatterns = {"/admin/GameList"})
+@WebServlet(name = "ChangeStatusAcc", urlPatterns = {"/admin/changeStatus"})
 
-public class GameListServlet extends HttpServlet {
+public class ChangeStatusAcc extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +42,10 @@ public class GameListServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet GameListServlet</title>");
+            out.println("<title>Servlet ChangeStatusAcc</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet GameListServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ChangeStatusAcc at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,19 +63,16 @@ public class GameListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String role = session.getAttribute("role").toString();
-        if (role.isEmpty()) {
-            response.sendRedirect("Unauthorized.html");
-        } else {
-            if (role.equals("user")) {
-                response.sendRedirect("Unauthorized.html");
-            } else {
-                GameDAO dao = new GameDAO();
-                ArrayList<Game> data = dao.getListGame();
-                request.setAttribute("gameList", data);
-                request.getRequestDispatcher("GameList.jsp").forward(request, response);
-            }
+        try {
+//            processRequest(request, response);
+            String id = request.getParameter("id").toString();
+            PlayerDAO playerDao = new PlayerDAO();
+            Player p = playerDao.getPlayerByID(id);
+            String status = (p.getStatus_player().equals("0"))? "1":"0";
+            playerDao.changeStatusPlayer(id, Integer.parseInt(status));
+            response.sendRedirect("player");
+        } catch (SQLException ex) {
+            Logger.getLogger(ChangeStatusAcc.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -89,7 +87,18 @@ public class GameListServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        processRequest(request, response);
+         try {
+            processRequest(request, response);
+            String id = request.getParameter("id").toString();
+            PlayerDAO playerDao = new PlayerDAO();
+            Player p = playerDao.getPlayerByID(id);
+            String status = (p.getStatus_player().equals("0"))? "1":"0";
+            playerDao.changeStatusPlayer(id, Integer.parseInt(status));
+            response.sendRedirect("player");
+        } catch (SQLException ex) {
+            Logger.getLogger(ChangeStatusAcc.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

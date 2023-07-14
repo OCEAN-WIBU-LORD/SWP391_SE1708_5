@@ -4,25 +4,24 @@
  */
 package controller.admin;
 
-import DB.GameDAO;
+import DB.User_DetailsDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.util.ArrayList;
-import model.Game;
+import model.User_Details;
 
 /**
  *
- * @author ADMIN
+ * @author Cuthi
  */
-@WebServlet(name = "GameListServlet", urlPatterns = {"/admin/GameList"})
+@WebServlet(name = "ManageUser", urlPatterns = {"/admin/manageUser"})
 
-public class GameListServlet extends HttpServlet {
+public class ManageUser extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +40,10 @@ public class GameListServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet GameListServlet</title>");
+            out.println("<title>Servlet ManageUser</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet GameListServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ManageUser at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,20 +61,18 @@ public class GameListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String role = session.getAttribute("role").toString();
-        if (role.isEmpty()) {
-            response.sendRedirect("Unauthorized.html");
-        } else {
-            if (role.equals("user")) {
-                response.sendRedirect("Unauthorized.html");
-            } else {
-                GameDAO dao = new GameDAO();
-                ArrayList<Game> data = dao.getListGame();
-                request.setAttribute("gameList", data);
-                request.getRequestDispatcher("GameList.jsp").forward(request, response);
-            }
+//        processRequest(request, response);
+        User_DetailsDAO udDAO = new User_DetailsDAO();
+        ArrayList<User_Details> userList = udDAO.getAllUser();
+        request.setAttribute("n", userList.size());
+        request.setAttribute("userList", userList);
+        Object obj = request.getParameter("user_id");
+        if (obj != null){
+            User_Details ud = udDAO.getUserById(obj.toString());
+            request.setAttribute("user", ud);
         }
+        request.getRequestDispatcher("manageUser.jsp").forward(request, response);
+        
     }
 
     /**
@@ -89,7 +86,17 @@ public class GameListServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+//        processRequest(request, response);
+        User_DetailsDAO udDAO = new User_DetailsDAO();
+        ArrayList<User_Details> userList = udDAO.getAllUser();
+        request.setAttribute("n", userList.size());
+        request.setAttribute("userList", userList);
+        Object obj = request.getParameter("user_id");
+        if (obj != null){
+            User_Details ud = udDAO.getUserById(obj.toString());
+            request.setAttribute("user", ud);
+        }
+        request.getRequestDispatcher("manageUser.jsp").forward(request, response);
     }
 
     /**

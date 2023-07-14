@@ -8,6 +8,7 @@ import DB.GameDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,6 +18,8 @@ import model.Game;
  *
  * @author ADMIN
  */
+// @WebServlet(name = "addGame", urlPatterns = {"/admin/addGame"})
+
 public class addGame extends HttpServlet {
 
     private GameDAO dao = new GameDAO();
@@ -24,7 +27,7 @@ public class addGame extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -36,6 +39,23 @@ public class addGame extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            // processRequest(request, response);
+            GameDAO dao = new GameDAO();
+            ArrayList<Game> data = dao.getListGame();
+            request.setAttribute("gameList", data);
+            Game_TypeDAO gt = new Game_TypeDAO();
+            request.setAttribute("listGameType", gt.getAllGameType());
+            request.getRequestDispatcher("addGameForm.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(addGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
     }
 
     @Override
@@ -61,4 +81,3 @@ public class addGame extends HttpServlet {
         }
     }
 }
-

@@ -4,7 +4,7 @@
  */
 package controller.admin;
 
-import DB.GameDAO;
+import DB.User_DetailsDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,16 +13,18 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.ArrayList;
-import model.Game;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.User_Details;
 
 /**
  *
- * @author ADMIN
+ * @author Cuthi
  */
-@WebServlet(name = "GameListServlet", urlPatterns = {"/admin/GameList"})
+@WebServlet(name = "AdminLogin", urlPatterns = {"/admin/login"})
 
-public class GameListServlet extends HttpServlet {
+public class AdminLogin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +43,10 @@ public class GameListServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet GameListServlet</title>");
+            out.println("<title>Servlet AdminLogin</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet GameListServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AdminLogin at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,20 +64,8 @@ public class GameListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String role = session.getAttribute("role").toString();
-        if (role.isEmpty()) {
-            response.sendRedirect("Unauthorized.html");
-        } else {
-            if (role.equals("user")) {
-                response.sendRedirect("Unauthorized.html");
-            } else {
-                GameDAO dao = new GameDAO();
-                ArrayList<Game> data = dao.getListGame();
-                request.setAttribute("gameList", data);
-                request.getRequestDispatcher("GameList.jsp").forward(request, response);
-            }
-        }
+//        processRequest(request, response);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     /**
@@ -89,7 +79,34 @@ public class GameListServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        try {
+            //        processRequest(request, response);
+            String username = request.getParameter("username");
+            String password = request.getParameter("pass");
+            
+            User_DetailsDAO udDAO = new User_DetailsDAO();
+            User_Details ud = udDAO.getUser_Details(username, password);
+            String mess = "";
+            if (ud == null){
+                mess = "Information doesn't match any account!";
+                request.setAttribute("mess", mess);
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            }else{
+                String role = udDAO.getRole(ud.getUser_id());
+                if (role.equals("admin")){
+                    HttpSession session = request.getSession();
+                    session.setAttribute("role", role);
+                    session.setAttribute("acc", ud.getUser_id());
+                    response.sendRedirect("home");
+                }else{
+                    mess = "You don't have permission to access this page.";
+                    request.setAttribute("mess", mess);
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller.admin;
+package controller;
 
-import DB.GameDAO;
+import DB.BookingDAO;
+import DB.ReportDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,16 +14,20 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import model.Game;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Bookings;
+import model.Report;
+import model.User_Details;
 
 /**
  *
- * @author ADMIN
+ * @author Cuthi
  */
-@WebServlet(name = "GameListServlet", urlPatterns = {"/admin/GameList"})
-
-public class GameListServlet extends HttpServlet {
+@WebServlet(name = "CreateReport", urlPatterns = {"/createReport"})
+public class CreateReport extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +46,10 @@ public class GameListServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet GameListServlet</title>");
+            out.println("<title>Servlet CreateReport</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet GameListServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CreateReport at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,20 +67,37 @@ public class GameListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String role = session.getAttribute("role").toString();
-        if (role.isEmpty()) {
-            response.sendRedirect("Unauthorized.html");
-        } else {
-            if (role.equals("user")) {
-                response.sendRedirect("Unauthorized.html");
-            } else {
-                GameDAO dao = new GameDAO();
-                ArrayList<Game> data = dao.getListGame();
-                request.setAttribute("gameList", data);
-                request.getRequestDispatcher("GameList.jsp").forward(request, response);
+//        processRequest(request, response);
+
+        String bookingId = request.getParameter("bookingId");
+        BookingDAO bookingDAO = new BookingDAO();
+        ReportDAO reportDAO = new ReportDAO();
+        ArrayList<Report> listReport = new ArrayList<>();
+        try {
+            if (bookingId != null){
+                Bookings booking = bookingDAO.getBookingById(bookingId);
+                request.setAttribute("transaction", booking);
             }
+            HttpSession session = request.getSession();
+            Object obj = session.getAttribute("role");
+            Object obj_acc = session.getAttribute("usercurrent");
+            if (obj == null){
+                response.sendRedirect("login");
+            } else {
+                User_Details account = (User_Details) obj_acc;
+                if(obj.toString().equals("user")){
+                    listReport = reportDAO.getReportByUserId(account.getUser_id(), true);
+                }else{
+                    listReport = reportDAO.getReportByUserId(account.getUser_id(), false);
+                }
+            }
+            request.setAttribute("reports", listReport);
+            request.setAttribute("totalReport", listReport.size());
+        } catch (SQLException ex) {
+            Logger.getLogger(CreateReport.class.getName()).log(Level.SEVERE, null, ex);
         }
+        request.getRequestDispatcher("common/createReport.jsp").forward(request, response);
+
     }
 
     /**
@@ -89,6 +111,8 @@ public class GameListServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+//        processRequest(request, response);
+        request.getRequestDispatcher("common/createReport.jsp").forward(request, response);
 
     }
 
@@ -101,5 +125,9 @@ public class GameListServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void elseif(boolean equals) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 }
