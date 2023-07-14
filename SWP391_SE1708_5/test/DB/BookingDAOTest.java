@@ -72,5 +72,12 @@ public class BookingDAOTest {
     @Test
     public void testGetLocationIdByBookingId() {
     }
+
+    /**
+     * Test of getBookingIdByUserId method, of class BookingDAO.
+     */
+    @Test
+    public void testGetBookingIdByUserId() throws Exception {
+    }
     
 }

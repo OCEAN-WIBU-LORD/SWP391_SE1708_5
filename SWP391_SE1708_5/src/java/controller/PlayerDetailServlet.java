@@ -69,15 +69,20 @@ public class PlayerDetailServlet extends HttpServlet {
 //        try {
             String player_id = request.getParameter("player_id");
             PlayerDAO mdao = new PlayerDAO();
-            Player player = mdao.getPlayerByID(player_id);
-//            Game_TypeDAO game_typeDAO = new Game_TypeDAO();
-//           List<Game_Played> lpList  = Game_PlayedDAO.getListLocationPositions(player_id);
+            Player player;
+        try {
+            player = mdao.getPlayerByID(player_id);
             int n = player.getNum_of_star();
             request.setAttribute("player",player);
             request.setAttribute("n",String.valueOf(n));
+            request.getRequestDispatcher("common/playerdetail.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(PlayerDetailServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//            Game_TypeDAO game_typeDAO = new Game_TypeDAO();
+//           List<Game_Played> lpList  = Game_PlayedDAO.getListLocationPositions(player_id);
             
 //            request.setAttribute("lpList",lpList);
-            request.getRequestDispatcher("common/playerdetail.jsp").forward(request, response);
 //        } catch (SQLException ex) {
 //            Logger.getLogger(PlayerDetailServlet.class.getName()).log(Level.SEVERE, null, ex);
 //        }

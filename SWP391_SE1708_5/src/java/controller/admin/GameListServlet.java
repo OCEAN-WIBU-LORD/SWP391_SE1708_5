@@ -12,10 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.Game;
 
 /**
@@ -63,22 +60,17 @@ public class GameListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Object role = session.getAttribute("role");
-        if (role == null) {
-            response.sendRedirect("login");
+        String role = session.getAttribute("role").toString();
+        if (role.isEmpty()) {
+            response.sendRedirect("Unauthorized.html");
         } else {
             if (role.equals("user")) {
                 response.sendRedirect("Unauthorized.html");
             } else {
-                try {
-                    GameDAO dao = new GameDAO();
-                    ArrayList<Game> data = dao.getListGame();
-                    request.setAttribute("gameList", data);
-                    
-                    request.getRequestDispatcher("GameList.jsp").forward(request, response);
-                } catch (SQLException ex) {
-                    Logger.getLogger(GameListServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                GameDAO dao = new GameDAO();
+                ArrayList<Game> data = dao.getListGame();
+                request.setAttribute("gameList", data);
+                request.getRequestDispatcher("GameList.jsp").forward(request, response);
             }
         }
     }

@@ -1,29 +1,25 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-package controller.admin;
+package controller;
 
-import DB.Game_TypeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
- * @author Cuthi
+ * @author Acer
  */
-public class DeleteGameType extends HttpServlet {
+public class BookingStatusChangingServlet extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -33,15 +29,15 @@ public class DeleteGameType extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteGameType</title>");            
+            out.println("<title>Servlet BookingStatusChangingServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteGameType at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet BookingStatusChangingServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,15 +55,7 @@ public class DeleteGameType extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            //        processRequest(request, response);
-            String gameType = request.getParameter("id").toString();
-            Game_TypeDAO dao = new Game_TypeDAO();
-            dao.deleteGameType(gameType);
-        } catch (SQLException ex) {
-            Logger.getLogger(DeleteGameType.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        response.sendRedirect("addGameType");
+        processRequest(request, response);
     }
 
     /**

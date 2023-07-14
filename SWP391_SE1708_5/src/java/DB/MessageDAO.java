@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DB;
+
 import junit.framework.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -56,6 +57,8 @@ public class MessageDAO {
             // close connection
         } catch (Exception ex) {
             System.out.println("addMessage " + ex.getMessage());
+        }finally{
+            conn.close();
         }
 
     }
@@ -79,6 +82,8 @@ public class MessageDAO {
             // close connection
         } catch (Exception ex) {
             ex.printStackTrace();
+        }finally{
+            conn.close();
         }
 
     }
@@ -99,6 +104,8 @@ public class MessageDAO {
             // close connection
         } catch (Exception ex) {
             ex.printStackTrace();
+        }finally{
+            conn.close();
         }
 
     }
@@ -120,12 +127,14 @@ public class MessageDAO {
             ResultSet rs = stmt.executeQuery();
             // show data
             while (rs.next()) {
-                Message message = new Message(rs.getInt("messageid"), rs.getString("user_id"), rs.getNString("player_id"), rs.getString("date_time"),rs.getNString("message"),rs.getString("status"));
+                Message message = new Message(rs.getInt("messageid"), rs.getString("user_id"), rs.getNString("player_id"), rs.getString("date_time"), rs.getNString("message"), rs.getString("status"));
                 list.add(message);
             }
             // close connection
         } catch (Exception ex) {
             System.out.println("messageList" + ex.getMessage());;
+        }finally{
+            conn.close();
         }
         return list;
     }
@@ -144,18 +153,20 @@ public class MessageDAO {
             ResultSet rs = stmt.executeQuery();
             // show data
             while (rs.next()) {
-                Message message = new Message(rs.getInt("messageid"), rs.getString("user_id"), rs.getNString("player_id"), rs.getString("date_time"),rs.getString("message"),rs.getString("status"));
+                Message message = new Message(rs.getInt("messageid"), rs.getString("user_id"), rs.getNString("player_id"), rs.getString("date_time"), rs.getString("message"), rs.getString("status"));
                 bookings1.add(message);
             }
             return bookings1;
             // close connection
         } catch (Exception ex) {
             System.out.println("getListMessage" + ex.getMessage());;
+        }finally{
+            conn.close();
         }
         return null;
     }
 
-    public int getMessageIdByAccId(int acc_Id2) {
+    public int getMessageIdByAccId(int acc_Id2) throws SQLException {
         int MessageId;
         try {
             // connnect to database 'testdb'
@@ -172,11 +183,13 @@ public class MessageDAO {
             }
 
         } catch (Exception e) {
+        }finally{
+            conn.close();
         }
         return 0;
     }
 
-    public int getLocationIdByMessageId(int booking_id) {
+    public int getLocationIdByMessageId(int booking_id) throws SQLException {
         int location_Id;
         try {
             conn = baseDAO.getConnection();
@@ -189,8 +202,94 @@ public class MessageDAO {
                 return location_Id;
             }
         } catch (Exception e) {
+        }finally{
+            conn.close();
         }
         return 0;
+    }
+
+    public List<Message> messagePlayer(String user_id, String player_id) throws SQLException {
+        List<Message> list = null;
+        try {
+
+            BaseDAO db = new BaseDAO();
+            // connnect to database 'testdb'
+            conn = db.getConnection();
+            // crate statement
+            PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT player_id\n"
+                    + "FROM Message\n"
+                    + "WHERE user_id = ?\n"
+                    + "GROUP BY player_id;");
+            stmt.setString(1, user_id);
+
+            list = new ArrayList<>();
+            // get data from table
+            ResultSet rs = stmt.executeQuery();
+            // show data
+            while (rs.next()) {
+                Message message = new Message(rs.getInt("messageid"), rs.getString("user_id"), rs.getNString("player_id"), rs.getString("date_time"), rs.getNString("message"), rs.getString("status"));
+                list.add(message);
+            }
+            // close connection
+        } catch (Exception ex) {
+            System.out.println("messageList" + ex.getMessage());;
+        }finally{
+            conn.close();
+        }
+        return list;
+    }
+
+    public List<String> messagePlayer1(String user_id) throws SQLException {
+        List<String> list = null;
+        try {
+
+            BaseDAO db = new BaseDAO();
+            // connnect to database 'testdb'
+            conn = db.getConnection();
+            // crate statement
+            PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT player_id\n"
+                    + "FROM Message\n"
+                    + "WHERE user_id = ?\n"
+                    + "GROUP BY player_id;");
+            stmt.setString(1, user_id);
+
+            list = new ArrayList<>();
+            // get data from table
+            ResultSet rs = stmt.executeQuery();
+            // show data
+            while (rs.next()) {
+                String player_id = rs.getString("player_id");
+                list.add(player_id);
+            }
+            // close connection
+        } catch (Exception ex) {
+            System.out.println("messageList" + ex.getMessage());;
+        } finally{
+            conn.close();
+        }
+        return list;
+    }
+
+    public void deleteMessage(String user_id, String player_id) throws SQLException {
+        try {
+
+            // connnect to database 'testdb'
+            conn = baseDAO.getConnection();
+            // crate statement
+            PreparedStatement stmt = conn.prepareStatement("Delete from Message where  user_id = ? and player_id = ?");
+            stmt.setString(1, user_id);
+            stmt.setString(2, player_id);
+
+            // get data from table
+            stmt.executeUpdate();
+            // show data
+
+            // close connection
+        } catch (Exception ex) {
+           System.out.println("deleteMessage" + ex.getMessage());;
+        }finally{
+            conn.close();
+        }
     }
 
 }

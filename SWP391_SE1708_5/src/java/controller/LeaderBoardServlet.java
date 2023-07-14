@@ -14,7 +14,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Player;
 
 /**
@@ -65,19 +68,24 @@ public class LeaderBoardServlet extends HttpServlet {
         PlayerDAO mdao = new PlayerDAO();
         UserDAO udao = new UserDAO();
         //     Game_TypeDAO adao = new Game_TypeDAO();
-        List<Player> playerList = mdao.getTop5GoodPlayer();
+        try {
+        List<Player> playerList;
+            playerList = mdao.getTop5HighIncomePlayer();
         List<Player> playerList2 = mdao.getTop5BestBookingPlayer();
         String full_name = String.valueOf(session.getAttribute("full_name"));
         int a = playerList.size();
+        request.setAttribute("playerList", playerList);
+        request.setAttribute("playerList2", playerList2);
+        request.setAttribute("a", a);
+        request.setAttribute("full_name", full_name);
+        } catch (SQLException ex) {
+            System.out.println("doGetLeaderBoard" + ex.getMessage());;
+        }
 //            List<Actor> actorList = adao.getAllActor();
 //            List<GameType> cateList = cdao.getGameType();
 //            List<PlayerGame> gameList = mdao.getPlayerGame();
 //            List<Player_category> mcList = cdao.getPlayerCategory();
 //            request.setAttribute("mcList", mcList);
-        request.setAttribute("playerList", playerList);
-        request.setAttribute("playerList2", playerList2);
-        request.setAttribute("a", a);
-        request.setAttribute("full_name", full_name);
 //            request.setAttribute("actorList", actorList);
 //            request.setAttribute("cateList", cateList);
 //            request.setAttribute("movieActorList", movieActorList);

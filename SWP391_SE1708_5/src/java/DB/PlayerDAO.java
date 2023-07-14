@@ -26,7 +26,7 @@ import model.User_Details;
  */
 public class PlayerDAO {
 
-    public List<Player> getTop5GoodPlayer() {
+    public List<Player> getTop5GoodPlayer() throws SQLException {
         List<Player> list = null;
         Connection conn = null;
 
@@ -60,11 +60,15 @@ public class PlayerDAO {
 
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            conn.close();
         }
         return list;
     }
 
-    public List<Player> getTop3BestBookingPlayer() {
+    
+
+    public List<Player> getTop3BestBookingPlayer() throws SQLException {
         List<Player> list = null;
         Connection conn = null;
 
@@ -106,11 +110,13 @@ public class PlayerDAO {
 
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            conn.close();
         }
         return list;
     }
 
-    public List<Player> getTop3BestIncomePlayer() {
+    public List<Player> getTop3BestIncomePlayer() throws SQLException {
         List<Player> list = null;
         Connection conn = null;
 
@@ -152,11 +158,13 @@ public class PlayerDAO {
 
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            conn.close();
         }
         return list;
     }
 
-    public List<Player> getTop5BestBookingPlayer() {
+    public List<Player> getTop5BestBookingPlayer() throws SQLException {
         List<Player> list = null;
         Connection conn = null;
 
@@ -190,11 +198,13 @@ public class PlayerDAO {
 
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            conn.close();
         }
         return list;
     }
 
-    public ArrayList<Player> searchPlayer(String search) {
+    public ArrayList<Player> searchPlayer(String search) throws SQLException {
         ArrayList<Player> player = null;
         Connection conn = null;
         try {
@@ -222,6 +232,8 @@ public class PlayerDAO {
             return player;
         } catch (Exception e) {
             System.out.println("searchPlayer" + e.getMessage());
+        } finally {
+            conn.close();
         }
         return null;
 
@@ -234,8 +246,9 @@ public class PlayerDAO {
             String search1 = "%" + search + "%";
             BaseDAO db = new BaseDAO();
             conn = db.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("select * from Player where player_name like ?");
+            PreparedStatement stmt = conn.prepareStatement("select * from Player where player_name like ? or player_id LIKE ?");
             stmt.setString(1, String.valueOf(search1));
+            stmt.setString(2, String.valueOf(search1));
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Player a = null;
@@ -254,13 +267,172 @@ public class PlayerDAO {
             }
             return player;
         } catch (Exception e) {
-            System.out.println("searchMovie" + e.getMessage());
+            System.out.println("searchPlayer1" + e.getMessage());
+        } finally {
+            conn.close();
         }
         return null;
 
     }
 
-    public Player getPlayerByID(String player_id) {
+    public ArrayList<Player> searchPlayerPriceRange(String search, String pricefrom, String priceto) throws SQLException {
+        ArrayList<Player> player = new ArrayList<Player>();
+        Connection conn = null;
+        try {
+            String search1 = "%" + search + "%";
+            BaseDAO db = new BaseDAO();
+            conn = db.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("select * from Player where player_name like ? or player_id LIKE ? having income between ? and ?");
+            stmt.setString(1, String.valueOf(search1));
+            stmt.setString(2, String.valueOf(search1));
+            stmt.setString(3, String.valueOf(pricefrom));
+            stmt.setString(4, String.valueOf(priceto));
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Player a = null;
+                a = new Player(
+                        rs.getString("player_id"),
+                        rs.getNString("player_name"),
+                        rs.getString("gender"),
+                        rs.getString("phone_number"),
+                        rs.getInt("num_of_star"),
+                        rs.getString("password"),
+                        rs.getString("link_image"),
+                        rs.getDouble("income"),
+                        rs.getString("status_player"),
+                        rs.getString("description"));
+                player.add(a);
+            }
+            return player;
+        } catch (Exception e) {
+            System.out.println("searchPlayer1" + e.getMessage());
+        } finally {
+            conn.close();
+        }
+        return null;
+
+    }
+
+    public ArrayList<Player> searchPlayerBestBooking(String search) throws SQLException {
+        ArrayList<Player> player = new ArrayList<Player>();
+        Connection conn = null;
+        try {
+            String search1 = "%" + search + "%";
+            BaseDAO db = new BaseDAO();
+            conn = db.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT p.player_id, p.player_name, p.gender,p.phone_number,p.num_of_star,p.password,p.link_image,p.income,p.status_player,p.description, COUNT(b.player_id) AS booking_count\n"
+                    + "FROM Player p\n"
+                    + "JOIN Booking b ON p.player_id = b.player_id\n"
+                    + "where p.player_name like ? or p.player_id LIKE ?\n"
+                    + "GROUP BY p.player_id, p.player_name, p.gender,p.phone_number,p.num_of_star,p.password,p.link_image,p.income,p.status_player,p.description\n"
+                    + "ORDER BY booking_count DESC;");
+            stmt.setString(1, String.valueOf(search1));
+            stmt.setString(2, String.valueOf(search1));
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Player a = null;
+                a = new Player(
+                        rs.getString("player_id"),
+                        rs.getNString("player_name"),
+                        rs.getString("gender"),
+                        rs.getString("phone_number"),
+                        rs.getInt("num_of_star"),
+                        rs.getString("password"),
+                        rs.getString("link_image"),
+                        rs.getDouble("income"),
+                        rs.getString("status_player"),
+                        rs.getString("description"));
+                player.add(a);
+            }
+            return player;
+        } catch (Exception e) {
+            System.out.println("searchPlayerBestBooking" + e.getMessage());
+        } finally {
+            conn.close();
+        }
+        return null;
+
+    }
+    public ArrayList<Player> getTop5HighIncomePlayer() throws SQLException {
+        ArrayList<Player> player = new ArrayList<Player>();
+        Connection conn = null;
+        try {
+            
+            BaseDAO db = new BaseDAO();
+            conn = db.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT p.player_id, p.player_name, p.gender,p.phone_number,p.num_of_star,p.password,p.link_image,p.income,p.status_player,p.description, sum(b.total_price) AS moneyreceived\n"
+                    + "FROM Player p\n"
+                    + "JOIN Booking b ON p.player_id = b.player_id\n"
+                    + "GROUP BY p.player_id, p.player_name, p.gender,p.phone_number,p.num_of_star,p.password,p.link_image,p.income,p.status_player,p.description\n"
+                    + "ORDER BY moneyreceived DESC limit 5;");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Player a = null;
+                a = new Player(
+                        rs.getString("player_id"),
+                        rs.getNString("player_name"),
+                        rs.getString("gender"),
+                        rs.getString("phone_number"),
+                        rs.getInt("num_of_star"),
+                        rs.getString("password"),
+                        rs.getString("link_image"),
+                        rs.getDouble("income"),
+                        rs.getString("status_player"),
+                        rs.getString("description"));
+                player.add(a);
+            }
+            return player;
+        } catch (Exception e) {
+            System.out.println("getTop5HighIncomePlayer" + e.getMessage());
+        } finally {
+            conn.close();
+        }
+        return null;
+
+    }
+
+    public ArrayList<Player> searchPlayerBestIncome(String search) throws SQLException {
+        ArrayList<Player> player = new ArrayList<Player>();
+        Connection conn = null;
+        try {
+            String search1 = "%" + search + "%";
+            BaseDAO db = new BaseDAO();
+            conn = db.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT p.player_id, p.player_name, p.gender,p.phone_number,p.num_of_star,p.password,p.link_image,p.income,p.status_player,p.description, sum(b.total_price) AS moneyreceived\n"
+                    + "FROM Player p\n"
+                    + "JOIN Booking b ON p.player_id = b.player_id\n"
+                    + "where p.player_name like ? or p.player_id LIKE ?\n "
+                    + "GROUP BY p.player_id, p.player_name, p.gender,p.phone_number,p.num_of_star,p.password,p.link_image,p.income,p.status_player,p.description\n"
+                    + "ORDER BY moneyreceived DESC;");
+            stmt.setString(1, String.valueOf(search1));
+            stmt.setString(2, String.valueOf(search1));
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Player a = null;
+                a = new Player(
+                        rs.getString("player_id"),
+                        rs.getNString("player_name"),
+                        rs.getString("gender"),
+                        rs.getString("phone_number"),
+                        rs.getInt("num_of_star"),
+                        rs.getString("password"),
+                        rs.getString("link_image"),
+                        rs.getDouble("income"),
+                        rs.getString("status_player"),
+                        rs.getString("description"));
+                player.add(a);
+            }
+            return player;
+        } catch (Exception e) {
+            System.out.println("searchPlayerBestBooking" + e.getMessage());
+        } finally {
+            conn.close();
+        }
+        return null;
+
+    }
+
+    public Player getPlayerByID(String player_id) throws SQLException {
         Player a = null;
         Connection conn = null;
         try {
@@ -292,6 +464,8 @@ public class PlayerDAO {
 
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            conn.close();
         }
         return a;
     }
@@ -329,6 +503,8 @@ public class PlayerDAO {
 
         } catch (Exception ex) {
             System.out.println("getAllPlayer" + ex.getMessage());
+        } finally {
+            conn.close();
         }
         return list;
     }
@@ -363,32 +539,10 @@ public class PlayerDAO {
             // close connection
         } catch (Exception ex) {
             System.out.println("updatePlayer" + ex.getMessage());
-        } finally{
-            if (conn != null){
-                conn.close();
-            }
+        } finally {
+            conn.close();
         }
-    }
-    
-     public void changeStatusPlayer(String playerId, int status) throws SQLException{
-        Connection conn = null;
-        try{
-            BaseDAO db = new BaseDAO();
-            // connnect to database 'testdb'
-            conn = db.getConnection();
-            // crate statement
-            PreparedStatement stmt = conn.prepareStatement(
-                    "update Player set status_player=? where player_id = ? ");
-            stmt.setInt(1, status);
-            stmt.setString(2, playerId);
-            stmt.executeUpdate();
-        }catch(Exception e){
-            System.out.println("change status player "+ e.getMessage());
-        }finally{
-            if (conn != null){
-                conn.close();
-            }
-        }
+
     }
 
     public void deletePlayer(String player_id) throws SQLException {
@@ -398,7 +552,7 @@ public class PlayerDAO {
             // connnect to database 'testdb'
             conn = db.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement(" delete from Player where player_id =? ");
+            PreparedStatement stmt = conn.prepareStatement(" delete * from Player where player_id =? ");
 
             stmt.setString(1, player_id);
             // get data from table
@@ -408,6 +562,8 @@ public class PlayerDAO {
             // close connection
         } catch (Exception ex) {
             System.out.println("deletePlayer" + ex.getMessage());
+        } finally {
+            conn.close();
         }
 
     }
@@ -452,7 +608,7 @@ public class PlayerDAO {
         return u;
     }
 
-    public String getPlayerNameById(String player_id) {
+    public String getPlayerNameById(String player_id) throws SQLException {
         String name;
         Connection conn = null;
         try {
@@ -466,11 +622,13 @@ public class PlayerDAO {
                 return name;
             }
         } catch (Exception e) {
+        } finally {
+            conn.close();
         }
         return null;
     }
 
-    public Double getIncomePlayerById(String player_id) {
+    public Double getIncomePlayerById(String player_id) throws SQLException {
         Double money;
         Connection conn = null;
         try {
@@ -485,7 +643,63 @@ public class PlayerDAO {
             }
         } catch (Exception ex) {
             System.out.println("getIncomePlayerById" + ex.getMessage());
+        } finally {
+            conn.close();
         }
         return 0.0;
+    }
+
+    public String getTotalMoneySpend(String player_id) throws SQLException {
+        String u = null;
+        Connection conn = null;
+        try {
+            BaseDAO db = new BaseDAO();
+            // connnect to database 'testdb'
+            conn = db.getConnection();
+            // create statement
+            PreparedStatement stmt = conn.prepareStatement("select SUM(total_price) as total_money_booking from booking where player_id = ?");
+            stmt.setString(1, player_id);
+
+            // get data from table
+            ResultSet rs = stmt.executeQuery();
+            // show data
+            while (rs.next()) {
+                u = String.valueOf(rs.getString("total_money_booking"));
+            }
+            // close connection
+
+        } catch (Exception ex) {
+            System.out.println("getTotalBooking" + ex.getMessage());
+        } finally {
+            conn.close();
+        }
+        return u;
+    }
+
+    public String getTotalHour(String player_id) throws SQLException {
+        String u = null;
+        Connection conn = null;
+        try {
+            BaseDAO db = new BaseDAO();
+            // connnect to database 'testdb'
+            conn = db.getConnection();
+            // create statement
+            PreparedStatement stmt = conn.prepareStatement("select SUM(total_hour) as total_hour_booking from booking where player_id = ?");
+            stmt.setString(1, player_id);
+
+            // get data from table
+            ResultSet rs = stmt.executeQuery();
+            // show data
+            while (rs.next()) {
+                u = String.valueOf(rs.getString("total_hour_booking"));
+            }
+            // close connection
+
+        } catch (Exception ex) {
+            System.out.println("getTotalHour" + ex.getMessage());
+        } finally {
+            conn.close();
+        }
+        return u;
     }
 }

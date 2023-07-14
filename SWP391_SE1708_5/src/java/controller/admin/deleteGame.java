@@ -5,8 +5,6 @@
 package controller.admin;
 
 import DB.GameDAO;
-import DB.Game_TypeDAO;
-import DB.PlayerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,9 +12,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -54,28 +49,11 @@ public class deleteGame extends HttpServlet {
             if (role.equals("user")) {
                 response.sendRedirect("Unauthorized.html");
             } else {
-                try {
-                    String game_id = request.getParameter("id");
-                    dao.DeleteGame(game_id);
-                    response.sendRedirect("GameList");
-                } catch (SQLException ex) {
-                    Logger.getLogger(deleteGame.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                String id = request.getParameter("id");
+                dao.DeleteGame(id);
+                response.sendRedirect("gameList.jsp");
             }
         }
     }
-     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            response.setContentType("text/html;charset=UTF-8");
-            String game_id = request.getParameter("id");
-            GameDAO gdao = new GameDAO();
-            gdao.DeleteGame(game_id);
-            response.sendRedirect("GameList");
-        } catch (SQLException ex) {
-            Logger.getLogger(deleteGame.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
-    }
 }

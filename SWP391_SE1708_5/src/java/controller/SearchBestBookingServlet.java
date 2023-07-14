@@ -21,8 +21,8 @@ import model.Player;
  *
  * @author Acer
  */
-@WebServlet(name = "SearchServlet", urlPatterns = {"/SearchServlet"})
-public class SearchServlet extends HttpServlet {
+@WebServlet(name = "SearchBestBookingServlet", urlPatterns = {"/SearchBestBookingServlet"})
+public class SearchBestBookingServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -88,15 +88,7 @@ public class SearchServlet extends HttpServlet {
             throws ServletException, IOException {
         String search = String.valueOf(request.getParameter("searchInput"));
         String action = request.getParameter("action");
-        String filter = request.getParameter("filter");
-        String pricefrom = request.getParameter("pricefrom");
-        String priceto = request.getParameter("priceto");
-        if (search == "") {
-            try (PrintWriter out = response.getWriter()) {
-                out.print("Please Enter Search Box");
-                return;
-            }
-        }
+        
         if (action != null && action.equals("1")) {
             int m = Integer.parseInt(action);
             request.setAttribute("action", action);
@@ -106,61 +98,14 @@ public class SearchServlet extends HttpServlet {
                 request.getRequestDispatcher("/common/login.jsp").forward(request, response);
             }
         }
-        if (filter != null && filter.equals("bestbooking")) {
-            PlayerDAO n = new PlayerDAO();
-            try {
-                ArrayList<Player> player = n.searchPlayerBestBooking(search);
-                String message = "Hello";
-//            request.setAttribute("message", search);
-//            ArrayList<Player> player = n.searchMoviePlayer);
-                request.setAttribute("player", player);
-                request.getRequestDispatcher("/common/search.jsp").forward(request, response);
-            } catch (Exception e) {
-                System.out.println("doPostSearch " + e.getMessage());
-            }
-        }
-        if (filter != null && filter.equals("bestdonate")) {
-//            int m = Integer.parseInt(action);
-//            request.setAttribute("action", action);
-            request.getRequestDispatcher("/common/login.jsp").forward(request, response);
 
-            if (action != null && action.equals("1")) {
-                request.getRequestDispatcher("/common/login.jsp").forward(request, response);
+        if (search == "") {
+            try (PrintWriter out = response.getWriter()) {
+                out.print("Please Enter Search Box");
+                return;
             }
-        }
-        if (filter != null && filter.equals("topIncome")) {
-            PlayerDAO n = new PlayerDAO();
-            try {
-                ArrayList<Player> player = n.searchPlayerBestIncome(search);
-                String message = "Hello";
-//            request.setAttribute("message", search);
-//            ArrayList<Player> player = n.searchMoviePlayer);
-                request.setAttribute("player", player);
-                request.getRequestDispatcher("/common/search.jsp").forward(request, response);
-            } catch (Exception e) {
-                System.out.println("doPostSearch " + e.getMessage());
-            }
-        }
-
-        if (pricefrom != null && priceto != null) {
-            PlayerDAO n = new PlayerDAO();
-            try {
-                ArrayList<Player> player = n.searchPlayerPriceRange(search, pricefrom, priceto);
-                String message = "Hello";
-//            request.setAttribute("message", search);
-//            ArrayList<Player> player = n.searchMoviePlayer);
-                request.setAttribute("player", player);
-                if (player.size() > 0) {
-
-                    request.getRequestDispatcher("/common/search.jsp").forward(request, response);
-                }
-            } catch (Exception e) {
-                System.out.println("doPostSearch " + e.getMessage());
-            }
-
         }
         PlayerDAO n = new PlayerDAO();
-
         try {
             ArrayList<Player> player = n.searchPlayer1(search);
             String message = "Hello";

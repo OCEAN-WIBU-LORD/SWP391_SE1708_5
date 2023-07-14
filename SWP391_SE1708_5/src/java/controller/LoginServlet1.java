@@ -65,7 +65,7 @@ public class LoginServlet1 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("common/login.jsp").forward(request, response);
+        request.getRequestDispatcher("common/login_1.jsp").forward(request, response);
 
     }
   
@@ -83,41 +83,35 @@ public class LoginServlet1 extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String username = request.getParameter("username");
         String password = request.getParameter("pass");
-        PlayerDAO adao = new PlayerDAO();
+        User_DetailsDAO adao = new User_DetailsDAO();
         UserDAO userDAO = new UserDAO();
+        PlayerDAO playerDAO  = new PlayerDAO();
+        
+        
         String full_name = "";
 
-        Player playerdetails;
+        User_Details userdetails;
         String mess = "";
         try {
-            playerdetails = adao.getPlayerDetails(username, password);
-            if (playerdetails != null) {
-                
-                
-//                HttpSession session = request.getSession();
-//                String role = adao.checkAdmin(String.valueOf(playerdetails.getUser_id()));
-//                full_name = userDAO.getUserName(username);
-//                 session.setAttribute("role", role);
-//                 session.setAttribute("full_name", full_name);
-//                 session.setAttribute("usercurrent", userdetails);
-//                 session.setAttribute("username", username);
-//                if(role.equals("user")){
-//                    response.sendRedirect("home");
-//                }else{
-//                    response.sendRedirect("admin/home");
-//                }
-               
-                
+            Player playercurrent;
+            playercurrent = playerDAO.getPlayerDetails(username, password);
+            if (playercurrent != null) {
+                HttpSession session = request.getSession();
+                full_name = playerDAO.getPlayerNameById(username);
+                 session.setAttribute("full_name", full_name);
+                 session.setAttribute("playercurrent", playercurrent);
+                 session.setAttribute("username", username);
+                    response.sendRedirect("playermainprofile");
             } else {
                 mess = "account information not cerrect";
                 request.setAttribute("mess", mess);
                 request.setAttribute("username", username);
                 request.setAttribute("password", password);
-                    request.getRequestDispatcher("common/login.jsp").forward(request, response);
+                    request.getRequestDispatcher("common/login_1.jsp").forward(request, response);
                 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(LoginServlet1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

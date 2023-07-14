@@ -16,14 +16,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Player;
 import model.Game;
 import model.Game_Type;
-import model.Paging;
 
 /**
  *
@@ -37,50 +35,41 @@ public class AddPlayerServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
           Object obj = session.getAttribute("role");
-          if(obj == null || !obj.equals("admin")){
-              response.sendRedirect("login");
+          if(obj == null){
+              response.sendRedirect("./home");
              
           }else{
+              if(!obj.equals("admin")){
+                  response.sendRedirect("./home");
+              }
               String updaters = request.getParameter("updaters");
-            if(updaters != null){
-                request.setAttribute("updaters", "true");
-            }
+        if(updaters != null){
+            request.setAttribute("updaters", "true");
+        }
         try {
             Game_TypeDAO cdao = new Game_TypeDAO();
             PlayerDAO mdao = new PlayerDAO();
             List<Player> playerList = mdao.getAllPlayer();
+//            List<Game_Type> gametypeList = cdao.getAllGame_Type();
+//            List<Game_TypeDAO> mcList = cdao.getGameType();
+            String m = "oke";
             String n = String.valueOf(playerList.size());
-            Object currentPage = request.getParameter("paging");
+            
+
+            request.setAttribute("m", m);
             request.setAttribute("n", n);
-            int page =1;
-            if (currentPage == null){
-                response.sendRedirect("player?paging=1");
-            } else {
-                try {
-                    page = Integer.parseInt(currentPage.toString());
-                } catch (Exception e) {
-                    page = 1;
-                }
-                Object itemPerPage = request.getParameter("accPerPage");
-                int accPerPage = 10;
-                if (itemPerPage != null){
-                    accPerPage = Integer.parseInt(itemPerPage.toString());
-                }
-                Paging paging = new Paging(page, playerList.size(), accPerPage);
-                List<Player> listPlayerPage = new ArrayList<>();
-                for (int i=paging.getStartItem(); i<= paging.getEndItem(); i++){
-                    listPlayerPage.add(playerList.get(i));
-                }
-                request.setAttribute("playerList", listPlayerPage);
-                request.setAttribute("page", paging);
-                request.setAttribute("currentPage", page);
-                request.getRequestDispatcher("addplayer.jsp").forward(request, response);
-            }
+            request.setAttribute("playerList", playerList);
+//            request.setAttribute("gameList", gameList);
+//            request.setAttribute("mcList", mcList);
+            response.getWriter().print("ddddsss");
+
+            request.getRequestDispatcher("addplayer.jsp").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(AddPlayerServlet.class.getName()).log(Level.SEVERE, null, ex);
              response.getWriter().print("something wrong");
         }
-        }
+        response.getWriter().print("ddd");
+          }
         
     }
 

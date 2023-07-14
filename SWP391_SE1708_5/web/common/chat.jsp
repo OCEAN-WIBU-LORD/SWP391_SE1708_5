@@ -235,9 +235,20 @@
                 padding-right: 10px;
 
             }
+            .my-element:hover {
+                background-color: #38525D; /* Color change on hover */
+            }
             .action_menu ul li:hover{
                 cursor: pointer;
                 background-color: rgba(0,0,0,0.2);
+            }
+            hr.new5 {
+                border: 2px solid white;
+                border-radius: 5px;
+            }
+            .scrollable-container {
+                height: 200px;
+                overflow: auto;
             }
             @media(max-width: 576px){
                 .contacts_card{
@@ -245,6 +256,31 @@
                 }
             }
         </style>
+        <script>
+            window.onload = function () {
+                // Get the scrollable element by ID or class
+                var scrollableElement = document.getElementById('my-scrollable-element');
+
+                // Scroll the desired scrollable element to the bottom
+                scrollableElement.scrollTop = scrollableElement.scrollHeight;
+                // Get the element containing the sentence
+                var element = document.getElementById('sentence');
+
+                // Check if the sentence contains "http"
+                if (element.innerHTML.includes("http")) {
+                    // Create a new image element
+                    var img = document.createElement('img');
+
+                    // Set the src attribute to the URL
+                    img.src = element.innerHTML;
+
+                    // Replace the div element with the image element
+                    element.parentNode.replaceChild(img, element);
+                }
+            };
+
+
+        </script>
     </head>
     <!--Coded With Love By Mutiullah Samim-->
     <body>
@@ -279,33 +315,55 @@
                                                                                                 <button id="button2" onclick="changeColor('button2')">Button 2</button>
                                                                                                 <button id="buttonA" onclick="changeColor('buttonA')">Button A</button>
                                                                                                 <button id="buttonB" onclick="changeColor('buttonB')">Button B</button>-->
+                                <c:forEach items="${messageList}" var = "m">
+                                    <c:forEach items="${playerList}" var = "p">
+                                        <c:if test="${p.player_id eq m.player_id}">
+                                            <button id="buttonA" onclick="changeColor('buttonA')" style=" background-color: #558089; width: 100%; border: none">
+                                                <li onclick="changeColor('button1')" id="button1">
+                                                    <div class="d-flex bd-highlight">
+                                                        <div class="img_cont">
+                                                            <img src="${p.link_image}" class="rounded-circle user_img">
+                                                            <span class="online_icon offline"></span>
+                                                        </div>
+                                                        <div class="user_info">
+                                                            <span>${p.player_name}</span>
+                                                            <p>Taherah left 7 mins ago</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </button><br>
+                                        </c:if>
+                                    </c:forEach>
+                                </c:forEach>
 
-
+                                <!--
                                 ${n}
-                                <li onclick="activate()" id="button">
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont">
-                                            <img src="http://profilepicturesdp.com/wp-content/uploads/2018/07/sweet-girl-profile-pictures-9.jpg" class="rounded-circle user_img">
-                                            <span class="online_icon offline"></span>
-                                        </div>
-                                        <div class="user_info">
-                                            <span>Nargis Hawa</span>
-                                            <p>Nargis left 30 mins ago</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li onclick="activate()" id="button">
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont">
-                                            <img src="https://static.turbosquid.com/Preview/001214/650/2V/boy-cartoon-3D-model_D.jpg" class="rounded-circle user_img">
-                                            <span class="online_icon offline"></span>
-                                        </div>
-                                        <div class="user_info">
-                                            <span>Rashid Samim</span>
-                                            <p>Rashid left 50 mins ago</p>
-                                        </div>
-                                    </div>
-                                </li>
+                                ${m}
+                                ${q}  -->
+
+                                <hr class="new5">
+                                <b style="font-size: 20px">List Message: </b>
+                                <c:forEach items="${playerlist}" var = "p">
+                                    <c:forEach items="${playerIds1}" var = "q">
+                                        <c:if test="${q eq p.player_id}">
+                                            <a href="chat?player_id=${p.player_id}" class="img my-element" >
+                                                <li onclick="activate()" id="button">
+                                                    <div class="d-flex bd-highlight ">
+                                                        <div class="img_cont">
+                                                            <img src="${p.link_image}" class="rounded-circle user_img">
+                                                            <span class="online_icon offline"></span>
+                                                        </div>
+                                                        <div class="user_info">
+                                                            <span>${p.player_name}</span>
+                                                            <p>${p.player_id} left 30 mins ago</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </a>
+                                        </c:if>
+                                    </c:forEach>  
+                                </c:forEach>  
+                                
                             </ui>
                         </div>
                         <div class="card-footer"></div>
@@ -323,7 +381,7 @@
                                 </div>
                                 <div class="user_info">
                                     <span>${player.player_name}</span>
-                                    <p>1767 Messages</p>
+                                    <p>${n} Messages</p>
                                 </div>
                                 <div class="video_cam">
                                     <span><i class="fas fa-video"></i></span>
@@ -333,14 +391,15 @@
                             <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
                             <div class="action_menu">
                                 <ul>
-                                    <li><i class="fas fa-user-circle"></i> View profile</li>
+                                    <a href="playerdetail?player_id=${player.player_id}"><li><i class="fas fa-user-circle"></i> View profile</li></a>
                                     <li><i class="fas fa-users"></i> Add to close friends</li>
                                     <li><i class="fas fa-plus"></i> Add to group</li>
                                     <li><i class="fas fa-ban"></i> Block</li>
+                                    <li><a href="deletemessage?player_id=${player.player_id}" onclick="deleteMessage(${player.player_id})"><i class="fas fa-trash"></i> Delete</a></li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="card-body msg_card_body">
+                        <div class="card-body msg_card_body scrollable-container" id="my-scrollable-element">
 
                             <!--                            <c:forEach items="${historyMessage}" var = "m">
                                 <c:if test="${m.status eq '1'}">
@@ -365,7 +424,7 @@
                                         <div class="img_cont_msg">
                                             <img src="${udetail.link_image}" class="rounded-circle user_img_msg">
                                         </div>
-                                        <div class="msg_cotainer" style="min-width: 100px">
+                                        <div class="msg_cotainer" style="min-width: 100px" id="sentence">
                                             ${m.message}
                                             <span class="msg_time">${m.date_time}</span>
                                         </div>
@@ -373,9 +432,9 @@
                                 </c:if>
                                 <c:if test="${m.status eq '0'}">
                                     <div class="d-flex justify-content-start mb-4">
-                                        <div class="msg_cotainer_send" style="min-width: 100px">
+                                        <div class="msg_cotainer_send" style="min-width: 100px" >
                                             ${m.message}
-                                            <span class="msg_time_send">${m.date_time}</span>
+                                            <span class="msg_time_send" >${m.date_time}</span>
                                         </div>
                                         <div class="img_cont_msg">
                                             <img src="${player.link_image}" class="rounded-circle user_img_msg">
@@ -384,10 +443,10 @@
                                 </c:if>
                             </c:forEach>            
 
-
+                            <!--
                             <c:forEach items="${historyMessage}" var = "m">
                                 ${m.status}
-                            </c:forEach>  
+                            </c:forEach>  -->
 
                         </div>
                         <form action="chat" method="post"  id="myForm">
@@ -397,7 +456,7 @@
                                     <div class="input-group-append">
                                         <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
                                     </div>
-                                    <textarea name="message" class="form-control type_msg" placeholder="Type your message..."></textarea>
+                                    <textarea name="message" class="form-control type_msg" placeholder="Type your message..." ></textarea>
 
                                     <div class="input-group-append" style="color: #4F5E88" >
                                         <button style="color: #4F5E88">
@@ -467,6 +526,28 @@
             // Submit the form
             document.getElementById("myForm").submit();
         }
+        window.onload = function () {
+            // Get the scrollable element by ID or class
+            var scrollableElement = document.getElementById('my-scrollable-element');
 
+            // Scroll the desired scrollable element to the bottom
+            scrollableElement.scrollTop = scrollableElement.scrollHeight;
+        };
+
+        function deleteMessage(player_id) {
+            var option = confirm("Do you want to delete this Message ?");
+            if (option === true) {
+                window.location.href = 'deletemessage?player_id=' + player_id;
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function deleteMessage(id) {
+            var option = confirm("Do you want to delete this Message ?");
+            if (option === true) {
+                window.location.href = 'deletemessage?player_id=' + id;
+            }
+        }
     </script>
 </html>

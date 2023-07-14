@@ -394,7 +394,7 @@ select * from booking;
 Update User_Details set phone_number='1',gmail='1',address='1',link_image='1' WHERE user_id= 'abcdxyz';
 
 
-update user_details set link_image = 'https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/343340985_609038264590654_7861074615788473177_n.jpg?_nc_cat=110&cb=99be929b-59f725be&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=2X-baBqp4vIAX9nxCVH&_nc_ht=scontent.fhan2-4.fna&oh=00_AfBVK2EH5AmTvyA7Z7VJalAAcqjZUbjwvDA9lUHlRjFQ3w&oe=649E389A' where user_id ='duongdd123';
+update user_details set link_image = 'https://scontent-hkg4-2.xx.fbcdn.net/v/t39.30808-6/343340985_609038264590654_7861074615788473177_n.jpg?_nc_cat=110&cb=99be929b-59f725be&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=_3c_mAdAQlIAX8ARgOp&_nc_ht=scontent-hkg4-2.xx&oh=00_AfA-C94hZVuiavxKWZgWSD20g0a087hGjC45ugNT9vGPhQ&oe=64B004DA' where user_id ='duongdd123';
 
 
 create table message (
@@ -464,3 +464,55 @@ JOIN Booking b ON p.player_id = b.player_id
 where p.player_name like '%e%'
 GROUP BY p.player_id, p.player_name, p.gender,p.phone_number,p.num_of_star,p.password,p.link_image,p.income,p.status_player,p.description
 ORDER BY moneyreceived DESC;
+
+
+select * from Player where player_name like '%e%' or player_id LIKE '%e%' having income between 100 and 400;
+
+select * from user_details;
+
+SELECT p.player_id, p.player_name, p.gender,p.phone_number,p.num_of_star,p.password,p.link_image,p.income,p.status_player,p.description, COUNT(b.player_id) AS booking_count
+FROM Player p
+JOIN Booking b ON p.player_id = b.player_id
+GROUP BY p.player_id, p.player_name, p.gender,p.phone_number,p.num_of_star,p.password,p.link_image,p.income,p.status_player,p.description
+ORDER BY booking_count DESC limit 1;
+
+alter table game add column game_type varchar(50);
+
+
+ALTER TABLE game
+ADD CONSTRAINT FK_game
+FOREIGN KEY (game_type) REFERENCES game_type(game_type);
+
+ALTER TABLE game_type ADD CONSTRAINT fk_game_type_game_id FOREIGN KEY (game_id) REFERENCES game(game_id);
+
+select * from game_type;
+
+drop table game_type;
+
+create table game_type (game_type nvarchar(50) primary key, game_id nvarchar(50));
+
+ALTER TABLE user_role
+ADD CONSTRAINT fk_user_role_role_id
+FOREIGN KEY (role_id)
+REFERENCES role (role_id);
+
+alter table booking  add column booking_id INT PRIMARY KEY AUTO_INCREMENT;
+
+ALTER TABLE originalTable ADD id INT PRIMARY KEY AUTO_INCREMENT;
+
+insert into booking (user_id, player_id, total_hour, game_id, total_price, date_booking, message) values ('duongdd123','meowmeow3k','1','1','1000','2023-07-12','âfasf');
+
+select * from booking;
+select * from message;
+
+alter table booking  drop  booking_id ;
+Select * from Booking  where user_id = 'duongdd123' order by date_booking desc;
+
+Select * from Booking  where user_id = 'duongdd123';
+
+select * from user_details;
+
+ALTER TABLE booking
+ADD status_booking int;
+
+update booking set status_booking = '1' where user_id like 'duongdd123';

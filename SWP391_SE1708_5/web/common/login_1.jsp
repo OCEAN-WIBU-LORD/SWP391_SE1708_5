@@ -42,7 +42,7 @@
 				<span class="login100-form-title p-b-41">
 					Login to Play2Together as Player
 				</span>
-                            <form action="login" method="post" class="login100-form validate-form p-b-33 p-t-5">
+                            <form action="login_1" method="post" class="login100-form validate-form p-b-33 p-t-5">
                                         <p style="text-align: center;color: red" >${mess}</p>
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
                                             <input class="input100" type="text" name="username" value="${username eq null ? "" : username}" placeholder="User name">

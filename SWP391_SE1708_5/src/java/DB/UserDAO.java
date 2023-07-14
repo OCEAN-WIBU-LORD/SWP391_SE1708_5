@@ -13,6 +13,9 @@ import java.sql.Statement;
 import java.sql.Driver;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import model.Player;
 import model.User;
 import model.User_Details;
 
@@ -86,7 +89,7 @@ public class UserDAO {
         return false;
     }
 
-    public void insertUser(String user_id, String full_name) {
+    public void insertUser(String user_id, String full_name) throws SQLException {
         try {
             BaseDAO db = new BaseDAO();
             // connnect to database 'testdb'
@@ -97,6 +100,8 @@ public class UserDAO {
             stmt.executeUpdate();
         } catch (Exception e) {
             System.out.println("insertUser" + e.getMessage());
+        }finally{
+            conn.close();
         }
     }
 
@@ -126,7 +131,7 @@ public class UserDAO {
         return u;
     }
 
-    public String getTotalHour(String user_id) {
+    public String getTotalHour(String user_id) throws SQLException {
         String u = null;
         try {
             BaseDAO db = new BaseDAO();
@@ -147,12 +152,12 @@ public class UserDAO {
         } catch (Exception ex) {
             System.out.println("getTotalHour" + ex.getMessage());
         } finally {
-//            conn.close();
+            conn.close();
         }
         return u;
     }
 
-    public String getTotalMoneySpend(String user_id) {
+    public String getTotalMoneySpend(String user_id) throws SQLException {
         String u = null;
         try {
             BaseDAO db = new BaseDAO();
@@ -173,9 +178,47 @@ public class UserDAO {
         } catch (Exception ex) {
             System.out.println("getTotalBooking" + ex.getMessage());
         } finally {
-//            conn.close();
+            conn.close();
         }
         return u;
+    }
+
+    public List<User_Details> getAllUser() throws SQLException {
+        List<User_Details> list = null;
+        Connection conn = null;
+        try {
+            BaseDAO db = new BaseDAO();
+            // connnect to database 'testdb'
+            conn = db.getConnection();
+            // crate statement
+            PreparedStatement stmt = conn.prepareStatement("select * from User_details limit 100");
+
+            // get data from table
+            ResultSet rs = stmt.executeQuery();
+            // show data
+            list = new ArrayList<>();
+            while (rs.next()) {
+                User_Details a = null;
+                a = new User_Details(
+                        rs.getString("user_id"),
+                        rs.getNString("gender"),
+                        rs.getString("phone_number"),
+                        rs.getString("gmail"),
+                        rs.getString("address"),
+                        rs.getString("password"),
+                        rs.getString("link_image"),
+                        rs.getDouble("balance"),
+                        rs.getString("description"));
+                list.add(a);
+            }
+            // close connection
+
+        } catch (Exception ex) {
+            System.out.println("getAllPlayer" + ex.getMessage());
+        } finally {
+            conn.close();
+        }
+        return list;
     }
 
 }

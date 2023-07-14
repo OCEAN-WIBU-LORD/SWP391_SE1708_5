@@ -43,32 +43,40 @@ public class HomeServlet extends HttpServlet {
         PlayerDAO mdao = new PlayerDAO();
         UserDAO udao = new UserDAO();
         //     Game_TypeDAO adao = new Game_TypeDAO();
-        List<Player> playerList = mdao.getTop5GoodPlayer();
-        List<Player> playerList2 = mdao.getTop5BestBookingPlayer();
-        String full_name = String.valueOf(session.getAttribute("full_name"));
-
-        int a = playerList.size();
+        List<Player> playerList;
+        try {
+            String full_name = String.valueOf(session.getAttribute("full_name"));
+            playerList = mdao.getTop5GoodPlayer();
+            List<Player> playerList2 = mdao.getTop5BestBookingPlayer();
+            int a = playerList.size();
+            request.setAttribute("playerList", playerList);
+            request.setAttribute("playerList2", playerList2);
+            request.setAttribute("a", a);
+            request.setAttribute("full_name", full_name);
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 //            List<Actor> actorList = adao.getAllActor();
 //            List<GameType> cateList = cdao.getGameType();
 //            List<PlayerGame> movieActorList = mdao.getPlayerGame();
 //            List<Player_category> mcList = cdao.getPlayerCategory();
 //            request.setAttribute("mcList", mcList);
-        request.setAttribute("playerList", playerList);
-        request.setAttribute("playerList2", playerList2);
-        request.setAttribute("a", a);
-        request.setAttribute("full_name", full_name);
-
         User_Details account = (User_Details) obj_acc;
         User_DetailsDAO udt = new User_DetailsDAO();
 
         if (account != null) {
-            String user_id = account.getUser_id() + "";
-            User_Details udetail = udt.getUserDetailsById(user_id);
-            request.setAttribute("udetail", udetail);
-            request.getRequestDispatcher("common/home.jsp").forward(request, response);
-            return;
-            
+            try {
+                String user_id = account.getUser_id() + "";
+                User_Details udetail;
+                udetail = udt.getUserDetailsById(user_id);
+                request.setAttribute("udetail", udetail);
+                request.getRequestDispatcher("common/home.jsp").forward(request, response);
+                return;
+            } catch (SQLException ex) {
+                Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         } else {
             request.getRequestDispatcher("common/home.jsp").forward(request, response);
             return;

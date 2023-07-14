@@ -214,13 +214,13 @@
 
                         <div class="card p-3  py-4">
 
-                            <h5>An Easier way to find your Player</h5>
+                            <!--<h5>An Easier way to find your Player</h5>-->
 
                             <div class="row g-3 mt-2">
 
                                 <div class="col-md-3">
 
-                                    <div class="dropdown">
+<!--                                    <div class="dropdown">
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
                                             Any Status
                                         </button>
@@ -229,8 +229,16 @@
                                             <li><a class="dropdown-item" href="SearchServlet" onclick="searchBestDonate()" type="submit">Best Donated Player</a></li>
                                             <li><a class="dropdown-item" href="SearchServlet" onclick="searchBestBooking()" type="submit">Best Booking Player</a></li>
                                         </ul>
-                                    </div>
-                                   
+                                    </div>-->
+                                    <label for="filter">Choose Filter:</label>
+
+                                    <select name="filter" id="filter"  >
+                                        <option value="none">None</option>
+                                        <option value="topIncome">Top High Income Player</option>
+                                        <option value="bestdonate">Best Donated Player</option>
+                                        <option value="bestbooking">Best Booking Player</option>
+                                    </select>
+
 
                                 </div>
 
@@ -239,7 +247,6 @@
                                     <input name="searchInput" type="text" class="form-control" placeholder="Enter player Name or Player ID" id="searchInput">
 
                                 </div>
-
                                 <div class="col-md-3">
 
                                     <button class="btn btn-secondary btn-block">Search Results</button>
@@ -276,8 +283,9 @@
 
 
                                             <div class="col-md-4">
-
-                                                <input type="text" class="form-control" placeholder="Search by Price Range">
+                                                    Search by Price Range
+                                                <input type="text" class="form-control" placeholder="Price Range From" name="pricefrom">
+                                                <input type="text" class="form-control" placeholder="To" name="priceto">
 
                                             </div>
 
@@ -338,7 +346,7 @@
                                             <p class="description">${player.getDescription()}</p>
                                         </div>
                                         <div class="col-sm-3 text-align-center">
-                                            <p class="value3 mt-sm">${player.getIncome()}</p>
+                                            <p class="value3 mt-sm" style="font-size: 20px; font-weight: bold">${player.getIncome()}</p>
                                             <p class="fs-mini text-muted">PER HOUR</p><a class="btn btn-primary btn-info btn-sm" href="playerdetail?player_id=${player.player_id}">Learn More</a>
                                         </div>
                                     </div>

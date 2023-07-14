@@ -18,11 +18,13 @@ public class Bookings {
     private double total_price;
     private String date_booking;
     private String message;
+    private String status_booking;
+    private int booking_id;
 
     public Bookings() {
     }
 
-    public Bookings(String user_id, String player_id, String total_hour, String game_id, double total_price, String date_booking, String message) {
+    public Bookings(String user_id, String player_id, String total_hour, String game_id, double total_price, String date_booking, String message, String status_booking, int booking_id) {
         this.user_id = user_id;
         this.player_id = player_id;
         this.total_hour = total_hour;
@@ -30,6 +32,8 @@ public class Bookings {
         this.total_price = total_price;
         this.date_booking = date_booking;
         this.message = message;
+        this.status_booking = status_booking;
+        this.booking_id = booking_id;
     }
 
     public String getUser_id() {
@@ -88,6 +92,25 @@ public class Bookings {
         this.message = message;
     }
 
+    public String getStatus_booking() {
+        return status_booking;
+    }
+
+    public void setStatus_booking(String status_booking) {
+        this.status_booking = status_booking;
+    }
+
+    public int getBooking_id() {
+        return booking_id;
+    }
+
+    public void setBooking_id(int booking_id) {
+        this.booking_id = booking_id;
+    }
+
+   
+    
+
     
     
 
@@ -98,7 +121,7 @@ public class Bookings {
 
     @Override
     public String toString() {
-        return "Bookings{" + ", user_id=" + user_id + ", player_id=" + player_id + ", total_hour=" + total_hour + ", game_id=" + game_id +", date_booking=" +date_booking+", message=" +message+'}';
+        return "Bookings{" + ", user_id=" + user_id + ", player_id=" + player_id + ", total_hour=" + total_hour + ", game_id=" + game_id +", date_booking=" +date_booking+", message=" +message+", status_booking=" +status_booking+", booking_id=" +booking_id+'}';
     }
 
    

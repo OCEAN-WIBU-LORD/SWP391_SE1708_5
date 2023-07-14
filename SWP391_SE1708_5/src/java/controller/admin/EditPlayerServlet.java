@@ -69,24 +69,44 @@ public class EditPlayerServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            String player_id = request.getParameter("id");
-//            String player_name = request.getParameter("player_name");
-//            String description = request.getParameter("description");
-//            String gender = request.getParameter("gender");
-//            String phone_number = request.getParameter("phone_number");
-//            String numStart = request.getParameter("num_of_star");
-//            numStart = numStart==null ? "0" : numStart;
-//            int num_of_star = Integer.parseInt(numStart);
-//            String password = request.getParameter("password");
-//            String link_image = request.getParameter("link_image");
-//            String income = request.getParameter("income");
+            String player_id = request.getParameter("player_id");
+            String player_name = request.getParameter("player_name");
+            String description = request.getParameter("description");
+            String gender = request.getParameter("gender");
+            String phone_number = request.getParameter("phone_number");
+            int num_of_star = Integer.parseInt(request.getParameter("num_of_star"));
+            String password = request.getParameter("password");
+            String link_image = request.getParameter("link_image");
+            String income = request.getParameter("income");
             String status_player = request.getParameter("status_player");
 
             Game_TypeDAO cdao = new Game_TypeDAO();
-            PlayerDAO playerDao = new PlayerDAO();
+            PlayerDAO mdao = new PlayerDAO();
+//            List<Movie_category> mcList = cdao.getMovieCategory();
+//            List<Category> categoryList = cdao.getAllCategory();
+            List<Player> playerList = mdao.getAllPlayer();
             
-            playerDao.changeStatusPlayer(player_id, Integer.parseInt(status_player));
-            response.sendRedirect("player");
+//            response.getWriter().print(new Player(player_id, player_name, description, gender1, phone_number, num_of_star, password, link_image, Double.valueOf(income), (status_player != null ? "1" : "0").toString());
+            mdao.updatePlayer(new Player(player_id, player_name, gender, phone_number, num_of_star, password, link_image, Double.parseDouble(income), status_player != null ? "1" : "0", description));
+
+            
+//             for (Game_Type category : Game_Type) {
+//                String cate = request.getParameter(category.getCate_name());
+//                int cateid = category.getCate_id();
+//                if(cate != null && !cdao.getCheckMovieCategory(new Game_Type(movie_id2, cateid))){
+//                    mdao.addMovieCategory(new Game_Type(movie_id2, cateid));
+//                }
+//                if(cate == null && cdao.getCheckGame_Type(new Game_Type(movie_id2, cateid))){
+//                  
+//            
+//                    mdao.deleteGame_Type(movie_id, String.valueOf(category.getCate_id()));
+//                }
+//            }
+            
+          
+//response.getWriter().println(cate);
+
+            response.sendRedirect("addplayer");
         } catch (SQLException ex) {
             Logger.getLogger(AddPlayerServlet.class.getName()).log(Level.SEVERE, null, ex);
             response.getWriter().print("something wrong");

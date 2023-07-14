@@ -72,7 +72,6 @@ public class EditProfileServlet extends HttpServlet {
         Object obj_acc = session.getAttribute("usercurrent");
         String player_id = request.getParameter("player_id");
             PlayerDAO mdao = new PlayerDAO();
-            Player player = mdao.getPlayerByID(player_id);
             UserDAO u = new UserDAO();
 //        if(!bookingrs.equals("")){
 //            request.setAttribute("bookingrs", "true");
@@ -82,6 +81,7 @@ public class EditProfileServlet extends HttpServlet {
             request.getRequestDispatcher("common/login.jsp").forward(request, response);
         }
         try {
+            Player player = mdao.getPlayerByID(player_id);
          User_Details account = (User_Details) obj_acc;
          User_DetailsDAO udt = new User_DetailsDAO();
         String user_id = account.getUser_id() + "";
@@ -125,7 +125,6 @@ public class EditProfileServlet extends HttpServlet {
         Object obj_acc = session.getAttribute("usercurrent");
         String player_id = request.getParameter("player_id");
             PlayerDAO mdao = new PlayerDAO();
-            Player player = mdao.getPlayerByID(player_id);
             UserDAO u = new UserDAO();
 //        if(!bookingrs.equals("")){
 //            request.setAttribute("bookingrs", "true");
@@ -135,6 +134,7 @@ public class EditProfileServlet extends HttpServlet {
             request.getRequestDispatcher("common/login.jsp").forward(request, response);
         }
         try {
+            Player player = mdao.getPlayerByID(player_id);
          User_Details account = (User_Details) obj_acc;
          User_DetailsDAO udt = new User_DetailsDAO();
         String user_id = account.getUser_id() + "";
