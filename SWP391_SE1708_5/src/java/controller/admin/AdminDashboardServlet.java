@@ -54,15 +54,10 @@ public class AdminDashboardServlet extends HttpServlet {
             List<Player> player_list = mdao.getAllPlayer();
             List<User_Details> user_list = udao.getAllUserDetails();
 //            List<Game_TypeDAO> game_type_list = cdao.getAllGame_Type();
-
-            double balance = 0;
-            if (account != null){
-                balance = account.getBalance();
-            }
 //            
             request.setAttribute("playerCount", (player_list.size()));
             request.setAttribute("userCount", (user_list.size()));
-            request.setAttribute("accountMoney", balance);
+            request.setAttribute("accountMoney", (account.getBalance()));
             
             request.getRequestDispatcher("dashboard.jsp").forward(request, response);
 

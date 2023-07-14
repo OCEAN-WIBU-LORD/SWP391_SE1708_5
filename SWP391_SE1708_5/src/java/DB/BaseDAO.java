@@ -19,7 +19,7 @@ public class BaseDAO {
     public static void main(String[] args){
         String url = "jdbc:mysql://localhost:3306/swp391_se1708_5_3";
         String username ="root";
-        String password="1234";
+        String password="123456789";
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(url,username,password);

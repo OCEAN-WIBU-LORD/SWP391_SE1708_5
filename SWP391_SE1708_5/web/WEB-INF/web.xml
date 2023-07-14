@@ -113,8 +113,12 @@
         <servlet-class>controller.admin.DeleteMessageServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>BookingStatusChangingServlet</servlet-name>
-        <servlet-class>controller.BookingStatusChangingServlet</servlet-class>
+        <servlet-name>DenyBookingServlet</servlet-name>
+        <servlet-class>controller.DenyBookingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AcceptBookingServlet</servlet-name>
+        <servlet-class>controller.AcceptBookingServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -229,8 +233,12 @@
         <url-pattern>/deletemessage</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>BookingStatusChangingServlet</servlet-name>
-        <url-pattern>/changestatusbooking</url-pattern>
+        <servlet-name>DenyBookingServlet</servlet-name>
+        <url-pattern>/denybooking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AcceptBookingServlet</servlet-name>
+        <url-pattern>/acceptbooking</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

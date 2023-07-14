@@ -47,6 +47,7 @@
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/test/controller/HomeServletTest.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/admin/addGameForm.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/model/Base.java</file>
+            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/admin/addgametype.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/Unauthorized.html</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/test/DB/User_DetailsDAOTest.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/repass.jsp</file>
@@ -77,6 +78,7 @@
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/model/User.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/test/DB/DBContextTest.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/UserMainProfileServlet.java</file>
+            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/BookingStatusChangingServlet.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/test/controller/LeaderBoardServletTest.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/test/DB/BookingDAOTest.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/seat.jsp</file>

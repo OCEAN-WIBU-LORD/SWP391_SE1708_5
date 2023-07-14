@@ -11,7 +11,6 @@ import DB.PlayerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -28,8 +27,6 @@ import model.Game_Type;
  *
  * @author Nguyen Van Ky
  */
-//@WebServlet(name = "AddPlayerServlet", urlPatterns = {"/admin/player"})
-
 public class AddPlayerServlet extends HttpServlet {
 
     @Override
