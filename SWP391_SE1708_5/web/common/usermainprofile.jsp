@@ -249,17 +249,17 @@
                 </nav><!-- .nav-menu -->
             </div>
         </header><!-- End Header -->
-        
+
         <!-- ======= Hero Section ======= -->
-        
+
         <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
             <div class="hero-container" data-aos="fade-in">
-                
+
                 <h1>${username}</h1>
                 <p>I'm <span class="typed" data-typed-items="Gamer, Player, Co-Player, Web Designer"></span></p>
             </div>
         </section><!-- End Hero -->
-        
+
         <main id="main">
 
             <!-- ======= About Section ======= -->
@@ -445,6 +445,7 @@
                                                 <th style="width: 150px;" class="text-center"><span>Total Hour</span></th>
                                                 <th style="width: 150px;"><span>Money</span></th>
                                                 <th ><span>Message</span></th>
+                                                <th ><span>Status</span></th>
                                                 <th ><span>Action</span></th>
                                                 <th>&nbsp;</th>
                                             </tr>
@@ -488,26 +489,99 @@
                                                             </c:if>
                                                         </c:forEach>
                                                     </td>
-                                                    <td style="width: 20%;">
-                                                        <a href="#" class="table-link">
-                                                            <span class="fa-stack">
-                                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                                <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                                            </span>
-                                                        </a>
-                                                        <a href="#" class="table-link">
-                                                            <span class="fa-stack">
-                                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                                            </span>
-                                                        </a>
-                                                        <!--<a href="#" onclick="deleteMovie(${o.movie_id})">delete</a></td>-->
-                                                        <a href="#" class="table-link danger">
-                                                            <span class="fa-stack">
-                                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                                            </span>
-                                                        </a>
+                                                    <td style="width: 10%;">
+                                                        <c:if test="${m.status_booking eq '3'}">
+                                                            <a href="#historybooking" class="table-link">
+                                                                <span class="fa-stack">
+                                                                    <i class="fa fa-square fa-stack-2x"></i>
+                                                                    <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                                                                </span>
+                                                                Finish
+                                                            </a>
+                                                        </c:if>
+
+                                                        <c:if test="${m.status_booking eq '1'}">
+                                                            <a href="#historybooking" class="table-link" style="color: darkorange">
+                                                                <span class="fa-stack">
+                                                                    <i class="fa fa-square fa-stack-2x"></i>
+                                                                    <i class="fa fa-ban fa-stack-1x fa-inverse"></i>
+                                                                </span>
+                                                                Pending
+                                                            </a>
+                                                        </c:if>
+                                                        <c:if test="${m.status_booking eq '0'}">
+                                                            <a href="#historybooking" class="table-link" style="color: darkgreen">
+                                                                <span class="fa-stack">
+                                                                    <i class="fa fa-square fa-stack-2x"></i>
+                                                                    <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                                                </span>
+                                                                Need Player Confirmation
+                                                            </a>
+                                                        </c:if>
+                                                        <c:if test="${m.status_booking eq '2'}">
+                                                            <a href="#" class="table-link danger">
+                                                                <span class="fa-stack">
+                                                                    <i class="fa fa-square fa-stack-2x"></i>
+                                                                    <i class="fa fa-warning fa-stack-1x fa-inverse"></i>
+                                                                </span>
+                                                                Discard By Player
+                                                            </a>
+                                                        </c:if>
+                                                        <c:if test="${m.status_booking eq '4'}">
+                                                            <a href="#" class="table-link danger">
+                                                                <span class="fa-stack">
+                                                                    <i class="fa fa-square fa-stack-2x"></i>
+                                                                    <i class="fa fa-warning fa-stack-1x fa-inverse"></i>
+                                                                </span>
+                                                                Discard By User
+                                                            </a>
+                                                        </c:if>
+
+
+
+<!--<a href="#" onclick="deleteMovie(${o.movie_id})">delete</a></td>-->
+
+                                                    </td>
+                                                    <td style="width: 10%;">
+                                                        <c:if test="${m.status_booking eq '1'}">
+                                                            <a href="#historybooking" class="table-link" onclick="finishBooking(${m.booking_id})" style="color: limegreen">
+                                                                <span class="fa-stack">
+                                                                    <i class="fa fa-square fa-stack-2x"></i>
+                                                                    <i class="fa fa-check-circle-o fa-stack-1x fa-inverse"></i>
+                                                                </span>
+                                                                Finish Booking
+                                                            </a><br>
+                                                        </c:if>
+
+
+
+                                                        <c:if test="${m.status_booking eq '0'}">
+                                                            <a href="#historybooking" class="table-link danger" onclick="cancelBooking(${m.booking_id})">
+                                                                <span class="fa-stack">
+                                                                    <i class="fa fa-square fa-stack-2x"></i>
+                                                                    <i class="fa fa-ban fa-stack-1x fa-inverse"></i>
+                                                                </span>
+                                                                Cancel Booking
+                                                            </a><br>
+                                                        </c:if>
+                                                        <c:if test="${m.status_booking eq '1'}">
+                                                            <a href="#historybooking" class="table-link" style="color: red" onclick="flagBooking(${m.booking_id})">
+                                                                <span class="fa-stack">
+                                                                    <i class="fa fa-square fa-stack-2x"></i>
+                                                                    <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
+                                                                </span>
+                                                                Flag
+                                                            </a><br>
+                                                        </c:if>
+                                                        <c:if test="${m.status_booking eq '3'}">
+                                                            <a href="chat?player_id=${m.player_id}" class="table-link" style="color: darkblue">
+                                                                <span class="fa-stack">
+                                                                    <i class="fa fa-square fa-stack-2x"></i>
+                                                                    <i class="fa fa-wechat fa-stack-1x fa-inverse"></i>
+                                                                </span>
+                                                                Communication
+                                                            </a>
+                                                        </c:if>
                                                     </td>
                                                 </tr>
                                             </c:forEach>
@@ -879,6 +953,33 @@
 
         <!-- Template Main JS File -->
         <script src="js/main.js"></script>
+        <script>
+                                                                function deniedBooking(id) {
+                                                                    var option = confirm("Do you want to denied this Booking ?");
+                                                                    if (option === true) {
+                                                                        window.location.href = 'denybooking?booking_id=' + id;
+                                                                    }
+                                                                }
+                                                                function flagBooking(id) {
+                                                                    var option = confirm("Do you want to denied this Booking ?");
+                                                                    if (option === true) {
+                                                                        window.location.href = 'flagbooking?booking_id=' + id;
+                                                                    }
+                                                                }
+                                                                function finishBooking(id) {
+                                                                    var option = confirm("Do you want to finish this Booking ?");
+                                                                    if (option === true) {
+                                                                        window.location.href = 'finishbooking?booking_id=' + id;
+                                                                    }
+                                                                }
+                                                                function cancelBooking(id) {
+                                                                    var option = confirm("Do you want to cancel this Booking ?");
+                                                                    if (option === true) {
+                                                                        window.location.href = 'cancelbooking?booking_id=' + id;
+                                                                    }
+                                                                }
+        </script>
+
 
     </body>
 

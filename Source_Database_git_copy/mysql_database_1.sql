@@ -304,7 +304,7 @@ game_id varchar(50),
  FOREIGN KEY (booking_id) REFERENCES booking(booking_id)
 );
 
-select * from player;
+select * from user_details;
 
 select * from booking;
 insert into booking  values ('duongdd123','chanbaby95','1','2');
@@ -324,4 +324,9 @@ select * from booking;
 alter table booking ADD message text;
 
 
-update booking set status_booking = '0' where booking_id = '36';
+update booking set status_booking = '0' where booking_id = '35';
+
+set global read_only = off;
+select * from user_details;
+
+update user_details set link_image = 'https://scontent.fhan14-3.fna.fbcdn.net/v/t39.30808-6/343340985_609038264590654_7861074615788473177_n.jpg?_nc_cat=110&cb=99be929b-59f725be&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=qTF-ofAzM4IAX-0po6R&_nc_ht=scontent.fhan14-3.fna&oh=00_AfA7MbBlhaLW7JIjV3q-Go7YXnCbc5VmPElYE2aeeHeXuw&oe=64B7EDDA' where user_id = 'duongdd123';

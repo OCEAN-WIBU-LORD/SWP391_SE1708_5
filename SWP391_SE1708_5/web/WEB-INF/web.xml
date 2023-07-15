@@ -105,6 +105,10 @@
         <servlet-class>controller.ChatServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ChatServlet2</servlet-name>
+        <servlet-class>controller.ChatServlet2</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>EditProfileServlet</servlet-name>
         <servlet-class>controller.EditProfileServlet</servlet-class>
     </servlet>
@@ -119,6 +123,14 @@
     <servlet>
         <servlet-name>AcceptBookingServlet</servlet-name>
         <servlet-class>controller.AcceptBookingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CancelBookingServlet</servlet-name>
+        <servlet-class>controller.CancelBookingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FinishBookingServlet</servlet-name>
+        <servlet-class>controller.FinishBookingServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -225,6 +237,10 @@
         <url-pattern>/chat</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ChatServlet2</servlet-name>
+        <url-pattern>/chat2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>EditProfileServlet</servlet-name>
         <url-pattern>/editprofile</url-pattern>
     </servlet-mapping>
@@ -239,6 +255,14 @@
     <servlet-mapping>
         <servlet-name>AcceptBookingServlet</servlet-name>
         <url-pattern>/acceptbooking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CancelBookingServlet</servlet-name>
+        <url-pattern>/cancelbooking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FinishBookingServlet</servlet-name>
+        <url-pattern>/finishbooking</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -13,7 +13,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +20,7 @@ import java.util.logging.Logger;
  *
  * @author Acer
  */
-public class DenyBookingServlet extends HttpServlet {
+public class FinishBookingServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -39,10 +38,10 @@ public class DenyBookingServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet BookingStatusChangingServlet</title>");            
+            out.println("<title>Servlet AcceptBookingServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet BookingStatusChangingServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AcceptBookingServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,12 +59,12 @@ public class DenyBookingServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         try {
             BookingDAO mdao = new BookingDAO();
             String booking_id = request.getParameter("booking_id");
-            mdao.denyBooking(booking_id);
-            response.sendRedirect("playermainprofile#historybooking");
+            mdao.finishBooking(booking_id);
+            response.sendRedirect("usermainprofile#historybooking");
         } catch (SQLException ex) {
             Logger.getLogger(DenyBookingServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

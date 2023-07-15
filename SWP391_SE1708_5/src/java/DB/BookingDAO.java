@@ -252,5 +252,65 @@ public class BookingDAO {
             conn.close();
         }
     }
+    public void cancelBooking(String booking_id) throws SQLException {
+        try {
+
+            // connnect to database 'testdb'
+            conn = baseDAO.getConnection();
+            // crate statement
+            PreparedStatement stmt = conn.prepareStatement("update booking set status_booking = '4' where booking_id = ?");
+            stmt.setInt(1, Integer.parseInt(booking_id));
+
+            // get data from table
+            stmt.executeUpdate();
+            // show data
+
+            // close connection
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }finally{
+            conn.close();
+        }
+    }
+    public void finishBooking(String booking_id) throws SQLException {
+        try {
+
+            // connnect to database 'testdb'
+            conn = baseDAO.getConnection();
+            // crate statement
+            PreparedStatement stmt = conn.prepareStatement("update booking set status_booking = '3' where booking_id = ?");
+            stmt.setInt(1, Integer.parseInt(booking_id));
+
+            // get data from table
+            stmt.executeUpdate();
+            // show data
+
+            // close connection
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }finally{
+            conn.close();
+        }
+    }
+    public void denyBooking(String booking_id) throws SQLException {
+        try {
+
+            // connnect to database 'testdb'
+            conn = baseDAO.getConnection();
+            // crate statement
+            PreparedStatement stmt = conn.prepareStatement("update booking set status_booking = '2' where booking_id = ?");
+            stmt.setInt(1, Integer.parseInt(booking_id));
+
+            // get data from table
+            stmt.executeUpdate();
+            // show data
+
+            // close connection
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }finally{
+            conn.close();
+        }
+    }
 
 }

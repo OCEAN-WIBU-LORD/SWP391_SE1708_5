@@ -269,6 +269,36 @@ public class MessageDAO {
         }
         return list;
     }
+    public List<String> messageUser1(String player_id) throws SQLException {
+        List<String> list = null;
+        try {
+
+            BaseDAO db = new BaseDAO();
+            // connnect to database 'testdb'
+            conn = db.getConnection();
+            // crate statement
+            PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT user_id\n"
+                    + "FROM Message\n"
+                    + "WHERE player_id = ?\n"
+                    + "GROUP BY user_id;");
+            stmt.setString(1, player_id);
+
+            list = new ArrayList<>();
+            // get data from table
+            ResultSet rs = stmt.executeQuery();
+            // show data
+            while (rs.next()) {
+                String user_id = rs.getString("user_id");
+                list.add(player_id);
+            }
+            // close connection
+        } catch (Exception ex) {
+            System.out.println("messageList" + ex.getMessage());;
+        } finally{
+            conn.close();
+        }
+        return list;
+    }
 
     public void deleteMessage(String user_id, String player_id) throws SQLException {
         try {
