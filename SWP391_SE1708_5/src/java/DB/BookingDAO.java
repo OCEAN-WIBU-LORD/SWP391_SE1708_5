@@ -211,7 +211,7 @@ public class BookingDAO {
 "left join game g on b.game_id = g.game_id\n" +
 "left join user u on u.user_id = ud.user_id"
             );
-//            
+            
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Bookings book = new Bookings(rs.getString("user_id"), rs.getString("player_id"), rs.getNString("total_hour"), rs.getString("game_id"),rs.getDouble("total_price"),rs.getString("date_booking"),rs.getString("message"));
