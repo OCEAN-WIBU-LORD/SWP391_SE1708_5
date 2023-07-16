@@ -83,7 +83,7 @@ public class ChatServlet2 extends HttpServlet {
             List<String> playerIds = new ArrayList<>();
             List<String> userIds1 = bddao.messageUser1(player_id);
             List<Message> historyMessage = bddao.messageList(user_id, player_id);
-            List<Message> messagePlayer = bddao.messagePlayer(user_id, player_id);
+//            List<Message> messagePlayer = bddao.messagePlayer(user_id, player_id);
             List<User_Details> userlist = mdao.getAllUserDetails();
             int n = historyMessage.size();
             int m = userlist.size();

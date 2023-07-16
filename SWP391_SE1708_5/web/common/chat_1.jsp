@@ -7,6 +7,7 @@
 <!------ Include the above in your HEAD tag ---------->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -257,34 +258,15 @@
             }
         </style>
         <script>
-            window.onload = function () {
-                // Get the scrollable element by ID or class
-                var scrollableElement = document.getElementById('my-scrollable-element');
-
-                // Scroll the desired scrollable element to the bottom
-                scrollableElement.scrollTop = scrollableElement.scrollHeight;
-                // Get the element containing the sentence
-                var element = document.getElementById('sentence');
-
-                // Check if the sentence contains "http"
-                if (element.innerHTML.includes("http")) {
-                    // Create a new image element
-                    var img = document.createElement('img');
-
-                    // Set the src attribute to the URL
-                    img.src = element.innerHTML;
-
-                    // Replace the div element with the image element
-                    element.parentNode.replaceChild(img, element);
-                }
-            };
+            
 
 
         </script>
     </head>
     <!--Coded With Love By Mutiullah Samim-->
-    <body>
-        <div class="container-fluid h-100" style="height: 5000px">
+    <body id="dynamicContent">
+       <!-- <%response.setHeader("Refresh","50");%> -->
+        <div class="container-fluid h-100" style="height: 5000px" >
             <div class="row justify-content-center h-100">
                 <div class="col-md-4 col-xl-3 chat"><div class="card mb-sm-3 mb-md-0 contacts_card">
                         <div class="card-header">
@@ -370,7 +352,7 @@
                         </div>
                         <div class="card-footer"></div>
                     </div></div>
-                <div class="col-md-8 col-xl-6 chat">
+                <div class="col-md-8 col-xl-6 chat" >
                     <div class="card">
                         <div class="card-header msg_head">
                             <div class="d-flex bd-highlight">
@@ -401,7 +383,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="card-body msg_card_body scrollable-container" id="my-scrollable-element">
+                                <div class="card-body msg_card_body scrollable-container" id="my-scrollable-element">
 
                             <!--                            <c:forEach items="${historyMessage}" var = "m">
                                 <c:if test="${m.status eq '1'}">
@@ -458,7 +440,7 @@
                                     <div class="input-group-append">
                                         <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
                                     </div>
-                                    <textarea name="message" class="form-control type_msg" placeholder="Type your message..." ></textarea>
+                                    <textarea name="message" class="form-control type_msg" placeholder="Type your message..." required></textarea>
 
                                     <div class="input-group-append" style="color: #4F5E88" >
                                         <button style="color: #4F5E88">
@@ -551,5 +533,41 @@
                 window.location.href = 'deletemessage?player_id=' + id;
             }
         }
+        function fetchData() {
+            $.ajax({
+                url: "chat2?user_id=${user.user_id}", // URL that retrieves the updated data from the database
+                method: "GET",
+                success: function(response) {
+                    $("#dynamicContent").html(response); // Update the dynamic content
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error retrieving data: " + error);
+                }
+            });
+        }
+
+        // Poll the server every 5 seconds (adjust the interval as needed)
+        setInterval(fetchData, 10000);
+        window.onload = function () {
+                // Get the scrollable element by ID or class
+                var scrollableElement = document.getElementById('my-scrollable-element');
+
+                // Scroll the desired scrollable element to the bottom
+                scrollableElement.scrollTop = scrollableElement.scrollHeight;
+                // Get the element containing the sentence
+                var element = document.getElementById('sentence');
+
+                // Check if the sentence contains "http"
+                if (element.innerHTML.includes("http")) {
+                    // Create a new image element
+                    var img = document.createElement('img');
+
+                    // Set the src attribute to the URL
+                    img.src = element.innerHTML;
+
+                    // Replace the div element with the image element
+                    element.parentNode.replaceChild(img, element);
+                }
+            };
     </script>
 </html>

@@ -15,6 +15,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -73,10 +75,33 @@ public class LeaderBoardServlet extends HttpServlet {
             playerList = mdao.getTop5HighIncomePlayer();
         List<Player> playerList2 = mdao.getTop5BestBookingPlayer();
         String full_name = String.valueOf(session.getAttribute("full_name"));
+        String player_id;
+        List<Player>  listPlayer = mdao.getTop5BestIncomePlayerID();
+        List<Player> playerList3 = mdao.getAllPlayer();
+//        List<String> playerList4 = mdao.getTopBestIncome1();
+        
+        int top3Income = mdao.getThirdBestIncome();
+        int top2Income = mdao.getSecondBestIncome();
+        int top1Income = mdao.getTopBestIncome();
+        int h = playerList3.size();
         int a = playerList.size();
+//        int k = playerList4.size();
+        
+
+    
+
+
         request.setAttribute("playerList", playerList);
         request.setAttribute("playerList2", playerList2);
+        request.setAttribute("playerList3", playerList3);
+//        request.setAttribute("playerList4", playerList4);
+        request.setAttribute("listPlayer", listPlayer);
         request.setAttribute("a", a);
+        request.setAttribute("top1Income", reformat(String.valueOf(top1Income)));
+        request.setAttribute("top2Income", reformat(String.valueOf(top2Income)));
+        request.setAttribute("top3Income", reformat(String.valueOf(top3Income)));
+        request.setAttribute("h", h);
+//        request.setAttribute("k", k);
         request.setAttribute("full_name", full_name);
         } catch (SQLException ex) {
             System.out.println("doGetLeaderBoard" + ex.getMessage());;
@@ -91,6 +116,15 @@ public class LeaderBoardServlet extends HttpServlet {
 //            request.setAttribute("movieActorList", movieActorList);
 //            response.getWriter().print(playerList.get(0).getDirected_by());\
         request.getRequestDispatcher("common/leaderboard.jsp").forward(request, response);
+    }
+    
+
+    private String reformat(String originalString) {
+        String string = originalString;
+        long number = Long.parseLong(originalString);
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        String separatedString = decimalFormat.format(number);
+        return separatedString;
     }
 
     /**

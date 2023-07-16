@@ -283,7 +283,7 @@
         </script>
     </head>
     <!--Coded With Love By Mutiullah Samim-->
-    <body>
+    <body id="dynamicContent">
         <div class="container-fluid h-100" style="height: 5000px">
             <div class="row justify-content-center h-100">
                 <div class="col-md-4 col-xl-3 chat"><div class="card mb-sm-3 mb-md-0 contacts_card">
@@ -363,7 +363,7 @@
                                         </c:if>
                                     </c:forEach>  
                                 </c:forEach>  
-                                
+
                             </ui>
                         </div>
                         <div class="card-footer"></div>
@@ -452,11 +452,11 @@
                         <form action="chat" method="post"  id="myForm">
                             <input type="text" value="${player.player_id}" name="player_id" class="hidden-input">
                             <div class="card-footer">
-                                <div class="input-group">
+                                <div class="input-group wrap-input100 validate-input"  data-validate="Please type message">
                                     <div class="input-group-append">
                                         <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
                                     </div>
-                                    <textarea name="message" class="form-control type_msg" placeholder="Type your message..." ></textarea>
+                                    <textarea name="message" class="form-control type_msg" placeholder="Type your message..." required></textarea>
 
                                     <div class="input-group-append" style="color: #4F5E88" >
                                         <button style="color: #4F5E88">
@@ -549,5 +549,31 @@
                 window.location.href = 'deletemessage?player_id=' + id;
             }
         }
+        function fetchData() {
+            $.ajax({
+                url: "chat?player_id=${player.player_id}", // URL that retrieves the updated data from the database
+                method: "GET",
+                success: function (response) {
+                    $("#dynamicContent").html(response); // Update the dynamic content
+                },
+                error: function (xhr, status, error) {
+                    console.log("Error retrieving data: " + error);
+                }
+            });
+            
+        }
+        // Poll the server every 5 seconds (adjust the interval as needed)
+        setInterval(fetchData, 10000);
+
+
+        
+
+        function functionB() {
+            // Code for functionB
+            console.log("FunctionB executed");
+        }
+
+// Usage: Call functionA and chain it with window.onload using .then()
+        
     </script>
 </html>

@@ -3,7 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/chat1.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/DB/Game_PlayedDAO.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/model/Booking_Details.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/DB/UserDAO.java</file>
@@ -15,6 +14,7 @@
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/LoginServlet1.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/admin/addGame.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/model/Player.java</file>
+            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/chat_1.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/payment.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/admin/GameList.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/PlayerMainProfileServlet.java</file>
@@ -38,6 +38,7 @@
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/test/controller/BookingPlayerServletTest.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/DB/BaseDAO.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/admin/slide.jsp</file>
+            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/DenyBookingServlet.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/admin/addplayer.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/css/style_6.css</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/admin/RegisterServlet.java</file>
@@ -60,12 +61,14 @@
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/model/User_Details.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/admin/dashboard.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/editprofile.jsp</file>
-            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/chat.jsp</file>
+            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/ChatServlet2.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/PlayerDetailServlet.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/DB/LeaderBoardPlayerDAO.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/model/Bookings.java</file>
+            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/chat.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/bookingplayer.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/EditProfileServlet.java</file>
+            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/AcceptBookingServlet.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/Logout.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/profile.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/test/controller/UserMainProfileServletTest.java</file>
@@ -78,7 +81,6 @@
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/model/User.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/test/DB/DBContextTest.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/UserMainProfileServlet.java</file>
-            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/BookingStatusChangingServlet.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/test/controller/LeaderBoardServletTest.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/test/DB/BookingDAOTest.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/seat.jsp</file>
@@ -90,6 +92,7 @@
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/usermainprofile.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/login_1.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/FinishBookingServlet.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/admin/RepassServlet.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/admin/DeleteBookingServlet.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/test/DB/Booking_DetailsDAOTest.java</file>
@@ -106,6 +109,7 @@
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/web/common/home.jsp</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/SearchServlet.java</file>
             <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/test/controller/PaymentServletTest.java</file>
+            <file>file:/C:/Users/Acer/Downloads/SWP391_SE1708_5-main/SWP391_SE1708_5-main/SWP391_SE1708_5/src/java/controller/CancelBookingServlet.java</file>
         </group>
     </open-files>
 </project-private>

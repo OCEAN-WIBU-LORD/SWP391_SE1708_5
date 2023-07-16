@@ -330,3 +330,17 @@ set global read_only = off;
 select * from user_details;
 
 update user_details set link_image = 'https://scontent.fhan14-3.fna.fbcdn.net/v/t39.30808-6/343340985_609038264590654_7861074615788473177_n.jpg?_nc_cat=110&cb=99be929b-59f725be&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=qTF-ofAzM4IAX-0po6R&_nc_ht=scontent.fhan14-3.fna&oh=00_AfA7MbBlhaLW7JIjV3q-Go7YXnCbc5VmPElYE2aeeHeXuw&oe=64B7EDDA' where user_id = 'duongdd123';
+
+
+
+SELECT p.player_id, p.player_name, p.gender,p.phone_number,p.num_of_star,p.password,
+p.link_image,p.income,p.status_player,p.description, sum(b.total_price) AS moneyreceived 
+FROM Player p JOIN Booking b ON p.player_id = b.player_id GROUP BY p.player_id, p.player_name,
+ p.gender,p.phone_number,p.num_of_star,p.password,p.link_image,p.income,p.status_player,p.description
+ ORDER BY moneyreceived DESC limit 5;
+ 
+SELECT  SUM(b.total_price) AS moneyreceived
+FROM Player p
+JOIN Booking b ON p.player_id = b.player_id
+GROUP BY p.player_id
+ORDER BY moneyreceived DESC limit 2, 1;

@@ -118,7 +118,7 @@ public class MessageDAO {
             // connnect to database 'testdb'
             conn = db.getConnection();
             // crate statement
-            PreparedStatement stmt = conn.prepareStatement("Select * from Message  where user_id = ? and player_id = ? order by date_time asc");
+            PreparedStatement stmt = conn.prepareStatement("Select messageid,user_id,player_id,date_time,message,status from Message  where user_id = ? and player_id = ? order by date_time asc");
             stmt.setString(1, user_id);
             stmt.setString(2, player_id);
 

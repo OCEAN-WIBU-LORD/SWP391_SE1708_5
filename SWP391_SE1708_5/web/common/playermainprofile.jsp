@@ -539,6 +539,15 @@
                                                                 Discard
                                                             </a>
                                                         </c:if>
+                                                        <c:if test="${m.status_booking eq '4'}">
+                                                            <a href="#" class="table-link danger">
+                                                                <span class="fa-stack">
+                                                                    <i class="fa fa-square fa-stack-2x"></i>
+                                                                    <i class="fa fa-warning fa-stack-1x fa-inverse"></i>
+                                                                </span>
+                                                                Discarded by User
+                                                            </a>
+                                                        </c:if>
 
 
 
