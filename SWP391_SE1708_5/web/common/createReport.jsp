@@ -319,6 +319,7 @@
                                                 <td></td>
                                                 <td>
                                                     <c:if test="${transaction.getId() ne null}">
+                                                        <input hidden name="booking_id" value="${transaction.getId()}">
                                                         <button type="submit">Create Report</button>                                                        
                                                     </c:if>
                                                 </td>

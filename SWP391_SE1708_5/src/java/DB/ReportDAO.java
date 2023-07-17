@@ -136,7 +136,7 @@ public class ReportDAO {
             pstm.setInt(2, reportId);
             pstm.executeUpdate();
         } catch (Exception e) {
-            System.out.println("UpdateGame:" + e.getMessage());
+            System.out.println("UpdateReport:" + e.getMessage());
         }
     }
     
@@ -144,10 +144,14 @@ public class ReportDAO {
         try {
             conn = baseDAO.getConnection();
             String strUpdate = "insert into report(booking_id, player_id, user_id,reason, status, created_at,report_parent_id) values ("
-                    + "?, ?,?,?, , now(),?)";
+                    + "?, ?,?,?,?, now(),?)";
             PreparedStatement pstm = conn.prepareStatement(strUpdate);
-//            pstm.setString(1, status);
-//            pstm.setInt(2, reportId);
+            pstm.setInt(1, Integer.parseInt(b.getId()));
+            pstm.setString(2, b.getPlayer_id());
+            pstm.setString(3, b.getUser_id());
+            pstm.setString(4, reason);
+            pstm.setString(5, "processing");
+            pstm.setString(6, null);
             pstm.executeUpdate();
         } catch (Exception e) {
             System.out.println("UpdateGame:" + e.getMessage());

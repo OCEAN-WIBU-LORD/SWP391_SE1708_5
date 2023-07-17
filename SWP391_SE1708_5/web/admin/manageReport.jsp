@@ -125,6 +125,7 @@
                                                     <td>${r.getReason()}</td>
                                                     <td>${r.getCreatedAt()}</td>
                                                     <td>${r.getStatus()}</td>
+                                                    <form action="updateReport" method="post">
                                                     <td>
                                                         <select name="new_status">
                                                             <c:if test="${r.getStatus() eq 'processing'}">
@@ -141,11 +142,11 @@
                                                             </select>
                                                     </td>
                                                     <td>
-                                                        <form action="cancelReport" method="post">
+                                                        
                                                                 <input hidden name="report_id" value="${r.getId()}">
                                                                 <button type="submit">Update Report</button>
-                                                            </form>
                                                     </td>
+                                                    </form>
                                                 </tr>
                                             </c:forEach>
 

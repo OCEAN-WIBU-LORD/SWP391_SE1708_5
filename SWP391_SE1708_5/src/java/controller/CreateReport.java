@@ -112,6 +112,17 @@ public class CreateReport extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
+//        int booking_id = Integer.parseInt(request.getParameter("booking_id"));
+        String booking_id = request.getParameter("booking_id");
+        BookingDAO bDAO = new BookingDAO();
+        try {
+            Bookings b = bDAO.getBookingById(booking_id);
+            String reason = request.getParameter("reason");
+            ReportDAO rDAO = new ReportDAO();
+            rDAO.createReport(reason, b);
+        } catch (SQLException ex) {
+            Logger.getLogger(CreateReport.class.getName()).log(Level.SEVERE, null, ex);
+        }
         request.getRequestDispatcher("common/createReport.jsp").forward(request, response);
 
     }

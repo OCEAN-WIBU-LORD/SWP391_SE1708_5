@@ -40,6 +40,7 @@
                             <a class="collapse-item ${addplayer}" href="player">Manage Player</a>
                             <a class="collapse-item ${manageUser}" href="manageUser">Manage User</a>
                             <a class="collapse-item ${addgame}" href="addgametype">Manage Account</a>
+                            <a class="collapse-item ${addgame}" href="manageReport">Manage Report</a>
                         </div>
                     </div>
                 </li>
