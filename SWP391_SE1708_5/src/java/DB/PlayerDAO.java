@@ -703,17 +703,23 @@ public class PlayerDAO {
     }
 
     public List<Player> getTop5BestIncomePlayerID() throws SQLException {
-        List<Player> player = null;
+        List<Player> list = null;
         Connection conn = null;
         try {
             BaseDAO db = new BaseDAO();
+            // connnect to database 'testdb'
             conn = db.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT p.player_id, p.player_name, p.gender,p.phone_number,p.num_of_star,p.password,p.link_image,p.income,p.status_player,p.description, sum(b.total_price) AS moneyreceived\n"
-                    + "FROM Player p\n"
-                    + "JOIN Booking b ON p.player_id = b.player_id\n"
-                    + "GROUP BY p.player_id, p.player_name, p.gender,p.phone_number,p.num_of_star,p.password,p.link_image,p.income,p.status_player,p.description\n"
-                    + "ORDER BY moneyreceived DESC limit 5;");
+            // crate statement
+            PreparedStatement stmt = conn.prepareStatement("SELECT p.player_id, p.player_name, p.gender,p.phone_number,p.num_of_star,p.password,\n"
+                    + "p.link_image,p.income,p.status_player,p.description, sum(b.total_price) AS moneyreceived \n"
+                    + "FROM Player p JOIN Booking b ON p.player_id = b.player_id GROUP BY p.player_id, p.player_name,\n"
+                    + " p.gender,p.phone_number,p.num_of_star,p.password,p.link_image,p.income,p.status_player,p.description \n"
+                    + " ORDER BY moneyreceived DESC limit 10 ;");
+
+            // get data from table
             ResultSet rs = stmt.executeQuery();
+            // show data
+            list = new ArrayList<>();
             while (rs.next()) {
                 Player a = null;
                 a = new Player(
@@ -727,15 +733,16 @@ public class PlayerDAO {
                         rs.getDouble("moneyreceived"),
                         rs.getString("status_player"),
                         rs.getString("description"));
-                player.add(a);
+                list.add(a);
             }
-            return player;
-        } catch (Exception e) {
-            System.out.println("getTop5BestIncomePlayerID" + e.getMessage());
+            // close connection
+
+        } catch (Exception ex) {
+            System.out.println("getTop5BestIncomePlayerID" + ex.getMessage());
         } finally {
             conn.close();
         }
-        return null;
+        return list;
     }
 
     public int getTopBestIncome() throws SQLException {
@@ -761,6 +768,7 @@ public class PlayerDAO {
         }
         return 0;
     }
+
     public int getSecondBestIncome() throws SQLException {
         double b = 0;
         Connection conn = null;
@@ -784,6 +792,7 @@ public class PlayerDAO {
         }
         return 0;
     }
+
     public int getThirdBestIncome() throws SQLException {
         double b = 0;
         Connection conn = null;
@@ -807,8 +816,9 @@ public class PlayerDAO {
         }
         return 0;
     }
+
     public ArrayList<String> getTopBestIncome1() throws SQLException {
-        ArrayList<String> player = null ;
+        ArrayList<String> player = null;
         String b = "";
         Connection conn = null;
         try {
@@ -845,7 +855,7 @@ public class PlayerDAO {
                     + "GROUP BY p.player_id\n"
                     + "ORDER BY moneyreceived DESC limit 5");
             ResultSet rs = stmt.executeQuery();
-                String b = null;
+            String b = null;
             while (rs.next()) {
                 b = String.valueOf(rs.getDouble("moneyreceived"));
                 player.add(b);
@@ -853,7 +863,42 @@ public class PlayerDAO {
             return player;
         } catch (Exception e) {
             System.out.println("getTop5BestIncome" + e.getMessage());
-        } 
+        }
+        return null;
+    }
+
+    public Player getPlayerByTotalMoney(int top1Income) throws SQLException {
+        Player player = new Player();
+        Connection conn = null;
+        try {
+            BaseDAO db = new BaseDAO();
+            conn = db.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT p.player_id, p.player_name, p.gender, p.phone_number, p.num_of_star,p.password,p.link_image,p.income, p.status_player, p.description\n"
+                    + "FROM player p\n"
+                    + "JOIN booking b ON p.player_id = b.player_id\n"
+                    + "GROUP BY p.player_id, p.player_name, p.gender, p.phone_number, p.num_of_star,p.password,p.link_image,p.income, p.status_player, p.description\n"
+                    + "HAVING SUM(b.total_price) = ?;");
+            stmt.setInt(1, top1Income);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                player = new Player(
+                        rs.getString("player_id"),
+                        rs.getNString("player_name"),
+                        rs.getString("gender"),
+                        rs.getString("phone_number"),
+                        rs.getInt("num_of_star"),
+                        rs.getString("password"),
+                        rs.getString("link_image"),
+                        rs.getDouble("income"),
+                        rs.getString("status_player"),
+                        rs.getString("description"));
+            }
+            return player;
+        } catch (Exception e) {
+            System.out.println("getPlayerByTotalMoney" + e.getMessage());
+        } finally {
+            conn.close();
+        }
         return null;
     }
 }

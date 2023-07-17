@@ -84,12 +84,15 @@ public class LeaderBoardServlet extends HttpServlet {
         int top2Income = mdao.getSecondBestIncome();
         int top1Income = mdao.getTopBestIncome();
         int h = playerList3.size();
-        int a = playerList.size();
+        int a = listPlayer.size();
 //        int k = playerList4.size();
+        Player player1 = mdao.getPlayerByTotalMoney(top1Income);
+        Player player2 = mdao.getPlayerByTotalMoney(top2Income);
+        Player player3 = mdao.getPlayerByTotalMoney(top3Income);
+        request.setAttribute("player1", player1);
+        request.setAttribute("player2", player2);
+        request.setAttribute("player3", player3);
         
-
-    
-
 
         request.setAttribute("playerList", playerList);
         request.setAttribute("playerList2", playerList2);
