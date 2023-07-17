@@ -4,7 +4,6 @@
  */
 package controller;
 
-import DB.BookingDAO;
 import DB.ReportDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,21 +12,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import model.Bookings;
-import model.Report;
-import model.User_Details;
 
 /**
  *
  * @author Cuthi
  */
-@WebServlet(name = "CreateReport", urlPatterns = {"/createReport"})
-public class CreateReport extends HttpServlet {
+@WebServlet(name = "CancelReport", urlPatterns = {"/cancelReport"})
+public class CancelReport extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,10 +37,10 @@ public class CreateReport extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CreateReport</title>");            
+            out.println("<title>Servlet CancelReport</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CreateReport at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CancelReport at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -67,37 +58,7 @@ public class CreateReport extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-
-        String bookingId = request.getParameter("bookingId");
-        BookingDAO bookingDAO = new BookingDAO();
-        ReportDAO reportDAO = new ReportDAO();
-        ArrayList<Report> listReport = new ArrayList<>();
-        try {
-            if (bookingId != null){
-                Bookings booking = bookingDAO.getBookingById(bookingId);
-                request.setAttribute("transaction", booking);
-            }
-            HttpSession session = request.getSession();
-            Object obj = session.getAttribute("role");
-            Object obj_acc = session.getAttribute("usercurrent");
-            if (obj == null){
-                response.sendRedirect("login");
-            } else {
-                User_Details account = (User_Details) obj_acc;
-                if(obj.toString().equals("user") || obj.toString().equals("admin")){
-                    listReport = reportDAO.getReportByUserId(account.getUser_id(), true);
-                }else{
-                    listReport = reportDAO.getReportByUserId(account.getUser_id(), false);
-                }
-                request.setAttribute("reports", listReport);
-                request.setAttribute("totalReport", listReport.size());
-                request.getRequestDispatcher("common/createReport.jsp").forward(request, response);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(CreateReport.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        processRequest(request, response);
     }
 
     /**
@@ -112,8 +73,10 @@ public class CreateReport extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        request.getRequestDispatcher("common/createReport.jsp").forward(request, response);
-
+        int reportId = Integer.parseInt(request.getParameter("report_id"));
+        ReportDAO rDAO = new ReportDAO();
+        rDAO.updateReportStatus("Cancelled", reportId);
+        response.sendRedirect("createReport");
     }
 
     /**
@@ -125,9 +88,5 @@ public class CreateReport extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private void elseif(boolean equals) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
 }

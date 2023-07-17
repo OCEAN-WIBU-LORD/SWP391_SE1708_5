@@ -1,3 +1,9 @@
+<%-- 
+    Document   : manageReport
+    Created on : Jul 17, 2023, 10:57:09 AM
+    Author     : Cuthi
+--%>
+
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -72,39 +78,81 @@
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <h1 class="h3 mb-4 text-gray-800">Game Type</h1>
+                        <h1 class="h3 mb-4 text-gray-800">Reports</h1>
 
                         <div class="row">
 
                             <div class="col-lg-6">
 
                                 <!-- Circle Buttons -->
-                                <div class="card shadow mb-4">
+                                <div class="card shadow mb-12" style="width: 3000px;">
                                     <div class="card-header py-3">
                                         <h6 class="m-0 font-weight-bold text-primary">Game Type List</h6>
                                     </div>
                                     <div class="card-body">
-                                        <table class="table table-hover">
+                                        <table class="table user-list" style="width: 2000px">
+                                        <span>Total Booking: ${totalReport}</span></br></br>
+                                        <c:if test="${totalReport == 0}">
+                                            <h3>You have no reports!</h3>
+                                        </c:if>
+                                        <c:if test="${totalReport != 0}">
                                             <thead>
-                                                <tr>
-                                                    <th>Game Type Name</th>
-                                                    <th>Action</th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                
-                                                    <c:forEach items="${listGameType}" var="g">
-                                                        <tr>
-                                                        <td>${g.game_type}</td>
-                                                        <td><a href="deleteGameType?id=${g.game_type}">Delete</a></td>
-                                                        <td><a href="addGameType?gameType=${g.game_type}">Update</a></td>
-                                                        </tr>
-                                                    </c:forEach>
+                                            <tr>
+                                                <th style="width: 150px; "><span>Player</span></th>
+                                                <th style="width: 150px;"><span>User</span></th>
+                                                <th style="width: 100px;"><span>Total Hour</span></th>
+                                                <th style="width: 150px;" class="text-center"><span>Total Price</span></th>
+                                                <th style="width: 150px;"><span>Date Booking</span></th>
+                                                <th style="width: 200px;"><span>Message</span></th>
+                                                <th style="width: 150px;"><span>Reason report</span></th>
+                                                <th style="width: 150px;"><span>Date report</span></th>
+                                                <th style="width: 150px;"><span>Status Report</span></th>
+                                                <th style="width: 150px;"><span>Action</span></th>
+                                                <th style="width: 150px;"><span>Update</span></th>                                                
+                                            </tr>
+                                        </thead>
 
-                                                
-                                            </tbody>
-                                        </table>
+                                        <tbody>
+
+                                            <c:forEach items="${reports}" var="r">
+                                                <tr>
+                                                    <td>${r.getPlayerId()}</td>
+                                                    <td>${r.getUserId()}</td>
+                                                    <td>${r.getBooking().getTotal_hour()}</td>
+                                                    <td>${r.getBooking().getTotal_price()}</td>
+                                                    <td>${r.getBooking().getDate_booking()}</td>
+                                                    <td>${r.getBooking().getMessage()}</td>
+                                                    <td>${r.getReason()}</td>
+                                                    <td>${r.getCreatedAt()}</td>
+                                                    <td>${r.getStatus()}</td>
+                                                    <td>
+                                                        <select name="new_status">
+                                                            <c:if test="${r.getStatus() eq 'processing'}">
+                                                                <option value="process">Process</option>
+                                                                <option value="accept">Accept</option>
+                                                                <option value="reject">Reject</option>
+                                                            </c:if>
+                                                            <c:if test="${r.getStatus() eq 'accept'}">
+                                                                <option value="accept">Accept</option>
+                                                            </c:if>
+                                                            <c:if test="${r.getStatus() eq 'reject'}">
+                                                                <option value="reject">Reject</option>
+                                                            </c:if>
+                                                            </select>
+                                                    </td>
+                                                    <td>
+                                                        <form action="cancelReport" method="post">
+                                                                <input hidden name="report_id" value="${r.getId()}">
+                                                                <button type="submit">Update Report</button>
+                                                            </form>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+
+                                        </tbody>
+                                        </c:if>
+                                       
+                                    </table>
 
 
                                     </div>
@@ -113,7 +161,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+<!--                            <div class="col-lg-6">
 
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
@@ -153,7 +201,7 @@
                                     </div>
                                 </div>
 
-                            </div>
+                            </div>-->
 
                         </div>
 
@@ -216,4 +264,4 @@
 
     </body>
 
-</html>
+</html>>

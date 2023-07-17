@@ -43,6 +43,7 @@
                                 <ul class="dropdown">
                                     <li><a href="usermainprofile#historybooking">HISTORY BOOKING</a></li>
                                     <li><a href="#">BENEFITS</a></li>
+                                    <li><a href="createReport">Report</a></li>
                                 </ul>
                             </li>
 

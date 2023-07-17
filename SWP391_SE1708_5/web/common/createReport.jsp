@@ -311,13 +311,17 @@
                                             </tr>
                                             <tr>
                                                 <td></td>
-                                                <td>Reason: </td>
+                                                <td>Reason (With evidence): </td>
                                                 <td><textarea name="reason"></textarea></td>
                                             </tr>
                                             <tr>
                                                 <td></td>
                                                 <td></td>
-                                                <td><button type="submit">Create Report</button></td>
+                                                <td>
+                                                    <c:if test="${transaction.getId() ne null}">
+                                                        <button type="submit">Create Report</button>                                                        
+                                                    </c:if>
+                                                </td>
                                             </tr>
                                         </div>
                             </table>
@@ -382,80 +386,39 @@
                                         <c:if test="${totalReport != 0}">
                                             <thead>
                                             <tr>
-                                                <th style="width: 150px; "><span>Player Image</span></th>
-                                                <th style="width: 400px;"><span>Player Name</span></th>
+                                                <th style="width: 150px; "><span>Player</span></th>
+                                                <th style="width: 150px;"><span>User</span></th>
+                                                <th style="width: 100px;"><span>Total Hour</span></th>
+                                                <th style="width: 150px;" class="text-center"><span>Total Price</span></th>
                                                 <th style="width: 150px;"><span>Date Booking</span></th>
-                                                <th style="width: 150px;" class="text-center"><span>Total Hour</span></th>
-                                                <th style="width: 150px;"><span>Money</span></th>
-                                                <th ><span>Message</span></th>
-                                                <th>&nbsp;</th>
-                                                <th style="width: 150px; ">Report</th>
+                                                <th style="width: 200px;"><span>Message</span></th>
+                                                <th style="width: 150px;"><span>Reason report</span></th>
+                                                <th style="width: 150px;"><span>Date report</span></th>
+                                                <th style="width: 150px;"><span>Status Report</span></th>
+                                                <th style="width: 150px;"><span>Action</span></th>
                                             </tr>
                                         </thead>
 
                                         <tbody>
 
-                                            <c:forEach items="${historyBooking}" var = "m">
+                                            <c:forEach items="${reports}" var="r">
                                                 <tr>
-                                                    <td >
-                                                        <c:forEach var="player" items="${playerlist}">
-                                                            <c:if test="${player.player_id eq m.player_id}">
-                                                                <img src="${player.getLink_image()}"alt="Image" width="70" height="50" style="border-radius: 50%; left: 20%" >
-                                                            </c:if>
-                                                        </c:forEach>
-
-                                                    </td>
+                                                    <td>${r.getPlayerId()}</td>
+                                                    <td>${r.getUserId()}</td>
+                                                    <td>${r.getBooking().getTotal_hour()}</td>
+                                                    <td>${r.getBooking().getTotal_price()}</td>
+                                                    <td>${r.getBooking().getDate_booking()}</td>
+                                                    <td>${r.getBooking().getMessage()}</td>
+                                                    <td>${r.getReason()}</td>
+                                                    <td>${r.getCreatedAt()}</td>
+                                                    <td>${r.getStatus()}</td>
                                                     <td>
-                                                        <c:forEach var="player" items="${playerlist}">
-                                                            <c:if test="${player.player_id eq m.player_id}">
-                                                                <h1 class="" style="font-size: 20px">${player.getPlayer_name()}</h1>
-                                                                <!--<span class="user-subhead">${player.getPlayer_name()}</span>-->
-                                                                <!--<img src="${m.getPlayer_id()}" alt="">-->
-                                                                Player Details:<a href="playerdetail?player_id=${m.player_id}" style="font-size: 20px">${m.getPlayer_id()}</a>
-                                                            </c:if>
-                                                        </c:forEach>
-                                                    </td>
-                                                    <td>
-                                                        ${m.getDate_booking()}
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <span class="label label-default">${m.getTotal_hour()}</span>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#">${m.getTotal_price()}</a>$
-                                                    </td>
-                                                    <td>
-                                                        <c:forEach var="player" items="${playerlist}">
-                                                            <c:if test="${player.player_id eq m.player_id}">
-                                                                <h1 class="user-subhead">${m.getMessage()}</h1>
-                                                            </c:if>
-                                                        </c:forEach>
-                                                    </td>
-                                                    <td style="width: 20%;">
-                                                        <a href="#" class="table-link">
-                                                            <span class="fa-stack">
-                                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                                <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                                            </span>
-                                                        </a>
-                                                        <a href="#" class="table-link">
-                                                            <span class="fa-stack">
-                                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                                            </span>
-                                                        </a>
-                                                        <a href="#" class="table-link danger">
-                                                            <span class="fa-stack">
-                                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                                            </span>
-                                                        </a>
-                                                    </td>
-                                                    <td>
-                                                        <form action="report/create" method="post">
-                                                            <input hidden name="playerId" value="${m.player_id}">   
-                                                            <button style="width: 100px; height: 50px" type="submit" style="color: red">Report</button>
-                                                        </form>
+                                                        <c:if test="${r.getStatus() eq 'processing'}">
+                                                            <form action="cancelReport" method="post">
+                                                                <input hidden name="report_id" value="${r.getId()}">
+                                                                <button type="submit">Cancel Report</button>
+                                                            </form>
+                                                        </c:if>
                                                     </td>
                                                 </tr>
                                             </c:forEach>

@@ -164,6 +164,7 @@ public class GameDAO {
                 g.gameType = rs.getString("game_type");
                 g.status = rs.getInt("status");
             }
+//            
             return g;
         } catch (Exception e) {
             System.out.println("GetGame:" + e.getMessage());

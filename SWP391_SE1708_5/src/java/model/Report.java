@@ -12,13 +12,16 @@ import java.time.LocalDateTime;
  */
 public class Report {
     private int id;
-    private String bookingId, playerId, userId, reason, status;
+    private int bookingId;
+    private String playerId, userId, reason, status;
     private LocalDateTime createdAt;
+    private int reportParent;
+    private Bookings booking;
 
     public Report() {
     }
 
-    public Report(int id, String bookingId, String playerId, String userId, String reason, String status, LocalDateTime createdAt) {
+    public Report(int id, int bookingId, String playerId, String userId, String reason, String status, LocalDateTime createdAt) {
         this.id = id;
         this.bookingId = bookingId;
         this.playerId = playerId;
@@ -28,11 +31,39 @@ public class Report {
         this.createdAt = createdAt;
     }
 
+    public Report(int id, int bookingId, String playerId, String userId, String reason, String status, LocalDateTime createdAt, int reportParent, Bookings booking) {
+        this.id = id;
+        this.bookingId = bookingId;
+        this.playerId = playerId;
+        this.userId = userId;
+        this.reason = reason;
+        this.status = status;
+        this.createdAt = createdAt;
+        this.reportParent = reportParent;
+        this.booking = booking;
+    }
+
+    public int getReportParent() {
+        return reportParent;
+    }
+
+    public Bookings getBooking() {
+        return booking;
+    }
+
+    public void setReportParent(int reportParent) {
+        this.reportParent = reportParent;
+    }
+
+    public void setBooking(Bookings booking) {
+        this.booking = booking;
+    }
+    
     public int getId() {
         return id;
     }
 
-    public String getBookingId() {
+    public int getBookingId() {
         return bookingId;
     }
 
@@ -60,7 +91,7 @@ public class Report {
         this.id = id;
     }
 
-    public void setBookingId(String bookingId) {
+    public void setBookingId(int bookingId) {
         this.bookingId = bookingId;
     }
 
