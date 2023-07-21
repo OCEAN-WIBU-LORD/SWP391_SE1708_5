@@ -4,17 +4,24 @@
  */
 package controller.admin;
 
+import DB.BookingDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
+import model.Bookings;
 
 /**
  *
  * @author Cuthi
  */
+@WebServlet(name = "ManageBooking", urlPatterns = {"/admin/manageBooking"})
+
 public class ManageBooking extends HttpServlet {
 
     /**
@@ -55,7 +62,12 @@ public class ManageBooking extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+        BookingDAO bDAO = new BookingDAO();
+        ArrayList<Bookings> listBooking = bDAO.getAllBooking();
+        request.setAttribute("totalBooking", listBooking.size());
+        request.setAttribute("bookings", listBooking);
+        request.getRequestDispatcher("manageBooking.jsp").forward(request, response);
     }
 
     /**
